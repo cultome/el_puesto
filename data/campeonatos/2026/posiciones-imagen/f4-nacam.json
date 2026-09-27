@@ -1,0 +1,101 @@
+{
+ "campeonato": "México Racing Cup",
+ "temporada": "2026",
+ "categoria": "F4 NACAM",
+ "imageUrl": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1789949704135811217.jpg",
+ "throughRound": 5,
+ "leidaEl": "2026-09-27",
+ "nota": "Transcrita de la imagen por un agente; validada (suma por carrera = SUMA en todas las filas). Posición IMPRESA; puntos = PUNTOS REALES.",
+ "rows": [
+  {
+   "pos": 1,
+   "name": "Alejandro Bobadilla",
+   "team": "Alessandros Blue",
+   "points": 278
+  },
+  {
+   "pos": 2,
+   "name": "Alan Zezatti",
+   "team": "Alessandros Red",
+   "points": 229
+  },
+  {
+   "pos": 3,
+   "name": "Oliver Trejo",
+   "team": "RAM Racing 1",
+   "points": 185
+  },
+  {
+   "pos": 4,
+   "name": "Mariano Alatorre",
+   "team": "Alessandros Blue",
+   "points": 156
+  },
+  {
+   "pos": 5,
+   "name": "Fernando Rivera",
+   "team": "RAM Racing 1",
+   "points": 149
+  },
+  {
+   "pos": 6,
+   "name": "Marco Alquicira",
+   "team": "Santinel RT 1",
+   "points": 127
+  },
+  {
+   "pos": 7,
+   "name": "Emilio Martinez",
+   "team": "RAM Racing 2",
+   "points": 77
+  },
+  {
+   "pos": 8,
+   "name": "Mateo Giron",
+   "team": "Alessandros Red",
+   "points": 70
+  },
+  {
+   "pos": 9,
+   "name": "Alex Popow Jr.",
+   "team": "Alessandros Red",
+   "points": 61
+  },
+  {
+   "pos": 10,
+   "name": "Jose Carlos Lezama",
+   "team": "Santinel RT 2",
+   "points": 51
+  },
+  {
+   "pos": 11,
+   "name": "Agustin Herrera",
+   "team": "Santinel RT 1",
+   "points": 43
+  },
+  {
+   "pos": 12,
+   "name": "Moises Zargusky",
+   "team": "RRK Motosrports",
+   "points": 42
+  },
+  {
+   "pos": 13,
+   "name": "Patrick Isavi",
+   "team": "RAM Racing 2",
+   "points": 16
+  },
+  {
+   "pos": 14,
+   "name": "Octavio Ruano",
+   "team": "Alessandros Red",
+   "points": 14
+  },
+  {
+   "pos": 15,
+   "name": "Leonardo Mancera",
+   "team": "Alessandros Silver",
+   "points": 10
+  }
+ ]
+}

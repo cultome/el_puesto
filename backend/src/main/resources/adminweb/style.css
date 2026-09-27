@@ -1,0 +1,363 @@
+/* El Puesto Admin — tema "Paddock nocturno" (ver docs/handoff/A-compose-theme.md) */
+:root {
+  --bg: #191C24;
+  --bg2: #1E222B;
+  --panel: #242833;
+  --border: #333949;
+  --amber: #F2B134;
+  --green: #3FDD85;
+  --red: #F0524D;
+  --blue: #7FB7F0;
+  /* Capas del mapa (las mismas de la app): color en borde y texto, relleno solo lo elegido. */
+  --puesto: #FF8A45; --puesto-fill: #FF7A2F;
+  --rescate: #FFD23F; --soporte: #3FDD85;
+  --medicos: #FF7A75; --medicos-fill: #F0524D;
+  --text: #E9EBF1;
+  --muted: #8A91A5;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Menlo, monospace;
+  --sans: "IBM Plex Sans", "Archivo", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; }
+#app { display: flex; min-height: 100vh; }
+
+/* ——— Login ——— */
+.login-wrap { margin: auto; width: min(420px, 92vw); }
+.login-card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+.brand { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.brand-flag { width: 26px; height: 30px; flex-shrink: 0;
+  background: url("logo.png") center / contain no-repeat; }
+.brand-name { font-family: var(--mono); font-weight: 700; letter-spacing: 2px; }
+.brand-sub { color: var(--muted); font-family: var(--mono); font-size: 11px; letter-spacing: 1px; }
+
+/* ——— Shell ——— */
+.sidebar { width: 220px; flex-shrink: 0; background: var(--bg2); border-right: 1px solid var(--border);
+  padding: 16px 10px; display: flex; flex-direction: column; gap: 2px; position: sticky; top: 0; height: 100vh; }
+.sidebar .brand { padding: 0 8px 12px; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
+.nav-btn { display: block; width: 100%; text-align: left; background: none; border: none; color: var(--text);
+  font-family: var(--mono); font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+  padding: 9px 12px; border-radius: 8px; cursor: pointer; }
+.nav-btn:hover { background: var(--panel); }
+.nav-btn.active { background: var(--panel); color: var(--amber); }
+.sidebar-foot { margin-top: auto; padding: 10px 12px; border-top: 1px solid var(--border);
+  font-family: var(--mono); font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
+.sidebar-foot b { color: var(--text); }
+.main { flex: 1; padding: 22px 26px; min-width: 0; }
+
+/* ——— Componentes ——— */
+h1 { font-family: var(--sans); font-size: 20px; margin: 0 0 4px; }
+.crumbs { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; color: var(--muted); margin-bottom: 16px; }
+.crumbs a { color: var(--blue); cursor: pointer; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.layout { display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; }
+.grow { flex: 1 1 480px; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.panel h2 { font-family: var(--mono); font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 12px; }
+.form-panel { flex: 0 1 340px; min-width: 280px; }
+/* Lista del editor del mapa: scroll propio y pegada al viewport para que el mapa
+   nunca se pierda de vista aunque haya decenas de puestos/activos. */
+.map-list { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow-y: auto; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+td { padding: 7px 8px; border-bottom: 1px solid var(--bg2); vertical-align: middle; overflow-wrap: anywhere; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+.table-scroll { overflow-x: auto; }
+
+label { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--muted); margin: 10px 0 4px; }
+input, select, textarea { width: 100%; background: var(--bg2); color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-family: var(--sans);
+  font-size: 13px; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--amber); }
+textarea { min-height: 110px; font-family: var(--mono); font-size: 12px; }
+input[type="checkbox"] { width: auto; }
+.check-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.check-row label { margin: 0; }
+.check-list {
+  border: 1px solid var(--border); border-radius: 8px; background: var(--bg);
+  padding: 4px 10px 10px; max-height: 180px; overflow-y: auto;
+}
+.check-list .check-row { margin-top: 6px; cursor: pointer; }
+.combo-wrap { position: relative; }
+.combo-wrap input { width: 100%; }
+.combo-list {
+  position: fixed; z-index: 60; max-height: 240px; overflow-y: auto;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.combo-opt { padding: 7px 12px; cursor: pointer; white-space: nowrap; }
+/* Dropdowns con textos largos (p. ej. direcciones del geosearch): wrap en vez de cortar. */
+.combo-list.wrap .combo-opt { white-space: normal; overflow-wrap: anywhere; line-height: 1.35; }
+.combo-opt:hover { background: var(--bg2); color: var(--amber); }
+.combo-empty { padding: 7px 12px; }
+.top-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.top-bar label { margin: 0; }
+
+button { cursor: pointer; font-family: var(--mono); font-size: 12px; letter-spacing: 0.5px; }
+.btn { background: var(--bg2); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 14px; }
+.btn:hover { border-color: var(--muted); }
+.btn-primary { background: var(--amber); border-color: var(--amber); color: #1A1408; font-weight: 700; }
+.btn-primary:hover { filter: brightness(1.06); border-color: var(--amber); }
+.btn-danger { color: var(--red); }
+.btn-danger:hover { border-color: var(--red); }
+.btn-mini { background: none; border: 1px solid var(--border); color: var(--blue);
+  border-radius: 6px; padding: 3px 8px; font-size: 11px; white-space: nowrap; }
+.btn-mini:hover { border-color: var(--blue); }
+.btn-mini.danger { color: var(--red); }
+.btn-mini.danger:hover { border-color: var(--red); }
+.actions-cell { display: flex; gap: 4px; flex-wrap: wrap; }
+.form-actions { display: flex; gap: 8px; margin-top: 16px; }
+
+.chip { display: inline-block; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.5px;
+  padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+.chip.ok { color: var(--green); border-color: color-mix(in srgb, var(--green) 40%, transparent); }
+.chip.warn { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 40%, transparent); }
+.chip.bad { color: var(--red); border-color: color-mix(in srgb, var(--red) 40%, transparent); }
+
+.muted { color: var(--muted); }
+.mono { font-family: var(--mono); font-size: 12px; }
+.empty { color: var(--muted); padding: 18px; text-align: center; font-family: var(--mono); font-size: 12px; }
+.loading { color: var(--muted); padding: 18px; font-family: var(--mono); font-size: 12px; }
+
+/* ——— Toasts ——— */
+#toasts { position: fixed; bottom: 18px; right: 18px; display: flex; flex-direction: column;
+  gap: 8px; z-index: 50; max-width: min(420px, 90vw); }
+.toast { background: var(--panel); border: 1px solid var(--green); border-radius: 10px;
+  padding: 10px 14px; font-size: 13px; box-shadow: 0 6px 24px rgba(0,0,0,0.4); }
+.toast.err { border-color: var(--red); }
+.toast .hint { color: var(--muted); font-size: 12px; margin-top: 3px; }
+
+/* ——— Miniaturas / filtros / previews ——— */
+.thumb { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; display: block; border: 1px solid var(--border); }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.panel-head h2 { margin: 0; }
+.filter-input { width: 180px; padding: 6px 10px; font-size: 12px; }
+.md-preview { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 4px 14px; margin-top: 8px; font-size: 13px; line-height: 1.5; }
+.md-preview h4, .md-preview h5, .md-preview h6 { color: var(--amber); margin: 10px 0 4px; }
+.md-preview a { color: var(--blue); }
+.md-preview code { font-family: var(--mono); font-size: 12px; background: var(--panel); padding: 1px 5px; border-radius: 4px; }
+.ord-cell { white-space: nowrap; }
+.ord-cell .btn-mini { padding: 3px 6px; }
+
+/* ——— Editor de mapa (puestos/activos del trazado) ——— */
+.map-toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.map-canvas { position: relative; width: 100%; aspect-ratio: 16 / 10; background: var(--bg2);
+  border: 1px solid var(--border); border-radius: 10px; background-size: contain;
+  background-position: center; background-repeat: no-repeat; overflow: hidden; user-select: none; }
+.map-canvas.map-empty { background-image:
+  repeating-linear-gradient(0deg, transparent, transparent 39px, var(--border) 39px, var(--border) 40px),
+  repeating-linear-gradient(90deg, transparent, transparent 39px, var(--border) 39px, var(--border) 40px); }
+.map-canvas.crosshair { cursor: crosshair; }
+.dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%);
+  display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 11px;
+  font-weight: 700; cursor: grab; border: 2px solid var(--bg); box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+.dot:active { cursor: grabbing; }
+.dot.puesto { background: var(--amber); color: #1A1408; }
+.dot.grua { background: var(--blue); color: #0E1A28; }
+.dot.amb { background: var(--green); color: #0B2415; }
+.dot.selected { outline: 2px solid #fff; outline-offset: 1px; z-index: 2; }
+.map-row { display: flex; gap: 6px; align-items: center; padding: 5px 6px; border-radius: 8px; cursor: pointer; }
+.map-row:hover { background: var(--bg2); }
+.map-row.selected { background: var(--bg2); outline: 1px solid var(--amber); }
+.map-row input, .map-row select { padding: 5px 8px; font-size: 12px; }
+
+/* ——— Navegación / errores / detalle ——— */
+.btn-back { margin-right: 12px; padding: 5px 12px; font-size: 11px; }
+.crumbs { display: flex; align-items: center; }
+.error-panel { border-color: color-mix(in srgb, var(--red) 50%, transparent); }
+.detail-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 14px; }
+.nav-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px; cursor: pointer; }
+.nav-card:hover { border-color: var(--amber); }
+.nav-card-t { font-weight: 600; margin-bottom: 4px; }
+.nav-card-t::after { content: " ▸"; color: var(--amber); }
+
+/* ——— Mapa OSM (dibujo del trazado) ——— */
+/* Cruz en todo momento: precisa para vértices y puntos medios (la mano estorbaba). */
+.osm-map { position: relative; width: 100%; height: 480px; background: var(--bg2);
+  border: 1px solid var(--border); border-radius: 10px; overflow: hidden; user-select: none;
+  cursor: crosshair; }
+.osm-tiles { position: absolute; inset: 0; }
+.osm-tile { position: absolute; width: 256px; height: 256px; pointer-events: none;
+  filter: saturate(0.65) brightness(0.9); }
+.osm-tile.failed { visibility: hidden; }
+.osm-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
+.osm-attrib { position: absolute; right: 6px; bottom: 4px; font-size: 10px; color: #333;
+  background: rgba(255,255,255,0.75); padding: 1px 6px; border-radius: 4px; z-index: 3; }
+.osm-offline { position: absolute; left: 50%; top: 10px; transform: translateX(-50%);
+  z-index: 3; max-width: 80%; text-align: center; font-size: 12px; color: var(--amber);
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px;
+  pointer-events: none; }
+/* Magenta para el trazo sobre OSM: el ámbar se confunde con las calles del mapa. */
+:root { --track: #E93BC5; }
+.osm-line { fill: none; stroke: var(--track); stroke-width: 3; stroke-linejoin: round; }
+.osm-line.closing { stroke-dasharray: 6 5; opacity: 0.7; }
+.osm-vertex { fill: var(--track); stroke: var(--bg); stroke-width: 2; cursor: crosshair; }
+.osm-vertex.selected { fill: #fff; }
+.osm-mid { fill: color-mix(in srgb, var(--track) 55%, transparent); stroke: var(--bg);
+  stroke-width: 1.5; cursor: crosshair; }
+.osm-mid:hover { fill: var(--track); }
+.osm-preview { fill: none; stroke: var(--track); stroke-width: 2; stroke-dasharray: 4 4; opacity: 0.8; pointer-events: none; }
+/* Marcadores de puestos/activos sobre el mapa OSM: el color de su CAPA en el borde y el
+   texto (la abreviatura dice el tipo); relleno solo el elegido — igual que en la app. */
+.l-puesto { --l: var(--puesto); --lf: var(--puesto-fill); }
+.l-rescate { --l: var(--rescate); --lf: var(--rescate); }
+.l-soporte { --l: var(--soporte); --lf: var(--soporte); }
+.l-medicos { --l: var(--medicos); --lf: var(--medicos-fill); }
+.marker { cursor: crosshair; }
+.marker .mk-pill { fill: color-mix(in srgb, var(--l) 16%, #1D2029); stroke: var(--l); stroke-width: 1.5; }
+.marker .mk-label { font-family: var(--mono); font-size: 11px; font-weight: 700;
+  fill: var(--l); text-anchor: middle; pointer-events: none; }
+.marker.selected .mk-pill { fill: var(--lf); stroke: #fff; stroke-width: 2.5; }
+.marker.selected .mk-label { fill: #14161C; }
+
+/* Botón dividido "+ <tipo>" + menú de tipos de activo */
+.menu-wrap { position: relative; display: inline-flex; }
+.btn-caret { padding: 8px 8px; border-left: none; border-radius: 0 8px 8px 0; }
+.menu-wrap .btn:first-child { border-radius: 8px 0 0 8px; }
+.type-menu { position: absolute; top: calc(100% + 4px); left: 0; z-index: 20;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+  min-width: 160px; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45); }
+.type-item { background: none; border: none; color: var(--text); text-align: left;
+  padding: 9px 14px; font-size: 12px; }
+.type-item:hover { background: var(--bg2); color: var(--amber); }
+.path-under { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.path-line { fill: none; stroke: color-mix(in srgb, var(--amber) 55%, transparent);
+  stroke-width: 8; stroke-linejoin: round; }
+
+/* ——— Modal (secreto de clave nueva) ——— */
+.modal-back { position: fixed; inset: 0; background: rgba(10,12,18,0.7); display: flex; z-index: 40; }
+.modal { margin: auto; width: min(520px, 92vw); background: var(--panel); border: 1px solid var(--border);
+  border-radius: 14px; padding: 22px; }
+.secret { font-family: var(--mono); font-size: 12px; background: var(--bg2); border: 1px dashed var(--amber);
+  border-radius: 8px; padding: 10px; overflow-wrap: anywhere; margin: 10px 0; }
+
+/* ——— Detalle de evento (todo en una vista) ——— */
+.ev-head { display: flex; align-items: flex-start; gap: 14px; }
+.ev-head .grow { flex: 1; min-width: 0; }
+.ev-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 14px; align-items: start; margin-top: 14px; }
+.ev-below { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; margin-top: 14px; align-items: start; }
+.ev-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.ev-ptit { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.ev-ptit b { font-family: var(--mono); font-size: 11px; letter-spacing: 1.4px; color: var(--muted); text-transform: uppercase; }
+.ev-link { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--amber); cursor: pointer; background: none; border: 0; padding: 0; }
+.ev-tztabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.ev-tzt { font-size: 12px; font-weight: 600; color: var(--muted); background: var(--bg2); border: 1px solid var(--border); border-radius: 100px; padding: 7px 14px; display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
+.ev-tzt.on { background: rgba(242,177,52,0.13); border-color: rgba(242,177,52,0.4); color: #f5d493; }
+.ev-tzt .m { font-family: var(--mono); font-size: 10px; opacity: 0.75; }
+.ev-map { position: relative; height: 440px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+  background: #161a22;
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 28px 28px; }
+.ev-maparea { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); aspect-ratio: 1 / 1; }
+.ev-path { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ev-nopath { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; }
+/* Puestos y activos del evento: color de su capa (como en la app); el estado va en el
+   contador (ámbar = con oficiales, verde = checklist completa hoy); relleno = el elegido. */
+.ev-pin { --l: var(--puesto); --lf: var(--puesto-fill); position: absolute; min-width: 30px; height: 30px; padding: 0 7px; transform: translate(-50%, -50%); border-radius: 15px; white-space: nowrap; background: color-mix(in srgb, var(--l) 14%, #1D2029); border: 2px solid var(--l); color: var(--l); font: 700 11.5px var(--mono); display: flex; align-items: center; justify-content: center; cursor: pointer; box-sizing: border-box; }
+.ev-pin.staffed::after, .ev-pin.complete::after, .ev-asset.staffed::after { content: attr(data-n); position: absolute; right: -7px; top: -7px; min-width: 15px; height: 15px; border-radius: 8px; background: var(--amber); color: #1c1405; font: 700 9px var(--mono); display: flex; align-items: center; justify-content: center; padding: 0 3px; }
+.ev-pin.sel, .ev-asset.sel { background: var(--lf); color: #14161C; border-color: var(--lf); box-shadow: 0 0 0 2px #fff; z-index: 3; }
+.ev-asset { --l: var(--muted); --lf: var(--muted); position: absolute; min-width: 24px; height: 24px; padding: 0 5px; transform: translate(-50%, -50%); border-radius: 12px; white-space: nowrap; display: flex; align-items: center; justify-content: center; font: 700 9px var(--mono); z-index: 2; background: color-mix(in srgb, var(--l) 14%, #1D2029); border: 1.5px solid var(--l); color: var(--l); box-sizing: border-box; cursor: pointer; }
+.ev-asset.l-rescate { --l: var(--rescate); --lf: var(--rescate); }
+.ev-asset.l-soporte { --l: var(--soporte); --lf: var(--soporte); }
+.ev-asset.l-medicos { --l: var(--medicos); --lf: var(--medicos-fill); }
+.ev-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; font-size: 11px; color: var(--muted); }
+.ev-mdays { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 10px; }
+.ev-mdchip { font: 600 10.5px var(--mono); letter-spacing: 0.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg2); color: var(--muted); cursor: pointer; }
+.ev-mdchip:hover { color: var(--text); }
+.ev-mdchip.on { border-color: var(--amber); color: var(--amber); }
+.ev-legend .it { display: flex; align-items: center; gap: 6px; }
+.ev-lsw { width: 20px; height: 13px; border-radius: 7px; background: color-mix(in srgb, var(--l) 16%, #1D2029); border: 1.5px solid var(--l); }
+.ev-badge { min-width: 15px; height: 15px; border-radius: 8px; font: 700 9px var(--mono); display: inline-flex; align-items: center; justify-content: center; padding: 0 3px; box-sizing: border-box; }
+.ev-badge.st { background: var(--amber); color: #1c1405; }
+.ev-badge.ck { background: var(--green); color: #10321f; }
+.ev-mapcap { position: absolute; left: 12px; bottom: 10px; font: 600 9.5px var(--mono); letter-spacing: 0.5px; color: #6f7683; text-transform: uppercase; z-index: 4; }
+.ev-pph { display: flex; align-items: baseline; gap: 9px; margin-bottom: 4px; }
+.ev-pph b { font-size: 18px; font-weight: 800; }
+.ev-pph small { font: 600 10.5px var(--mono); color: var(--muted); }
+.ev-arow { display: flex; align-items: center; gap: 11px; padding: 10px 0; border-bottom: 1px solid #232834; }
+.ev-arow:last-child { border-bottom: 0; }
+.ev-avt { width: 34px; height: 34px; border-radius: 50%; flex: none; background: #2b3040 center/cover; border: 1px solid #3a4152; color: #cfd3da; font: 700 12px var(--sans); display: flex; align-items: center; justify-content: center; }
+.ev-arow.chief .ev-avt { border-color: var(--amber); color: #f5d493; }
+.ev-ainfo { flex: 1; min-width: 0; }
+.ev-ainfo b { display: block; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ev-ainfo small { font: 600 10.5px var(--mono); color: var(--muted); }
+.ev-role { font: 600 10px var(--mono); color: var(--muted); background: var(--bg2); border: 1px solid var(--border); padding: 4px 8px; border-radius: 6px; white-space: nowrap; }
+.ev-arow.chief .ev-role { color: var(--amber); border-color: rgba(242,177,52,0.4); background: rgba(242,177,52,0.08); }
+.ev-kpis { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+.ev-kpi { flex: 1; min-width: 96px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.ev-kpi b { display: block; font-size: 20px; font-weight: 800; }
+.ev-kpi.warn b { color: var(--red); }
+.ev-kpi small { font: 600 9.5px var(--mono); letter-spacing: 0.8px; color: var(--muted); text-transform: uppercase; }
+/* Lista de cobertura: scroll propio con la MISMA altura que el mapa (.ev-map). */
+.ev-covlist { max-height: 440px; overflow-y: auto; }
+.ev-covrow { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #232834; font-size: 12.5px; cursor: pointer; }
+.ev-covrow:last-child { border-bottom: 0; }
+.ev-covrow .n { font: 700 11px var(--mono); color: #f5d493; width: 44px; flex: none; }
+.ev-covrow .c { margin-left: auto; font: 600 10.5px var(--mono); color: var(--muted); }
+.ev-mday { font: 700 10.5px var(--mono); letter-spacing: 1.2px; color: var(--amber); text-transform: uppercase; margin: 12px 0 4px; }
+.ev-mday:first-of-type { margin-top: 0; }
+.ev-mrow { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #232834; }
+.ev-mrow:last-child { border-bottom: 0; }
+.ev-mtime { font: 700 12.5px var(--mono); width: 46px; flex: none; }
+.ev-mcat { font: 600 9.5px var(--mono); color: var(--blue); background: rgba(74,144,226,0.1); border: 1px solid rgba(74,144,226,0.3); padding: 3px 7px; border-radius: 5px; flex: none; }
+.ev-mcat.none { color: #6f7683; background: transparent; border-color: var(--border); }
+.ev-mname { flex: 1; font-size: 13px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ev-mdur { font: 600 10.5px var(--mono); color: var(--muted); flex: none; }
+.ev-live { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px rgba(63,221,133,0.8); flex: none; }
+.ev-champ { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid #232834; }
+.ev-champ:last-child { border-bottom: 0; }
+.ev-champ .ci { flex: 1; min-width: 0; }
+.ev-champ .ci b { display: block; font-size: 13.5px; }
+.ev-champ .cats { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
+.ev-catc { font: 600 9.5px var(--mono); color: var(--muted); background: var(--bg2); border: 1px solid var(--border); padding: 3px 7px; border-radius: 5px; }
+.ev-chk { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 12.5px; border-bottom: 1px solid #232834; }
+.ev-chk:last-child { border-bottom: 0; }
+.ev-chk .bx { width: 16px; height: 16px; border-radius: 5px; border: 2px solid #3a4152; flex: none; }
+.ev-empty { color: var(--muted); font-size: 12.5px; padding: 8px 0; }
+.ev-chk .bx.on { background: var(--green); border-color: var(--green); color: #10321f;
+  font: 700 11px var(--sans); display: flex; align-items: center; justify-content: center; }
+/* Pase de lista: ausente marcado (≠ sin marcar, que no tiene fila). */
+.ev-chk .bx.no { background: var(--red); border-color: var(--red); color: #3a1210;
+  font: 700 11px var(--sans); display: flex; align-items: center; justify-content: center; }
+.ev-mrow.live { background: rgba(63,221,133,0.08); border: 1px solid rgba(63,221,133,0.32);
+  border-radius: 10px; padding: 8px 10px; margin: 3px 0; }
+.ev-mrow.live .ev-mtime, .ev-mrow.live .ev-mname { color: var(--green); font-weight: 700; }
+.ev-mdur.grn { color: var(--green); }
+.ev-pin.complete::after { background: var(--green); color: #10321f; }
+/* Chat del evento en el detalle (el admin escribe como Control) */
+.ev-chatmsgs { max-height: 560px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 4px; }
+.ev-msg { display: flex; gap: 9px; align-items: flex-start; }
+.ev-msg .body { min-width: 0; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 7px 10px; }
+.ev-msg .hd { display: flex; gap: 8px; align-items: baseline; }
+.ev-msg .hd b { font-size: 12px; }
+.ev-msg .when { font: 500 9.5px var(--mono); color: var(--muted); }
+.ev-msg .txt { font-size: 13px; margin-top: 2px; overflow-wrap: anywhere; }
+/* Mensajes propios (Control) a la DERECHA, como en la app; los demás a la izquierda. */
+.ev-msg.ctrl { flex-direction: row-reverse; }
+.ev-msg.ctrl .body { background: rgba(242,177,52,0.09); border-color: rgba(242,177,52,0.35); }
+.ev-msg.ctrl .hd { flex-direction: row-reverse; }
+.ev-msg.ctrl .hd b { color: var(--amber); }
+.ev-msg.sys { opacity: 0.65; }
+.ev-avt.sm { width: 26px; height: 26px; font-size: 10px; }
+.ev-msg .ctx { font: 600 9.5px var(--mono); color: var(--amber); opacity: 0.9; }
+.ev-msg .when { text-align: right; margin-top: 3px; }
+.ev-daysep { display: flex; justify-content: center; padding: 4px 0; }
+.ev-daysep span { font: 600 10px var(--mono); color: var(--muted); background: var(--bg2);
+  border: 1px solid var(--border); border-radius: 8px; padding: 3px 10px; }
+
+/* Puestos propuestos: mini mapa + detalle y acciones */
+.prop-group { display: flex; gap: 18px; align-items: flex-start; }
+.prop-map { flex: none; border-radius: 8px; }
+.prop-act { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+.prop-act b { font-size: 12px; color: var(--muted); font-weight: 600; min-width: 170px; }
+@media (max-width: 760px) { .prop-group { flex-direction: column; } }

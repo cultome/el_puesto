@@ -1,0 +1,29 @@
+[Unit]
+Description=El Puesto: backend (Ktor)
+Wants=network-online.target docker.service el-puesto-imds.service
+After=network-online.target docker.service el-puesto-imds.service
+# Antes del primer despliegue no hay backend: no intentar arrancarlo.
+ConditionPathExists=/opt/el-puesto/current/bin/backend
+
+[Service]
+User=elpuesto
+Group=elpuesto
+WorkingDirectory=/opt/el-puesto
+EnvironmentFile=/etc/el-puesto/env
+# `current` → releases/<versión> (lo cambia activar.sh). Postgres puede tardar en estar
+# listo tras un reinicio de la instancia: si el backend truena al arrancar, systemd reintenta.
+ExecStart=/opt/el-puesto/current/bin/backend
+Restart=always
+RestartSec=5
+SuccessExitStatus=143
+LimitNOFILE=65536
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+# El backend no usa AWS: sin acceso a los metadatos de EC2 (credenciales del rol de la
+# instancia), también por el firewall del usuario elpuesto (el-puesto-imds.service).
+IPAddressDeny=169.254.169.254 fd00:ec2::254
+
+[Install]
+WantedBy=multi-user.target

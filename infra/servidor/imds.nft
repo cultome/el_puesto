@@ -1,0 +1,16 @@
+#!/usr/sbin/nft -f
+# El usuario del backend (elpuesto) no llega al servicio de metadatos de EC2 (IMDS), donde
+# están las credenciales temporales del rol de la instancia (leer config, bajar paquetes,
+# escribir respaldos). El backend no usa AWS: así, un fallo en él no se convierte en acceso a
+# S3 ni a Parameter Store. Solo la IP del IMDS (IPv4 e IPv6): el DNS de la VPC
+# (169.254.169.253) y la hora de Amazon (169.254.169.123) siguen accesibles.
+# Tabla propia: recargarla no toca las reglas de Docker. La carga el-puesto-imds.service.
+table inet elpuesto_imds
+delete table inet elpuesto_imds
+table inet elpuesto_imds {
+	chain salida {
+		type filter hook output priority 0; policy accept;
+		meta skuid "elpuesto" ip daddr 169.254.169.254 counter reject
+		meta skuid "elpuesto" ip6 daddr fd00:ec2::254 counter reject
+	}
+}

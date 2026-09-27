@@ -1,0 +1,101 @@
+{
+ "campeonato": "México Racing Cup",
+ "temporada": "2026",
+ "categoria": "Súper Turismos",
+ "imageUrl": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1782341175039544277.jpg",
+ "throughRound": 5,
+ "leidaEl": "2026-09-27",
+ "nota": "Transcrita de la imagen por un agente; validada (suma por carrera = SUMA en todas las filas). Posición IMPRESA; puntos = PUNTOS REALES.",
+ "rows": [
+  {
+   "pos": 1,
+   "name": "Jonathan Briseño",
+   "team": "Seat · Plataforma Turbo",
+   "points": 804
+  },
+  {
+   "pos": 2,
+   "name": "Raul Garza",
+   "team": "Honda · Plataforma Turbo",
+   "points": 683
+  },
+  {
+   "pos": 3,
+   "name": "Javier JImenez",
+   "team": "BMW · Tubular Turbo",
+   "points": 649
+  },
+  {
+   "pos": 4,
+   "name": "Jorge Solis (N)",
+   "team": "Seat · ST2",
+   "points": 637
+  },
+  {
+   "pos": 5,
+   "name": "Luma Garcia",
+   "team": "Cupra · Tubular Turbo",
+   "points": 550
+  },
+  {
+   "pos": 6,
+   "name": "Guillermo Izquierdo (N)",
+   "team": "Seat · Plataforma Turbo",
+   "points": 479
+  },
+  {
+   "pos": 7,
+   "name": "Miguel Adame",
+   "team": "Honda · Plataforma Turbo",
+   "points": 471
+  },
+  {
+   "pos": 8,
+   "name": "J. Solorzao (N) / D. Rosenberg (N)",
+   "team": "Cupra · Plataforma Turbo",
+   "points": 232
+  },
+  {
+   "pos": 9,
+   "name": "Jose Luis Callejo",
+   "team": "Seat · Tubular",
+   "points": 230
+  },
+  {
+   "pos": 10,
+   "name": "Miguel Calvo",
+   "team": "Seat · Tubular",
+   "points": 226
+  },
+  {
+   "pos": 11,
+   "name": "Miguel Manzur (N)",
+   "team": "Audi · ST2",
+   "points": 209
+  },
+  {
+   "pos": 12,
+   "name": "Vidal Lopez (N)",
+   "team": "Seat · ST2",
+   "points": 165
+  },
+  {
+   "pos": 13,
+   "name": "Luis Callejo Jr. (N)",
+   "team": "Seat · Tubular",
+   "points": 152
+  },
+  {
+   "pos": 14,
+   "name": "Char Garcia",
+   "team": "Cupra · Tubular Turbo",
+   "points": 76
+  },
+  {
+   "pos": 15,
+   "name": "Roberto Marquez",
+   "team": "BMW · Tubular",
+   "points": 0
+  }
+ ]
+}

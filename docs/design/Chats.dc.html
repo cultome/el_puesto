@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: #f2b134; } a:hover { color: #f6bb45; }
+          .dv-turn { padding: 48px 52px 40px; }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 700 16px/1.3 'Archivo', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-opts { display: flex; gap: 40px; align-items: flex-start; }
+          .dv-opt { display: flex; flex-direction: column; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; max-width: 384px; margin-bottom: 12px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 1000px; }
+
+          .phone { width: 384px; padding: 13px; border-radius: 46px; background: linear-gradient(160deg,#26282e,#111216); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.05); }
+          .screen { position: relative; border-radius: 34px; overflow: hidden; display: flex; flex-direction: column; background: radial-gradient(120% 40% at 50% 0%, #2a2f3a 0%, #1e222b 42%, #191c24 100%); color: #eceef2; min-height: 812px; }
+          .screen.fix { height: 812px; min-height: 0; }
+          .sbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px 0; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; flex: none; }
+          .sbar .dots { display: flex; gap: 5px; align-items: center; }
+          .sbar .dots span { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+          .sbar .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; position: relative; opacity: 0.85; }
+          .sbar .bat::after { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; right: 6px; background: currentColor; border-radius: 1px; }
+
+          .topbar { display: flex; align-items: center; gap: 8px; padding: 12px 20px 0; flex: none; }
+          .back { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: #eceef2; font-size: 19px; }
+          .tbrand { font: 800 12px 'Archivo', sans-serif; letter-spacing: 2px; color: #fff; margin: 0 auto; }
+          .tspace { width: 34px; flex: none; }
+          .appbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px 2px; flex: none; }
+          .appbar .ttl { font: 800 23px 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; }
+          .iconbtn { width: 42px; height: 42px; border-radius: 13px; background: #242833; border: 1px solid #333949; display: flex; align-items: center; justify-content: center; color: #d7dae1; font-size: 22px; }
+          .search { display: flex; align-items: center; gap: 11px; height: 46px; margin: 12px 22px 0; padding: 0 15px; border-radius: 13px; background: #242833; border: 1px solid #333949; color: #6b7280; font: 400 14px 'IBM Plex Sans', sans-serif; flex: none; }
+          .ic-search { width: 16px; height: 16px; position: relative; color: #8f96a3; flex: none; }
+          .ic-search::before { content: ''; position: absolute; width: 11px; height: 11px; border: 2px solid currentColor; border-radius: 50%; box-sizing: border-box; }
+          .ic-search::after { content: ''; position: absolute; right: -1px; bottom: -1px; width: 6px; height: 2px; background: currentColor; transform: rotate(45deg); transform-origin: right; border-radius: 2px; }
+
+          .list { flex: 1; overflow: hidden; padding: 4px 22px 0; position: relative; }
+          .sh { font: 700 11px 'IBM Plex Mono', monospace; letter-spacing: 1px; color: #f2b134; text-transform: uppercase; margin: 18px 0 2px; }
+          .crow { display: flex; align-items: center; gap: 13px; padding: 12px 0; border-bottom: 1px solid #262b36; }
+          .cav { width: 46px; height: 46px; border-radius: 13px; flex: none; display: flex; align-items: center; justify-content: center; font: 800 15px 'Archivo', sans-serif; color: #10131a; position: relative; }
+          .cav.pub { background: #2b3040; color: #7fb7f0; border: 1px solid #3a4152; font-size: 20px; }
+          .cav.arc { background: #242833; color: #8f96a3; border: 1px solid #3a4152; }
+          .cmid { flex: 1; min-width: 0; }
+          .cname { font: 600 14.5px 'IBM Plex Sans', sans-serif; color: #eceef2; display: flex; align-items: center; gap: 8px; }
+          .rtag { font: 600 8.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.4px; padding: 2px 6px; border-radius: 5px; text-transform: uppercase; flex: none; }
+          .rtag.ev { background: rgba(242,177,52,0.14); color: #f2b134; } .rtag.pu { background: rgba(127,183,240,0.14); color: #7fb7f0; }
+          .cprev { font: 400 12.5px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 210px; }
+          .cright { text-align: right; flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+          .ctime { font: 500 11px 'IBM Plex Mono', monospace; color: #7f8593; }
+          .cunread { min-width: 20px; height: 20px; border-radius: 100px; background: #f2b134; color: #1c1405; font: 700 11px 'IBM Plex Sans', sans-serif; display: flex; align-items: center; justify-content: center; padding: 0 6px; }
+          .chev { color: #5a6070; font-size: 22px; line-height: 1; flex: none; }
+
+          .bnav { display: flex; justify-content: space-around; align-items: center; padding: 12px 8px 18px; background: #191c24; border-top: 1px solid #2c313d; flex: none; }
+          .bitem { display: flex; flex-direction: column; align-items: center; gap: 6px; color: #6f7683; font: 600 10.5px 'IBM Plex Sans', sans-serif; }
+          .bitem.on { color: #f2b134; }
+          .bic { height: 23px; display: flex; align-items: flex-end; }
+          .ic-home { width: 22px; height: 21px; position: relative; }
+          .ic-home::after { content: ''; position: absolute; left: 50%; top: 0; transform: translateX(-50%); border-left: 11px solid transparent; border-right: 11px solid transparent; border-bottom: 10px solid currentColor; }
+          .ic-home::before { content: ''; position: absolute; left: 3px; right: 3px; top: 9px; bottom: 0; border: 2px solid currentColor; border-top: none; border-radius: 0 0 2px 2px; }
+          .ic-cal { width: 21px; height: 21px; border: 2px solid currentColor; border-radius: 5px; position: relative; box-sizing: border-box; }
+          .ic-cal::before { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 6px; background: currentColor; border-radius: 4px 4px 0 0; }
+          .ic-cal::after { content: ''; position: absolute; left: 3px; top: 9px; width: 3px; height: 3px; background: currentColor; box-shadow: 6px 0 currentColor, 12px 0 currentColor, 0 5px currentColor, 6px 5px currentColor; }
+          .ic-chat { width: 22px; height: 18px; border: 2px solid currentColor; border-radius: 8px; position: relative; box-sizing: border-box; }
+          .ic-chat::after { content: ''; position: absolute; left: 5px; bottom: -6px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid currentColor; }
+          .ic-user { width: 22px; height: 21px; position: relative; }
+          .ic-user::before { content: ''; position: absolute; left: 50%; top: 0; width: 10px; height: 10px; border: 2px solid currentColor; border-radius: 50%; transform: translateX(-50%); box-sizing: border-box; }
+          .ic-user::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 19px; height: 11px; border: 2px solid currentColor; border-bottom: none; border-radius: 10px 10px 0 0; transform: translateX(-50%); box-sizing: border-box; }
+
+          .createbtn { display: flex; align-items: center; gap: 11px; margin: 14px 22px 0; padding: 14px 16px; border-radius: 14px; background: linear-gradient(135deg,#f6bb45,#e79a1f); color: #1c1405; font: 700 14px 'IBM Plex Sans', sans-serif; box-shadow: 0 12px 24px -12px rgba(242,177,52,0.6); flex: none; }
+          .createbtn .p { width: 26px; height: 26px; border-radius: 8px; background: rgba(28,20,5,0.18); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+          .prow { display: flex; align-items: center; gap: 13px; padding: 14px 0; border-bottom: 1px solid #262b36; }
+          .pmid { flex: 1; min-width: 0; }
+          .pn { font: 700 14.5px 'Archivo', sans-serif; color: #fff; }
+          .pd { font: 400 12px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 3px; }
+          .pmm { font: 500 11px 'IBM Plex Mono', monospace; color: #7f8593; margin-top: 5px; }
+          .joinbtn { flex: none; font: 700 12.5px 'IBM Plex Sans', sans-serif; color: #1c1405; background: #f2b134; padding: 8px 15px; border-radius: 100px; }
+          .joined { flex: none; font: 600 12px 'IBM Plex Sans', sans-serif; color: #8f96a3; border: 1px solid #3a4152; padding: 7px 13px; border-radius: 100px; }
+
+          .conhead { display: flex; align-items: center; gap: 11px; padding: 12px 16px 12px 12px; border-bottom: 1px solid #262b36; flex: none; }
+          .conhead .ci { flex: 1; min-width: 0; }
+          .conhead .nm { font: 700 15px 'Archivo', sans-serif; color: #fff; }
+          .conhead .mm { font: 400 11.5px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 2px; }
+          .menu { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex: none; color: #aab0bd; }
+          .dots3 { width: 4px; height: 4px; border-radius: 50%; background: currentColor; box-shadow: 0 -6px currentColor, 0 6px currentColor; }
+          .pinbar { display: flex; align-items: center; gap: 9px; padding: 10px 18px; background: #20242c; border-bottom: 1px solid #2c313d; font: 400 12px 'IBM Plex Sans', sans-serif; color: #9aa0ac; flex: none; }
+          .pinbar .ic-shield { width: 14px; height: 15px; position: relative; flex: none; color: #7fb7f0; }
+          .pinbar .ic-shield::before { content: ''; position: absolute; inset: 0; border: 2px solid currentColor; border-radius: 4px 4px 7px 7px; box-sizing: border-box; }
+          .arcbar { display: flex; gap: 11px; align-items: flex-start; padding: 13px 18px; background: rgba(242,177,52,0.08); border-bottom: 1px solid rgba(242,177,52,0.2); font: 400 12.5px/1.45 'IBM Plex Sans', sans-serif; color: #c3c8d2; flex: none; }
+          .arcbar b { color: #f2b134; font-weight: 600; }
+          .ic-lock { width: 15px; height: 17px; position: relative; flex: none; color: #f2b134; margin-top: 1px; }
+          .ic-lock::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: currentColor; border-radius: 3px; }
+          .ic-lock::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; border: 2px solid currentColor; border-bottom: none; border-radius: 6px 6px 0 0; box-sizing: border-box; }
+
+          .chatwrap { flex: 1; display: flex; flex-direction: column; gap: 13px; padding: 16px 18px; overflow: hidden; }
+          .sysline { align-self: center; font: 500 11px 'IBM Plex Sans', sans-serif; color: #7f8593; background: #20242c; border: 1px solid #2c313d; padding: 5px 12px; border-radius: 100px; }
+          .msg { display: flex; gap: 10px; max-width: 86%; }
+          .msg .av { width: 32px; height: 32px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font: 700 11px 'Archivo', sans-serif; color: #10131a; }
+          .bub { background: #242833; border: 1px solid #333949; border-radius: 5px 15px 15px 15px; padding: 9px 13px; }
+          .who { font: 600 11.5px 'IBM Plex Sans', sans-serif; color: #f2b134; margin-bottom: 3px; }
+          .mtx { font: 400 13.5px/1.42 'IBM Plex Sans', sans-serif; color: #e2e5ea; }
+          .msg.me { align-self: flex-end; flex-direction: row-reverse; }
+          .msg.me .bub { background: rgba(242,177,52,0.13); border-color: rgba(242,177,52,0.26); border-radius: 15px 5px 15px 15px; }
+          .msg.me .who { color: #e6ba6a; text-align: right; }
+          .composer { display: flex; align-items: center; gap: 10px; padding: 13px 18px; border-top: 1px solid #2c313d; background: #191c24; flex: none; }
+          .composer .inp { flex: 1; height: 44px; border-radius: 100px; background: #242833; border: 1px solid #333949; padding: 0 16px; display: flex; align-items: center; color: #6b7280; font: 400 14px 'IBM Plex Sans', sans-serif; }
+          .composer .send { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg,#f6bb45,#e79a1f); color: #1c1405; display: flex; align-items: center; justify-content: center; font-size: 18px; flex: none; }
+          .composer.dis { background: #16181f; }
+          .composer.dis .ro { flex: 1; display: flex; align-items: center; justify-content: center; gap: 9px; color: #6f7683; font: 500 12.5px 'IBM Plex Sans', sans-serif; }
+          .composer.dis .ro .ic-lock { color: #6f7683; margin: 0; }
+        </style>
+      </helmet>
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">CT</a>
+          <span class="dv-tname">Chats &mdash; Paddock nocturno</span>
+          <span class="dv-tsub">hub &middot; explorar/crear p&uacute;blicos &middot; conversaci&oacute;n moderada &middot; archivado (solo lectura)</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CT-1</a><span><span class="dv-oname">Chats.</span> De evento (restringidos), p&uacute;blicos y acceso a archivados.</span></div>
+            <div class="phone" data-screen-label="Chats">
+              <div class="screen fix">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="appbar"><div class="ttl">Chats</div><div class="iconbtn">+</div></div>
+                <div class="search"><span class="ic-search"></span>Buscar en tus chats&hellip;</div>
+                <div class="list">
+                  <div class="sh">Del evento activo</div>
+                  <div class="crow"><div class="cav" style="background:linear-gradient(140deg,#f2b134,#d98a1a)">SC</div><div class="cmid"><div class="cname">S&uacute;per Copa &middot; Fecha 4 <span class="rtag ev">Evento</span></div><div class="cprev">Laura: revisamos la se&ntilde;alizaci&oacute;n del sector</div></div><div class="cright"><span class="ctime">10:24</span><span class="cunread">3</span></div></div>
+                  <div class="crow"><div class="cav" style="background:#2b3040;color:#eceef2;border:1px solid #3a4152">P7</div><div class="cmid"><div class="cname">Puesto 7 &middot; Compa&ntilde;eros <span class="rtag ev">Puesto</span></div><div class="cprev">T&uacute;: Copiado, listo por ac&aacute;</div></div><div class="cright"><span class="ctime">10:26</span></div></div>
+                  <div class="sh">P&uacute;blicos</div>
+                  <div class="crow"><div class="cav pub">#</div><div class="cmid"><div class="cname">Oficiales de pista MX</div><div class="cprev">Diego: &iquest;alguien va a QRO el finde?</div></div><div class="cright"><span class="ctime">09:50</span><span class="cunread">12</span></div></div>
+                  <div class="crow"><div class="cav pub">#</div><div class="cmid"><div class="cname">Banderas y se&ntilde;alizaci&oacute;n</div><div class="cprev">Ana comparti&oacute; una foto</div></div><div class="cright"><span class="ctime">ayer</span></div></div>
+                  <div class="sh">Archivados</div>
+                  <div class="crow" style="border-bottom:none"><div class="cav arc"><span class="ic-lock" style="color:#8f96a3"></span></div><div class="cmid"><div class="cname">Chats de eventos pasados</div><div class="cprev">Solo lectura &middot; 8 conversaciones</div></div><span class="chev">&rsaquo;</span></div>
+                </div>
+                <div class="bnav">
+                  <div class="bitem"><span class="bic"><span class="ic-home"></span></span>Inicio</div>
+                  <div class="bitem"><span class="bic"><span class="ic-cal"></span></span>Agenda</div>
+                  <div class="bitem on"><span class="bic"><span class="ic-chat"></span></span>Chats</div>
+                  <div class="bitem"><span class="bic"><span class="ic-user"></span></span>Perfil</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CT-2</a><span><span class="dv-oname">P&uacute;blicos.</span> Cualquiera crea y se une; explorar y unirse.</span></div>
+            <div class="phone" data-screen-label="Chats / Publicos">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">CHATS P&Uacute;BLICOS</div><div class="tspace"></div></div>
+                <div class="createbtn"><span class="p">+</span>Crear un chat p&uacute;blico</div>
+                <div class="search"><span class="ic-search"></span>Buscar chats p&uacute;blicos&hellip;</div>
+                <div class="list" style="overflow:visible">
+                  <div class="prow"><div class="cav pub">#</div><div class="pmid"><div class="pn">Oficiales de pista MX</div><div class="pd">Comunidad general de oficiales</div><div class="pmm">1,240 miembros</div></div><span class="joined">Unido</span></div>
+                  <div class="prow"><div class="cav pub">#</div><div class="pmid"><div class="pn">Banderas y se&ntilde;alizaci&oacute;n</div><div class="pd">Dudas y t&eacute;cnica de banderas</div><div class="pmm">342 miembros</div></div><span class="joined">Unido</span></div>
+                  <div class="prow"><div class="cav pub">#</div><div class="pmid"><div class="pn">Novatos OMDAI</div><div class="pd">Para quienes empiezan en pista</div><div class="pmm">88 miembros</div></div><span class="joinbtn">Unirme</span></div>
+                  <div class="prow" style="border-bottom:none"><div class="cav pub">#</div><div class="pmid"><div class="pn">Viajes y log&iacute;stica</div><div class="pd">Compartir rutas a los circuitos</div><div class="pmm">210 miembros</div></div><span class="joinbtn">Unirme</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CT-3</a><span><span class="dv-oname">Conversaci&oacute;n.</span> Chat p&uacute;blico con moderaci&oacute;n.</span></div>
+            <div class="phone" data-screen-label="Chats / Conversacion">
+              <div class="screen fix">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="conhead"><div class="back">&lsaquo;</div><div class="cav pub" style="width:38px;height:38px;font-size:17px">#</div><div class="ci"><div class="nm">Oficiales de pista MX</div><div class="mm">1,240 miembros</div></div><div class="menu"><span class="dots3"></span></div></div>
+                <div class="pinbar"><span class="ic-shield"></span>Chat moderado &middot; mant&eacute;n presionado un mensaje para reportarlo.</div>
+                <div class="chatwrap">
+                  <div class="sysline">Te uniste al chat</div>
+                  <div class="msg"><div class="av" style="background:#7fb7f0">DR</div><div class="bub"><div class="who">Diego R.</div><div class="mtx">&iquest;Alguien va a Quer&eacute;taro el finde? Se puede compartir carretera.</div></div></div>
+                  <div class="msg"><div class="av" style="background:#7fe0b0">MS</div><div class="bub"><div class="who">Mariana S.</div><div class="mtx">Yo salgo el viernes temprano desde el norte de la ciudad.</div></div></div>
+                  <div class="msg me"><div class="av" style="background:#f2b134">CM</div><div class="bub"><div class="who">T&uacute;</div><div class="mtx">Me sumo, llevo lugar para uno m&aacute;s.</div></div></div>
+                </div>
+                <div class="composer"><div class="inp">Mensaje&hellip;</div><div class="send">&uarr;</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CT-4</a><span><span class="dv-oname">Archivado.</span> Chat de evento pasado; solo lectura.</span></div>
+            <div class="phone" data-screen-label="Chats / Archivado">
+              <div class="screen fix">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="conhead"><div class="back">&lsaquo;</div><div class="cav arc" style="width:38px;height:38px"><span class="ic-lock" style="color:#8f96a3"></span></div><div class="ci"><div class="nm">Serie Telcel &middot; Fecha 6</div><div class="mm">Evento &middot; archivado</div></div><div class="menu"><span class="dots3"></span></div></div>
+                <div class="arcbar"><span class="ic-lock"></span><span>Este chat se archiv&oacute; el <b>25 oct</b>, una semana despu&eacute;s del evento. Queda en <b>solo lectura</b>.</span></div>
+                <div class="chatwrap">
+                  <div class="msg"><div class="av" style="background:#e6a3c0">LF</div><div class="bub"><div class="who">Laura F.</div><div class="mtx">Gran trabajo equipo, nos vemos en la siguiente fecha.</div></div></div>
+                  <div class="msg me"><div class="av" style="background:#f2b134">CM</div><div class="bub"><div class="who">T&uacute;</div><div class="mtx">Gracias a todos, excelente evento.</div></div></div>
+                  <div class="sysline">Chat archivado &middot; 25 oct 2025</div>
+                </div>
+                <div class="composer dis"><div class="ro"><span class="ic-lock"></span>No puedes escribir en un chat archivado</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Prueba pedir: &ldquo;el men&uacute; de moderaci&oacute;n (reportar / silenciar / salir)&rdquo; &middot; &ldquo;el flujo de <b>crear chat p&uacute;blico</b>&rdquo; &middot; &ldquo;sigamos con Completar perfil&rdquo; (te pedir&eacute; confirmaci&oacute;n primero).</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

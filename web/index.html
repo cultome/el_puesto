@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El Puesto</title>
+<meta name="description" content="El Puesto es la app de cabecera del oficial de pista mexicano, hecha por oficiales para oficiales: tu asignación, tu equipo, el MbM en vivo, los chats y tu viaje en un solo lugar. Funciona sin señal y cuida tu privacidad.">
+<meta name="theme-color" content="#191C24">
+<meta property="og:title" content="El Puesto — contigo en el puesto">
+<meta property="og:description" content="La app de cabecera del oficial de pista mexicano. Funciona sin señal y cuida tu privacidad.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="El Puesto">
+<meta property="og:url" content="https://elpuesto.app/">
+<meta property="og:image" content="https://elpuesto.app/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="El Puesto: contigo en el puesto. La app de cabecera del oficial de pista mexicano, sobre el trazado del Autódromo Hermanos Rodríguez.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://elpuesto.app/">
+<!-- Datos estructurados para buscadores (schema.org). softwareVersion lo rellena
+     scripts/publicar-sitio.sh con la versión publicada. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://elpuesto.app/#sitio",
+      "url": "https://elpuesto.app/",
+      "name": "El Puesto",
+      "description": "La app de cabecera del oficial de pista mexicano, hecha por oficiales para oficiales.",
+      "inLanguage": "es-MX"
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://elpuesto.app/#app",
+      "name": "El Puesto",
+      "url": "https://elpuesto.app/",
+      "description": "Tu asignación, tu equipo, el MbM en vivo, los chats y tu viaje en un solo lugar. Funciona sin señal en la pista y cuida tu privacidad.",
+      "operatingSystem": "Android 8.0 o superior",
+      "applicationCategory": "SportsApplication",
+      "softwareVersion": "1.0",
+      "downloadUrl": "https://elpuesto.app/descargas/",
+      "image": "https://elpuesto.app/og.png",
+      "inLanguage": "es-MX",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Oficiales de pista del automovilismo mexicano",
+        "geographicArea": { "@type": "Country", "name": "México" }
+      },
+      "isPartOf": { "@id": "https://elpuesto.app/#sitio" }
+    }
+  ]
+}
+</script>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  /* ——— Tokens: "Paddock nocturno" (docs/handoff/A-compose-theme.md) ———
+     Un solo tema a propósito: la marca es de noche, igual que la app. */
+  :root {
+    color-scheme: dark;
+    --bg: #191C24;
+    --surface: #1E222B;
+    --surface-top: #2A2F3A;
+    --panel: #242833;
+    --panel-alt: #20242E;
+    --elev-a: #2C3141;
+    --elev-b: #232735;
+    --border: #333949;
+    --border-strong: #3A4152;
+    --divider: #262B36;
+    --amber: #F2B134;
+    --amber-hi: #F6BB45;
+    --amber-lo: #E79A1F;
+    --on-amber: #1C1405;
+    --text-hi: #FFFFFF;
+    --text: #ECEEF2;
+    --sub: #AAB0BD;
+    --mut: #8F96A3;
+    --faint: #6F7683;
+    --live: #3FDD85;
+    --danger: #F0524D;
+    --danger-hi: #FF7A75;
+    --travel: #7FB7F0;
+    --bronze: #C27A4A;
+    --silver: #BAC3D0;
+    --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+    --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --gutter: clamp(16px, 4vw, 40px);
+    --maxw: 1180px;
+    --r-card: 18px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 400 17px/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  img, svg { max-width: 100%; }
+  a { color: var(--amber); }
+  a:hover { color: var(--amber-hi); }
+  :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 6px; }
+  h1, h2, h3 { font-family: var(--display); color: var(--text-hi); margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+
+  .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+  .kicker {
+    font: 600 12px/1.2 var(--mono);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .skip {
+    position: absolute; left: 12px; top: -60px; z-index: 50;
+    background: var(--amber); color: var(--on-amber); padding: 10px 14px; border-radius: 10px;
+    font-weight: 600; text-decoration: none;
+  }
+  .skip:focus { top: calc(env(safe-area-inset-top, 0px) + 10px); }
+
+  /* ——— Botones ——— */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 54px; padding: 0 24px; border-radius: 14px;
+    font: 700 16px/1 var(--body); text-decoration: none; white-space: nowrap;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--amber-hi), var(--amber-lo));
+    color: var(--on-amber);
+    box-shadow: 0 14px 30px -14px rgba(242, 177, 52, .7);
+  }
+  .btn-primary:hover { color: var(--on-amber); transform: translateY(-1px); box-shadow: 0 18px 34px -14px rgba(242, 177, 52, .8); }
+  .btn-ghost { color: var(--text); border: 1.5px solid var(--border-strong); background: transparent; }
+  .btn-ghost:hover { color: var(--text-hi); border-color: var(--mut); }
+  .btn svg { width: 18px; height: 18px; flex: none; }
+
+  /* ——— Barra de navegación ——— */
+  .nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: rgba(25, 28, 36, .86);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav .wrap { display: flex; align-items: center; gap: 24px; min-height: 64px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-hi); }
+  .brand img { height: 30px; width: auto; }
+  .brand span { font: 800 17px/1 var(--display); letter-spacing: .14em; font-stretch: 112%; }
+  .nav ul { display: flex; gap: 22px; list-style: none; margin: 0 0 0 auto; padding: 0; }
+  .nav ul a { color: var(--sub); text-decoration: none; font: 500 14.5px/1 var(--body); }
+  .nav ul a:hover { color: var(--text-hi); }
+  .nav .btn { min-height: 40px; padding: 0 16px; font-size: 14px; border-radius: 11px; }
+  @media (max-width: 860px) {
+    .nav ul { display: none; }
+    .nav .btn { margin-left: auto; }
+  }
+
+  /* ——— Hero ——— */
+  .hero {
+    position: relative; overflow: hidden;
+    background: radial-gradient(90% 70% at 75% 10%, var(--surface-top) 0%, var(--surface) 45%, var(--bg) 100%);
+  }
+  .hero .wrap {
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    gap: clamp(28px, 5vw, 64px); align-items: center;
+    padding-block: clamp(48px, 8vw, 96px) clamp(40px, 6vw, 72px);
+  }
+  .hero-copy { display: flex; flex-direction: column; gap: 26px; position: relative; z-index: 2; }
+  .hero h1 {
+    font-size: clamp(46px, 7.2vw, 94px);
+    font-weight: 900; font-stretch: 118%;
+    line-height: .92; letter-spacing: -.02em;
+  }
+  .hero h1 em { font-style: normal; color: var(--amber); }
+  .lede { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; color: var(--sub); max-width: 56ch; }
+  .lede strong { color: var(--text); font-weight: 600; }
+  .lede i { color: var(--text); }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font: 500 12px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero-meta span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--border-strong); }
+  .hero-meta span:first-child::before { background: var(--live); box-shadow: 0 0 0 3px rgba(63, 221, 133, .16); }
+
+  .hero-visual { position: relative; display: grid; justify-items: center; gap: 16px; }
+  .hero-track {
+    position: absolute; z-index: 0; pointer-events: none;
+    width: 150%; max-width: none; left: 50%; top: 46%; transform: translate(-50%, -50%);
+    overflow: visible;
+  }
+  .hero-track .glow { fill: none; stroke: var(--amber); stroke-width: 26; stroke-opacity: .07; stroke-linejoin: round; }
+  .hero-track .line { fill: none; stroke: var(--amber); stroke-width: 5; stroke-opacity: .5; stroke-linejoin: round; }
+  .hero-track .kerb { fill: none; stroke: var(--text); stroke-width: 1.5; stroke-opacity: .22; stroke-dasharray: 2 14; }
+  .hero-track .posts { fill: var(--text); stroke: var(--text); stroke-width: 4; opacity: .55; }
+  .hero-track .car { fill: var(--live); }
+  .hero-track .car-halo { fill: var(--live); fill-opacity: .22; }
+  .track-caption {
+    position: relative; z-index: 2;
+    font: 500 11px/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase;
+    color: var(--faint); text-align: center; max-width: 54ch; text-wrap: balance;
+  }
+  .phone-hint { position: relative; z-index: 2; font: 500 12.5px/1.4 var(--body); color: var(--mut); }
+
+  @media (max-width: 900px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+    .hero-track { width: 190%; top: 42%; }
+  }
+
+  /* ——— Teléfono (maqueta viva de la app) ——— */
+  .phone {
+    position: relative; z-index: 2;
+    width: min(340px, 100%);
+    padding: 11px; border-radius: 46px;
+    background: linear-gradient(160deg, #2B2E35, #111216);
+    box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .85), inset 0 0 0 1px rgba(255, 255, 255, .06);
+  }
+  .screen {
+    height: 640px; border-radius: 36px; overflow: hidden;
+    display: flex; flex-direction: column;
+    background: radial-gradient(120% 40% at 50% 0%, var(--surface-top) 0%, var(--surface) 42%, var(--bg) 100%);
+    color: var(--text); font-family: var(--body);
+  }
+  .ph-sbar { display: flex; justify-content: space-between; align-items: center; padding: 13px 24px 0; font: 600 12px/1 var(--body); color: var(--text); }
+  .ph-sbar i { display: inline-flex; gap: 4px; align-items: center; }
+  .ph-sbar i b { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: .8; }
+  .ph-sbar i b:last-child { width: 18px; height: 9px; border-radius: 2px; background: none; border: 1.5px solid currentColor; }
+  .ph-head { padding: 14px 18px 0; }
+  .ph-kick { display: flex; align-items: center; gap: 8px; font: 600 10px/1 var(--mono); letter-spacing: .14em; color: var(--amber); }
+  .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(63, 221, 133, .5); animation: pulse 2s infinite; flex: none; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 7px rgba(63, 221, 133, 0); } 100% { box-shadow: 0 0 0 0 rgba(63, 221, 133, 0); } }
+  .ph-name { font: 800 17px/1.2 var(--display); color: var(--text-hi); margin-top: 8px; letter-spacing: -.01em; }
+  .ph-sub { font: 400 11.5px/1.3 var(--body); color: var(--sub); margin-top: 3px; }
+  .ph-seg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; padding: 3px; margin: 12px 14px 0; background: var(--panel-alt); border: 1px solid #313846; border-radius: 13px; }
+  .ph-tab {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    padding: 8px 2px; border-radius: 10px; color: #9AA0AC;
+    font: 600 11.5px/1 var(--body);
+  }
+  .ph-tab[aria-selected="true"] { background: var(--amber); color: var(--on-amber); }
+  .ph-tab:focus-visible { outline-offset: 1px; }
+  .ph-pane { flex: 1; overflow-y: auto; padding: 4px 16px 18px; scrollbar-width: none; }
+  .ph-pane::-webkit-scrollbar { display: none; }
+  .ph-sec { display: flex; justify-content: space-between; align-items: baseline; margin: 16px 0 6px; }
+  .ph-sec h4 { margin: 0; font: 700 13px/1.2 var(--display); color: var(--text-hi); }
+  .ph-sec span { font: 600 10.5px/1 var(--mono); color: var(--amber); }
+
+  .ph-asg {
+    margin-top: 12px; padding: 13px 14px; border-radius: 16px; position: relative; overflow: hidden;
+    background: linear-gradient(150deg, var(--elev-a), var(--elev-b)); border: 1px solid var(--border-strong);
+  }
+  .ph-asg::before { content: ""; position: absolute; inset: 0; background: radial-gradient(80% 90% at 95% 0%, rgba(242, 177, 52, .16), transparent 60%); }
+  .ph-asg > * { position: relative; }
+  .ph-asg .l { font: 600 9.5px/1 var(--mono); letter-spacing: .12em; color: var(--amber); }
+  .ph-asg .big { display: flex; align-items: baseline; gap: 10px; margin-top: 8px; }
+  .ph-asg .p { font: 800 28px/.9 var(--display); color: var(--text-hi); }
+  .ph-asg .r { font: 700 14px/1 var(--display); color: var(--amber); }
+  .ph-asg .t { margin-top: 9px; display: inline-flex; padding: 4px 9px; border-radius: 100px; font: 600 10.5px/1.2 var(--body); background: rgba(255, 255, 255, .06); border: 1px solid var(--border-strong); color: #D7DAE1; }
+
+  .ph-map { position: relative; aspect-ratio: 1000 / 743; max-width: 100%; border-radius: 14px; background: var(--panel-alt); border: 1px solid var(--border); overflow: hidden; }
+  .ph-map svg { position: absolute; inset: 7%; width: 86%; height: 86%; overflow: visible; }
+  .ph-map .line { fill: none; stroke: #4A5165; stroke-width: 16; stroke-linejoin: round; }
+  .ph-map .posts { fill: #7C8497; stroke: #7C8497; stroke-width: 12; }
+  .ph-map .mine { fill: var(--amber); }
+  .ph-map .mine-halo { fill: var(--amber); fill-opacity: .25; }
+  .pin {
+    position: absolute; transform: translate(-50%, -100%);
+    width: 22px; height: 22px; border-radius: 50%;
+    display: grid; place-items: center;
+    font: 700 8.5px/1 var(--display); color: #10131A;
+    border: 2px solid var(--travel); background: #CFE3F8;
+  }
+  .pin::after { content: ""; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); border: 4px solid transparent; border-top: 5px solid var(--travel); }
+  .pin.me { border-color: var(--amber); background: #FBE3B0; }
+  .pin.me::after { border-top-color: var(--amber); }
+  .ph-live { position: absolute; left: 8px; top: 8px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 100px; background: rgba(25, 28, 36, .85); border: 1px solid var(--border); font: 600 9.5px/1 var(--body); color: var(--travel); }
+  .ph-live b { width: 6px; height: 6px; border-radius: 50%; background: var(--travel); }
+
+  .ph-mate { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--divider); }
+  .ph-mate:last-child { border-bottom: 0; }
+  .av { width: 32px; height: 32px; border-radius: 50%; flex: none; display: grid; place-items: center; font: 700 11px/1 var(--display); color: #10131A; }
+  .ph-mate .n { flex: 1; min-width: 0; font: 600 12.5px/1.25 var(--body); color: var(--text); }
+  .ph-mate .n small { display: block; font: 400 11px/1.3 var(--body); color: var(--mut); }
+  .chip-cmp { font: 700 9px/1 var(--body); letter-spacing: .06em; color: #10131A; background: var(--amber); padding: 4px 7px; border-radius: 6px; }
+  .chip-you { font: 700 9px/1 var(--body); letter-spacing: .06em; color: var(--amber); border: 1px solid rgba(242, 177, 52, .45); padding: 3px 6px; border-radius: 6px; }
+
+  .ph-chk {
+    appearance: none; background: none; border: 0; border-bottom: 1px solid var(--divider); width: 100%;
+    display: flex; align-items: center; gap: 11px; padding: 10px 0; cursor: pointer; text-align: left;
+    font: 500 12.5px/1.3 var(--body); color: #D7DAE1;
+  }
+  .ph-chk:last-child { border-bottom: 0; }
+  .ph-chk .box { width: 20px; height: 20px; border-radius: 7px; border: 2px solid var(--border-strong); flex: none; display: grid; place-items: center; }
+  .ph-chk .box svg { width: 12px; height: 12px; opacity: 0; }
+  .ph-chk.done .box { background: var(--amber); border-color: var(--amber); }
+  .ph-chk.done .box svg { opacity: 1; }
+  .ph-chk.done { color: var(--faint); text-decoration: line-through; }
+
+  /* MbM */
+  .ph-days { display: flex; gap: 6px; margin-top: 12px; }
+  .ph-days span { padding: 6px 11px; border-radius: 100px; font: 600 11px/1 var(--body); background: var(--panel); border: 1px solid var(--border); color: #9AA0AC; }
+  .ph-days span.on { background: var(--amber); border-color: var(--amber); color: var(--on-amber); }
+  .tl { margin-top: 8px; }
+  .tl-row { display: grid; grid-template-columns: 38px 14px minmax(0, 1fr); gap: 9px; }
+  .tl-time { font: 600 11px/1 var(--mono); color: var(--sub); padding-top: 13px; }
+  .tl-rail { display: flex; flex-direction: column; align-items: center; }
+  .tl-dot { width: 11px; height: 11px; border-radius: 50%; background: var(--border); margin-top: 13px; flex: none; }
+  .tl-bar { width: 2px; flex: 1; background: #2C313D; min-height: 10px; }
+  .tl-card { margin-bottom: 8px; padding: 9px 11px; border-radius: 12px; background: var(--panel); border: 1px solid var(--border); }
+  .tl-cat { font: 600 9px/1 var(--mono); letter-spacing: .08em; color: var(--amber); text-transform: uppercase; }
+  .tl-name { font: 700 13px/1.25 var(--display); color: var(--text-hi); margin-top: 4px; }
+  .tl-state { font: 600 10.5px/1.2 var(--body); margin-top: 4px; color: var(--mut); }
+  .tl-row.done .tl-card { opacity: .55; }
+  .tl-row.done .tl-dot { background: #5A6070; }
+  .tl-row.live .tl-dot { background: var(--live); box-shadow: 0 0 0 4px rgba(63, 221, 133, .16); }
+  .tl-row.live .tl-card { border-color: rgba(63, 221, 133, .42); background: linear-gradient(150deg, #223029, #1F2630); }
+  .tl-row.live .tl-state { color: var(--live); }
+  .tl-row.next .tl-state { color: var(--sub); }
+  .ph-note { margin-top: 10px; font: 500 10.5px/1.4 var(--mono); color: var(--faint); text-align: center; letter-spacing: .04em; }
+
+  /* Chat */
+  .ph-chat { display: flex; flex-direction: column; gap: 10px; padding-top: 12px; }
+  .ph-day { align-self: center; font: 600 9.5px/1 var(--mono); letter-spacing: .1em; color: var(--faint); padding: 5px 9px; border-radius: 100px; background: var(--panel-alt); }
+  .msg { display: flex; gap: 7px; max-width: 90%; }
+  .msg .av { width: 24px; height: 24px; font-size: 8.5px; }
+  .bub { background: var(--panel); border: 1px solid var(--border); border-radius: 4px 13px 13px 13px; padding: 7px 10px; min-width: 0; }
+  .who { font: 600 10.5px/1.25 var(--body); color: var(--text); }
+  .who b { font: 600 9px/1 var(--mono); color: var(--amber); margin-left: 4px; letter-spacing: .02em; }
+  .mtx { font: 400 12px/1.4 var(--body); color: #E2E5EA; margin-top: 2px; }
+  .mt { font: 500 9px/1 var(--mono); color: var(--faint); margin-top: 4px; }
+  .msg.me { align-self: flex-end; flex-direction: row-reverse; }
+  .msg.me .bub { background: rgba(242, 177, 52, .13); border-color: rgba(242, 177, 52, .28); border-radius: 13px 4px 13px 13px; }
+  .msg.me .mt { text-align: right; }
+  .msg.ctrl { align-self: center; max-width: 94%; }
+  .msg.ctrl .bub { background: rgba(240, 82, 77, .1); border-color: rgba(240, 82, 77, .3); border-radius: 12px; text-align: center; }
+  .msg.ctrl .who { color: #F0794D; }
+  .ph-composer { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
+  .ph-composer span { flex: 1; height: 36px; border-radius: 100px; background: var(--panel); border: 1px solid var(--border); display: flex; align-items: center; padding: 0 13px; font: 400 12px/1 var(--body); color: #6B7280; }
+  .ph-composer b { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--amber-hi), var(--amber-lo)); display: grid; place-items: center; flex: none; }
+  .ph-composer b svg { width: 15px; height: 15px; }
+
+  /* Bitácora */
+  .log-day { display: flex; align-items: center; gap: 8px; margin: 14px 0 6px; font: 600 10px/1 var(--mono); letter-spacing: .12em; color: var(--sub); }
+  .log-day.today { color: var(--live); }
+  .log-day::after { content: ""; flex: 1; height: 1px; background: var(--divider); }
+  .log-item { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; padding: 7px 0; }
+  .log-ic { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: rgba(127, 183, 240, .12); color: var(--travel); }
+  .log-ic.note { background: rgba(242, 177, 52, .12); color: var(--amber); }
+  .log-ic.photo { background: rgba(63, 221, 133, .12); color: var(--live); }
+  .log-ic svg { width: 15px; height: 15px; }
+  .log-t { font: 600 12.5px/1.3 var(--body); color: var(--text); }
+  .log-s { font: 400 11px/1.35 var(--body); color: var(--mut); margin-top: 1px; }
+  .log-photo { margin-top: 7px; aspect-ratio: 16 / 10; max-width: 100%; border-radius: 10px; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #3B4A6B 0%, #C98A5A 52%, #E8B36B 60%, #2A2F3A 61%, #1B1F28 100%); }
+  .log-photo::before { content: ""; position: absolute; left: -10%; right: -10%; top: 62%; height: 16%; background: #3A3F4B; transform: skewY(-6deg); }
+  .log-photo::after { content: ""; position: absolute; left: 0; right: 0; top: 70%; height: 4px; transform: skewY(-6deg);
+    background: repeating-linear-gradient(90deg, #F0524D 0 10px, #ECEEF2 10px 20px); opacity: .85; }
+  .now { display: flex; align-items: center; gap: 8px; margin: 6px 0; font: 700 9.5px/1 var(--mono); letter-spacing: .14em; color: var(--live); }
+  .now::after { content: ""; flex: 1; height: 2px; background: linear-gradient(90deg, var(--live), transparent); }
+  .log-item.future { opacity: .5; }
+
+  /* ——— Bandera a cuadros (el único motivo decorativo) ——— */
+  .checker {
+    height: 14px;
+    background: repeating-conic-gradient(var(--text) 0 25%, var(--bg) 0 50%) 0 0 / 14px 14px;
+    opacity: .9;
+  }
+
+  /* ——— Secciones ——— */
+  section { padding-block: clamp(64px, 9vw, 120px); }
+  .sec-head { display: flex; flex-direction: column; gap: 16px; max-width: 760px; margin-bottom: clamp(36px, 5vw, 60px); }
+  .sec-head h2 {
+    font-size: clamp(32px, 4.6vw, 56px); font-weight: 800; font-stretch: 112%;
+    line-height: 1.02; letter-spacing: -.015em;
+  }
+  .sec-head p { color: var(--sub); font-size: clamp(17px, 1.5vw, 19px); max-width: 62ch; }
+
+  /* App de cabecera: manifiesto */
+  .manifesto { padding-block: clamp(56px, 8vw, 100px); background: var(--surface); border-bottom: 1px solid var(--divider); }
+  .manifesto .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+  .manifesto blockquote { margin: 0; font: 700 clamp(26px, 3.4vw, 42px)/1.15 var(--display); font-stretch: 106%; color: var(--text-hi); letter-spacing: -.01em; text-wrap: balance; }
+  .manifesto blockquote em { font-style: normal; color: var(--amber); }
+  .signed { margin-top: 20px; font: 600 12.5px/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--amber); }
+  .manifesto .body { display: flex; flex-direction: column; gap: 18px; color: var(--sub); }
+  .manifesto .body strong { color: var(--text); font-weight: 600; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .fact { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: 100px; background: var(--panel); border: 1px solid var(--border); font: 500 12.5px/1.2 var(--mono); color: var(--text); letter-spacing: .02em; }
+  .fact svg { width: 15px; height: 15px; color: var(--amber); flex: none; }
+  @media (max-width: 860px) { .manifesto .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Fin de semana: antes / en pista / después (es una secuencia real) */
+  .phases { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3.4vw, 48px); }
+  .phases::before { content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 2px; background: linear-gradient(90deg, var(--border-strong), var(--live) 50%, var(--amber)); opacity: .55; }
+  .phase { position: relative; padding-top: 38px; display: flex; flex-direction: column; gap: 14px; }
+  .phase .dot { position: absolute; top: 0; left: 0; width: 18px; height: 18px; border-radius: 50%; border: 4px solid var(--bg); background: var(--sub); }
+  .phase.live .dot { background: var(--live); box-shadow: 0 0 0 5px rgba(63, 221, 133, .18); }
+  .phase.after .dot { background: var(--amber); }
+  .phase .when { font: 600 11.5px/1 var(--mono); letter-spacing: .16em; color: var(--mut); text-transform: uppercase; }
+  .phase.live .when { color: var(--live); }
+  .phase.after .when { color: var(--amber); }
+  .phase h3 { font-size: clamp(22px, 2.2vw, 27px); font-weight: 800; font-stretch: 108%; line-height: 1.1; }
+  .phase ul { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; }
+  .phase li { padding: 13px 0; border-top: 1px solid var(--divider); font-size: 15.5px; line-height: 1.5; color: var(--sub); }
+  .phase li b { display: block; color: var(--text); font-weight: 600; font-size: 16px; margin-bottom: 2px; }
+  @media (max-width: 860px) {
+    .phases { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+    .phases::before { left: 8px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; background: linear-gradient(180deg, var(--border-strong), var(--live) 50%, var(--amber)); }
+    .phase { padding-top: 0; padding-left: 38px; }
+  }
+
+  /* Sin señal */
+  .offline { background: var(--surface); border-block: 1px solid var(--divider); }
+  .offline .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .offline .sec-head { margin-bottom: 26px; }
+  .works { display: flex; flex-wrap: wrap; gap: 8px; }
+  .works span { padding: 7px 12px; border-radius: 100px; font: 500 13.5px/1.2 var(--body); color: var(--text); background: rgba(242, 177, 52, .1); border: 1px solid rgba(242, 177, 52, .26); }
+  .offline .more { margin-top: 22px; color: var(--sub); font-size: 16px; max-width: 58ch; display: flex; flex-direction: column; gap: 12px; }
+  .offline .more strong { color: var(--text); font-weight: 600; }
+
+  .outbox { background: var(--panel); border: 1px solid var(--border); border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 30px 60px -36px rgba(0, 0, 0, .8); }
+  .ob-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--divider); }
+  .ob-status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 11px; border-radius: 100px; font: 600 11.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+    color: var(--danger-hi); background: rgba(240, 82, 77, .12); border: 1px solid rgba(240, 82, 77, .3); transition: color .3s, background .3s, border-color .3s; }
+  .ob-status svg { width: 16px; height: 14px; }
+  .ob-status .bar { fill: currentColor; opacity: .25; transition: opacity .3s; }
+  .ob-status .bar.b1 { opacity: 1; }
+  .outbox[data-state="online"] .ob-status, .outbox[data-state="draining"] .ob-status { color: var(--live); background: rgba(63, 221, 133, .1); border-color: rgba(63, 221, 133, .3); }
+  .outbox[data-state="online"] .ob-status .bar, .outbox[data-state="draining"] .ob-status .bar { opacity: 1; }
+  .ob-count { font: 500 12px/1.3 var(--mono); color: var(--mut); text-align: right; }
+  .ob-row { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--divider); }
+  .ob-row:last-of-type { border-bottom: 0; }
+  .ob-ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--panel-alt); border: 1px solid var(--border); color: var(--sub); }
+  .ob-ic svg { width: 17px; height: 17px; }
+  .ob-t { font: 600 14px/1.3 var(--body); color: var(--text); }
+  .ob-s { font: 400 12.5px/1.35 var(--body); color: var(--mut); }
+  .ob-state { font: 600 11px/1 var(--mono); letter-spacing: .06em; padding: 5px 8px; border-radius: 7px; color: var(--amber); background: rgba(242, 177, 52, .1); white-space: nowrap; transition: color .3s, background .3s; }
+  .ob-row[data-sent="true"] .ob-state { color: var(--live); background: rgba(63, 221, 133, .1); }
+  .ob-btn { margin-top: 10px; width: 100%; min-height: 46px; font-size: 14.5px; cursor: pointer; font-family: var(--body); }
+  .ob-foot { font: 400 12.5px/1.4 var(--body); color: var(--faint); text-align: center; margin-top: 6px; }
+  @media (max-width: 900px) { .offline .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Privacidad */
+  .privacy .grid { display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+  .privacy aside { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 22px; }
+  .nope h3 { font: 600 12px/1.2 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--mut); margin-bottom: 12px; }
+  .nope ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .nope li { position: relative; padding: 8px 14px; border-radius: 100px; background: var(--panel-alt); border: 1px solid var(--border); font: 500 14px/1.2 var(--body); color: var(--mut); }
+  .nope li::after { content: ""; position: absolute; left: 9px; right: 9px; top: 50%; height: 2px; background: var(--danger); transform: rotate(-4deg); border-radius: 2px; }
+
+  .log-card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--r-card); padding: 16px 16px 8px; }
+  .log-card header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 8px; }
+  .log-card header strong { font: 700 16px/1.2 var(--display); color: var(--text-hi); }
+  .log-card header small { font: 500 10.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+  .acc { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--divider); }
+  .acc .av { width: 36px; height: 36px; font-size: 12px; }
+  .acc .dl { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: rgba(127, 183, 240, .12); color: var(--travel); }
+  .acc .dl svg { width: 17px; height: 17px; }
+  .acc p { font: 500 14px/1.4 var(--body); color: var(--text); }
+  .acc small { display: block; font: 500 11.5px/1.4 var(--mono); color: var(--mut); margin-top: 3px; }
+
+  .principles { display: flex; flex-direction: column; }
+  .pr { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 8px 28px; padding: 26px 0; border-top: 1px solid var(--divider); }
+  .pr:first-child { border-top: 0; padding-top: 4px; }
+  .pr .tag { font: 600 11.5px/1.6 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--amber); padding-top: 4px; }
+  .pr h3 { font-size: clamp(21px, 2vw, 25px); font-weight: 800; font-stretch: 106%; line-height: 1.2; margin-bottom: 8px; }
+  .pr p { color: var(--sub); font-size: 16px; max-width: 62ch; }
+  @media (max-width: 960px) {
+    .privacy .grid { grid-template-columns: minmax(0, 1fr); }
+    .privacy aside { position: static; order: 2; }
+  }
+  @media (max-width: 560px) { .pr { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Catálogos y logros */
+  .catalog { background: var(--surface); border-top: 1px solid var(--divider); }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-block: 1px solid var(--border); margin-bottom: clamp(40px, 6vw, 72px); }
+  .stat { padding: 22px 18px 20px 0; display: flex; flex-direction: column; gap: 6px; }
+  .stat + .stat { padding-left: 20px; border-left: 1px solid var(--divider); }
+  .stat b { font: 800 clamp(38px, 5vw, 62px)/1 var(--display); font-stretch: 116%; color: var(--text-hi); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .stat span { font: 500 12px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mut); }
+  @media (max-width: 760px) {
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stat:nth-child(3) { padding-left: 0; border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid var(--divider); }
+  }
+  .cat-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); margin-bottom: clamp(48px, 7vw, 88px); }
+  .cat-cols h3 { font-size: 24px; font-weight: 800; font-stretch: 108%; margin-bottom: 10px; }
+  .cat-cols p { color: var(--sub); font-size: 16px; }
+  .series { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .series span { font: 500 12px/1.2 var(--mono); padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border); color: var(--text); background: var(--panel-alt); }
+  @media (max-width: 760px) { .cat-cols { grid-template-columns: minmax(0, 1fr); } }
+
+  .badges-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 28px; }
+  .badges-head h3 { font-size: clamp(26px, 3vw, 36px); font-weight: 800; font-stretch: 110%; }
+  .badges-head p { color: var(--sub); max-width: 52ch; font-size: 16px; }
+  .badges { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+  .badge { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 22px 12px 18px; border-radius: var(--r-card); background: var(--panel); border: 1px solid var(--border); }
+  .badge svg { width: 78px; height: 78px; }
+  .badge b { font: 700 15px/1.25 var(--display); color: var(--text-hi); }
+  .badge small { font: 400 12.5px/1.45 var(--body); color: var(--mut); }
+  .badge .lv { font: 600 10.5px/1 var(--mono); letter-spacing: .1em; color: var(--amber); text-transform: uppercase; }
+  @media (max-width: 960px) { .badges { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 560px) {
+    .badges { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .badge:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  }
+
+  /* Cómo entrar: sistema de honor */
+  .honor { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 18px clamp(24px, 4vw, 56px);
+    padding: clamp(22px, 3vw, 32px); margin-bottom: clamp(28px, 4vw, 44px); border-radius: 22px;
+    background: var(--panel-alt); border: 1px solid var(--border); }
+  .honor h3 { font-size: clamp(22px, 2.3vw, 28px); font-weight: 800; font-stretch: 110%; line-height: 1.1; margin-top: 10px; }
+  .honor ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .honor li { display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5; color: var(--sub); }
+  .honor li b { color: var(--text-hi); font: 700 16.5px/1.3 var(--display); }
+  @media (max-width: 960px) {
+    .honor { grid-template-columns: minmax(0, 1fr); }
+    .honor ul { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  }
+
+  /* Cómo entrar */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; counter-reset: step; }
+  .steps li { counter-increment: step; padding: 20px 18px 22px; border-radius: var(--r-card); background: var(--panel-alt); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+  .steps li::before { content: counter(step); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; font: 700 15px/1 var(--mono); color: var(--amber); background: rgba(242, 177, 52, .12); border: 1px solid rgba(242, 177, 52, .3); margin-bottom: 6px; }
+  .steps b { font: 700 17px/1.25 var(--display); color: var(--text-hi); }
+  .steps span { font-size: 15px; line-height: 1.5; color: var(--sub); }
+  @media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+  .download {
+    margin-top: clamp(32px, 5vw, 56px); position: relative; overflow: hidden;
+    display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 22px 28px; align-items: center;
+    padding: clamp(22px, 3.4vw, 36px); border-radius: 24px;
+    background: linear-gradient(150deg, var(--elev-a), var(--elev-b)); border: 1px solid var(--border-strong);
+  }
+  .download::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 120% at 100% 0%, rgba(242, 177, 52, .16), transparent 60%); pointer-events: none; }
+  .download > * { position: relative; }
+  .download img { height: 76px; width: auto; }
+  .download h3 { font-size: clamp(22px, 2.4vw, 30px); font-weight: 800; font-stretch: 110%; }
+  .download p { color: var(--sub); font-size: 15px; margin-top: 6px; max-width: 60ch; }
+  @media (max-width: 760px) {
+    .download { grid-template-columns: minmax(0, 1fr); }
+    .download img { height: 56px; }
+    .download .btn { width: 100%; }
+  }
+
+  /* Preguntas */
+  .faq { background: var(--surface); border-top: 1px solid var(--divider); }
+  .faq .wrap { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
+  .faq .sec-head { margin-bottom: 0; }
+  .qa { border-top: 1px solid var(--border); }
+  .qa details { border-bottom: 1px solid var(--border); }
+  .qa summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font: 700 18px/1.3 var(--display); color: var(--text-hi); }
+  .qa summary::-webkit-details-marker { display: none; }
+  .qa summary::after { content: "+"; font: 400 26px/1 var(--mono); color: var(--amber); transition: transform .2s; flex: none; }
+  .qa details[open] summary::after { transform: rotate(45deg); }
+  .qa details p { padding: 0 0 22px; color: var(--sub); font-size: 16px; max-width: 66ch; }
+  @media (max-width: 860px) { .faq .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Pie */
+  footer { padding-block: 44px calc(44px + env(safe-area-inset-bottom, 0px)); }
+  footer .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 22px 40px; align-items: start; }
+  footer .tag { color: var(--sub); font-size: 15px; margin-top: 12px; max-width: 46ch; }
+  footer .contact { color: var(--sub); font-size: 15px; margin-top: 10px; max-width: 46ch; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 10px 22px; }
+  footer nav a { color: var(--sub); text-decoration: none; font-size: 14.5px; }
+  footer nav a:hover { color: var(--text-hi); }
+  .legal { grid-column: 1 / -1; padding-top: 22px; border-top: 1px solid var(--divider); font-size: 13px; line-height: 1.6; color: var(--faint); display: flex; flex-direction: column; gap: 6px; }
+  @media (max-width: 700px) { footer .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- Íconos de línea compartidos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="#1C1405" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 13.5 4 11l1.5-1.5 7 1 4-4a2 2 0 0 1 3 3l-4 4 1 7L17 22l-2.5-6.5L11 19v2.5L9.5 23 8 19l-4-1.5L5.5 16H8z"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19V6"/><path d="M3 15h18v4"/><path d="M21 15v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="#1C1405" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="m8 10 1.5 1.5L12 9M8 16l1.5 1.5L12 15M14.5 10.5H17M14.5 16.5H17"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14a6.5 6.5 0 0 1 3 6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-signal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20v-3M9 20v-6M14 20v-9M19 20V5"/></symbol>
+    <symbol id="i-android" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10a7 7 0 0 1 14 0v7H5z"/><path d="M8 3.5 9.5 6M16 3.5 14.5 6"/><circle cx="9.5" cy="10" r=".6" fill="currentColor"/><circle cx="14.5" cy="10" r=".6" fill="currentColor"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3M14 9l2 2"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="El Puesto, inicio">
+      <img src="data:image/png;base64,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" alt="" width="22" height="30">
+      <span>EL PUESTO</span>
+    </a>
+    <ul>
+      <li><a href="#fin-de-semana">Funciones</a></li>
+      <li><a href="#sin-senal">Sin señal</a></li>
+      <li><a href="#privacidad">Privacidad</a></li>
+      <li><a href="#entrar">Cómo entrar</a></li>
+    </ul>
+    <a class="btn btn-primary" href="/descargas/">Descargar</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ——— Hero ——— -->
+<div class="hero" id="inicio">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="kicker">La app de cabecera del oficial de pista mexicano</p>
+      <h1>Contigo en el <em>puesto.</em></h1>
+      <p class="lede">
+        <strong>El Puesto</strong> es una app hecha por oficiales, para oficiales. Te acompaña todo
+        el fin de semana de carreras: tu asignación, tu equipo, el MbM en vivo, los chats y tu
+        viaje, en un solo lugar. Funciona aunque no haya
+        señal en la pista y cuida tus datos como tú lo harías.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/descargas/"><svg aria-hidden="true"><use href="#i-download"/></svg>Descargar para Android</a>
+        <a class="btn btn-ghost" href="https://app.elpuesto.app/">Usar en el navegador</a>
+        <a class="btn btn-ghost" href="#entrar">¿Cómo entro?</a>
+      </div>
+      <p class="hero-meta"><span>Versión <!--v-->1.0<!--/v--></span><span>Android 8 o superior</span><span>o en el navegador</span><span>Por invitación</span></p>
+    </div>
+
+    <div class="hero-visual">
+      <!-- Trazado real: Autódromo Hermanos Rodríguez, Gran Premio (dibujado sobre OpenStreetMap) -->
+      <svg class="hero-track" id="hero-track" viewBox="0 0 1000 743" aria-hidden="true" focusable="false">
+        <defs>
+          <path id="ahr" d="M108.3 40.0 L401.0 79.8 L537.5 95.7 L765.8 125.3 L917.1 149.6 L932.3 154.5 L936.9 164.0 L935.0 176.9 L930.4 208.0 L934.2 214.1 L941.4 218.6 L955.4 225.4 L960.0 233.4 L958.9 246.3 L951.7 275.1 L943.7 299.0 L936.1 317.2 L922.5 341.5 L826.5 501.9 L753.3 614.1 L754.1 622.1 L757.9 628.6 L784.8 643.3 L788.6 647.9 L788.2 654.3 L778.7 662.7 L725.6 701.4 L720.3 702.5 L714.6 698.7 L707.4 690.4 L706.7 682.4 L722.2 563.7 L730.6 493.2 L726.0 484.1 L709.3 473.4 L683.9 459.0 L677.1 451.1 L670.3 439.3 L663.8 421.9 L653.6 405.9 L641.5 396.1 L625.9 391.2 L538.7 378.3 L527.3 370.7 L522.8 358.9 L515.2 330.9 L508.0 319.1 L493.6 309.2 L426.8 272.8 L391.5 261.5 L173.9 228.9 L165.9 223.9 L163.6 219.0 L162.1 199.3 L158.7 147.7 L154.1 122.3 L149.6 115.1 L143.5 113.9 L137.5 115.1 L129.1 126.5 L121.5 134.4 L115.5 135.9 L108.6 134.8 L99.9 131.0 L92.3 126.8 L51.0 122.3 L43.8 119.3 L40.0 111.7 L41.5 98.0 L46.4 85.9 L55.5 70.7 L66.9 57.4 L82.5 46.8 L96.5 41.1 Z"/>
+          <g id="ahr-posts"><circle cx="290.7" cy="73.8" r="4"/><circle cx="367.1" cy="70.2" r="4"/><circle cx="401.5" cy="85.0" r="4"/><circle cx="482.7" cy="85.3" r="4"/><circle cx="650.3" cy="115.9" r="4"/><circle cx="740.1" cy="117.3" r="4"/><circle cx="888.8" cy="150.4" r="4"/><circle cx="938.0" cy="148.6" r="4"/><circle cx="917.7" cy="220.2" r="4"/><circle cx="967.4" cy="225.2" r="4"/><circle cx="960.7" cy="269.3" r="4"/><circle cx="867.8" cy="405.8" r="4"/><circle cx="828.0" cy="519.1" r="4"/><circle cx="765.8" cy="580.0" r="4"/><circle cx="746.5" cy="605.8" r="4"/><circle cx="789.0" cy="639.7" r="4"/><circle cx="727.4" cy="705.4" r="4"/><circle cx="697.6" cy="661.4" r="4"/><circle cx="723.6" cy="570.6" r="4"/><circle cx="718.6" cy="490.6" r="4"/><circle cx="713.4" cy="464.3" r="4"/><circle cx="667.9" cy="456.7" r="4"/><circle cx="656.4" cy="384.6" r="4"/><circle cx="574.3" cy="354.7" r="4"/><circle cx="539.2" cy="385.5" r="4"/><circle cx="481.5" cy="313.4" r="4"/><circle cx="481.7" cy="293.8" r="4"/><circle cx="402.0" cy="275.2" r="4"/><circle cx="275.5" cy="239.6" r="4"/><circle cx="163.9" cy="228.8" r="4"/><circle cx="138.2" cy="215.2" r="4"/><circle cx="144.9" cy="168.6" r="4"/><circle cx="157.4" cy="116.8" r="4"/><circle cx="94.3" cy="118.2" r="4"/><circle cx="47.8" cy="125.6" r="4"/><circle cx="50.8" cy="68.3" r="4"/><circle cx="107.5" cy="32.2" r="4"/><circle cx="212.5" cy="43.3" r="4"/><circle cx="134.2" cy="57.1" r="4"/></g>
+        </defs>
+        <use href="#ahr" class="glow"/>
+        <use href="#ahr" class="line"/>
+        <use href="#ahr" class="kerb"/>
+        <use href="#ahr-posts" class="posts"/>
+        <g>
+          <circle r="16" class="car-halo"/>
+          <circle r="7" class="car"/>
+          <animateMotion dur="16s" repeatCount="indefinite" rotate="auto"><mpath href="#ahr"/></animateMotion>
+        </g>
+      </svg>
+
+      <div class="phone">
+        <div class="screen">
+          <div class="ph-sbar"><span>10:42</span><i><b></b><b></b><b></b><b></b></i></div>
+          <div class="ph-head">
+            <div class="ph-kick"><span class="pulse"></span>EVENTO ACTIVO</div>
+            <div class="ph-name">Campeonato Nacional · Fecha 4</div>
+            <div class="ph-sub">Autódromo Hermanos Rodríguez</div>
+          </div>
+          <div class="ph-seg" role="tablist" aria-label="Pestañas del Modo evento (ejemplo)">
+            <button class="ph-tab" role="tab" id="tab-puesto" aria-controls="pane-puesto" aria-selected="true">Puesto</button>
+            <button class="ph-tab" role="tab" id="tab-mbm" aria-controls="pane-mbm" aria-selected="false" tabindex="-1">MbM</button>
+            <button class="ph-tab" role="tab" id="tab-chat" aria-controls="pane-chat" aria-selected="false" tabindex="-1">Chat</button>
+            <button class="ph-tab" role="tab" id="tab-bit" aria-controls="pane-bit" aria-selected="false" tabindex="-1">Bitácora</button>
+          </div>
+
+          <!-- Puesto -->
+          <div class="ph-pane" id="pane-puesto" role="tabpanel" aria-labelledby="tab-puesto">
+            <div class="ph-asg">
+              <div class="l">TU ASIGNACIÓN</div>
+              <div class="big"><span class="p">6.6</span><span class="r">Intervención 1</span></div>
+              <span class="t">Día completo</span>
+            </div>
+            <div class="ph-sec"><h4>Mapa del trazado</h4><span>GRAN PREMIO</span></div>
+            <div class="ph-map">
+              <svg viewBox="0 0 1000 743" aria-hidden="true" focusable="false">
+                <use href="#ahr" class="line"/>
+                <use href="#ahr-posts" class="posts"/>
+                <circle cx="723.6" cy="570.6" r="44" class="mine-halo"/>
+                <circle cx="723.6" cy="570.6" r="20" class="mine"/>
+              </svg>
+              <span class="ph-live"><b></b>2 en vivo</span>
+              <span class="pin me" style="left:69.2%;top:72.4%">TÚ</span>
+              <span class="pin" style="left:77.6%;top:83%">LF</span>
+              <span class="pin" style="left:30.7%;top:34.2%">DR</span>
+            </div>
+            <div class="ph-sec"><h4>Compañeros de puesto</h4><span>4</span></div>
+            <div class="ph-mate"><span class="av" style="background:#E6A3C0">LF</span><span class="n">Laura Fernández<small>Chief Post Marshal</small></span><span class="chip-cmp">CMP</span></div>
+            <div class="ph-mate"><span class="av" style="background:#7FB7F0">DR</span><span class="n">Diego Ramírez<small>Bombero 1</small></span></div>
+            <div class="ph-mate"><span class="av" style="background:#9FD7B0">ST</span><span class="n">Sofía Treviño<small>Comunicador</small></span></div>
+            <div class="ph-mate"><span class="av" style="background:#F2B134">AM</span><span class="n">Andrés Molina<small>Intervención 1</small></span><span class="chip-you">TÚ</span></div>
+            <div class="ph-sec"><h4>Checklist de hoy · 1 nov</h4><span id="chk-count">2/3</span></div>
+            <button class="ph-chk done" type="button" aria-pressed="true"><span class="box"><svg><use href="#i-check"/></svg></span>Radio probada con Control</button>
+            <button class="ph-chk done" type="button" aria-pressed="true"><span class="box"><svg><use href="#i-check"/></svg></span>Extintores revisados</button>
+            <button class="ph-chk" type="button" aria-pressed="false"><span class="box"><svg><use href="#i-check"/></svg></span>Juego de banderas completo</button>
+          </div>
+
+          <!-- MbM -->
+          <div class="ph-pane" id="pane-mbm" role="tabpanel" aria-labelledby="tab-mbm" hidden>
+            <div class="ph-days"><span>Vie 31</span><span class="on">Sáb 1</span><span>Dom 2</span></div>
+            <div class="tl">
+              <div class="tl-row done"><span class="tl-time">07:30</span><span class="tl-rail"><span class="tl-dot"></span><span class="tl-bar"></span></span><div class="tl-card"><div class="tl-cat">Oficiales</div><div class="tl-name">Junta de oficiales</div><div class="tl-state">Terminó</div></div></div>
+              <div class="tl-row done"><span class="tl-time">09:10</span><span class="tl-rail"><span class="tl-dot"></span><span class="tl-bar"></span></span><div class="tl-card"><div class="tl-cat">Fórmula 4</div><div class="tl-name">Práctica libre 2</div><div class="tl-state">Terminó</div></div></div>
+              <div class="tl-row live"><span class="tl-time">10:25</span><span class="tl-rail"><span class="tl-dot"></span><span class="tl-bar"></span></span><div class="tl-card"><div class="tl-cat">Turismos</div><div class="tl-name">Clasificación</div><div class="tl-state">En curso · termina en 12 min</div></div></div>
+              <div class="tl-row next"><span class="tl-time">11:30</span><span class="tl-rail"><span class="tl-dot"></span><span class="tl-bar"></span></span><div class="tl-card"><div class="tl-cat">Fórmula 4</div><div class="tl-name">Carrera 1</div><div class="tl-state">Sigue · en 48 min</div></div></div>
+              <div class="tl-row"><span class="tl-time">13:00</span><span class="tl-rail"><span class="tl-dot"></span><span class="tl-bar"></span></span><div class="tl-card"><div class="tl-cat">Público</div><div class="tl-name">Pit walk</div><div class="tl-state">Más tarde</div></div></div>
+              <div class="tl-row"><span class="tl-time">14:20</span><span class="tl-rail"><span class="tl-dot"></span></span><div class="tl-card"><div class="tl-cat">Turismos</div><div class="tl-name">Carrera 1</div><div class="tl-state">Más tarde</div></div></div>
+            </div>
+            <p class="ph-note">SE ACTUALIZA EN VIVO</p>
+          </div>
+
+          <!-- Chat -->
+          <div class="ph-pane" id="pane-chat" role="tabpanel" aria-labelledby="tab-chat" hidden>
+            <div class="ph-chat">
+              <span class="ph-day">CHAT DEL EVENTO · HOY</span>
+              <div class="msg ctrl"><div class="bub"><div class="who">Control</div><div class="mtx">Junta de jefes de puesto a las 13:30 en la torre.</div><div class="mt">10:31</div></div></div>
+              <div class="msg"><span class="av" style="background:#E6A3C0">LF</span><div class="bub"><div class="who">Laura Fernández<b>6.6 · Chief Post Marshal</b></div><div class="mtx">Enterados en 6.6.</div><div class="mt">10:32</div></div></div>
+              <div class="msg me"><span class="av" style="background:#F2B134">AM</span><div class="bub"><div class="mtx">¿Alguien trae cinta de más? Se nos acabó.</div><div class="mt">10:36</div></div></div>
+              <div class="msg"><span class="av" style="background:#C8B6F2">MO</span><div class="bub"><div class="who">Mario Ortiz<b>12 · Comunicador</b></div><div class="mtx">En 12 tenemos. Pásate en el receso.</div><div class="mt">10:38</div></div></div>
+              <div class="ph-composer"><span>Mensaje</span><b><svg><use href="#i-send"/></svg></b></div>
+            </div>
+          </div>
+
+          <!-- Bitácora -->
+          <div class="ph-pane" id="pane-bit" role="tabpanel" aria-labelledby="tab-bit" hidden>
+            <div class="log-day">VIE 31 OCT</div>
+            <div class="log-item"><span class="log-ic"><svg><use href="#i-plane"/></svg></span><div><div class="log-t">Vuelo MTY → MEX</div><div class="log-s">07:15 – 08:45 · Terminal 1</div></div></div>
+            <div class="log-item"><span class="log-ic"><svg><use href="#i-bed"/></svg></span><div><div class="log-t">Hotel cerca del autódromo</div><div class="log-s">Entrada 15:00 · Salida dom 12:00</div></div></div>
+            <div class="log-day today">SÁB 1 NOV · HOY</div>
+            <div class="log-item"><span class="log-ic note"><svg><use href="#i-note"/></svg></span><div><div class="log-t">Llegamos al puesto 06:10</div><div class="log-s">Frío y nublado. Café en la torre.</div></div></div>
+            <div class="log-item"><span class="log-ic photo"><svg><use href="#i-camera"/></svg></span><div><div class="log-t">Amanecer en la curva 12</div><div class="log-photo" role="img" aria-label="Ilustración de una foto: amanecer sobre la pista"></div></div></div>
+            <div class="now">AHORA</div>
+            <div class="log-day">DOM 2 NOV</div>
+            <div class="log-item future"><span class="log-ic"><svg><use href="#i-plane"/></svg></span><div><div class="log-t">Vuelo MEX → MTY</div><div class="log-s">20:30 · Recordatorio 3 h antes</div></div></div>
+          </div>
+        </div>
+      </div>
+      <p class="phone-hint">Toca las pestañas: así se ve el Modo evento.</p>
+      <p class="track-caption">Autódromo Hermanos Rodríguez · Gran Premio · 4,304 m · 39 puestos</p>
+    </div>
+  </div>
+</div>
+
+<div class="checker" role="presentation"></div>
+
+<!-- ——— App de cabecera, no red social ——— -->
+<section class="manifesto" aria-labelledby="manifiesto-t">
+  <div class="wrap">
+    <div>
+      <blockquote id="manifiesto-t">
+        No es una red social. Es la app que <em>va contigo</em> al puesto, como tu radio y tus banderas.
+      </blockquote>
+      <p class="signed">— Hecha por oficiales, para oficiales</p>
+    </div>
+    <div class="body">
+      <p>
+        El Puesto lo hacemos oficiales de pista que conocemos el trabajo desde el puesto. Queremos
+        ser la <strong>app de cabecera del oficial de pista mexicano</strong>: la que abres
+        el lunes para planear el viaje, el viernes para saber dónde te toca y el domingo para
+        guardar la foto del podio desde tu puesto.
+      </p>
+      <p>
+        Todo lo que tiene de "social" existe para trabajar mejor en la pista: tus compañeros de
+        puesto, tu jefe, los chats del evento. Nada de amigos, seguidores ni likes.
+      </p>
+      <div class="facts">
+        <span class="fact"><svg aria-hidden="true"><use href="#i-signal"/></svg>Funciona sin señal</span>
+        <span class="fact"><svg aria-hidden="true"><use href="#i-key"/></svg>Sin contraseñas</span>
+        <span class="fact"><svg aria-hidden="true"><use href="#i-users"/></svg>Solo oficiales</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Antes / En pista / Después ——— -->
+<section id="fin-de-semana" aria-labelledby="finde-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Todo el fin de semana</p>
+      <h2 id="finde-t">De la maleta a la bandera a cuadros.</h2>
+      <p>Un evento no empieza cuando arranca la primera sesión, ni termina con la última vuelta. El Puesto te acompaña en cada parte.</p>
+    </div>
+
+    <div class="phases">
+      <div class="phase">
+        <span class="dot" aria-hidden="true"></span>
+        <p class="when">Antes del evento</p>
+        <h3>Llega preparado.</h3>
+        <ul>
+          <li><b>Agenda</b>Los eventos donde trabajas y las carreras del calendario, en un solo lugar.</li>
+          <li><b>Tu fin de semana</b>Transporte, hospedaje y recordatorios ligados al evento, con los días de viaje y de regreso.</li>
+          <li><b>Circuitos</b>Elige el trazado y ve cada puesto, grúa y ambulancia en el mapa. Te marca los puestos donde ya estuviste.</li>
+          <li><b>Campeonatos</b>El calendario de la temporada fecha por fecha, para saber qué categorías corren ese fin de semana.</li>
+        </ul>
+      </div>
+      <div class="phase live">
+        <span class="dot" aria-hidden="true"></span>
+        <p class="when">En pista</p>
+        <h3>Todo a la mano en tu puesto.</h3>
+        <ul>
+          <li><b>Tu asignación y el mapa</b>Tu puesto resaltado sobre el trazado, tus compañeros con su rol y tu jefe de puesto.</li>
+          <li><b>MbM en vivo</b>El cronograma minuto a minuto con la actividad en curso. Una barra fija te dice qué sigue y te avisamos si algo cambia.</li>
+          <li><b>Checklist y pase de lista</b>El checklist del día de tu puesto y el pase de lista de tu jefe, aunque no haya señal.</li>
+          <li><b>Chats del evento y del puesto</b>Con fotos, en tiempo real. Control también escribe ahí.</li>
+          <li><b>Ubicaciones en vivo</b>Si tú quieres, y solo dentro del circuito: tus compañeros con su foto sobre el mapa.</li>
+        </ul>
+      </div>
+      <div class="phase after">
+        <span class="dot" aria-hidden="true"></span>
+        <p class="when">Después</p>
+        <h3>Tu historia en la pista.</h3>
+        <ul>
+          <li><b>Bitácora</b>Tus fotos, notas y viaje de cada fin de semana, en una línea de tiempo.</li>
+          <li><b>Historial</b>Todos tus eventos, y los que trabajaste con cada compañero.</li>
+          <li><b>Logros</b>Tu pasaporte de circuitos, días en pista, versatilidad y antigüedad. Sin rankings.</li>
+          <li><b>Tus datos</b>Descárgalos completos cuando quieras.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Sin señal ——— -->
+<section class="offline" id="sin-senal" aria-labelledby="senal-t">
+  <div class="wrap">
+    <div>
+      <div class="sec-head">
+        <p class="kicker">Hecha para la pista</p>
+        <h2 id="senal-t">Sin señal, sin problema.</h2>
+        <p>En un autódromo lleno la señal desaparece justo cuando más la necesitas. Por eso lo que capturas en tu puesto se guarda en tu teléfono y se envía solo cuando vuelve.</p>
+      </div>
+      <div class="works" aria-label="Funciona sin conexión">
+        <span>Checklist</span><span>Pase de lista</span><span>Bitácora y fotos</span><span>Mensajes</span><span>Planeación del viaje</span><span>Tu perfil y tu emergencia</span>
+      </div>
+      <div class="more">
+        <p><strong>Lo que ya viste, se queda contigo.</strong> Circuitos, campeonatos, tu agenda, los chats y las fotos se abren al instante, con o sin conexión.</p>
+        <p><strong>Sin pantallas eternas.</strong> Si abres algo que todavía no está en tu teléfono, la app te lo dice en vez de dejarte esperando.</p>
+      </div>
+    </div>
+
+    <div class="outbox" id="outbox" data-state="offline">
+      <div class="ob-top">
+        <span class="ob-status" id="ob-status">
+          <svg viewBox="0 0 16 14" aria-hidden="true"><rect class="bar b1" x="0" y="10" width="3" height="4" rx="1"/><rect class="bar" x="4.3" y="7" width="3" height="7" rx="1"/><rect class="bar" x="8.6" y="4" width="3" height="10" rx="1"/><rect class="bar" x="12.9" y="0" width="3" height="14" rx="1"/></svg>
+          <span id="ob-label">Sin señal</span>
+        </span>
+        <span class="ob-count" id="ob-count" aria-live="polite">4 cambios sin enviar</span>
+      </div>
+      <div class="ob-row" data-sent="false"><span class="ob-ic"><svg><use href="#i-list"/></svg></span><div><div class="ob-t">Juego de banderas completo</div><div class="ob-s">Checklist · Puesto 6.6</div></div><span class="ob-state">En tu teléfono</span></div>
+      <div class="ob-row" data-sent="false"><span class="ob-ic"><svg><use href="#i-users"/></svg></span><div><div class="ob-t">Pase de lista: 4 de 4</div><div class="ob-s">Asistencia de hoy</div></div><span class="ob-state">En tu teléfono</span></div>
+      <div class="ob-row" data-sent="false"><span class="ob-ic"><svg><use href="#i-camera"/></svg></span><div><div class="ob-t">Amanecer en la curva 12</div><div class="ob-s">Foto de tu bitácora</div></div><span class="ob-state">En tu teléfono</span></div>
+      <div class="ob-row" data-sent="false"><span class="ob-ic"><svg><use href="#i-chat"/></svg></span><div><div class="ob-t">"¿Alguien trae cinta de más?"</div><div class="ob-s">Chat del evento</div></div><span class="ob-state">En tu teléfono</span></div>
+      <button class="btn btn-ghost ob-btn" id="ob-btn" type="button">Simular que regresa la señal</button>
+      <p class="ob-foot">Ejemplo. En la app, esto pasa solo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Privacidad ——— -->
+<section class="privacy" id="privacidad" aria-labelledby="priv-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Privacidad primero</p>
+      <h2 id="priv-t">Tus datos son tuyos. Así funciona, sin letra chiquita.</h2>
+      <p>La privacidad no es un ajuste escondido: es la forma en que construimos cada pantalla. Esto es exactamente quién ve qué.</p>
+    </div>
+
+    <div class="grid">
+      <aside>
+        <div class="nope">
+          <h3>Lo que no vas a encontrar</h3>
+          <ul>
+            <li>Amigos</li><li>Seguidores</li><li>Likes</li><li>Mensajes directos</li><li>Rankings</li><li>Contraseñas</li>
+          </ul>
+        </div>
+        <div class="log-card" aria-label="Ejemplo del registro de accesos">
+          <header><strong>Registro de accesos</strong><small>Ejemplo · tu perfil</small></header>
+          <div class="acc">
+            <span class="av" style="background:#E6A3C0">LF</span>
+            <div><p>Laura Fernández consultó tu información de emergencia</p><small>Chief Post Marshal · 6.6 · sáb 1 nov, 10:42</small></div>
+          </div>
+          <div class="acc">
+            <span class="dl"><svg><use href="#i-download"/></svg></span>
+            <div><p>Descargaste tus datos</p><small>jue 25 sep, 18:05 · te avisamos por correo</small></div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="principles">
+        <div class="pr">
+          <p class="tag">Emergencia</p>
+          <div>
+            <h3>Solo tu jefe de puesto, y solo durante el evento.</h3>
+            <p>Tu contacto de emergencia, tipo de sangre y alergias no aparecen en tu perfil ni en la administración. El jefe de tu puesto puede consultarlos únicamente mientras el evento está activo, y cada consulta queda registrada: tú ves quién y cuándo.</p>
+          </div>
+        </div>
+        <div class="pr">
+          <p class="tag">Ubicación</p>
+          <div>
+            <h3>Solo si tú quieres, solo en el circuito, y nunca se guarda.</h3>
+            <p>Compartes tu ubicación solo durante un evento y solo con los compañeros que tú eliges; mientras lo haces, una notificación fija te deja pausarla cuando quieras. Solo te ven cerca del circuito: fuera de la pista y medio kilómetro alrededor, tu teléfono deja de enviarla y el servidor descarta cualquiera que llegue de fuera. Ni Control ni los jefes la ven por su cargo. Tu posición GPS no se guarda en nuestro sistema: no se escribe en ninguna base de datos ni queda historial de dónde estuviste. El servidor solo tiene en memoria la última, para pasársela a quienes elegiste, y la olvida a los 10 minutos o al terminar el evento.</p>
+          </div>
+        </div>
+        <div class="pr">
+          <p class="tag">Perfil</p>
+          <div>
+            <h3>Tu historial completo solo lo ves tú.</h3>
+            <p>Otro oficial ve tu perfil de pista (nombre, foto y logros de pista, sin fechas ni nombres de eventos) y, de tu historial, solo los eventos que trabajaron juntos. Tu correo no lo ve ningún otro oficial y nadie te encuentra por él.</p>
+          </div>
+        </div>
+        <div class="pr">
+          <p class="tag">Mensajes</p>
+          <div>
+            <h3>Sin mensajes directos.</h3>
+            <p>No hay botón de "mensaje" en los perfiles. Los chats del evento y del puesto son solo para quienes están asignados, y nadie te mete a un grupo: aceptas cada invitación, y si la rechazas no te vuelven a invitar a ese chat. Puedes reportar mensajes, chats y perfiles, silenciar chats y bloquear a quien te moleste.</p>
+          </div>
+        </div>
+        <div class="pr">
+          <p class="tag">Acceso</p>
+          <div>
+            <h3>Sin contraseñas, y solo entran oficiales.</h3>
+            <p>Entras con un enlace que llega a tu correo y solo funciona en el teléfono donde lo pediste: no hay contraseña que robar ni que olvidar. Para tener cuenta, un oficial que ya está te invita, respondiendo por ti, y un administrador la aprueba.</p>
+          </div>
+        </div>
+        <div class="pr">
+          <p class="tag">Tus datos</p>
+          <div>
+            <h3>Llévatelos cuando quieras.</h3>
+            <p>Descarga todo lo tuyo (perfil, eventos, bitácora, mensajes y fotos) en un archivo ZIP. Cada descarga queda en tu registro de accesos y te avisamos por correo. Para frenar abusos, el servidor anota durante 30 días quién hizo cada petición (tu cuenta, o la dirección IP si aún no entras), sin guardar lo que escribiste en ella.</p>
+          </div>
+        </div>
+        <div class="pr">
+          <p class="tag">Logros</p>
+          <div>
+            <h3>No te comparamos con nadie.</h3>
+            <p>Tus logros salen de lo que ya hiciste en pista, sin capturar nada extra, y no hay tablas de posiciones entre oficiales. Los de operación y tus primeras veces solo los ves tú.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Circuitos, campeonatos y logros ——— -->
+<section class="catalog" id="catalogos" aria-labelledby="cat-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Circuitos y campeonatos</p>
+      <h2 id="cat-t">Cada circuito, cada fecha, cada puesto.</h2>
+      <p>Datos reales, con su fuente, listos para consultar sin señal.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>83</b><span>Circuitos · 9 en México</span></div>
+      <div class="stat"><b>96</b><span>Trazados</span></div>
+      <div class="stat"><b>8</b><span>Campeonatos 2026</span></div>
+      <div class="stat"><b>374</b><span>Fechas en el calendario</span></div>
+    </div>
+
+    <div class="cat-cols">
+      <div>
+        <h3>Circuitos</h3>
+        <p>Un autódromo puede tener muchas configuraciones. Elige el trazado y ve el dibujo del circuito con sus puestos, grúas y ambulancias, con zoom. En los que ya trabajaste, te dice cuántos puestos conoces.</p>
+      </div>
+      <div>
+        <h3>Campeonatos</h3>
+        <p>Temporadas, categorías y calendario fecha por fecha, en orden cronológico. Las posiciones de Fórmula 1 se actualizan solas después de cada carrera.</p>
+        <div class="series"><span>NASCAR México</span><span>México Racing Cup</span><span>Fórmula 1</span><span>IndyCar</span><span>NASCAR</span><span>WEC</span><span>WRC</span><span>Fórmula E</span></div>
+      </div>
+    </div>
+
+    <div class="badges-head">
+      <h3>Tu carrera en pista, en insignias.</h3>
+      <p>Se ganan trabajando: salen de tus eventos, tu asistencia y tu bitácora. Nada que capturar, nadie contra quien competir.</p>
+    </div>
+    <div class="badges">
+      <div class="badge">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE08A"/><stop offset=".5" stop-color="#F2B134"/><stop offset="1" stop-color="#A8700F"/></linearGradient></defs><path d="M28 4h9l-5 22h-9zM52 4h-9l5 22h9z" fill="#F0524D"/><circle cx="40" cy="48" r="26" fill="url(#g-gold)"/><circle cx="40" cy="48" r="20" fill="none" stroke="#1C1405" stroke-opacity=".25" stroke-width="1.5"/><path d="M40 36c-5 0-8.5 3.6-8.5 8.2 0 6.2 8.5 14.3 8.5 14.3s8.5-8.1 8.5-14.3c0-4.6-3.5-8.2-8.5-8.2z" fill="#1C1405"/><circle cx="40" cy="44.5" r="3" fill="#F2B134"/></svg>
+        <span class="lv">Oro · 8 circuitos</span>
+        <b>Pasaporte México</b>
+        <small>Circuitos de México donde trabajaste. 3 · 5 · 8.</small>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="g-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F7FB"/><stop offset=".5" stop-color="#BAC3D0"/><stop offset="1" stop-color="#6E7888"/></linearGradient></defs><path d="M28 4h9l-5 22h-9zM52 4h-9l5 22h9z" fill="#7FB7F0"/><circle cx="40" cy="48" r="26" fill="url(#g-silver)"/><circle cx="40" cy="48" r="20" fill="none" stroke="#1A1F29" stroke-opacity=".25" stroke-width="1.5"/><rect x="29" y="39" width="22" height="19" rx="3" fill="none" stroke="#1A1F29" stroke-width="2.6"/><path d="M29 45h22M34 36v5M46 36v5" stroke="#1A1F29" stroke-width="2.6" stroke-linecap="round"/></svg>
+        <span class="lv">Plata · 50 días</span>
+        <b>Días en pista</b>
+        <small>Cada día trabajado cuenta. 10 · 50 · 100.</small>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="g-bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EDB48A"/><stop offset=".5" stop-color="#C27A4A"/><stop offset="1" stop-color="#7A4526"/></linearGradient></defs><path d="M28 4h9l-5 22h-9zM52 4h-9l5 22h9z" fill="#3FDD85"/><circle cx="40" cy="48" r="26" fill="url(#g-bronze)"/><circle cx="40" cy="48" r="20" fill="none" stroke="#2A1609" stroke-opacity=".25" stroke-width="1.5"/><path d="M40 37 51 43 40 49 29 43z" fill="none" stroke="#2A1609" stroke-width="2.6" stroke-linejoin="round"/><path d="m29 49 11 6 11-6M29 55l11 6 11-6" fill="none" stroke="#2A1609" stroke-width="2.6" stroke-linejoin="round"/></svg>
+        <span class="lv">Bronce · 2 tipos de rol</span>
+        <b>Versatilidad</b>
+        <small>Banderas, intervención, bomberos, comunicación, unidades, jefatura.</small>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 6 69 23v34L40 74 11 57V23z" fill="#242833" stroke="#F2B134" stroke-width="3" stroke-linejoin="round"/><path d="M40 15 61 27v26L40 65 19 53V27z" fill="rgba(242,177,52,.12)"/><rect x="30" y="28" width="20" height="26" rx="3" fill="none" stroke="#F2B134" stroke-width="2.6"/><path d="M35 28v-3h10v3" fill="none" stroke="#F2B134" stroke-width="2.6" stroke-linejoin="round"/><path d="m34.5 42 4 4 7-8" fill="none" stroke="#F2B134" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lv">Hito de equipo</span>
+        <b>Puesto impecable</b>
+        <small>Tu puesto completó el checklist todos los días. Lo gana todo el puesto.</small>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="32" fill="none" stroke="#7FB7F0" stroke-width="2.5" stroke-dasharray="4 5"/><circle cx="40" cy="40" r="25" fill="rgba(127,183,240,.12)" stroke="#7FB7F0" stroke-width="2.5"/><path d="M45 28H33a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V32z" fill="none" stroke="#7FB7F0" stroke-width="2.4" stroke-linejoin="round"/><path d="M45 28v4h4M35 40h10M35 45h7" fill="none" stroke="#7FB7F0" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <span class="lv">Primera vez</span>
+        <b>Primera nota en tu bitácora</b>
+        <small>Sellos para tus primeras veces: mensaje, foto, viaje, recordatorio.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Cómo entrar ——— -->
+<section id="entrar" aria-labelledby="entrar-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Cómo entrar</p>
+      <h2 id="entrar-t">Entre oficiales nos conocemos.</h2>
+      <p>El Puesto es solo para oficiales de pista, pero no tenemos acceso a ningún sistema externo para confirmar quién es oficial. Por eso dependemos de ustedes: se entra por invitación de un compañero, y cada cuenta la aprueba un administrador.</p>
+    </div>
+    <div class="honor">
+      <div>
+        <p class="kicker">Sistema de honor</p>
+        <h3>Entre todos cuidamos quién entra.</h3>
+      </div>
+      <ul>
+        <li><b>Respondes por quien invitas.</b>Invita solo a oficiales que conozcas y sepas que trabajan en pista. Tu invitación es tu palabra.</li>
+        <li><b>Cada invitación lleva tu nombre.</b>Queda registrado quién invitó a quién, y el administrador lo ve al revisar la cuenta.</li>
+        <li><b>Así protegemos los datos de todos.</b>Si alguien entra sin ser oficial, ve el trabajo y los datos del resto. Si algo no cuadra, la cuenta se suspende.</li>
+      </ul>
+    </div>
+    <ol class="steps">
+      <li><b>Te invita un oficial</b><span>Un compañero que ya usa El Puesto te invita con tu correo desde la app y responde por ti.</span></li>
+      <li><b>Instala la app o usa el navegador</b><span>Descárgala para Android desde nuestra página de descargas; ahí te explicamos qué permisos pide y por qué. ¿iPhone o computadora? Entra en <a href="https://app.elpuesto.app/">app.elpuesto.app</a>.</span></li>
+      <li><b>Entra con tu correo</b><span>Te llega un enlace para entrar. Sin contraseñas.</span></li>
+      <li><b>Te aprueban y listo</b><span>Un administrador aprueba tu cuenta. Completas tu perfil y a la pista.</span></li>
+    </ol>
+
+    <div class="download">
+      <img src="data:image/png;base64,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" alt="" width="54" height="76">
+      <div>
+        <h3>Descarga El Puesto para Android</h3>
+        <p>Versión <!--v-->1.0<!--/v--> · Android 8 o superior. No está en Google Play: publicar ahí tiene costos y tiempos de revisión que preferimos ahorrarnos para mejorar la app rápido, de un evento a otro. Si quieres auditarla, el código completo está en <a href="https://github.com/cultome/el_puesto" rel="noopener">GitHub</a>.</p>
+        <p>¿Usas iPhone o computadora? Entra desde el navegador en <a href="https://app.elpuesto.app/">app.elpuesto.app</a>: es la misma app con tu misma cuenta, aunque ahí no hay avisos, no funciona sin señal y no comparte tu ubicación.</p>
+        <p>¿Aún no tienes invitación? Pídesela a un compañero que ya la use.</p>
+      </div>
+      <a class="btn btn-primary" href="/descargas/"><svg aria-hidden="true"><use href="#i-android"/></svg>Descargar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Preguntas ——— -->
+<section class="faq" id="preguntas" aria-labelledby="faq-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Preguntas</p>
+      <h2 id="faq-t">Lo que nos preguntan en el paddock.</h2>
+    </div>
+    <div class="qa">
+      <details>
+        <summary>¿El Puesto pertenece a alguna organización?</summary>
+        <p>No. Es un proyecto independiente, hecho por oficiales para oficiales, sin afiliación con ninguna organización, promotor ni campeonato.</p>
+      </details>
+      <details>
+        <summary>¿Por qué necesito una invitación?</summary>
+        <p>Porque no tenemos acceso a ningún sistema externo para confirmar que alguien es oficial de pista. Por eso funcionamos con un sistema de honor: un oficial que ya está te invita y responde por ti, y un administrador revisa y aprueba cada cuenta. Así nadie ajeno ve los datos y el trabajo de los oficiales.</p>
+      </details>
+      <details>
+        <summary>¿Hay versión para iPhone?</summary>
+        <p>No hay app para iPhone, pero puedes usar El Puesto desde el navegador (Safari o Chrome) en <a href="https://app.elpuesto.app/">app.elpuesto.app</a>, también en tu computadora. Es la misma app con tu misma cuenta. Lo que el navegador no tiene: avisos y recordatorios, trabajar sin señal y compartir tu ubicación; para eso está la app de Android (versión 8 o superior).</p>
+      </details>
+      <details>
+        <summary>¿Por qué no está en Google Play?</summary>
+        <p>Publicar en la tienda de Google tiene costos y tiempos de revisión que, por ahora, preferimos ahorrarnos para poder corregir y mejorar la app rápido, de un evento a otro. Por eso la distribuimos directamente desde nuestra página de descargas.</p>
+      </details>
+      <details>
+        <summary>¿Es seguro instalar una app que no viene de la tienda?</summary>
+        <p>El código completo de El Puesto está publicado en <a href="https://github.com/cultome/el_puesto" rel="noopener">GitHub</a>: tú, o alguien de tu confianza que sepa de programación, puede revisar qué hace la app y qué datos envía. Solo pide internet, notificaciones y, si tú la activas, tu ubicación durante el evento; no pide tus contactos, mensajes, micrófono ni archivos. Descárgala solo desde nuestra página: si alguien te manda el archivo por WhatsApp, no lo instales.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si en mi puesto no hay señal?</summary>
+        <p>Con la app de Android sigues trabajando normal. El checklist, el pase de lista, la bitácora, los mensajes y los cambios a tu perfil se guardan en tu teléfono y se envían solos cuando vuelve la conexión. Lo que ya habías abierto (circuitos, campeonatos, agenda, chats) se consulta sin señal. En el navegador sí se necesita conexión.</p>
+      </details>
+      <details>
+        <summary>¿Quién puede ver mi información de emergencia?</summary>
+        <p>Solo el jefe de tu puesto, y solo mientras el evento está activo. Cada consulta queda en tu registro de accesos con su nombre, la fecha y la hora.</p>
+      </details>
+      <details>
+        <summary>¿Quién ve mi ubicación?</summary>
+        <p>Nadie, salvo que tú la compartas. Si la enciendes, solo la ven los compañeros que elegiste, solo durante el evento y solo mientras estás cerca del circuito (la pista y medio kilómetro alrededor); puedes pausarla o apagarla cuando quieras. Tu posición no se guarda en nuestro sistema: no queda ningún historial de dónde estuviste.</p>
+      </details>
+      <details>
+        <summary>¿Me avisa cuando algo cambia?</summary>
+        <p>Sí. Te avisa de mensajes nuevos, cambios en el MbM y tus recordatorios. Durante el evento, una barra fija te muestra la actividad en curso y lo que sigue.</p>
+      </details>
+      <details>
+        <summary>¿Puedo sacar mis datos?</summary>
+        <p>Sí. Desde Configuración descargas todo lo tuyo en un archivo ZIP, una vez al día. Tú eliges dónde guardarlo.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="checker" role="presentation"></div>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#inicio"><img src="data:image/png;base64,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" alt="" width="22" height="30"><span>EL PUESTO</span></a>
+      <p class="tag">La app de cabecera del oficial de pista mexicano. Hecha por oficiales, para oficiales.</p>
+      <p class="contact">¿Dudas, ideas o algo que no funciona? Escríbenos a <a href="mailto:hola@elpuesto.app">hola@elpuesto.app</a>.</p>
+    </div>
+    <nav aria-label="Pie de página">
+      <a href="#fin-de-semana">Funciones</a>
+      <a href="#privacidad">Privacidad</a>
+      <a href="#entrar">Cómo entrar</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="/descargas/">Descargas</a>
+    </nav>
+    <div class="legal">
+      <p>El Puesto es un proyecto independiente, sin afiliación con ninguna organización, promotor ni campeonato. Los nombres de campeonatos y circuitos se usan solo para identificarlos y pertenecen a sus dueños.</p>
+      <p>Trazados de circuitos: © colaboradores de OpenStreetMap. Las pantallas de esta página son ejemplos con datos ficticios.</p>
+      <p>© 2026 El Puesto</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Pestañas del teléfono (Modo evento)
+  const tabs = [...document.querySelectorAll('.ph-tab')];
+  const panes = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+  function select(i, focus) {
+    tabs.forEach((t, j) => {
+      const on = i === j;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      panes[j].hidden = !on;
+    });
+    panes[i].scrollTop = 0;
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(i));
+    t.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      select((i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length, true);
+    });
+  });
+
+  // Checklist del teléfono
+  const checks = [...document.querySelectorAll('.ph-chk')];
+  const chkCount = document.getElementById('chk-count');
+  checks.forEach(b => b.addEventListener('click', () => {
+    const done = b.classList.toggle('done');
+    b.setAttribute('aria-pressed', String(done));
+    chkCount.textContent = `${checks.filter(c => c.classList.contains('done')).length}/${checks.length}`;
+  }));
+
+  // Demo de la cola sin señal: al "volver la señal" se envía en orden, uno por uno
+  const box = document.getElementById('outbox');
+  const btn = document.getElementById('ob-btn');
+  const label = document.getElementById('ob-label');
+  const count = document.getElementById('ob-count');
+  const rows = [...box.querySelectorAll('.ob-row')];
+  let timers = [];
+  function pendingText(n) {
+    return n === 0 ? 'Todo enviado' : `${n} ${n === 1 ? 'cambio' : 'cambios'} sin enviar`;
+  }
+  btn.addEventListener('click', () => {
+    timers.forEach(clearTimeout);
+    timers = [];
+    const goOnline = box.dataset.state === 'offline';
+    if (goOnline) {
+      box.dataset.state = 'draining';
+      label.textContent = 'Enviando';
+      btn.textContent = 'Quitar la señal otra vez';
+      rows.forEach((r, i) => {
+        timers.push(setTimeout(() => {
+          r.dataset.sent = 'true';
+          r.querySelector('.ob-state').textContent = 'Enviado';
+          const left = rows.filter(x => x.dataset.sent !== 'true').length;
+          count.textContent = pendingText(left);
+          if (left === 0) { box.dataset.state = 'online'; label.textContent = 'En línea'; }
+        }, reduce.matches ? 0 : 450 + i * 420));
+      });
+    } else {
+      box.dataset.state = 'offline';
+      label.textContent = 'Sin señal';
+      btn.textContent = 'Simular que regresa la señal';
+      rows.forEach(r => { r.dataset.sent = 'false'; r.querySelector('.ob-state').textContent = 'En tu teléfono'; });
+      count.textContent = pendingText(rows.length);
+    }
+  });
+
+  // El auto que da vueltas al trazado se detiene si el sistema pide menos movimiento
+  const track = document.getElementById('hero-track');
+  function applyMotion() {
+    if (!track.pauseAnimations) return;
+    if (reduce.matches) track.pauseAnimations(); else track.unpauseAnimations();
+  }
+  applyMotion();
+  if (reduce.addEventListener) reduce.addEventListener('change', applyMotion);
+})();
+</script>
+</body>
+</html>

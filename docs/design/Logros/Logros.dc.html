@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Todos los logros</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#141720;font-family:'IBM Plex Sans',sans-serif;color:#ECEEF2}
+a{color:#F2B134;text-decoration:none}a:hover{color:#F6BB45}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 390px; height: 1980px; box-sizing: border-box; background: linear-gradient(180deg,#232733 0%,#1B1E27 30%,#191C24 100%); display: flex; flex-direction: column; overflow: hidden; position: relative; font-family: 'IBM Plex Sans', sans-serif; color: #ECEEF2">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true"><defs><linearGradient id="gBronce" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EDB48A"></stop><stop offset="0.55" stop-color="#C27A4A"></stop><stop offset="1" stop-color="#7A4526"></stop></linearGradient><linearGradient id="gPlata" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F7FB"></stop><stop offset="0.55" stop-color="#BAC3D0"></stop><stop offset="1" stop-color="#6E7888"></stop></linearGradient><pattern id="checker" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#1C1405"></rect><rect width="3" height="3" fill="#F2B134"></rect><rect x="3" y="3" width="3" height="3" fill="#F2B134"></rect></pattern></defs></svg>
+
+<div style="padding: 14px 22px 0 22px; display: flex; align-items: center; gap: 12px"><a href="Perfil-propio.dc.html" aria-label="Regresar" style="width: 42px; height: 42px; border-radius: 12px; background: #242833; border: 1px solid #3A4152; display: flex; align-items: center; justify-content: center; box-sizing: border-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ECEEF2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a><span style="flex-grow: 1; text-align: center; font-family: Archivo, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 2px; color: #FFFFFF">LOGROS</span><div style="width: 42px"></div></div>
+
+<div style="padding: 20px 22px 0 22px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: baseline; gap: 8px"><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 34px; color: #FFFFFF">13</span><span style="font-size: 15px; color: #AAB0BD">de 16 logros</span></div>
+<div style="height: 6px; border-radius: 3px; background: #333949; overflow: hidden"><div style="width: 81%; height: 6px; border-radius: 3px; background: #F2B134"></div></div>
+</div>
+
+<a href="Temporada.dc.html" style="margin: 18px 22px 0 22px; border-radius: 18px; background: #242833; border: 1px solid #3A4152; display: flex; align-items: center; gap: 14px; padding: 14px 16px; color: inherit">
+<div style="width: 58px; height: 58px; border-radius: 14px; background: #1E222B; border: 1px solid #3A4152; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0"><svg width="58" height="8" viewBox="0 0 58 8" aria-hidden="true"><rect width="58" height="6" fill="url(#checker)"></rect></svg><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 19px; color: #F2B134; margin-top: 4px">2025</span></div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF">Tu temporada 2025</span><span style="font-size: 12.5px; color: #AAB0BD">7 eventos · 16 días en pista · 3 logros</span></div>
+<span style="font-size: 22px; color: #6F7683" aria-hidden="true">›</span>
+</a>
+
+<sc-for list="{{sections}}" as="sec" hint-placeholder-count="4">
+<div style="margin: 28px 22px 4px 22px; display: flex; align-items: center; justify-content: space-between"><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10.5px; letter-spacing: 1.4px; color: #F2B134">{{sec.title}}</span><span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: #8F96A3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8F96A3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{sec.visIcon}}"></path></svg>{{sec.vis}}</span></div>
+<sc-if value="{{sec.isPatches}}" hint-placeholder-val="{{false}}">
+<div style="margin: 8px 22px 0 22px; display: flex; flex-direction: column; gap: 10px"><div style="display: flex; gap: 10px">
+<sc-for list="{{sec.patches}}" as="p" hint-placeholder-count="4"><div style="display: flex; flex-direction: column; align-items: center; gap: 6px"><div style="width: 78px; height: 54px; border-radius: 12px; background: #2C3141; border: 1px solid #3A4152; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box"><div style="position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px; border-radius: 9px; border: 1px dashed rgba(242,177,52,0.55)"></div><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: {{p.size}}; line-height: 1; color: #FFFFFF">{{p.abbr}}</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 8.5px; letter-spacing: 1px; color: #F2B134; margin-top: 2px">{{p.sub}}</span></div><span style="font-size: 11.5px; color: #AAB0BD">{{p.seasons}}</span></div></sc-for>
+</div><span style="font-size: 12px; line-height: 17px; color: #8F96A3">Aparecen al trabajar un evento de ese campeonato. El número son temporadas.</span></div>
+</sc-if>
+<sc-if value="{{sec.isRows}}" hint-placeholder-val="{{true}}">
+<div style="margin: 0 22px; display: flex; flex-direction: column">
+<sc-for list="{{sec.rows}}" as="r" hint-placeholder-count="3">
+<a href="{{r.href}}" style="display: flex; gap: 14px; align-items: center; padding: 13px 0; border-bottom: 1px solid #262B36; color: inherit">
+<div style="position: relative; width: 52px; height: 52px; flex-shrink: 0">
+<sc-if value="{{r.isMedal}}" hint-placeholder-val="{{true}}"><svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="{{r.grad}}"></circle><circle cx="32" cy="32" r="24" fill="#1E222B"></circle><g transform="translate(20 20)" fill="none" stroke="{{r.ink}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{r.glyph}}"></path></g><text x="32" y="40.5" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="22" fill="{{r.ink}}">{{r.num}}</text></svg></sc-if>
+<sc-if value="{{r.isHex}}" hint-placeholder-val="{{false}}"><svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true"><polygon points="32,3 57,17.5 57,46.5 32,61 7,46.5 7,17.5" fill="{{r.hexFill}}" stroke="{{r.hexStroke}}" stroke-width="2" stroke-dasharray="{{r.dash}}" stroke-linejoin="round"></polygon><g transform="translate(20 20)" fill="none" stroke="{{r.ink}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{r.glyph}}"></path></g></svg></sc-if>
+<sc-if value="{{r.hasCount}}" hint-placeholder-val="{{false}}"><span style="position: absolute; right: -6px; bottom: 0; padding: 1px 6px; border-radius: 999px; background: #F2B134; border: 2px solid #1C1F28; color: #1C1405; font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 10px">{{r.count}}</span></sc-if>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px">
+<span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; color: {{r.titleInk}}">{{r.t}}</span>
+<span style="font-size: 12.5px; line-height: 17px; color: #AAB0BD">{{r.s}}</span>
+<sc-if value="{{r.hasProg}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-direction: column; gap: 5px; margin-top: 4px"><div style="height: 5px; border-radius: 3px; background: #333949; overflow: hidden"><div style="width: {{r.pct}}; height: 5px; border-radius: 3px; background: #F2B134"></div></div><span style="font-size: 11.5px; color: #8F96A3">{{r.next}}</span></div></sc-if>
+</div>
+</a>
+</sc-for>
+</div>
+</sc-if>
+</sc-for>
+
+<div style="margin: 28px 22px 4px 22px; display: flex; align-items: center; justify-content: space-between"><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10.5px; letter-spacing: 1.4px; color: #F2B134">PRIMERAS VECES · 4 DE 6</span><span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: #8F96A3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8F96A3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11h12v10H6z M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Solo tú</span></div>
+<div style="margin: 12px 22px 0 22px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 18px; column-gap: 10px">
+<sc-for list="{{firsts}}" as="f" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px"><svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="21.5" fill="{{f.fill}}" stroke="{{f.ring}}" stroke-width="1.5" stroke-dasharray="{{f.dash}}"></circle><g transform="translate(12 12) scale(0.9167)" fill="none" stroke="{{f.ink}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{f.glyph}}"></path></g></svg><span style="font-size: 12px; line-height: 15px; text-align: center; color: {{f.text}}">{{f.label}}</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: {{f.dateInk}}">{{f.date}}</span></div>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1980}}'>
+class Component extends DCLogic {
+renderVals() {
+const G = {
+cal: 'M4 6h16v14H4z M4 10h16 M8 3v4 M16 3v4',
+layers: 'M12 3l9 5-9 5-9-5z M3 13l9 5 9-5 M3 17.5l9 5 9-5',
+chev: 'M6 14l6-5 6 5 M6 19l6-5 6 5 M6 9l6-5 6 5',
+star: 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z',
+trophy: 'M8 4h8v5a4 4 0 0 1-8 0z M8 6H5a3 3 0 0 0 3 4 M16 6h3a3 3 0 0 1-3 4 M12 13v4 M8 20h8 M9 17h6',
+globe: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18 M3 12h18 M12 3c3 3 3 15 0 18 M12 3c-3 3-3 15 0 18',
+shield: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z M12 9v6 M9 12h6',
+clip: 'M9 4h6v3H9z M7 5H5v16h14V5h-2 M9 14l2 2 4-4',
+userplus: 'M10 11a4 4 0 1 0 0-8a4 4 0 1 0 0 8 M3 21c0-4 3-6 7-6s7 2 7 6 M19 8v6 M16 11h6',
+chat: 'M4 5h16v11H9l-5 4z',
+camera: 'M4 8h4l2-3h4l2 3h4v11H4z M12 17a3.5 3.5 0 1 0 0-7a3.5 3.5 0 1 0 0 7',
+image: 'M4 5h16v14H4z M4 16l5-5 4 4 3-3 4 4 M15.5 9.5a1.5 1.5 0 1 0 0-.01',
+note: 'M6 3h9l4 4v14H6z M14 3v5h5 M9 13h7 M9 17h5',
+suitcase: 'M4 8h16v12H4z M9 8V5h6v3 M4 13h16',
+bell: 'M6 16V11a6 6 0 0 1 12 0v5l2 2H4z M10 20a2 2 0 0 0 4 0',
+eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z M12 15a3 3 0 1 0 0-6a3 3 0 1 0 0 6',
+lock: 'M6 11h12v10H6z M8 11V8a4 4 0 0 1 8 0v3'
+};
+const base = { href: '#', num: '', count: '', pct: '0%', next: '', grad: 'none', hexFill: 'none', hexStroke: 'none', dash: 'none', titleInk: '#FFFFFF' };
+const medal = (tier, o) => Object.assign({}, base, {
+isMedal: true, isHex: false, grad: tier === 'plata' ? 'url(#gPlata)' : 'url(#gBronce)', ink: tier === 'plata' ? '#E6EBF2' : '#EDB48A'
+}, o, { hasProg: !!o.next, hasCount: false });
+const hex = (o) => Object.assign({}, base, {
+isMedal: false, isHex: true, hexFill: 'rgba(242,177,52,0.12)', hexStroke: '#F2B134', ink: '#F2B134'
+}, o, { hasProg: false, hasCount: !!o.count });
+const locked = (o) => Object.assign({}, base, {
+isMedal: false, isHex: true, hexFill: '#20242E', hexStroke: '#3A4152', dash: '5 4', ink: '#8F96A3', titleInk: '#AAB0BD'
+}, o, { hasProg: false, hasCount: false });
+const patches = [
+{ abbr: 'F1', sub: '', size: '20px', seasons: '4 temp.' },
+{ abbr: 'NASCAR', sub: 'MÉXICO', size: '13px', seasons: '3 temp.' },
+{ abbr: 'MRC', sub: '', size: '18px', seasons: '2 temp.' },
+{ abbr: 'FE', sub: '', size: '20px', seasons: '1 temp.' }
+];
+const pub = { vis: 'Visible en tu perfil', visIcon: G.eye };
+const priv = { vis: 'Solo tú', visIcon: G.lock };
+const on = { fill: 'rgba(242,177,52,0.10)', ring: '#F2B134', dash: 'none', ink: '#F2B134', text: '#ECEEF2', dateInk: '#8F96A3' };
+const off = { fill: '#20242E', ring: '#3A4152', dash: '4 3', ink: '#8F96A3', text: '#8F96A3', dateInk: '#8F96A3' };
+return {
+sections: [
+Object.assign({ title: 'PASAPORTE', isPatches: false, isRows: true, rows: [
+medal('plata', { t: 'Pasaporte México', s: 'Plata · 5 de 9 circuitos', glyph: '', num: '5', pct: '62%', next: 'Oro a los 8 · te faltan 3', href: 'Pasaporte.dc.html' }),
+locked({ t: 'Internacional', s: 'Trabaja un evento fuera de México', glyph: G.globe })
+] }, pub),
+Object.assign({ title: 'CAMPEONATOS · 4', isPatches: true, isRows: false, rows: [], patches: patches }, pub),
+Object.assign({ title: 'CARRERA EN PISTA', isPatches: false, isRows: true, rows: [
+medal('bronce', { t: 'Días en pista', s: 'Bronce · 47 días', glyph: G.cal, pct: '94%', next: 'Plata a los 50 · te faltan 3', href: 'Logro-detalle.dc.html' }),
+medal('bronce', { t: 'Versatilidad', s: 'Bronce · 3 de 6 tipos de rol', glyph: G.layers, pct: '75%', next: 'Plata a los 4 tipos de rol' }),
+hex({ t: 'Ascenso', s: 'Primera vez como Chief Post Marshal · jun 2026', glyph: G.chev }),
+medal('bronce', { t: 'Antigüedad', s: 'Bronce · 7 años en pista', glyph: G.star, pct: '70%', next: 'Plata a los 10 años · en 2029' }),
+hex({ t: 'Grandes Premios', s: '4 ediciones del GP de la Ciudad de México', glyph: G.trophy, count: '×4' })
+] }, pub),
+Object.assign({ title: 'OPERACIÓN', isPatches: false, isRows: true, rows: [
+hex({ t: 'Listo para pista', s: 'Foto y datos de emergencia completos', glyph: G.shield }),
+hex({ t: 'Puesto impecable', s: 'Tu puesto completó el checklist todos los días de 2 eventos', glyph: G.clip, count: '×2' }),
+hex({ t: 'Reclutador', s: '1 oficial que invitaste ya está activo', glyph: G.userplus, count: '×1' })
+] }, priv)
+],
+firsts: [
+Object.assign({ label: 'Primer mensaje', glyph: G.chat, date: '14 mar 2026' }, on),
+Object.assign({ label: 'Primera foto en un chat', glyph: G.camera, date: '2 may 2026' }, on),
+Object.assign({ label: 'Primera foto en tu bitácora', glyph: G.image, date: '2 may 2026' }, on),
+Object.assign({ label: 'Primera nota en tu bitácora', glyph: G.note, date: 'Pendiente' }, off),
+Object.assign({ label: 'Primer viaje planeado', glyph: G.suitcase, date: '20 abr 2026' }, on),
+Object.assign({ label: 'Primer recordatorio', glyph: G.bell, date: 'Pendiente' }, off)
+]
+};
+}
+}
+</script>
+</body>
+</html>

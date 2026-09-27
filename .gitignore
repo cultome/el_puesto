@@ -1,0 +1,22 @@
+.gradle/
+build/
+*/build/
+**/build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+*.hprof
+.kotlin/
+setenv
+dist/
+# Datos personales (cuentas/oficiales reales): nunca al repo
+data/privado/*
+!data/privado/LEEME.md
+
+# Datos personales y de operación del autor (ver CLAUDE.md §4)
+CLAUDE.local.md
+__pycache__/

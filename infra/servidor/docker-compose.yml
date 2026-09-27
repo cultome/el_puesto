@@ -1,0 +1,52 @@
+# Producción: Postgres (solo loopback) + Caddy (TLS automático de Let's Encrypt para
+# api.elpuesto.app, proxy al backend en 127.0.0.1:8080). El backend NO va en docker: corre
+# con systemd (el-puesto.service) desde /opt/el-puesto/current.
+# DB_PASSWORD llega por --env-file /etc/el-puesto/compose.env (ver generar-env.sh); solo
+# aplica al CREAR el volumen: cambiarlo después exige ALTER USER en Postgres.
+#
+# Imágenes fijadas por versión Y digest (índice multiplataforma de Docker Hub): lo que corre es
+# exactamente lo revisado, aunque alguien vuelva a publicar la etiqueta. Actualizar = cambiar
+# ambos y aplicar con scripts/desplegar-servidor.sh (recrea el contenedor: segundos sin API).
+# El digest de una etiqueta: curl -s https://hub.docker.com/v2/repositories/library/<imagen>/tags/<etiqueta> | jq -r .digest
+# Postgres: solo versiones 16.x (cambiar de mayor exige pg_upgrade o dump/restore).
+name: el-puesto
+
+services:
+  postgres:
+    image: postgres:16.15@sha256:1a6ab3f5345eb6dbe04a1349529caabdb0ab09293a09590fad07b2246bfa4b54
+    container_name: el-puesto-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: el_puesto
+      POSTGRES_USER: el_puesto
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?falta DB_PASSWORD}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U el_puesto -d el_puesto"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    logging:
+      driver: journald
+
+  caddy:
+    image: caddy:2.11.4@sha256:0c994536bddb66445885237f1a5dcc1916bccea922661c76b4e9fc24061f9b52
+    container_name: el-puesto-caddy
+    restart: unless-stopped
+    # Red del host: Caddy llega al backend por 127.0.0.1 y el backend ve la conexión desde
+    # loopback → confía en el X-Forwarded-For que pone Caddy (Security.kt: clientIp).
+    network_mode: host
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    logging:
+      driver: journald
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:

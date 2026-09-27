@@ -1,0 +1,27 @@
+IndyCar / Indy NXT 2026: posiciones automáticas (investigación del 2026-09-27, solo curl, UA honesto)
+
+Muestras
+  standings.html / standings-2026.html / nxt-standings.html (+ .headers.txt)  página pública SSR /standings/<año>
+  results-page.html, nxt-results-page.html   página de Resultados (trae #hdnSeries y la tabla #all-drivers-results-table)
+  bundle.js                                   JS del sitio: llama /api/results/* (sin llave) desde la página de Resultados
+  {ic,nx}-YearPointSummary-2026.json          tabla (posición, nombre, puntos totales y por carrera con EventsSessionsID)
+  {ic,nx}-DriversByYear-2026.json             DriverOverrideID por OverallPosition
+  {ic,nx}-EventsByYearSeries-2026.json, {ic,nx}-SeasonDropDown.json
+  ic-YearPointSummary-2027.json               temporada futura: DriverList vacío, solo columna Total
+  sesiones/{ic,nx}-<EventsSessionsID>.json    resultados de carrera (CarNumber texto, TeamName, DriverOverrideID, SessionDate)
+  terms.html, robots.txt (404 en ambos hosts)
+
+Prototipos
+  ingesta.py  <ic|nx> <día> [--offline]   fuente completa por los JSON (algoritmo propuesto)
+  pruebas.py                                escenarios de "fecha reflejada" simulados sobre la tabla final
+  parse_html.py <html>                      alternativa: tabla desde la página /standings (número por el nombre
+                                            de la imagen del endplate, equipo por el alt del logo)
+
+Hallazgos
+  - Sin reto anti-bots: Azure Front Door, 200 con el UA propio, sin cookies; no-store; sin compresión si no se pide.
+  - La tabla HTML y YearPointSummary coinciden 100% (posición, nombre, puntos); números iguales; equipos: el HTML da
+    el nombre corto ("Meyer Shank Racing") y la carrera el de la inscripción ("Meyer Shank w/ Curb-Agajanian").
+  - El desglose por carrera del HTML de Indy NXT omite "Grand Prix of Monterey Race 1" (16 de 17): no sirve para
+    detectar la fecha.
+  - Milwaukee (IndyCar): el sitio fecha las dos carreras el 30/8 y pone 6738 (Milwaukee Mile 250, nuestra 17) antes
+    que 6739 (Makers and Fixers 250, nuestra 16, que según nuestro CSV es el 29/8).

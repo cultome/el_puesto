@@ -1,0 +1,46 @@
+# Publica el sitio (https://elpuesto.app) en cada push a master que toque web/, o a mano desde
+# la pestaña Actions: scripts/publicar-sitio.sh (rellena la versión publicada en la landing, sube
+# a S3 e invalida CloudFront). Entorno "produccion" (solo master; con aprobación si el entorno la
+# exige). NO publica la app: el rol de AWS tiene prohibido escribir APKs y version.json (eso es
+# scripts/publicar-app.sh, a mano, con la llave de release). Acciones fijadas por SHA de commit.
+name: Publicar sitio
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - web/**
+      - scripts/publicar-sitio.sh
+      - .github/workflows/publicar-sitio.yml
+  workflow_dispatch:
+
+concurrency:
+  group: produccion-sitio
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: produccion
+      url: https://elpuesto.app/
+    permissions:
+      id-token: write   # token OIDC para asumir el rol de AWS
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          role-session-name: github-publicar-sitio
+          role-duration-seconds: 900
+          aws-region: mx-central-1
+
+      - name: Publicar
+        run: scripts/publicar-sitio.sh "$GITHUB_SHA"

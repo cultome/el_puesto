@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: #f2b134; } a:hover { color: #f6bb45; }
+          .dv-turn { padding: 48px 52px 40px; }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 700 16px/1.3 'Archivo', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-opts { display: flex; gap: 40px; align-items: flex-start; }
+          .dv-opt { display: flex; flex-direction: column; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; max-width: 384px; margin-bottom: 12px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 1000px; }
+
+          .phone { width: 384px; padding: 13px; border-radius: 46px; background: linear-gradient(160deg,#26282e,#111216); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.05); }
+          .screen { position: relative; border-radius: 34px; overflow: hidden; display: flex; flex-direction: column; background: radial-gradient(120% 42% at 50% 0%, #2a2f3a 0%, #1e222b 44%, #191c24 100%); color: #eceef2; min-height: 812px; }
+          .sbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px 0; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .sbar .dots { display: flex; gap: 5px; align-items: center; }
+          .sbar .dots span { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+          .sbar .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; position: relative; opacity: 0.85; }
+          .sbar .bat::after { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; right: 6px; background: currentColor; border-radius: 1px; }
+
+          .topbar { display: flex; align-items: center; gap: 8px; padding: 12px 20px 0; }
+          .back { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: #eceef2; font-size: 19px; }
+          .tbrand { font: 800 12px 'Archivo', sans-serif; letter-spacing: 2px; color: #fff; margin: 0 auto; }
+          .tspace { width: 34px; flex: none; }
+          .appbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px 0; }
+          .appbar .ttl { font: 800 23px 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; }
+          .appbar .r { display: flex; gap: 10px; align-items: center; }
+          .editpill { font: 600 12.5px 'IBM Plex Sans', sans-serif; color: #f2b134; border: 1px solid rgba(242,177,52,0.4); padding: 9px 15px; border-radius: 100px; text-decoration: none; }
+          .iconbtn { width: 44px; height: 44px; border-radius: 13px; background: #242833; border: 1px solid #333949; display: flex; align-items: center; justify-content: center; color: #d7dae1; }
+          .ic-slider { width: 22px; height: 22px; position: relative; }
+          .ic-slider .l { position: absolute; left: 0; right: 0; height: 2.5px; background: currentColor; border-radius: 2px; }
+          .ic-slider .l1 { top: 6px; } .ic-slider .l2 { top: 14px; }
+          .ic-slider .k { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: currentColor; border: 2px solid #242833; box-sizing: content-box; }
+          .ic-slider .k1 { top: 1px; left: 11px; } .ic-slider .k2 { top: 9px; left: 3px; }
+
+          .phead { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 16px 22px 0; }
+          .avwrap { position: relative; }
+          .bigav { width: 92px; height: 92px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 800 31px 'Archivo', sans-serif; color: #10131a; }
+          .cam { position: absolute; right: 0; bottom: 3px; width: 30px; height: 30px; border-radius: 50%; background: #f2b134; border: 3px solid #1b1e26; display: flex; align-items: center; justify-content: center; }
+          .cam::before { content: ''; width: 12px; height: 9px; border: 2px solid #1c1405; border-radius: 2px; box-sizing: border-box; }
+          .cam::after { content: ''; position: absolute; width: 5px; height: 5px; border-radius: 50%; border: 2px solid #1c1405; box-sizing: border-box; }
+          .pname { font: 800 23px 'Archivo', sans-serif; color: #fff; margin-top: 14px; letter-spacing: -0.3px; }
+          .omdai { font: 600 12px 'IBM Plex Mono', monospace; color: #aab0bd; background: #242833; border: 1px solid #333949; padding: 5px 13px; border-radius: 100px; margin-top: 9px; }
+          .pctx { font: 400 13px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 9px; }
+          .pctx b { color: #c3c8d2; font-weight: 600; }
+          .pareas { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 15px; }
+          .achip { display: inline-flex; padding: 7px 14px; border-radius: 100px; font: 600 12.5px 'IBM Plex Sans', sans-serif; background: rgba(242,177,52,0.12); color: #f2b134; border: 1px solid rgba(242,177,52,0.24); }
+
+          .pbody { padding: 0 22px 26px; }
+          .stats { display: flex; margin-top: 22px; border: 1px solid #333949; border-radius: 16px; background: #242833; overflow: hidden; }
+          .stat { flex: 1; text-align: center; padding: 15px 8px; }
+          .stat + .stat { border-left: 1px solid #313846; }
+          .stat .v { font: 800 22px 'Archivo', sans-serif; color: #fff; }
+          .stat .l { font: 400 11.5px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 4px; }
+
+          .shead { display: flex; align-items: baseline; justify-content: space-between; margin: 28px 0 12px; }
+          .shead h3 { font: 700 16px 'Archivo', sans-serif; color: #fff; margin: 0; }
+          .shead a { font: 600 12.5px 'IBM Plex Sans', sans-serif; color: #f2b134; text-decoration: none; }
+
+          .ic-lock { width: 18px; height: 20px; position: relative; flex: none; }
+          .ic-lock::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 12px; background: currentColor; border-radius: 3px; }
+          .ic-lock::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; border: 2.5px solid currentColor; border-bottom: none; border-radius: 8px 8px 0 0; box-sizing: border-box; }
+
+          .ecard { margin-top: 12px; border-radius: 16px; background: #242833; border: 1px solid #333949; overflow: hidden; }
+          .eh { display: flex; align-items: center; gap: 11px; padding: 14px 16px; background: rgba(240,82,77,0.09); border-bottom: 1px solid #313846; }
+          .eh .ic-lock { color: #f0794d; }
+          .eh .t { font: 700 14px 'Archivo', sans-serif; color: #fff; flex: 1; }
+          .eh .tag { font: 600 9.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.5px; color: #f0794d; border: 1px solid rgba(240,82,77,0.4); padding: 3px 8px; border-radius: 6px; text-transform: uppercase; }
+          .esub { padding: 11px 16px 3px; font: 400 12px/1.4 'IBM Plex Sans', sans-serif; color: #8f96a3; }
+          .erow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-top: 1px solid #262b36; }
+          .erow .k { font: 400 13px 'IBM Plex Sans', sans-serif; color: #8f96a3; flex: none; }
+          .erow .v { font: 600 13px 'IBM Plex Sans', sans-serif; color: #e6e9ef; text-align: right; }
+          .erow .lg { font: 600 13px 'IBM Plex Sans', sans-serif; color: #f2b134; text-decoration: none; }
+          .efoot { padding: 13px 16px; border-top: 1px solid #262b36; text-align: center; }
+          .efoot a { font: 600 13px 'IBM Plex Sans', sans-serif; color: #f2b134; text-decoration: none; }
+
+          .elock { margin-top: 12px; border-radius: 16px; background: #20242e; border: 1px dashed #3a4152; padding: 18px; display: flex; gap: 14px; align-items: flex-start; }
+          .elock .ic-lock { color: #6f7683; margin-top: 2px; }
+          .elock .t { font: 600 13.5px 'IBM Plex Sans', sans-serif; color: #c3c8d2; }
+          .elock .s { font: 400 12.5px/1.45 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 5px; }
+
+          .hitem { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid #262b36; }
+          .hdate { width: 50px; text-align: center; flex: none; }
+          .hdate .m { font: 600 10px 'IBM Plex Mono', monospace; color: #f2b134; letter-spacing: 1px; }
+          .hdate .y { font: 700 16px 'Archivo', sans-serif; color: #fff; line-height: 1.1; }
+          .hinfo { flex: 1; }
+          .hn { font: 600 14px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .hr { font: 400 12px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 2px; }
+          .chev { color: #5a6070; font-size: 22px; line-height: 1; flex: none; }
+
+          .bnav { display: flex; justify-content: space-around; align-items: center; padding: 12px 8px 18px; background: #191c24; border-top: 1px solid #2c313d; margin-top: 26px; }
+          .bitem { display: flex; flex-direction: column; align-items: center; gap: 6px; color: #6f7683; font: 600 10.5px 'IBM Plex Sans', sans-serif; }
+          .bitem.on { color: #f2b134; }
+          .bic { height: 23px; display: flex; align-items: flex-end; }
+          .ic-home { width: 22px; height: 21px; position: relative; }
+          .ic-home::after { content: ''; position: absolute; left: 50%; top: 0; transform: translateX(-50%); border-left: 11px solid transparent; border-right: 11px solid transparent; border-bottom: 10px solid currentColor; }
+          .ic-home::before { content: ''; position: absolute; left: 3px; right: 3px; top: 9px; bottom: 0; border: 2px solid currentColor; border-top: none; border-radius: 0 0 2px 2px; }
+          .ic-cal { width: 21px; height: 21px; border: 2px solid currentColor; border-radius: 5px; position: relative; box-sizing: border-box; }
+          .ic-cal::before { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 6px; background: currentColor; border-radius: 4px 4px 0 0; }
+          .ic-cal::after { content: ''; position: absolute; left: 3px; top: 9px; width: 3px; height: 3px; background: currentColor; box-shadow: 6px 0 currentColor, 12px 0 currentColor, 0 5px currentColor, 6px 5px currentColor; }
+          .ic-chat { width: 22px; height: 18px; border: 2px solid currentColor; border-radius: 8px; position: relative; box-sizing: border-box; }
+          .ic-chat::after { content: ''; position: absolute; left: 5px; bottom: -6px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid currentColor; }
+          .ic-user { width: 22px; height: 21px; position: relative; }
+          .ic-user::before { content: ''; position: absolute; left: 50%; top: 0; width: 10px; height: 10px; border: 2px solid currentColor; border-radius: 50%; transform: translateX(-50%); box-sizing: border-box; }
+          .ic-user::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 19px; height: 11px; border: 2px solid currentColor; border-bottom: none; border-radius: 10px 10px 0 0; transform: translateX(-50%); box-sizing: border-box; }
+        </style>
+      </helmet>
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">PF</a>
+          <span class="dv-tname">Perfil del oficial &mdash; Paddock nocturno</span>
+          <span class="dv-tsub">mi perfil (emergencia + registro de accesos) &middot; perfil de otro oficial (emergencia bloqueada, sin funciones sociales)</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">PF-1</a><span><span class="dv-oname">Mi perfil.</span> Editable, con avatar, &aacute;rea asignada, emergencia (auditable) e historial.</span></div>
+            <div class="phone" data-screen-label="Perfil / Mi perfil">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="appbar">
+                  <div class="ttl">Perfil</div>
+                  <div class="r"><a class="editpill" href="#t1">Editar</a><div class="iconbtn"><span class="ic-slider"><span class="l l1"></span><span class="l l2"></span><span class="k k1"></span><span class="k k2"></span></span></div></div>
+                </div>
+                <div class="phead">
+                  <div class="avwrap"><div class="bigav" style="background:linear-gradient(140deg,#f2b134,#d98a1a)">CM</div><div class="cam"></div></div>
+                  <div class="pname">Carlos Mendoza</div>
+                  <div class="omdai">OMDAI #4821</div>
+                  <div class="pareas"><span class="achip">Banderas</span></div>
+                </div>
+                <div class="pbody">
+                  <div class="stats">
+                    <div class="stat"><div class="v">24</div><div class="l">Eventos</div></div>
+                    <div class="stat"><div class="v">6</div><div class="l">Esta temporada</div></div>
+                    <div class="stat"><div class="v">2021</div><div class="l">Activo desde</div></div>
+                  </div>
+
+                  <div class="shead"><h3>Informaci&oacute;n de emergencia</h3></div>
+                  <div class="ecard">
+                    <div class="eh"><span class="ic-lock"></span><span class="t">Solo para emergencias</span><span class="tag">Privada</span></div>
+                    <div class="esub">Visible para tu jefe de puesto solo durante un evento activo. Cada acceso queda registrado y puedes revisarlo abajo.</div>
+                    <div class="erow"><span class="k">Contacto</span><span class="v">Mar&iacute;a Mendoza<br />+52 55 1234 5678</span></div>
+                    <div class="erow"><span class="k">Tipo de sangre</span><span class="v">O+</span></div>
+                    <div class="erow"><span class="k">Alergias</span><span class="v">Penicilina</span></div>
+                    <div class="erow"><span class="k">Registro de accesos</span><a class="lg" href="#t1">3 accesos &middot; Ver &rsaquo;</a></div>
+                    <div class="efoot"><a href="#t1">Editar informaci&oacute;n de emergencia</a></div>
+                  </div>
+
+                  <div class="shead"><h3>Historial de eventos</h3><a href="#t1">Ver todo</a></div>
+                  <div class="hitem"><div class="hdate"><div class="m">JUL</div><div class="y">2026</div></div><div class="hinfo"><div class="hn">S&uacute;per Copa &middot; Fecha 4</div><div class="hr">Banderas &middot; Hermanos Rodr&iacute;guez</div></div><span class="chev">&rsaquo;</span></div>
+                  <div class="hitem"><div class="hdate"><div class="m">JUN</div><div class="y">2026</div></div><div class="hinfo"><div class="hn">Copa Nissan &middot; Fecha 3</div><div class="hr">Intervenci&oacute;n &middot; Quer&eacute;taro</div></div><span class="chev">&rsaquo;</span></div>
+                  <div class="hitem" style="border-bottom:none"><div class="hdate"><div class="m">MAY</div><div class="y">2026</div></div><div class="hinfo"><div class="hn">Endurance 6h Puebla</div><div class="hr">Banderas &middot; Puebla</div></div><span class="chev">&rsaquo;</span></div>
+                </div>
+                <div class="bnav">
+                  <div class="bitem"><span class="bic"><span class="ic-home"></span></span>Inicio</div>
+                  <div class="bitem"><span class="bic"><span class="ic-cal"></span></span>Agenda</div>
+                  <div class="bitem"><span class="bic"><span class="ic-chat"></span></span>Chats</div>
+                  <div class="bitem on"><span class="bic"><span class="ic-user"></span></span>Perfil</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">PF-2</a><span><span class="dv-oname">Perfil de otro oficial.</span> Contexto de trabajo; sin acciones sociales; emergencia bloqueada y auditable.</span></div>
+            <div class="phone" data-screen-label="Perfil / Oficial">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">OFICIAL</div><div class="tspace"></div></div>
+                <div class="phead">
+                  <div class="avwrap"><div class="bigav" style="background:linear-gradient(140deg,#e6a3c0,#c877a0)">LF</div></div>
+                  <div class="pname">Laura Fern&aacute;ndez</div>
+                  <div class="omdai">OMDAI #3902</div>
+                  <div class="pareas"><span class="achip">Banderas</span></div>
+                </div>
+                <div class="pbody">
+                  <div class="stats">
+                    <div class="stat"><div class="v">57</div><div class="l">Eventos</div></div>
+                    <div class="stat"><div class="v">9</div><div class="l">Esta temporada</div></div>
+                    <div class="stat"><div class="v">2016</div><div class="l">Activo desde</div></div>
+                  </div>
+
+                  <div class="shead"><h3>Informaci&oacute;n de emergencia</h3></div>
+                  <div class="elock">
+                    <span class="ic-lock"></span>
+                    <div><div class="t">No disponible</div><div class="s">Los datos de emergencia son privados. Solo el jefe de puesto puede verlos durante un evento activo, y <b style="color:#c3c8d2;font-weight:600">cada acceso queda registrado</b> tanto para quien consulta como para el titular.</div></div>
+                  </div>
+
+                  <div class="shead"><h3>Eventos en com&uacute;n</h3><a href="#t1">Ver todo</a></div>
+                  <div class="hitem"><div class="hdate"><div class="m">JUL</div><div class="y">2026</div></div><div class="hinfo"><div class="hn">S&uacute;per Copa &middot; Fecha 4</div><div class="hr">Jefe de puesto &middot; Puesto 7</div></div><span class="chev">&rsaquo;</span></div>
+                  <div class="hitem" style="border-bottom:none"><div class="hdate"><div class="m">MAR</div><div class="y">2026</div></div><div class="hinfo"><div class="hn">Copa Nissan &middot; Fecha 1</div><div class="hr">Jefe de puesto &middot; Puesto 4</div></div><span class="chev">&rsaquo;</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Prueba pedir: &ldquo;dise&ntilde;a la pantalla del <b>registro de accesos</b> a la info de emergencia&rdquo; &middot; &ldquo;agrega <b>cerrar sesi&oacute;n</b> en mi perfil&rdquo;.</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

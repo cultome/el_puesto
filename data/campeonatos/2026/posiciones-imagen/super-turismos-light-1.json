@@ -1,0 +1,431 @@
+{
+ "campeonato": "México Racing Cup",
+ "temporada": "2026",
+ "categoria": "Súper Turismos Light 1",
+ "imageUrl": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1789949666474419142.jpg",
+ "throughRound": 8,
+ "leidaEl": "2026-09-27",
+ "nota": "Transcrita de la imagen por un agente; validada (suma por carrera = SUMA en todas las filas). Posición IMPRESA; puntos = PUNTOS REALES.",
+ "rows": [
+  {
+   "pos": 1,
+   "name": "Paco Gomez",
+   "team": "Nissan · 16v",
+   "points": 1243
+  },
+  {
+   "pos": 2,
+   "name": "Luis Corona",
+   "team": "Honda · 16v",
+   "points": 1213
+  },
+  {
+   "pos": 3,
+   "name": "Carlos Marquez",
+   "team": "Honda · 16v",
+   "points": 1149
+  },
+  {
+   "pos": 4,
+   "name": "Rafael Villazon",
+   "team": "Chevrolet · 8v",
+   "points": 1100
+  },
+  {
+   "pos": 5,
+   "name": "Emilio Mora",
+   "team": "Chevrolet · 8v",
+   "points": 1009
+  },
+  {
+   "pos": 6,
+   "name": "Jesús Hernandez",
+   "team": "Renault · Clio Cup",
+   "points": 1001
+  },
+  {
+   "pos": 7,
+   "name": "Matías Quintana",
+   "team": "Chevrolet · 8v",
+   "points": 945
+  },
+  {
+   "pos": 8,
+   "name": "Said Mora (N)",
+   "team": "Chevrolet · 8v",
+   "points": 912
+  },
+  {
+   "pos": 9,
+   "name": "Miguel Frías",
+   "team": "Chevrolet · 8v",
+   "points": 902
+  },
+  {
+   "pos": 10,
+   "name": "Jhovany Hernández",
+   "team": "Renault · Clio Cup",
+   "points": 884
+  },
+  {
+   "pos": 11,
+   "name": "Mauricio Yglesias",
+   "team": "Chevrolet · 8v",
+   "points": 864
+  },
+  {
+   "pos": 12,
+   "name": "M. Delgadillo / Ferando Delgadillo",
+   "team": "Chevrolet · 8v",
+   "points": 840
+  },
+  {
+   "pos": 13,
+   "name": "Mario Bustos",
+   "team": "Renault · Clio Cup",
+   "points": 834
+  },
+  {
+   "pos": 14,
+   "name": "Joel Ramos (N)",
+   "team": "Volkswagen · 8v",
+   "points": 720
+  },
+  {
+   "pos": 15,
+   "name": "Erik Del Olmo (N)",
+   "team": "Chevrolet · 8v",
+   "points": 670
+  },
+  {
+   "pos": 16,
+   "name": "Alejandro Ramírez",
+   "team": "Chevrolet · 8v",
+   "points": 667
+  },
+  {
+   "pos": 17,
+   "name": "Omar Funes (N)",
+   "team": "Chevrolet · 8v",
+   "points": 642
+  },
+  {
+   "pos": 18,
+   "name": "Diego Acevedo (N)",
+   "team": "Chevrolet · 8v",
+   "points": 616
+  },
+  {
+   "pos": 19,
+   "name": "David Luna (N)",
+   "team": "Chevrolet · 8v",
+   "points": 586
+  },
+  {
+   "pos": 20,
+   "name": "Guillermo Perez (N)",
+   "team": "Renault · Clio Cup",
+   "points": 576
+  },
+  {
+   "pos": 21,
+   "name": "Alonso Cuevas Jr (N)",
+   "team": "Chevrolet · 8v",
+   "points": 524
+  },
+  {
+   "pos": 22,
+   "name": "Arturo Aldana",
+   "team": "Chevrolet · 8v",
+   "points": 481
+  },
+  {
+   "pos": 23,
+   "name": "Luis Ramos",
+   "team": "Chevrolet · 8v",
+   "points": 470
+  },
+  {
+   "pos": 24,
+   "name": "Iñaqui Gutierrez (N)",
+   "team": "Chevrolet · 8v",
+   "points": 432
+  },
+  {
+   "pos": 25,
+   "name": "Michel Montes (N)",
+   "team": "Chevrolet · 8v",
+   "points": 428
+  },
+  {
+   "pos": 26,
+   "name": "Emilio Sanchez (N)",
+   "team": "Chevrolet · 8v",
+   "points": 420
+  },
+  {
+   "pos": 27,
+   "name": "Jorge Estevez / Jorge Estevez Jr.",
+   "team": "Renault · Clio Cup",
+   "points": 398
+  },
+  {
+   "pos": 28,
+   "name": "R. Blanco",
+   "team": "Chevrolet · 8v",
+   "points": 377
+  },
+  {
+   "pos": 29,
+   "name": "Roberto Cortes",
+   "team": "Chevrolet · 8v",
+   "points": 374
+  },
+  {
+   "pos": 30,
+   "name": "E. Valdez",
+   "team": "Chevrolet · 8v",
+   "points": 354
+  },
+  {
+   "pos": 31,
+   "name": "Daniel Rodriguez (N)",
+   "team": "Chevrolet · 8v",
+   "points": 346
+  },
+  {
+   "pos": 32,
+   "name": "Luis Callejo Jr",
+   "team": "Chevrolet · 8v",
+   "points": 330
+  },
+  {
+   "pos": 33,
+   "name": "Alfredo Gasco",
+   "team": "Renault · Clio Cup",
+   "points": 326
+  },
+  {
+   "pos": 34,
+   "name": "Arturo Aldana",
+   "team": "Chevrolet · 8v",
+   "points": 325
+  },
+  {
+   "pos": 35,
+   "name": "Laura Sanz",
+   "team": "Chevrolet · 8v",
+   "points": 324
+  },
+  {
+   "pos": 36,
+   "name": "Yesenia Tola (N)",
+   "team": "Chevrolet · 8v",
+   "points": 314
+  },
+  {
+   "pos": 37,
+   "name": "Oscar Romero (N)",
+   "team": "Chevrolet · 8v",
+   "points": 296
+  },
+  {
+   "pos": 38,
+   "name": "Juan Musi",
+   "team": "Renault · Clio Cup",
+   "points": 268
+  },
+  {
+   "pos": 39,
+   "name": "Juan Carlos Sarmiento",
+   "team": "Chevrolet · 8v",
+   "points": 264
+  },
+  {
+   "pos": 40,
+   "name": "Cesar Ortega",
+   "team": "Chevrolet · 8v",
+   "points": 260
+  },
+  {
+   "pos": 41,
+   "name": "Carlos Viñamata",
+   "team": "Renault · Clio Cup",
+   "points": 238
+  },
+  {
+   "pos": 42,
+   "name": "Raymundo Paz",
+   "team": "Chevrolet · 8v",
+   "points": 200
+  },
+  {
+   "pos": 43,
+   "name": "Jorge Casso",
+   "team": "Renault · Clio Cup",
+   "points": 191
+  },
+  {
+   "pos": 44,
+   "name": "Claudio Beltrán",
+   "team": "Chevrolet · 8v",
+   "points": 186
+  },
+  {
+   "pos": 45,
+   "name": "Ayrton Garza (N)",
+   "team": "Chevrolet · 8v",
+   "points": 180
+  },
+  {
+   "pos": 46,
+   "name": "Dariel Rodriguez (N)",
+   "team": "Chevrolet · 8v",
+   "points": 180
+  },
+  {
+   "pos": 47,
+   "name": "A. Massieu (N)",
+   "team": "Chevrolet · 8v",
+   "points": 178
+  },
+  {
+   "pos": 48,
+   "name": "Christian Bravo",
+   "team": "Chevrolet · 8v",
+   "points": 175
+  },
+  {
+   "pos": 49,
+   "name": "Juan Carlos Sanchez",
+   "team": "Volkswagen · 8v",
+   "points": 174
+  },
+  {
+   "pos": 50,
+   "name": "Angel Rodriguez (N)",
+   "team": "Chevrolet · 8v",
+   "points": 164
+  },
+  {
+   "pos": 51,
+   "name": "Fredrik Carl (N)",
+   "team": "Chevrolet · 8v",
+   "points": 150
+  },
+  {
+   "pos": 52,
+   "name": "Genaro Davalos Sr.",
+   "team": "Chevrolet · 8v",
+   "points": 144
+  },
+  {
+   "pos": 53,
+   "name": "Jorge Peralta / Carlos Peralta",
+   "team": "Chevrolet · 8v",
+   "points": 144
+  },
+  {
+   "pos": 54,
+   "name": "Salvador Arellano (N)",
+   "team": "Chevrolet · 8v",
+   "points": 124
+  },
+  {
+   "pos": 55,
+   "name": "Yashir Medina",
+   "team": "Renault · Clio Cup",
+   "points": 120
+  },
+  {
+   "pos": 56,
+   "name": "J. Pie (N) / A. Canto (N)",
+   "team": "Honda · 16v",
+   "points": 120
+  },
+  {
+   "pos": 57,
+   "name": "Luis Fosado",
+   "team": "Chevrolet · 8v",
+   "points": 116
+  },
+  {
+   "pos": 58,
+   "name": "Hugo Gordillo (N)",
+   "team": "Chevrolet · 8v",
+   "points": 104
+  },
+  {
+   "pos": 59,
+   "name": "Carlos Perez (N)",
+   "team": "Chevrolet · 8v",
+   "points": 98
+  },
+  {
+   "pos": 60,
+   "name": "Armando Anaya (N)",
+   "team": "Chevrolet · 8v",
+   "points": 90
+  },
+  {
+   "pos": 61,
+   "name": "Jorge Minvielle",
+   "team": "Renault · Clio Cup",
+   "points": 88
+  },
+  {
+   "pos": 62,
+   "name": "E. Vazquez (N)",
+   "team": "Chevrolet · 8v",
+   "points": 84
+  },
+  {
+   "pos": 63,
+   "name": "Leonardo Castro",
+   "team": "Chevrolet · 8v",
+   "points": 84
+  },
+  {
+   "pos": 64,
+   "name": "J. Rodriguez (N)",
+   "team": "Chevrolet · 8v",
+   "points": 72
+  },
+  {
+   "pos": 65,
+   "name": "Raul Garza",
+   "team": "Chevrolet · 8v",
+   "points": 68
+  },
+  {
+   "pos": 66,
+   "name": "Alejandro Arcos (N)",
+   "team": "Kia · 16v",
+   "points": 38
+  },
+  {
+   "pos": 67,
+   "name": "Emilio Blockzyl",
+   "team": "Chevrolet · 8v",
+   "points": 32
+  },
+  {
+   "pos": 68,
+   "name": "Hugo Bonilla",
+   "team": "Kia · 16v",
+   "points": 0
+  },
+  {
+   "pos": 69,
+   "name": "O. Cardenas (N)",
+   "team": "Chevrolet · 8v",
+   "points": 0
+  },
+  {
+   "pos": 70,
+   "name": "Carlos Rivera (N)",
+   "team": "Chevrolet · 8v",
+   "points": 0
+  }
+ ]
+}

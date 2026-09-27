@@ -1,0 +1,179 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-09-25T23:16:57Z"
+ },
+ "title": "Logros y Pasaporte",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 880,
+   "h": 980,
+   "title": "Insignias · lenguaje visual"
+  },
+  "Marca-opciones.dc.html": {
+   "x": 960,
+   "y": 0,
+   "w": 1180,
+   "h": 640,
+   "title": "Catálogo · marca «trabajaste aquí» (3 opciones)"
+  },
+  "Circuitos.dc.html": {
+   "x": 0,
+   "y": 1400,
+   "w": 390,
+   "h": 1380,
+   "title": "Circuitos · catálogo con el sello (opción A)",
+   "is_interactive": true
+  },
+  "Circuito-detalle.dc.html": {
+   "x": 470,
+   "y": 1400,
+   "w": 390,
+   "h": 1120,
+   "title": "Circuito · tu historia aquí",
+   "is_interactive": true
+  },
+  "Perfil-propio.dc.html": {
+   "x": 0,
+   "y": 3180,
+   "w": 390,
+   "h": 1560,
+   "title": "Mi perfil · logros",
+   "is_interactive": true
+  },
+  "Pasaporte.dc.html": {
+   "x": 470,
+   "y": 3180,
+   "w": 390,
+   "h": 1380,
+   "title": "Pasaporte de circuitos",
+   "is_interactive": true
+  },
+  "Logros.dc.html": {
+   "x": 940,
+   "y": 3180,
+   "w": 390,
+   "h": 1980,
+   "title": "Todos los logros",
+   "is_interactive": true
+  },
+  "Logro-detalle.dc.html": {
+   "x": 1410,
+   "y": 3180,
+   "w": 390,
+   "h": 844,
+   "title": "Detalle de un logro",
+   "is_interactive": true
+  },
+  "Perfil-ajeno.dc.html": {
+   "x": 1880,
+   "y": 3180,
+   "w": 390,
+   "h": 1320,
+   "title": "Perfil de otro oficial · logros de pista"
+  },
+  "Logro-nuevo.dc.html": {
+   "x": 0,
+   "y": 5560,
+   "w": 390,
+   "h": 844,
+   "title": "Medalla nueva",
+   "is_interactive": true
+  },
+  "Home-recuerdo.dc.html": {
+   "x": 470,
+   "y": 5560,
+   "w": 390,
+   "h": 844,
+   "title": "Home · recuerdo de hace un año"
+  },
+  "Temporada.dc.html": {
+   "x": 940,
+   "y": 5560,
+   "w": 390,
+   "h": 1720,
+   "title": "Tu temporada en pista",
+   "is_interactive": true
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Marca-opciones.dc.html",
+  "Circuitos.dc.html",
+  "Circuito-detalle.dc.html",
+  "Perfil-propio.dc.html",
+  "Pasaporte.dc.html",
+  "Logros.dc.html",
+  "Logro-detalle.dc.html",
+  "Perfil-ajeno.dc.html",
+  "Logro-nuevo.dc.html",
+  "Home-recuerdo.dc.html",
+  "Temporada.dc.html"
+ ],
+ "notes": {
+  "tA": {
+   "x": 0,
+   "y": -300,
+   "text": "Lenguaje visual y la marca del catálogo",
+   "kind": "title1",
+   "maxW": 2140
+  },
+  "tB": {
+   "x": 0,
+   "y": 1110,
+   "text": "Circuitos: ¿trabajaste aquí?",
+   "kind": "title1",
+   "maxW": 860
+  },
+  "tC": {
+   "x": 0,
+   "y": 2890,
+   "text": "Perfil, pasaporte y logros",
+   "kind": "title1",
+   "maxW": 2270
+  },
+  "tD": {
+   "x": 0,
+   "y": 5270,
+   "text": "Momentos que traen de vuelta",
+   "kind": "title1",
+   "maxW": 1330
+  },
+  "sA": {
+   "x": 960,
+   "y": 720,
+   "w": 560,
+   "size": "s",
+   "text": "Cuatro formas: medalla (tiene niveles), hexágono (hito o contador), parche (campeonato) y sello (primera vez). Todo sale de lo que ya existe: asignaciones de eventos terminados, pase de lista, checklist e invitaciones. Sin rankings ni comparaciones entre oficiales. Para el catálogo recomiendo la opción A (sello)."
+  },
+  "sB": {
+   "x": 940,
+   "y": 1400,
+   "w": 380,
+   "size": "s",
+   "text": "Se van el chip TRABAJAS y el borde ámbar; queda el sello ✓ (solo sí o no) y el chip verde de la próxima carrera. El encabezado de México dice «Trabajaste en 5». En el detalle, «Tu historia aquí» cuenta el «Asignado antes» que ya existe: «Conoces 8 de 39 puestos», por trazado."
+  },
+  "sC": {
+   "x": 2350,
+   "y": 3180,
+   "w": 380,
+   "size": "s",
+   "text": "El perfil suma «Logros» entre las estadísticas y la emergencia. El perfil ajeno muestra solo logros de pista (pasaporte, campeonatos, carrera). Umbrales propuestos: Pasaporte 3/5/8 circuitos · Días en pista 10/50/100 · Versatilidad 2/4/6 tipos de rol (banderas, intervención, bomberos, comunicación, unidades, jefatura) · Antigüedad 5/10/20 años. Las primeras veces no incluyen ubicación ni checklist: no premiamos prender el GPS ni palomear por palomear."
+  },
+  "sD": {
+   "x": 1410,
+   "y": 5560,
+   "w": 380,
+   "size": "s",
+   "text": "Medalla nueva: se calcula cuando termina el evento; el aviso «Nueva medalla» abre esta pantalla. Recuerdo: aparece en el Home en el aniversario (±3 días) con una foto de tu bitácora; ✕ lo descarta. Tu temporada: se publica al cerrar el año (con aviso) y vive arriba de Logros. «Compartir como imagen» depende de la decisión pendiente sobre compartir la bitácora."
+  }
+ },
+ "designSystems": []
+}

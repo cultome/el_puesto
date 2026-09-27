@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: #f2b134; } a:hover { color: #f6bb45; }
+          .dv-turn { padding: 48px 52px 40px; }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 700 16px/1.3 'Archivo', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-opts { display: flex; gap: 40px; align-items: flex-start; }
+          .dv-opt { display: flex; flex-direction: column; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; max-width: 384px; margin-bottom: 12px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 1000px; }
+
+          .phone { width: 384px; padding: 13px; border-radius: 46px; background: linear-gradient(160deg,#26282e,#111216); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.05); }
+          .screen { position: relative; border-radius: 34px; overflow: hidden; display: flex; flex-direction: column; background: radial-gradient(120% 40% at 50% 0%, #2a2f3a 0%, #1e222b 42%, #191c24 100%); color: #eceef2; min-height: 812px; }
+          .sbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px 0; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; flex: none; }
+          .sbar .dots { display: flex; gap: 5px; align-items: center; }
+          .sbar .dots span { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+          .sbar .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; position: relative; opacity: 0.85; }
+          .sbar .bat::after { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; right: 6px; background: currentColor; border-radius: 1px; }
+
+          .topbar { display: flex; align-items: center; gap: 8px; padding: 12px 20px 0; flex: none; }
+          .back { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: #eceef2; font-size: 19px; }
+          .tbrand { font: 800 12px 'Archivo', sans-serif; letter-spacing: 2px; color: #fff; margin: 0 auto; }
+          .tspace { width: 34px; flex: none; }
+
+          .hrow { display: flex; align-items: center; justify-content: space-between; padding: 12px 22px 0; }
+          .hrow .h1b { font: 800 25px 'Archivo', sans-serif; color: #fff; letter-spacing: -0.4px; }
+          .histbtn { display: inline-flex; align-items: center; gap: 8px; font: 600 12.5px 'IBM Plex Sans', sans-serif; color: #f2b134; background: rgba(242,177,52,0.1); border: 1px solid rgba(242,177,52,0.26); padding: 8px 13px; border-radius: 100px; text-decoration: none; }
+          .h1 { font: 800 24px 'Archivo', sans-serif; color: #fff; letter-spacing: -0.4px; padding: 12px 22px 0; }
+          .sub1 { font: 400 12.5px 'IBM Plex Sans', sans-serif; color: #8f96a3; padding: 6px 22px 0; }
+          .body { padding: 6px 22px 26px; }
+          .pin { width: 9px; height: 9px; border: 2px solid currentColor; border-radius: 50% 50% 50% 0; transform: rotate(45deg); flex: none; }
+          .ic-clock { width: 14px; height: 14px; border: 2px solid currentColor; border-radius: 50%; position: relative; flex: none; }
+          .ic-clock::before { content: ''; position: absolute; left: 50%; top: 2px; width: 2px; height: 5px; background: currentColor; transform: translateX(-50%); }
+          .ic-clock::after { content: ''; position: absolute; left: 50%; top: 50%; width: 4px; height: 2px; background: currentColor; }
+
+          .cvcard { position: relative; padding: 16px 42px 16px 16px; border-radius: 18px; background: #242833; border: 1px solid #333949; margin-top: 14px; }
+          .cvcard.past { background: #20242c; }
+          .cvcard.past .cv-name { color: #d7dae1; }
+          .cv-name { font: 700 16.5px/1.2 'Archivo', sans-serif; color: #fff; }
+          .cv-meta { display: flex; align-items: center; gap: 7px; color: #8f96a3; font: 400 12.5px 'IBM Plex Sans', sans-serif; margin-top: 7px; }
+          .cv-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 13px; }
+          .tg { font: 600 11px 'IBM Plex Sans', sans-serif; padding: 5px 11px; border-radius: 100px; display: inline-flex; align-items: center; gap: 6px; }
+          .tg.close { color: #f2b134; background: rgba(242,177,52,0.12); border: 1px solid rgba(242,177,52,0.28); }
+          .tg.close.urgent { color: #ff7a75; background: rgba(240,82,77,0.1); border-color: rgba(240,82,77,0.3); }
+          .tg.cupo { color: #aab0bd; background: #2b3040; border: 1px solid #3a4152; }
+          .tg.done { color: #8f96a3; background: #242833; border: 1px solid #3a4152; }
+          .tg.part { color: #3fdd85; background: rgba(63,221,133,0.12); border: 1px solid rgba(63,221,133,0.28); }
+          .cvcard .chev { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #5a6070; font-size: 22px; }
+
+          .dhead { padding: 12px 22px 0; flex: none; }
+          .dhead .row { display: flex; justify-content: space-between; align-items: center; }
+          .status { display: inline-flex; align-items: center; gap: 7px; font: 700 10.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.4px; padding: 6px 12px; border-radius: 100px; text-transform: uppercase; color: #f2b134; background: rgba(242,177,52,0.12); border: 1px solid rgba(242,177,52,0.3); }
+          .status .d { width: 7px; height: 7px; border-radius: 50%; background: #f2b134; }
+          .dhead .nm { font: 800 22px/1.15 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; margin: 14px 0 8px; }
+          .dhead .mt { display: flex; align-items: center; gap: 7px; color: #aab0bd; font: 400 12.5px 'IBM Plex Sans', sans-serif; }
+          .dhead .pub { font: 400 11.5px 'IBM Plex Sans', sans-serif; color: #6f7683; margin-top: 9px; }
+
+          .dbody { padding: 6px 22px 26px; }
+          .sec { font: 700 11px 'IBM Plex Mono', monospace; letter-spacing: 1px; color: #f2b134; text-transform: uppercase; margin: 24px 0 8px; }
+          .infocard { border-radius: 16px; background: #242833; border: 1px solid #333949; padding: 4px 16px; }
+          .inforow { display: flex; justify-content: space-between; gap: 14px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid #262b36; }
+          .inforow:last-child { border-bottom: none; }
+          .inforow .k { font: 400 13px 'IBM Plex Sans', sans-serif; color: #8f96a3; flex: none; }
+          .inforow .v { font: 600 13.5px 'IBM Plex Sans', sans-serif; color: #eceef2; text-align: right; }
+          .inforow .v.hl { color: #f2b134; }
+          .inforow .v small { display: block; font: 400 11px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 2px; }
+
+          .md { border-radius: 16px; background: #21252e; border: 1px solid #313846; padding: 4px 17px 16px; }
+          .md h4 { font: 700 14px 'Archivo', sans-serif; color: #fff; margin: 17px 0 7px; }
+          .md p { font: 400 13.5px/1.55 'IBM Plex Sans', sans-serif; color: #b7bcc6; margin: 0 0 4px; }
+          .md ul { list-style: none; margin: 6px 0 0; padding: 0; }
+          .md li { font: 400 13.5px/1.5 'IBM Plex Sans', sans-serif; color: #b7bcc6; padding: 4px 0 4px 20px; position: relative; }
+          .md li::before { content: ''; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: #f2b134; }
+          .md strong { color: #eceef2; font-weight: 600; }
+          .mdnote { font: 400 10.5px 'IBM Plex Sans', sans-serif; color: #6f7683; margin: 8px 2px 0; }
+
+          .cta { margin-top: 24px; }
+          .btn { width: 100%; box-sizing: border-box; height: 54px; border: none; border-radius: 14px; font: 700 15px 'IBM Plex Sans', sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px; background: linear-gradient(135deg,#f6bb45,#e79a1f); color: #1c1405; box-shadow: 0 12px 26px -12px rgba(242,177,52,0.6); }
+          .btn.ghost { background: transparent; border: 1.5px solid #3a4152; color: #e6e9ef; box-shadow: none; margin-top: 11px; }
+          .ext-note { font: 400 12px/1.5 'IBM Plex Sans', sans-serif; color: #8f96a3; text-align: center; margin-top: 12px; }
+        </style>
+      </helmet>
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">CV</a>
+          <span class="dv-tname">Convocatorias &mdash; Paddock nocturno</span>
+          <span class="dv-tsub">lista de abiertas (con acceso a historial aparte) &middot; detalle &middot; convocatorias pasadas</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CV-1</a><span><span class="dv-oname">Lista (abiertas).</span> Foco en las abiertas; bot&oacute;n a historial arriba.</span></div>
+            <div class="phone" data-screen-label="Convocatorias / Lista">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">CONVOCATORIAS</div><div class="tspace"></div></div>
+                <div class="hrow"><div class="h1b">Convocatorias</div><a class="histbtn" href="#t1"><span class="ic-clock"></span>Historial</a></div>
+                <div class="sub1">3 abiertas &middot; re-publicadas desde el sistema OMDAI</div>
+                <div class="body">
+                  <div class="cvcard">
+                    <div class="cv-name">Copa Nissan &middot; Fecha 5</div>
+                    <div class="cv-meta"><span class="pin"></span>Aut&oacute;dromo de Quer&eacute;taro &middot; 15&ndash;17 ago</div>
+                    <div class="cv-tags"><span class="tg close">Inscripciones cierran en 5 d&iacute;as</span><span class="tg cupo">Cupo 40</span></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                  <div class="cvcard">
+                    <div class="cv-name">Endurance 6h Puebla</div>
+                    <div class="cv-meta"><span class="pin"></span>Aut&oacute;dromo Miguel E. Abed &middot; 30 ago</div>
+                    <div class="cv-tags"><span class="tg close">Cierran en 12 d&iacute;as</span><span class="tg cupo">Cupo 28</span></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                  <div class="cvcard">
+                    <div class="cv-name">Gran Premio Hist&oacute;rico</div>
+                    <div class="cv-meta"><span class="pin"></span>Aut&oacute;dromo Monterrey &middot; 5 sep</div>
+                    <div class="cv-tags"><span class="tg close urgent">Cierran ma&ntilde;ana</span><span class="tg cupo">Cupo 22</span></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CV-2</a><span><span class="dv-oname">Detalle.</span> Datos del evento + indicaciones generales (Markdown).</span></div>
+            <div class="phone" data-screen-label="Convocatorias / Detalle">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">CONVOCATORIA</div><div class="tspace"></div></div>
+                <div class="dhead">
+                  <div class="row"><span class="status"><span class="d"></span>Abierta</span></div>
+                  <div class="nm">Copa Nissan &middot; Fecha 5</div>
+                  <div class="mt"><span class="pin"></span>Aut&oacute;dromo de Quer&eacute;taro</div>
+                  <div class="pub">Re-publicada desde el sistema OMDAI &middot; hace 2 d&iacute;as</div>
+                </div>
+                <div class="dbody">
+                  <div class="sec">Datos del evento</div>
+                  <div class="infocard">
+                    <div class="inforow"><span class="k">Fecha del evento</span><span class="v">15&ndash;17 ago 2026</span></div>
+                    <div class="inforow"><span class="k">Lugar</span><span class="v">Aut&oacute;dromo de Quer&eacute;taro<small>El Marqu&eacute;s, Quer&eacute;taro</small></span></div>
+                    <div class="inforow"><span class="k">Fin de inscripciones</span><span class="v hl">10 ago, 23:59<small>en 5 d&iacute;as</small></span></div>
+                    <div class="inforow"><span class="k">Cupo</span><span class="v">40 oficiales</span></div>
+                  </div>
+                  <div class="sec">Indicaciones generales</div>
+                  <div class="md">
+                    <h4>Equipo requerido</h4>
+                    <ul><li>Overol ign&iacute;fugo <strong>obligatorio</strong></li><li>Guantes y calzado cerrado</li><li>Credencial OMDAI vigente</li></ul>
+                    <h4>Lugar de encuentro</h4>
+                    <p>Puerta 3 del aut&oacute;dromo, <strong>06:45</strong> del s&aacute;bado. Registro de asistencia con el jefe de oficiales.</p>
+                    <h4>Log&iacute;stica</h4>
+                    <p>Se proporcionan <strong>alimentos</strong> durante los tres d&iacute;as. <strong>No</strong> se cubre transporte ni hospedaje.</p>
+                  </div>
+                  <div class="mdnote">Texto libre con formato ligero (Markdown), capturado por la coordinaci&oacute;n.</div>
+                  <div class="cta">
+                    <button class="btn">Postularme &nbsp;&#8599;</button>
+                    <button class="btn ghost">Recordarme antes del cierre</button>
+                    <div class="ext-note">La postulaci&oacute;n se realiza en el sistema de OMDAI, fuera de esta app.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CV-3</a><span><span class="dv-oname">Historial.</span> Pantalla aparte con convocatorias pasadas.</span></div>
+            <div class="phone" data-screen-label="Convocatorias / Historial">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">HISTORIAL</div><div class="tspace"></div></div>
+                <div class="h1">Convocatorias pasadas</div>
+                <div class="sub1">Cerradas y de fechas anteriores</div>
+                <div class="body">
+                  <div class="cvcard past">
+                    <div class="cv-name">S&uacute;per Copa &middot; Fecha 3</div>
+                    <div class="cv-meta"><span class="pin"></span>Miguel E. Abed &middot; 6 jun 2026</div>
+                    <div class="cv-tags"><span class="tg done">Cerrada</span><span class="tg part">Participaste</span></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                  <div class="cvcard past">
+                    <div class="cv-name">Copa Nissan &middot; Fecha 2</div>
+                    <div class="cv-meta"><span class="pin"></span>Aut&oacute;dromo Monterrey &middot; 25 abr 2026</div>
+                    <div class="cv-tags"><span class="tg done">Cerrada</span></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                  <div class="cvcard past">
+                    <div class="cv-name">Gran Premio de Invierno</div>
+                    <div class="cv-meta"><span class="pin"></span>Aut&oacute;dromo de Quer&eacute;taro &middot; 12 feb 2026</div>
+                    <div class="cv-tags"><span class="tg done">Cerrada</span><span class="tg part">Participaste</span></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                  <div class="cvcard past">
+                    <div class="cv-name">Serie Telcel &middot; Fecha 6 2025</div>
+                    <div class="cv-meta"><span class="pin"></span>Aut&oacute;dromo Hermanos Rodr&iacute;guez &middot; 18 oct 2025</div>
+                    <div class="cv-tags"><span class="tg done">Cerrada</span></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Prueba pedir: &ldquo;filtra el historial por a&ntilde;o&rdquo; &middot; &ldquo;quita el bot&oacute;n de postularme&rdquo; &middot; &ldquo;sigamos con Chats p&uacute;blicos&rdquo; (te pedir&eacute; confirmaci&oacute;n primero).</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: #f2b134; } a:hover { color: #f6bb45; }
+          .dv-turn { padding: 48px 52px 40px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 700 16px/1.3 'Archivo', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-opts { display: flex; gap: 40px; align-items: flex-start; }
+          .dv-opt { display: flex; flex-direction: column; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; max-width: 384px; margin-bottom: 12px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 1000px; }
+
+          .phone { width: 384px; padding: 13px; border-radius: 46px; background: linear-gradient(160deg,#26282e,#111216); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.05); }
+          .screen { position: relative; border-radius: 34px; overflow: hidden; display: flex; flex-direction: column; background: radial-gradient(120% 40% at 50% 0%, #2a2f3a 0%, #1e222b 42%, #191c24 100%); color: #eceef2; min-height: 812px; }
+          .screen.fix { height: 812px; min-height: 0; }
+          .sbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px 0; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; flex: none; }
+          .sbar .dots { display: flex; gap: 5px; align-items: center; }
+          .sbar .dots span { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+          .sbar .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; position: relative; opacity: 0.85; }
+          .sbar .bat::after { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; right: 6px; background: currentColor; border-radius: 1px; }
+          .topbar { display: flex; align-items: center; gap: 8px; padding: 12px 20px 0; flex: none; }
+          .back { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: #eceef2; font-size: 19px; }
+          .tbrand { font: 800 12px 'Archivo', sans-serif; letter-spacing: 2px; color: #fff; margin: 0 auto; }
+          .tspace { width: 34px; flex: none; }
+
+          .th { padding: 12px 22px 0; flex: none; }
+          .th .nm { font: 800 20px/1.1 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; }
+          .th .sub { display: flex; align-items: center; gap: 8px; color: #aab0bd; font: 400 12.5px 'IBM Plex Sans', sans-serif; margin-top: 6px; }
+          .th .tagrow { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+          .th .tag { display: inline-flex; align-items: center; gap: 6px; font: 600 11px 'IBM Plex Sans', sans-serif; color: #7fb7f0; background: rgba(127,183,240,0.12); border: 1px solid rgba(127,183,240,0.28); padding: 6px 12px; border-radius: 100px; }
+          .th .priv { font: 400 10.5px 'IBM Plex Sans', sans-serif; color: #6f7683; }
+          .pin { width: 9px; height: 9px; border: 2px solid currentColor; border-radius: 50% 50% 50% 0; transform: rotate(45deg); flex: none; }
+
+          .tl { padding: 6px 22px 28px; }
+          .tlday { display: flex; align-items: center; gap: 10px; margin: 18px 0 12px; }
+          .tlday b { font: 700 11px 'IBM Plex Mono', monospace; letter-spacing: 1px; color: #f2b134; text-transform: uppercase; flex: none; }
+          .tlday i { flex: 1; height: 1px; background: #2c313d; }
+          .tlday.today b { color: #3fdd85; }
+          .tlrow { display: flex; }
+          .tltime { width: 44px; flex: none; text-align: right; padding-right: 11px; padding-top: 1px; font: 700 11.5px 'IBM Plex Mono', monospace; color: #cfd3db; }
+          .tlnode { width: 24px; flex: none; display: flex; flex-direction: column; align-items: center; }
+          .tldot { width: 13px; height: 13px; border-radius: 50%; border: 2.5px solid #8f96a3; background: #191c24; box-sizing: border-box; margin-top: 1px; flex: none; }
+          .tldot.tr { border-color: #7fb7f0; } .tldot.ho { border-color: #3fdd85; } .tldot.re { border-color: #f2b134; } .tldot.ev { border-color: #f2b134; background: #f2b134; }
+          .tlline { width: 2px; flex: 1; background: #2c313d; margin-top: 4px; border-radius: 2px; }
+          .tlrow.last .tlline { background: transparent; }
+          .tlc { flex: 1; min-width: 0; padding: 0 0 20px 12px; }
+          .tlt { font: 600 14px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .tld { font: 400 12.5px/1.4 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 3px; }
+          .kchip { display: inline-block; font: 600 9px 'IBM Plex Sans', sans-serif; letter-spacing: 0.4px; text-transform: uppercase; padding: 3px 7px; border-radius: 5px; margin-top: 7px; }
+          .kchip.tr { background: rgba(127,183,240,0.16); color: #7fb7f0; } .kchip.ho { background: rgba(63,221,133,0.14); color: #3fdd85; } .kchip.re { background: rgba(242,177,52,0.14); color: #f2b134; } .kchip.n { background: #2b3040; color: #aab0bd; }
+          .sys { font: 500 9.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.3px; color: #6f7683; border: 1px solid #333949; padding: 2px 6px; border-radius: 5px; text-transform: uppercase; margin-left: 6px; white-space: nowrap; display: inline-block; }
+          .tlrow.dim .tlt, .tlrow.dim .tltime { color: #7f8593; }
+          .tlrow.dim .tld { color: #5d6472; }
+
+          .ph { border-radius: 13px; overflow: hidden; border: 1px solid #333949; background: #20242e; margin-top: 2px; }
+          .phimg { height: 130px; background: repeating-linear-gradient(45deg, #252a35 0 12px, #2a3040 12px 24px); display: flex; align-items: center; justify-content: center; }
+          .phimg span { font: 500 10.5px 'IBM Plex Mono', monospace; color: #6f7683; background: rgba(15,16,19,0.55); padding: 4px 9px; border-radius: 6px; }
+          .phcap { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 12px 10px; }
+          .phcap b { font: 600 12.5px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .phcap small { font: 500 9px 'IBM Plex Sans', sans-serif; letter-spacing: 0.4px; text-transform: uppercase; color: #aab0bd; background: #2b3040; padding: 3px 7px; border-radius: 5px; flex: none; }
+          .note { border-radius: 13px; border: 1px solid #333949; background: #20242e; padding: 11px 13px 12px; margin-top: 2px; }
+          .note p { margin: 0; font: 400 13px/1.5 'IBM Plex Sans', sans-serif; color: #cfd3db; font-style: italic; }
+
+          .now { display: flex; align-items: center; gap: 10px; margin: 2px 0 16px; }
+          .now .nlab { display: inline-flex; align-items: center; gap: 7px; font: 700 10px 'IBM Plex Mono', monospace; letter-spacing: 1px; color: #3fdd85; background: rgba(63,221,133,0.12); border: 1px solid rgba(63,221,133,0.3); padding: 4px 10px; border-radius: 100px; flex: none; }
+          .now .ndot { width: 7px; height: 7px; border-radius: 50%; background: #3fdd85; }
+          .now i { flex: 1; height: 2px; border-radius: 2px; background: linear-gradient(90deg, rgba(63,221,133,0.55), rgba(63,221,133,0.08)); }
+
+          .addbig { display: flex; align-items: center; justify-content: center; gap: 9px; margin: 6px 22px 26px; padding: 14px; border-radius: 14px; border: 1.5px dashed #3a4152; color: #f2b134; font: 700 13.5px 'IBM Plex Sans', sans-serif; }
+          .fab { position: absolute; right: 20px; bottom: 26px; width: 56px; height: 56px; border-radius: 18px; background: linear-gradient(135deg,#f6bb45,#e79a1f); color: #1c1405; display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 28px -8px rgba(242,177,52,0.65); z-index: 4; }
+          .fab.gl { bottom: 96px; }
+          .fab .lv { position: absolute; top: -4px; right: -4px; width: 14px; height: 14px; border-radius: 50%; background: #3fdd85; border: 3px solid #191c24; box-sizing: content-box; }
+
+          .tico { width: 38px; height: 38px; border-radius: 11px; flex: none; display: flex; align-items: center; justify-content: center; }
+          .tico.tr { background: rgba(127,183,240,0.14); color: #7fb7f0; } .tico.ho { background: rgba(63,221,133,0.13); color: #3fdd85; } .tico.re { background: rgba(242,177,52,0.13); color: #f2b134; } .tico.n { background: rgba(215,218,225,0.1); color: #d7dae1; }
+          .ic-plane { width: 0; height: 0; border-left: 13px solid currentColor; border-top: 7px solid transparent; border-bottom: 7px solid transparent; transform: rotate(-28deg); }
+          .ic-bed { width: 17px; height: 13px; position: relative; }
+          .ic-bed::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: currentColor; border-radius: 2px; }
+          .ic-bed::after { content: ''; position: absolute; top: 0; left: 0; width: 7px; height: 6px; border: 2px solid currentColor; border-bottom: none; border-radius: 3px 3px 0 0; box-sizing: border-box; }
+          .ic-bell { width: 15px; height: 16px; position: relative; }
+          .ic-bell::before { content: ''; position: absolute; left: 50%; top: 0; width: 12px; height: 12px; border: 2px solid currentColor; border-radius: 7px 7px 0 0; transform: translateX(-50%); box-sizing: border-box; }
+          .ic-bell::after { content: ''; position: absolute; left: 50%; bottom: 1px; width: 15px; height: 2px; background: currentColor; transform: translateX(-50%); border-radius: 2px; }
+          .ic-cam { width: 19px; height: 15px; border: 2px solid currentColor; border-radius: 4px; position: relative; box-sizing: border-box; }
+          .ic-cam::before { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 7px; height: 7px; border: 2px solid currentColor; border-radius: 50%; box-sizing: border-box; }
+          .ic-cam::after { content: ''; position: absolute; top: -6px; left: 3px; width: 7px; height: 5px; background: currentColor; border-radius: 2px 2px 0 0; }
+          .ic-cam.big { width: 24px; height: 19px; border-radius: 5px; }
+          .ic-cam.big::before { width: 9px; height: 9px; }
+          .ic-note { width: 14px; height: 17px; border: 2px solid currentColor; border-radius: 3px; position: relative; box-sizing: border-box; }
+          .ic-note::after { content: ''; position: absolute; left: 2px; top: 3px; width: 6px; height: 2px; background: currentColor; box-shadow: 0 4px 0 currentColor; }
+
+          .scrim { position: absolute; inset: 0; background: rgba(10,12,16,0.62); z-index: 5; }
+          .sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 6; background: #20242e; border-radius: 24px 24px 0 0; border-top: 1px solid #3a4152; display: flex; flex-direction: column; }
+          .grip { width: 40px; height: 5px; border-radius: 3px; background: #3f4756; margin: 10px auto 4px; }
+          .sheet .sh { padding: 8px 22px 4px; }
+          .sheet .sh b { font: 800 19px 'Archivo', sans-serif; color: #fff; }
+          .sheet .sh small { display: block; font: 400 12.5px/1.4 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 5px; }
+          .sl { padding: 10px 16px 20px; }
+          .opt { display: flex; align-items: center; gap: 14px; padding: 13px 12px; border-radius: 14px; }
+          .opt .tico { width: 42px; height: 42px; }
+          .opt .on b { font: 700 14.5px 'Archivo', sans-serif; color: #fff; }
+          .opt .on small { display: block; font: 400 12px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 2px; }
+          .opt .chev { color: #5a6070; font-size: 22px; margin-left: auto; }
+          .opt.hero { background: rgba(242,177,52,0.08); border: 1px solid rgba(242,177,52,0.25); }
+          .sldiv { display: flex; align-items: center; gap: 10px; margin: 8px 12px 6px; }
+          .sldiv span { font: 600 9.5px 'IBM Plex Mono', monospace; letter-spacing: 1px; color: #6f7683; text-transform: uppercase; flex: none; }
+          .sldiv i { flex: 1; height: 1px; background: #333949; }
+
+          .seg { display: flex; gap: 4px; padding: 4px; background: #20242e; border: 1px solid #313846; border-radius: 14px; margin: 16px 22px 0; }
+          .seg a { flex: 1; text-align: center; padding: 10px 2px; border-radius: 10px; font: 600 12.5px 'IBM Plex Sans', sans-serif; color: #9aa0ac; text-decoration: none; }
+          .seg a.on { background: #f2b134; color: #1c1405; }
+          .evhead { padding: 14px 22px 0; flex: none; }
+          .evhead .nm { font: 800 19px 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; }
+          .evhead .sub { display: flex; align-items: center; gap: 12px; margin-top: 6px; font: 400 12.5px 'IBM Plex Sans', sans-serif; color: #aab0bd; }
+          .evhead .sub .cir { display: flex; align-items: center; gap: 6px; }
+          .live { display: inline-flex; align-items: center; gap: 7px; font: 700 10.5px 'IBM Plex Sans', sans-serif; letter-spacing: 1px; color: #3fdd85; }
+          .live .d { width: 8px; height: 8px; border-radius: 50%; background: #3fdd85; box-shadow: 0 0 0 4px rgba(63,221,133,0.16); }
+
+          .appbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px 2px; flex: none; }
+          .greet small { font: 400 13px 'IBM Plex Sans', sans-serif; color: #8f96a3; display: block; margin-bottom: 2px; }
+          .greet b { font: 700 20px 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; }
+          .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(140deg,#f2b134,#d98a1a); color: #1c1405; font: 700 15px 'Archivo', sans-serif; display: flex; align-items: center; justify-content: center; }
+          .hbody { padding: 8px 22px 0; flex: 1; }
+          .evcard { position: relative; overflow: hidden; border-radius: 22px; padding: 18px; background: linear-gradient(150deg,#2c3141,#222633); border: 1px solid #3a4152; }
+          .evcard .ck { position: absolute; right: -10px; top: -10px; width: 130px; height: 130px; background-image: conic-gradient(rgba(255,255,255,0.07) 25%, transparent 0 50%, rgba(255,255,255,0.07) 0 75%, transparent 0); background-size: 22px 22px; -webkit-mask-image: radial-gradient(circle at top right, #000, transparent 70%); mask-image: radial-gradient(circle at top right, #000, transparent 70%); }
+          .evcard .amb { position: absolute; inset: 0; background: radial-gradient(80% 90% at 88% 0%, rgba(242,177,52,0.16), transparent 60%); pointer-events: none; }
+          .ev-in { position: relative; }
+          .ev-top { display: flex; align-items: center; justify-content: space-between; }
+          .ev-dates { font: 600 12px 'IBM Plex Mono', monospace; color: #8f96a3; }
+          .ev-name { font: 800 21px/1.15 'Archivo', sans-serif; color: #fff; margin: 13px 0 6px; letter-spacing: -0.3px; }
+          .ev-circuit { display: flex; align-items: center; gap: 8px; font: 400 13px 'IBM Plex Sans', sans-serif; color: #aab0bd; }
+          .btn { width: 100%; box-sizing: border-box; height: 52px; border: none; border-radius: 14px; font: 700 15px 'IBM Plex Sans', sans-serif; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 9px; background: linear-gradient(135deg,#f6bb45,#e79a1f); color: #1c1405; box-shadow: 0 12px 26px -12px rgba(242,177,52,0.6); }
+          .shead { display: flex; align-items: baseline; justify-content: space-between; margin: 26px 0 14px; }
+          .shead h3 { font: 700 16.5px 'Archivo', sans-serif; color: #fff; margin: 0; letter-spacing: -0.2px; }
+          .shead a { font: 600 12.5px 'IBM Plex Sans', sans-serif; color: #f2b134; text-decoration: none; }
+          .aitem { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 15px; background: #242833; border: 1px solid #333949; margin-bottom: 10px; }
+          .adate { width: 46px; text-align: center; flex: none; }
+          .adate .m { font: 600 10.5px 'IBM Plex Mono', monospace; color: #f2b134; letter-spacing: 1px; }
+          .adate .d { font: 800 21px 'Archivo', sans-serif; color: #fff; line-height: 1.05; }
+          .ainfo { flex: 1; }
+          .aname { font: 600 14px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .atype { font: 400 12px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 2px; }
+          .tagm { font: 600 10px 'IBM Plex Sans', sans-serif; letter-spacing: 0.4px; padding: 5px 9px; border-radius: 7px; text-transform: uppercase; flex: none; }
+          .tagm.ev { background: rgba(242,177,52,0.14); color: #f2b134; }
+          .tagm.tr { background: rgba(90,160,240,0.16); color: #77b0f0; }
+          .bnav { display: flex; justify-content: space-around; align-items: center; padding: 12px 8px 18px; background: #191c24; border-top: 1px solid #2c313d; margin-top: 20px; flex: none; }
+          .bitem { display: flex; flex-direction: column; align-items: center; gap: 6px; color: #6f7683; font: 600 10.5px 'IBM Plex Sans', sans-serif; }
+          .bitem.on { color: #f2b134; }
+          .bic { height: 23px; display: flex; align-items: flex-end; }
+          .ic-home { width: 22px; height: 21px; position: relative; }
+          .ic-home::after { content: ''; position: absolute; left: 50%; top: 0; transform: translateX(-50%); border-left: 11px solid transparent; border-right: 11px solid transparent; border-bottom: 10px solid currentColor; }
+          .ic-home::before { content: ''; position: absolute; left: 3px; right: 3px; top: 9px; bottom: 0; border: 2px solid currentColor; border-top: none; border-radius: 0 0 2px 2px; }
+          .ic-cal { width: 21px; height: 21px; border: 2px solid currentColor; border-radius: 5px; position: relative; box-sizing: border-box; }
+          .ic-cal::before { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 6px; background: currentColor; border-radius: 4px 4px 0 0; }
+          .ic-cal::after { content: ''; position: absolute; left: 3px; top: 9px; width: 3px; height: 3px; background: currentColor; box-shadow: 6px 0 currentColor, 12px 0 currentColor, 0 5px currentColor, 6px 5px currentColor; }
+          .ic-chat { width: 22px; height: 18px; border: 2px solid currentColor; border-radius: 8px; position: relative; box-sizing: border-box; }
+          .ic-chat::after { content: ''; position: absolute; left: 5px; bottom: -6px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid currentColor; }
+        </style>
+      </helmet>
+      <section class="dv-turn" id="t2">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t2">BV</a>
+          <span class="dv-tname">Integraci&oacute;n &mdash; pesta&ntilde;a en Modo evento + bot&oacute;n global</span>
+          <span class="dv-tsub">la bit&aacute;cora elegida (<a class="dv-oid" href="#bv2">BV-2</a>) vive tambi&eacute;n dentro del evento activo; capturar desde cualquier pantalla</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt" id="bv4">
+            <div class="dv-olabel"><a class="dv-oid" href="#bv4">BV-4</a><span><span class="dv-oname">En Modo evento.</span> Cuarta pesta&ntilde;a &ldquo;Bit&aacute;cora&rdquo; (Cronograma se abrevia a &ldquo;MbM&rdquo;, minute by minute); mismo timeline, acotado al evento activo.</span></div>
+            <div class="phone" data-screen-label="Modo evento / Bitacora">
+              <div class="screen">
+                <div class="sbar"><span>10:24</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">MODO EVENTO</div><div class="tspace"></div></div>
+                <div class="evhead">
+                  <div class="nm">S&uacute;per Copa Telcel &middot; Fecha 4</div>
+                  <div class="sub"><span class="cir"><span class="pin"></span>Hermanos Rodr&iacute;guez</span><span class="live"><span class="d"></span>EN CURSO</span></div>
+                </div>
+                <div class="seg"><a href="#bv4">Puesto</a><a href="#bv4">MbM</a><a href="#bv4">Chat</a><a class="on" href="#bv4">Bit&aacute;cora</a></div>
+                <div class="tl">
+                  <div class="tlday"><b>Vie 25 jul</b><i></i></div>
+                  <div class="tlrow">
+                    <div class="tltime">06:40</div>
+                    <div class="tlnode"><div class="tldot ev"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Reuni&oacute;n de oficiales <span class="sys">del evento</span></div><div class="tld">Punto de reuni&oacute;n del circuito</div></div>
+                  </div>
+                  <div class="tlrow">
+                    <div class="tltime">08:15</div>
+                    <div class="tlnode"><div class="tldot"></div><div class="tlline"></div></div>
+                    <div class="tlc">
+                      <div class="ph"><div class="phimg" style="height:104px"><span>foto &middot; pit lane</span></div><div class="phcap"><b>El equipo del puesto 7</b><small>Foto</small></div></div>
+                    </div>
+                  </div>
+                  <div class="tlday today"><b>S&aacute;b 26 jul &middot; Hoy</b><i></i></div>
+                  <div class="tlrow">
+                    <div class="tltime">06:45</div>
+                    <div class="tlnode"><div class="tldot ev"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Briefing con jefe de puesto <span class="sys">del evento</span></div><div class="tld">Puesto 7 &middot; Sector 3</div></div>
+                  </div>
+                  <div class="tlrow">
+                    <div class="tltime">08:12</div>
+                    <div class="tlnode"><div class="tldot"></div><div class="tlline"></div></div>
+                    <div class="tlc">
+                      <div class="ph"><div class="phimg" style="height:104px"><span>foto &middot; puesto 7</span></div><div class="phcap"><b>Amanecer desde el puesto 7</b><small>Foto</small></div></div>
+                    </div>
+                  </div>
+                  <div class="tlrow">
+                    <div class="tltime">09:30</div>
+                    <div class="tlnode"><div class="tldot"></div><div class="tlline"></div></div>
+                    <div class="tlc">
+                      <div class="note"><p>&ldquo;Bandera amarilla en la pr&aacute;ctica 2, el 44 se qued&oacute; en la curva 6. La gr&uacute;a respondi&oacute; en 3 min.&rdquo;</p></div>
+                      <span class="kchip n">Nota</span>
+                    </div>
+                  </div>
+                  <div class="now"><span class="nlab"><span class="ndot"></span>AHORA &middot; 10:24</span><i></i></div>
+                  <div class="tlrow last dim">
+                    <div class="tltime">19:40</div>
+                    <div class="tlnode"><div class="tldot tr" style="border-color:#4a5f78"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Vuelo de regreso</div><div class="tld">QRO &rarr; CDMX &middot; Aerom&eacute;xico 148</div></div>
+                  </div>
+                </div>
+                <div class="fab"><span class="ic-cam big"></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt" id="bv5">
+            <div class="dv-olabel"><a class="dv-oid" href="#bv5">BV-5</a><span><span class="dv-oname">Bot&oacute;n global.</span> Con evento activo, un bot&oacute;n flotante en toda la app (aqu&iacute;, el Home) abre &ldquo;Agregar a la bit&aacute;cora&rdquo; (<a class="dv-oid" href="#bv3">BV-3</a>) del evento actual; el punto verde lo liga al EN CURSO.</span></div>
+            <div class="phone" data-screen-label="Home / FAB bitacora">
+              <div class="screen fix">
+                <div class="sbar"><span>10:24</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="appbar">
+                  <div class="greet"><small>Buen d&iacute;a,</small><b>Carlos M.</b></div>
+                  <div class="avatar">CM</div>
+                </div>
+                <div class="hbody">
+                  <div class="evcard">
+                    <div class="ck"></div><div class="amb"></div>
+                    <div class="ev-in">
+                      <div class="ev-top"><span class="live"><span class="d"></span>EN CURSO</span><span class="ev-dates">24&ndash;26 JUL</span></div>
+                      <div class="ev-name">S&uacute;per Copa Telcel &middot; Fecha 4</div>
+                      <div class="ev-circuit"><span class="pin"></span>Aut&oacute;dromo Hermanos Rodr&iacute;guez</div>
+                      <div class="btn">Entrar al evento &rarr;</div>
+                    </div>
+                  </div>
+                  <div class="shead"><h3>Tu agenda</h3><a href="#bv5">Ver calendario</a></div>
+                  <div class="aitem">
+                    <div class="adate"><div class="m">AGO</div><div class="d">02</div></div>
+                    <div class="ainfo"><div class="aname">Vuelo CDMX &rarr; QRO</div><div class="atype">Salida 07:20 &middot; planeaci&oacute;n de viaje</div></div>
+                    <span class="tagm tr">Transporte</span>
+                  </div>
+                  <div class="aitem">
+                    <div class="adate"><div class="m">AGO</div><div class="d">15</div></div>
+                    <div class="ainfo"><div class="aname">Copa Nissan &middot; Fecha 5</div><div class="atype">Quer&eacute;taro &middot; 3 d&iacute;as</div></div>
+                    <span class="tagm ev">Evento</span>
+                  </div>
+                </div>
+                <div class="fab gl"><span class="ic-cam big"></span><span class="lv"></span></div>
+                <div class="bnav">
+                  <div class="bitem on"><span class="bic"><span class="ic-home"></span></span>Inicio</div>
+                  <div class="bitem"><span class="bic"><span class="ic-cal"></span></span>Agenda</div>
+                  <div class="bitem"><span class="bic"><span class="ic-chat"></span></span>Chats</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Prueba pedir: &ldquo;sin bot&oacute;n global dentro del Modo evento (ah&iacute; ya est&aacute; la pesta&ntilde;a)&rdquo; &middot; &ldquo;que el bot&oacute;n abra directo la c&aacute;mara&rdquo; &middot; &ldquo;listo, implem&eacute;ntalo&rdquo;.</p>
+      </section>
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">BV</a>
+          <span class="dv-tname">Bit&aacute;cora de viaje &mdash; redise&ntilde;o de &ldquo;Planeaci&oacute;n de viaje&rdquo;</span>
+          <span class="dv-tsub">timeline cronol&oacute;gico (sin secciones por tipo) &middot; fotos y notas capturadas desde la app &middot; captura r&aacute;pida</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt" id="bv1">
+            <div class="dv-olabel"><a class="dv-oid" href="#bv1">BV-1</a><span><span class="dv-oname">Timeline.</span> La planeaci&oacute;n en un solo hilo cronol&oacute;gico agrupado por d&iacute;a; el tipo se indica con color y chip, ya no con secciones.</span></div>
+            <div class="phone" data-screen-label="Bitacora / Timeline">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">VIAJE</div><div class="tspace"></div></div>
+                <div class="th">
+                  <div class="nm">Copa Nissan &middot; Fecha 5</div>
+                  <div class="sub"><span class="pin"></span>Quer&eacute;taro &middot; 15&ndash;16 ago</div>
+                  <div class="tagrow"><span class="tag"><span class="pin" style="border-color:#7fb7f0"></span>Bit&aacute;cora de viaje</span><span class="priv">Solo t&uacute; la ves</span></div>
+                </div>
+                <div class="tl">
+                  <div class="tlday"><b>Vie 15 ago</b><i></i></div>
+                  <div class="tlrow">
+                    <div class="tltime">07:20</div>
+                    <div class="tlnode"><div class="tldot tr"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Vuelo Aerom&eacute;xico 123</div><div class="tld">CDMX (MEX) &rarr; Quer&eacute;taro (QRO)</div><span class="kchip tr">Transporte</span></div>
+                  </div>
+                  <div class="tlrow">
+                    <div class="tltime">09:00</div>
+                    <div class="tlnode"><div class="tldot tr"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Auto rentado</div><div class="tld">Recoger en aeropuerto QRO</div><span class="kchip tr">Transporte</span></div>
+                  </div>
+                  <div class="tlrow">
+                    <div class="tltime">15:00</div>
+                    <div class="tlnode"><div class="tldot ho"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Hotel Real de Minas</div><div class="tld">Check-in &middot; Quer&eacute;taro centro</div><span class="kchip ho">Hospedaje</span></div>
+                  </div>
+                  <div class="tlrow">
+                    <div class="tltime">21:00</div>
+                    <div class="tlnode"><div class="tldot re"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Preparar overol y credencial OMDAI</div><span class="kchip re">Recordatorio</span></div>
+                  </div>
+                  <div class="tlday"><b>S&aacute;b 16 ago</b><i></i></div>
+                  <div class="tlrow">
+                    <div class="tltime">06:45</div>
+                    <div class="tlnode"><div class="tldot ev"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Reuni&oacute;n de oficiales <span class="sys">del evento</span></div><div class="tld">Punto de reuni&oacute;n del circuito</div></div>
+                  </div>
+                  <div class="tlrow last">
+                    <div class="tltime">19:40</div>
+                    <div class="tlnode"><div class="tldot tr"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Vuelo de regreso</div><div class="tld">QRO &rarr; CDMX &middot; Aerom&eacute;xico 148</div><span class="kchip tr">Transporte</span></div>
+                  </div>
+                </div>
+                <div class="addbig">+ Agregar al viaje</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt" id="bv2">
+            <div class="dv-olabel"><a class="dv-oid" href="#bv2">BV-2</a><span><span class="dv-oname">Bit&aacute;cora.</span> El mismo timeline recibe fotos y notas tomadas desde la app; marcador &ldquo;ahora&rdquo; durante el evento y c&aacute;mara siempre a la mano.</span></div>
+            <div class="phone" data-screen-label="Bitacora / Con fotos">
+              <div class="screen">
+                <div class="sbar"><span>10:24</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">VIAJE</div><div class="tspace"></div></div>
+                <div class="th">
+                  <div class="nm">Copa Nissan &middot; Fecha 5</div>
+                  <div class="sub"><span class="pin"></span>Quer&eacute;taro &middot; 15&ndash;16 ago</div>
+                  <div class="tagrow"><span class="tag"><span class="pin" style="border-color:#7fb7f0"></span>Bit&aacute;cora de viaje</span><span class="priv">Solo t&uacute; la ves</span></div>
+                </div>
+                <div class="tl">
+                  <div class="tlday"><b>Vie 15 ago</b><i></i></div>
+                  <div class="tlrow">
+                    <div class="tltime">07:20</div>
+                    <div class="tlnode"><div class="tldot tr"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Vuelo Aerom&eacute;xico 123</div><div class="tld">CDMX &rarr; QRO</div></div>
+                  </div>
+                  <div class="tlrow">
+                    <div class="tltime">10:40</div>
+                    <div class="tlnode"><div class="tldot"></div><div class="tlline"></div></div>
+                    <div class="tlc">
+                      <div class="ph"><div class="phimg"><span>foto &middot; acceso al circuito</span></div><div class="phcap"><b>Llegamos al aut&oacute;dromo</b><small>Foto</small></div></div>
+                    </div>
+                  </div>
+                  <div class="tlrow">
+                    <div class="tltime">15:00</div>
+                    <div class="tlnode"><div class="tldot ho"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Hotel Real de Minas</div><div class="tld">Check-in &middot; Quer&eacute;taro centro</div></div>
+                  </div>
+                  <div class="tlday today"><b>S&aacute;b 16 ago &middot; Hoy</b><i></i></div>
+                  <div class="tlrow">
+                    <div class="tltime">06:45</div>
+                    <div class="tlnode"><div class="tldot ev"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Reuni&oacute;n de oficiales <span class="sys">del evento</span></div><div class="tld">Punto de reuni&oacute;n del circuito</div></div>
+                  </div>
+                  <div class="tlrow">
+                    <div class="tltime">08:12</div>
+                    <div class="tlnode"><div class="tldot"></div><div class="tlline"></div></div>
+                    <div class="tlc">
+                      <div class="ph"><div class="phimg" style="height:110px"><span>foto &middot; puesto 7</span></div><div class="phcap"><b>Amanecer desde el puesto 7</b><small>Foto</small></div></div>
+                    </div>
+                  </div>
+                  <div class="tlrow">
+                    <div class="tltime">09:30</div>
+                    <div class="tlnode"><div class="tldot"></div><div class="tlline"></div></div>
+                    <div class="tlc">
+                      <div class="note"><p>&ldquo;Bandera amarilla en la pr&aacute;ctica 2, el 44 se qued&oacute; en la curva 6. La gr&uacute;a respondi&oacute; en 3 min.&rdquo;</p></div>
+                      <span class="kchip n">Nota</span>
+                    </div>
+                  </div>
+                  <div class="now"><span class="nlab"><span class="ndot"></span>AHORA &middot; 10:24</span><i></i></div>
+                  <div class="tlrow last dim">
+                    <div class="tltime">19:40</div>
+                    <div class="tlnode"><div class="tldot tr" style="border-color:#4a5f78"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Vuelo de regreso</div><div class="tld">QRO &rarr; CDMX &middot; Aerom&eacute;xico 148</div></div>
+                  </div>
+                </div>
+                <div class="fab"><span class="ic-cam big"></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt" id="bv3">
+            <div class="dv-olabel"><a class="dv-oid" href="#bv3">BV-3</a><span><span class="dv-oname">Capturar.</span> El &ldquo;+&rdquo; crece: foto y nota r&aacute;pida junto a la planeaci&oacute;n cl&aacute;sica; todo cae en la l&iacute;nea de tiempo.</span></div>
+            <div class="phone" data-screen-label="Bitacora / Capturar">
+              <div class="screen fix">
+                <div class="sbar"><span>10:24</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">VIAJE</div><div class="tspace"></div></div>
+                <div class="th">
+                  <div class="nm">Copa Nissan &middot; Fecha 5</div>
+                  <div class="sub"><span class="pin"></span>Quer&eacute;taro &middot; 15&ndash;16 ago</div>
+                </div>
+                <div class="tl">
+                  <div class="tlday"><b>Vie 15 ago</b><i></i></div>
+                  <div class="tlrow">
+                    <div class="tltime">07:20</div>
+                    <div class="tlnode"><div class="tldot tr"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="tlt">Vuelo Aerom&eacute;xico 123</div><div class="tld">CDMX &rarr; QRO</div></div>
+                  </div>
+                  <div class="tlrow last">
+                    <div class="tltime">10:40</div>
+                    <div class="tlnode"><div class="tldot"></div><div class="tlline"></div></div>
+                    <div class="tlc"><div class="ph"><div class="phimg" style="height:84px"><span>foto</span></div></div></div>
+                  </div>
+                </div>
+                <div class="scrim"></div>
+                <div class="sheet">
+                  <div class="grip"></div>
+                  <div class="sh"><b>Agregar a la bit&aacute;cora</b><small>Todo queda en la l&iacute;nea de tiempo del viaje, con la hora en que lo agregas.</small></div>
+                  <div class="sl">
+                    <div class="opt hero"><div class="tico re"><span class="ic-cam"></span></div><div class="on"><b>Foto</b><small>Tomar con la c&aacute;mara, sin salir de la app</small></div><span class="chev">&rsaquo;</span></div>
+                    <div class="opt"><div class="tico n"><span class="ic-note"></span></div><div class="on"><b>Nota</b><small>Momento o apunte r&aacute;pido</small></div><span class="chev">&rsaquo;</span></div>
+                    <div class="sldiv"><span>Planeaci&oacute;n</span><i></i></div>
+                    <div class="opt"><div class="tico tr"><span class="ic-plane"></span></div><div class="on"><b>Transporte</b><small>Vuelo, auto o autob&uacute;s</small></div><span class="chev">&rsaquo;</span></div>
+                    <div class="opt"><div class="tico ho"><span class="ic-bed"></span></div><div class="on"><b>Hospedaje</b><small>Hotel o alojamiento</small></div><span class="chev">&rsaquo;</span></div>
+                    <div class="opt"><div class="tico re"><span class="ic-bell"></span></div><div class="on"><b>Recordatorio</b><small>Nota o pendiente con hora</small></div><span class="chev">&rsaquo;</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Prueba pedir: &ldquo;combina el detalle de <a class="dv-oid" href="#bv1">BV-1</a> con las fotos de <a class="dv-oid" href="#bv2">BV-2</a>&rdquo; &middot; &ldquo;agrega una vista de <b>resumen al cerrar el evento</b>&rdquo; &middot; &ldquo;as&iacute; est&aacute; bien, implem&eacute;ntalo&rdquo;.</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

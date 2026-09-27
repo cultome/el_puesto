@@ -1,0 +1,131 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "A-Circuito.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "A · Circuito: tarjeta",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "A-Completa.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "A · Circuito: pantalla completa (igual en Registro por honor)",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "A-Puesto.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "A · Modo evento: tab Puesto",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "A-Vivo.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "A · Mapa en vivo (pantalla completa del evento)",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "B-Puesto.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "B · Modo evento: panel de capas abierto",
+      "w": 390,
+      "x": 0,
+      "y": 1340
+    },
+    "B-Vivo.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "B · Mapa en vivo: panel de capas abierto",
+      "w": 390,
+      "x": 470,
+      "y": 1340
+    },
+    "BarraCapas.dc.html": {
+      "h": 52,
+      "title": "Componente · barra de capas (A)",
+      "w": 346,
+      "x": 1486,
+      "y": 1340
+    },
+    "Main.dc.html": {
+      "h": 960,
+      "title": "Sistema: capas, marcadores y controles",
+      "w": 760,
+      "x": 1880,
+      "y": 0
+    },
+    "MapaTrazado.dc.html": {
+      "h": 277,
+      "is_interactive": true,
+      "title": "Componente · mapa del trazado",
+      "w": 346,
+      "x": 1060,
+      "y": 1340
+    },
+    "PanelCapas.dc.html": {
+      "h": 244,
+      "title": "Componente · panel de capas (B)",
+      "w": 232,
+      "x": 1912,
+      "y": 1340
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-27T20:43:35Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "tA": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "A · Elegida: capas en una barra · marcadores en contorno",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "tB": {
+      "kind": "title1",
+      "maxW": 860,
+      "text": "B · Descartada: capas en un botón con panel",
+      "w": 240,
+      "x": 0,
+      "y": 1040
+    },
+    "tC": {
+      "kind": "title1",
+      "maxW": 1084,
+      "text": "Componentes compartidos",
+      "w": 240,
+      "x": 1060,
+      "y": 1040
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "A-Circuito.dc.html",
+    "A-Completa.dc.html",
+    "A-Puesto.dc.html",
+    "A-Vivo.dc.html",
+    "B-Puesto.dc.html",
+    "B-Vivo.dc.html",
+    "MapaTrazado.dc.html",
+    "BarraCapas.dc.html",
+    "PanelCapas.dc.html"
+  ],
+  "pages": [],
+  "title": "Mapas homologados"
+}

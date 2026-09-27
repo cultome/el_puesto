@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mapa del trazado (componente)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: {{w}}px; height: {{h}}px; position: relative; overflow: hidden; box-sizing: border-box; border-radius: {{radius}}px; border: {{borderW}}px solid #333949; background: #1D2029; font-family: 'IBM Plex Sans', sans-serif; color: #ECEEF2">
+<svg width="{{side}}" height="{{side}}" viewBox="0 0 100 100" aria-hidden="true" style="position: absolute; left: {{ox}}px; top: {{oy}}px"><path d="{{trackD}}" fill="none" stroke="#3A4152" stroke-width="{{sw1}}" stroke-linejoin="round"></path><path d="{{trackD}}" fill="none" stroke="#20242E" stroke-width="{{sw2}}" stroke-linejoin="round"></path></svg>
+<sc-for list="{{pins}}" as="p" hint-placeholder-count="12">
+<button aria-label="{{p.aria}}" onClick="{{p.pick}}" style="position: absolute; left: {{p.left}}px; top: {{p.top}}px; transform: translate(-50%, -50%); height: {{p.hgt}}px; margin: 0; padding: 0 6px; border-radius: 12px; box-sizing: border-box; background: {{p.bg}}; border: {{p.bw}}px solid {{p.bd}}; box-shadow: {{p.halo}}; font-family: 'Archivo', sans-serif; font-weight: 700; font-size: {{p.fs}}px; line-height: 1; color: {{p.fg}}; display: flex; align-items: center; white-space: nowrap; cursor: pointer">{{p.label}}</button>
+</sc-for>
+<sc-if value="{{hasSel}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; left: {{callLeft}}px; top: {{callTop}}px; transform: translate(-50%, -100%); padding: 4px 9px; border-radius: 10px; background: #10131A; border: 1px solid #3A4152; font-size: 11px; font-weight: 600; color: #ECEEF2; white-space: nowrap; pointer-events: none">{{callText}}</div>
+</sc-if>
+<sc-for list="{{people}}" as="q" hint-placeholder-count="0">
+<div style="position: absolute; left: {{q.left}}px; top: {{q.top}}px; display: flex; flex-direction: column; align-items: center; opacity: {{q.op}}; pointer-events: none">
+<div style="position: relative">
+<div style="width: 34px; height: 34px; border-radius: 50%; overflow: hidden; box-sizing: border-box; border: 2.5px {{q.dash}} {{q.ring}}; background: {{q.bg}}"><svg width="100%" height="100%" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="13.5" r="6.2" fill="#D5DBE4"></circle><path d="M4.5 34c1.2-8 6.3-12.2 12.5-12.2S28.3 26 29.5 34z" fill="#D5DBE4"></path></svg></div>
+<sc-if value="{{q.self}}" hint-placeholder-val="{{false}}"><div style="position: absolute; right: -7px; bottom: -4px; padding: 1px 4px; border-radius: 6px; background: #F2B134; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 8px; color: #1C1405">TÚ</div></sc-if>
+</div>
+<div style="width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid {{q.ring}}; margin-top: -1px"></div>
+</div>
+</sc-for>
+<div style="position: absolute; left: 12px; bottom: 8px; font-size: 9px; color: #6E7584">© OpenStreetMap</div>
+<sc-if value="{{liveChip}}" hint-placeholder-val="{{false}}">
+<button aria-label="Encuadrar a los 3 que comparten su ubicación" style="position: absolute; left: 10px; top: {{liveTop}}px; height: 34px; margin: 0; padding: 0 12px 0 5px; border-radius: 17px; box-sizing: border-box; background: rgba(42,46,57,0.94); border: 1px solid #3A4152; display: flex; align-items: center; gap: 8px; font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 600; color: #ECEEF2; cursor: pointer">
+<span style="display: flex"><span style="width: 24px; height: 24px; border-radius: 12px; box-sizing: border-box; border: 2px solid #2A2E39; background: #56697E"></span><span style="width: 24px; height: 24px; margin-left: -10px; border-radius: 12px; box-sizing: border-box; border: 2px solid #2A2E39; background: #6E5B7E"></span><span style="width: 24px; height: 24px; margin-left: -10px; border-radius: 12px; box-sizing: border-box; border: 2px solid #2A2E39; background: #5B7F6E"></span></span>
+<span>3 en vivo · Encuadrar</span></button>
+</sc-if>
+<sc-if value="{{showFs}}" hint-placeholder-val="{{false}}">
+<a href="{{fsHref}}" aria-label="Pantalla completa" style="position: absolute; right: 10px; top: 10px; width: 42px; height: 42px; box-sizing: border-box; border-radius: 12px; background: rgba(36,40,51,0.94); border: 1px solid #3A4152; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ECEEF2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg></a>
+</sc-if>
+<sc-if value="{{layersBtn}}" hint-placeholder-val="{{false}}">
+<button aria-label="Capas del mapa" onClick="{{openLayers}}" style="position: absolute; right: 10px; top: {{layersTop}}px; width: 42px; height: 42px; margin: 0; padding: 0; box-sizing: border-box; border-radius: 12px; background: {{layersBg}}; border: 1px solid {{layersBd}}; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{layersFg}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 3 9l9 5 9-5-9-5zM3 14l9 5 9-5"></path></svg>
+<sc-if value="{{layersOff}}" hint-placeholder-val="{{false}}"><span style="position: absolute; right: 6px; top: 6px; width: 8px; height: 8px; border-radius: 4px; background: #F2B134"></span></sc-if>
+</button>
+</sc-if>
+<div style="position: absolute; right: 10px; bottom: {{cb}}px; display: flex; flex-direction: column; gap: 6px">
+<button aria-label="Ver todo el trazado" style="width: 42px; height: 42px; margin: 0; padding: 0; box-sizing: border-box; border-radius: 12px; background: rgba(36,40,51,0.94); border: 1px solid #3A4152; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ECEEF2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5h8.5A2.5 2.5 0 0 1 19 7.5v2c0 .9-.5 1.5-1.3 1.9-.7.4-.8 1.3-.2 1.8.9.7 1.5 1.5 1.5 2.8a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3z"></path></svg></button>
+<button aria-label="Acercar" style="width: 42px; height: 42px; margin: 0; padding: 0; box-sizing: border-box; border-radius: 12px; background: rgba(36,40,51,0.94); border: 1px solid #3A4152; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ECEEF2" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+<button aria-label="Alejar" style="width: 42px; height: 42px; margin: 0; padding: 0; box-sizing: border-box; border-radius: 12px; background: rgba(36,40,51,0.94); border: 1px solid #3A4152; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ECEEF2" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"w":{"editor":null,"default":346},"h":{"editor":null,"default":277},"radius":{"editor":null,"default":18},"borderW":{"editor":null,"default":1},"puestos":{"editor":null,"default":true},"rescate":{"editor":null,"default":true},"soporte":{"editor":null,"default":true},"medicos":{"editor":null,"default":true},"hasMedicos":{"editor":null,"default":true},"people":{"editor":null,"default":false},"mine":{"editor":null,"default":""},"selected":{"editor":null,"default":""},"onPick":{"editor":null},"fsHref":{"editor":null,"default":""},"liveChip":{"editor":null,"default":false},"liveTop":{"editor":null,"default":10},"controlsBottom":{"editor":null,"default":10},"shiftY":{"editor":null,"default":0},"layersBtn":{"editor":null,"default":false},"layersTop":{"editor":null},"layersOpen":{"editor":null,"default":false},"layersOff":{"editor":null,"default":false},"onLayers":{"editor":null},"before":{"editor":null,"default":""},"paleta":{"editor":"enum","default":"Contorno (propuesta)","options":["Contorno (propuesta)","Rellenos (anterior)"],"section":"Colores"},"$preview":{"width":346,"height":277}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const st = this.state || {};
+    const w = p.w ?? 346;
+    const h = p.h ?? 277;
+    const side = Math.min(w, h);
+    const ox = (w - side) / 2;
+    const oy = (h - side) / 2 + (p.shiftY ?? 0);
+    const u = side / 100;
+    // Silueta del trazado (normalizada 0..100 en el área cuadrada), suavizada como en la app.
+    const T = [[10,30],[78,20],[88,24],[86,34],[78,40],[84,48],[90,58],[84,68],[70,66],[56,62],[48,70],[44,80],[34,84],[24,78],[22,66],[14,58],[8,46],[7,36]];
+    const n = T.length;
+    const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+    const s0 = mid(T[n - 1], T[0]);
+    let d = 'M' + s0[0] + ' ' + s0[1];
+    for (let i = 0; i < n; i++) {
+      const c = T[i];
+      const m = mid(c, T[(i + 1) % n]);
+      d += ' Q' + c[0] + ' ' + c[1] + ' ' + m[0] + ' ' + m[1];
+    }
+    // Color de cada capa: en contorno va en el borde y el texto; el relleno es solo para
+    // lo especial (tu puesto, lo que tocas, donde trabajaste antes).
+    const COLOR = { P: '#FF8A45', R: '#FFD43B', S: '#3FDD85', M: '#FF6B66' };
+    const FILL = { P: '#FF7A2F', R: '#FFD43B', S: '#3FDD85', M: '#F0524D' };
+    const NAME = { P: 'Puesto', R: 'Rescate', S: 'Soporte', M: 'Médicos' };
+    const contorno = (p.paleta ?? 'Contorno (propuesta)') !== 'Rellenos (anterior)';
+    const mix = (hex, t) => {
+      const v = hex.replace('#', '');
+      const c = [0, 2, 4].map((i) => parseInt(v.slice(i, i + 2), 16));
+      const b = [0x1D, 0x20, 0x29];
+      return 'rgb(' + c.map((x, i) => Math.round(b[i] + (x - b[i]) * t)).join(',') + ')';
+    };
+    const CAT = {};
+    Object.keys(COLOR).forEach((k) => {
+      CAT[k] = contorno
+        ? { bg: mix(COLOR[k], 0.14), bd: COLOR[k], fg: COLOR[k], bw: 1.5, name: NAME[k] }
+        : { bg: FILL[k], bd: FILL[k], fg: '#14161C', bw: 1, name: NAME[k] };
+    });
+    const ITEMS = [
+      { l: '0', c: 'P', x: 17, y: 24 }, { l: '0.5', c: 'P', x: 37, y: 21 }, { l: '1.4', c: 'P', x: 58, y: 17 },
+      { l: '2.3', c: 'P', x: 95, y: 25 }, { l: '3', c: 'P', x: 92, y: 35 }, { l: '4.1', c: 'P', x: 71, y: 41 },
+      { l: '5', c: 'P', x: 84, y: 59 }, { l: '6.2', c: 'P', x: 88, y: 74 }, { l: '7', c: 'P', x: 70, y: 72 },
+      { l: '8.4', c: 'P', x: 53, y: 57 }, { l: '9.8', c: 'P', x: 50, y: 84 }, { l: '11.7', c: 'P', x: 34, y: 90 },
+      { l: '13', c: 'P', x: 28, y: 66 }, { l: '15', c: 'P', x: 8, y: 60 }, { l: '17', c: 'P', x: 3, y: 40 },
+      { l: 'TH1', c: 'R', x: 22, y: 36 }, { l: 'IFRT4', c: 'R', x: 79, y: 29 }, { l: 'IFRT7', c: 'R', x: 74, y: 52 },
+      { l: 'HIAB2', c: 'R', x: 44, y: 66 }, { l: 'TH3', c: 'R', x: 18, y: 70 }, { l: 'DR1', c: 'R', x: 15, y: 51 },
+      { l: 'SC', c: 'S', x: 40, y: 32 }, { l: 'TS1', c: 'S', x: 42, y: 52 },
+      { l: 'AMB1', c: 'M', x: 31, y: 45 }, { l: 'AMB2', c: 'M', x: 58, y: 47 },
+    ];
+    const on = {
+      P: p.puestos ?? true,
+      R: p.rescate ?? true,
+      S: p.soporte ?? true,
+      M: (p.medicos ?? true) && (p.hasMedicos ?? true),
+    };
+    const mine = p.mine ?? '';
+    const before = p.before ?? '';
+    const sel = p.onPick ? (p.selected ?? '') : (st.picked !== undefined ? st.picked : (p.selected ?? ''));
+    const pick = (label) => {
+      const next = label === sel ? '' : label;
+      if (p.onPick) p.onPick(next); else this.setState({ picked: next });
+    };
+    // Tu puesto se ve siempre, aunque su capa esté apagada.
+    const pins = ITEMS.filter((it) => on[it.c] || it.l === mine).map((it) => {
+      const c = CAT[it.c];
+      const isMine = it.l === mine;
+      const isSel = it.l === sel;
+      const isBefore = it.l === before;
+      const filled = isSel || isMine || isBefore;
+      return {
+        label: it.l,
+        left: ox + it.x * u,
+        top: oy + it.y * u,
+        bg: filled ? FILL[it.c] : c.bg,
+        bd: isSel ? '#14161C' : (filled ? FILL[it.c] : c.bd),
+        fg: filled ? '#14161C' : c.fg,
+        bw: isSel ? 2 : (filled ? 1 : c.bw),
+        hgt: isSel ? 24 : 20,
+        fs: isSel ? 10.5 : 9.5,
+        // Elegido: borde oscuro + aro blanco; tu puesto: halo naranja.
+        halo: isSel ? '0 0 0 2px #FFFFFF' : (isMine ? '0 0 0 6px rgba(255,122,47,0.32)' : 'none'),
+        z: isSel ? 3 : (filled ? 2 : 1),
+        aria: it.l + ' · ' + (isMine ? 'Tu puesto' : (isBefore ? 'Asignado antes' : c.name)),
+        pick: () => pick(it.l),
+      };
+    }).sort((a, b) => a.z - b.z);
+    const selPin = pins.find((x) => x.label === sel);
+    const selItem = ITEMS.find((i) => i.l === sel);
+    const callText = !selPin ? '' : sel === mine ? sel + ' · Tu puesto'
+      : sel === before ? 'Puesto ' + sel + ' · asignado antes'
+      : selItem.c === 'P' ? 'Puesto ' + sel : sel + ' · ' + NAME[selItem.c];
+    const PEOPLE = [
+      { x: 52, y: 44, bg: '#56697E' },
+      { x: 60, y: 76, bg: '#6E5B7E' },
+      { x: 70, y: 90, bg: '#5B7F6E', stale: true },
+      { x: 34, y: 86, bg: '#6B5A45', self: true },
+    ];
+    const people = (p.people ? PEOPLE : []).map((q) => ({
+      left: ox + q.x * u - 17,
+      top: oy + q.y * u - 40,
+      ring: q.self ? '#F2B134' : '#7FB7F0',
+      dash: q.stale ? 'dashed' : 'solid',
+      op: q.stale ? 0.5 : 1,
+      bg: q.bg,
+      self: !!q.self,
+    }));
+    const open = !!p.layersOpen;
+    return {
+      w, h, side, ox, oy,
+      radius: p.radius ?? 18,
+      borderW: p.borderW ?? 1,
+      sw1: 18 / u,
+      sw2: 11 / u,
+      trackD: d,
+      pins,
+      hasSel: !!selPin,
+      callLeft: selPin ? selPin.left : 0,
+      callTop: selPin ? selPin.top - 16 : 0,
+      callText,
+      people,
+      showFs: !!p.fsHref,
+      fsHref: p.fsHref ?? '',
+      liveChip: !!p.liveChip,
+      liveTop: p.liveTop ?? 10,
+      cb: p.controlsBottom ?? 10,
+      layersBtn: !!p.layersBtn,
+      layersTop: p.layersTop ?? (p.fsHref ? 60 : 10),
+      layersBg: open ? '#F2B134' : 'rgba(36,40,51,0.94)',
+      layersBd: open ? '#F2B134' : '#3A4152',
+      layersFg: open ? '#1C1405' : '#ECEEF2',
+      layersOff: !!p.layersOff && !open,
+      openLayers: () => { if (p.onLayers) p.onLayers(); },
+    };
+  }
+}
+</script>
+</body>
+</html>

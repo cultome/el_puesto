@@ -1,0 +1,23 @@
+# categoria=TCR México — "Campeonato General (Sprint)" (campo auto = Cat Pro/Am). Hay además "Campeonato Pro (Sprint)" y "Campeonato Am (Sprint)" (mismos datos filtrados) y "Campeonato General Endurance" (tcr-endurance.txt)
+# pagina=https://mexicoracingcup.com/33-tcr-mxico (idéntica en https://tcrmexico.com/puntuacin)
+# imagen=https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1788388507272679086.jpg
+# fecha_impresa=(ninguna; subida 2026-09-02)
+# hasta_fecha=4 (columnas Fecha 2, 3 y 4; la fecha 1 es de resistencia y va en su propia tabla; falta la fecha 5, 6 Horas de Puebla del 13-sep)
+# columnas=2,3,4
+# peor=no (sin columna PEOR FECHA)
+# nota=Puntos con DECIMALES (Julio Rejón 280,6 = 90+106+84,6); nuestro Standing.points es Int. Paolo Zesati (76) aparece DEBAJO de dos pilotos con 74.
+1|Juan Pablo Sierra|Pro||291||85,103,103|291|
+2|Rodrigo Rejón|Pro||287||93,93,101|287|
+3|Pablo Cervantes|Pro||281||106,85,90|281|
+4|Julio Rejón|Pro||280.6||90,106,84.6|280.6|
+5|Gerardo Rejón|Am||253||90,85,78|253|
+6|Mauricio Uribe|Am||165||85,0,80|165|
+7|Luis Cervantes|Am||156||0,80,76|156|
+8|Oscar Uribe|Am||103||103,0,0|103|
+9|Alex Uribe|Am||100||100,0,0|100|
+10|Carlo Zesati|Am||85||0,0,85|85|
+11|Jose Luis Hernández|Am||78||0,78,0|78|
+12|Marco Montoya|Am||78||0,78,0|78|
+13|Jorge Abed|Am||74||0,0,74|74|
+14|Bruno Zesati|Am||74||0,0,74|74|
+15|Paolo Zesati|Am||76||0,0,76|76|

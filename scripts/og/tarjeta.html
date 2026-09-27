@@ -1,0 +1,82 @@
+<!doctype html>
+<!--
+  Tarjeta para vistas previas al compartir un enlace (Open Graph / Twitter Card), 1200×630.
+  NO se publica: scripts/generar-og.sh la rellena con el trazado y el logo de web/index.html
+  y la fotografía a web/og.png con Chromium sin cabeza.
+-->
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500&display=block">
+<style>
+  :root {
+    --bg: #191C24; --surface: #1E222B; --border: #333949;
+    --amber: #F2B134; --text-hi: #FFFFFF; --text: #ECEEF2; --sub: #AAB0BD; --faint: #6F7683;
+    --live: #3FDD85;
+    --display: "Archivo", "Arial Narrow", sans-serif;
+    --body: "IBM Plex Sans", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+  }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background:
+      radial-gradient(700px 520px at 88% 30%, rgba(242, 177, 52, .10), transparent 70%),
+      linear-gradient(160deg, var(--surface) 0%, var(--bg) 60%);
+    color: var(--text); font-family: var(--body);
+  }
+  .track { position: absolute; right: 18px; top: 92px; width: 600px; height: auto; }
+  .track .glow { fill: none; stroke: var(--amber); stroke-width: 30; stroke-opacity: .08; stroke-linejoin: round; }
+  .track .line { fill: none; stroke: var(--amber); stroke-width: 6; stroke-opacity: .6; stroke-linejoin: round; }
+  .track .kerb { fill: none; stroke: var(--text); stroke-width: 1.6; stroke-opacity: .25; stroke-dasharray: 2 14; }
+  .track .posts { fill: var(--text); stroke: var(--text); stroke-width: 4; opacity: .55; }
+  .track .car-halo { fill: var(--live); fill-opacity: .22; }
+  .track .car { fill: var(--live); }
+
+  .copy { position: absolute; left: 76px; top: 60px; width: 600px; }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand img { height: 62px; width: auto; }
+  .brand span { font: 800 28px/1 var(--display); letter-spacing: .14em; font-stretch: 112%; color: var(--text-hi); }
+  .kicker { margin-top: 46px; font: 600 19px/1.35 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+  h1 {
+    margin: 20px 0 0; font-family: var(--display); font-size: 100px; font-weight: 900;
+    font-stretch: 118%; line-height: .92; letter-spacing: -.02em; color: var(--text-hi);
+  }
+  h1 em { font-style: normal; color: var(--amber); }
+
+  .foot {
+    position: absolute; left: 76px; bottom: 44px;
+    font: 500 18px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--faint);
+  }
+  .foot b { color: var(--text); font-weight: 600; }
+  /* Bandera a cuadros (motivo de la marca) en el borde inferior. */
+  .checker {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 14px; opacity: .55;
+    background: repeating-conic-gradient(var(--amber) 0 25%, transparent 0 50%) 0 0 / 14px 14px;
+  }
+</style>
+</head>
+<body>
+  <svg class="track" viewBox="0 0 1000 743" aria-hidden="true">
+    <defs>
+      <path id="ahr" d="{{AHR_D}}"/>
+      {{AHR_POSTS}}
+    </defs>
+    <use href="#ahr" class="glow"/>
+    <use href="#ahr" class="line"/>
+    <use href="#ahr" class="kerb"/>
+    <use href="#ahr-posts" class="posts"/>
+    <circle cx="{{CAR_X}}" cy="{{CAR_Y}}" r="18" class="car-halo"/>
+    <circle cx="{{CAR_X}}" cy="{{CAR_Y}}" r="8" class="car"/>
+  </svg>
+
+  <div class="copy">
+    <div class="brand"><img src="{{LOGO}}" alt=""><span>EL PUESTO</span></div>
+    <div class="kicker">La app de cabecera del<br>oficial de pista mexicano</div>
+    <h1>Contigo<br>en el <em>puesto.</em></h1>
+  </div>
+
+  <div class="foot"><b>elpuesto.app</b> · Android · Por invitación</div>
+  <div class="checker"></div>
+</body>
+</html>

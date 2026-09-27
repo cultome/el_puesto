@@ -1,0 +1,67 @@
+# categoria=Copa TC2000
+# pagina=https://mexicoracingcup.com/33-copa-tc2000
+# imagen=https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1789949652243494037.jpg
+# fecha_impresa=20-ago-26 (subida 2026-09-20 18:14 CDMX; trae la fecha 8 del 12-sep: la fecha impresa es un error)
+# hasta_fecha=8
+# columnas=1,2,3,4,5,6,7,8a,8b
+# peor=todas (a media temporada la regla 9.6 cuenta todas las fechas disputadas; ausente = 0)
+1|Aldo Vincenti|BMW||684|0|85,83,93,100,93,64,83,81,66|748|64
+2|Carlos Guzmán Jr.|BMW /Audi||556|-128|76,66,66,60,64,74,70,70,70|616|60
+3|Elliot VanRankin|BMW||613|-71|0,88,74,68,100,68,85,66,64|613|0
+4|Allan VanRankin / Michel Garrido|BMW||611|-73|90,90,100,0,72,100,0,85,74|611|0
+5|Emiliano Ortíz|BMW||578|-106|0,64,58,76,80,80,74,68,78|578|0
+6|Santiago Navarro (N)|BMW||571|-113|58,62,0,68,100,68,85,66,64|571|0
+7|Jerry Garibay (N)|BMW||514|-170|56,56,64,54,76,50,76,56,76|564|50
+8|Victor Alfaro / Edgar Olvera|BMW||541|-143|103,0,48,93,85,90,50,72,0|541|0
+9|Luis Cobos|Ford||522|-162|0,72,44,83,68,0,90,80,85|522|0
+10|Juan M. González|Ford||520|-164|80,54,42,0,77,64,,103,100|520|0
+11|Massimilaino Zona / Manuel Mier|BMW||480|-204|46,76,80,78,62,70,68,,|480|0
+12|A. Sanchez|BMW||469|-215|58,62,0,,52,66,62,76,93|469|0
+13|Rodrigo Vazquez / Henrique Lemos|BMW||466|-218|70,78,72,44,0,78,0,62,62|466|0
+14|Calos Lopez / Edgar Lopezpape|BMW||452|-232|50,50,63,85,70,0,60,74,0|452|0
+15|Ivan German / S. German|Chevrolet||442|-242|78,60,70,62,60,48,64,,|442|0
+16|Ramon Osorio / Adiel Gamboa|Ford||432|-252|62,70,76,66,56,58,44,0,0|432|0
+17|Wilfredo Quesada / Hugo Quesada|BMW||408|-276|74,52,0,72,78,76,56,,|408|0
+18|Jorge Hagstotz|BMW /Audi||390|-294|68,74,68,74,54,52,,,|390|0
+19|Enrique Ferrer|Ford||351|-333|,,78,,,,103,90,80|351|0
+20|Camilo Mojica (N)|Ford||348|-336|,,,64,50,56,46,64,68|348|0
+21|D. Urritia (N)|BMW||342|-342|0,88,74,0,52,66,62,,|342|0
+22|Angel Salgado|Cupra/BMW||278|-406|60,,54,58,,0,52,54,0|278|0
+23|Giovanni Rodrigo|BMW||256|-428|0,100,40,50,,,66,,|256|0
+24|Kevin Salgado|Cupra||244|-440|60,,54,58,,72,0,,|244|0
+25|Emilio Aguilar|Chevrolet||230|-454|64,58,52,56,0,0,,,|230|0
+26|Walter Leyva|BMW||213|-471|57,48,52,56,0,,,,|213|0
+27|Adrián Vázquez|BMW||203|-481|52,,85,,66,,,,|203|0
+28|Javier Fernandez|BMW||186|-498|44,,,70,,,72,,|186|0
+29|Fernando Olvera / A. Olvera|BMW||182|-502|0,68,56,0,,,58,,|182|0
+30|Joaquin Forcelledo|Ford||181|-503|,,78,,,,103,,|181|0
+31|Emilio Aguilar Sr. (N)|Ford||174|-510|,,,,,62,54,58,0|174|0
+32|Gerardo Rodriguez|BMW||169|-515|,,,,,,,76,93|169|0
+33|Raul Galvan|BMW||163|-521|,,,,,85,78,,|163|0
+34|A. Leal|Audi||146|-538|48,0,50,48,0,0,,0,0|146|0
+35|Yahir Aguilar (N)|Chevrolet||132|-552|,,,,,,,60,72|132|0
+36|Rafael Palacios|Ford||116|-568|,,,,,62,54,,|116|0
+37|Arturo Rayas (N)|BMW||106|-578|,,,52,,54,0,,|106|0
+38|Miguel Roman (N)|BMW||104|-580|,,,46,58,,,,|104|0
+39|A. Palma|Audi||98|-586|48,0,50,,,,,,|98|0
+40|Emilio Blockzyl (N)|BMW||72|-612|72,,,,,,,,|72|0
+41|D. González / A. Salinas (N)|Chevrolet||66|-618|66,,,,,,,,|66|0
+42|A. Tenorio (N)|BMW||66|-618|,,,,66,,,,|66|0
+43|O. Ruano (N)|BMW||66|-618|,,,,,,66,,|66|0
+44|Ruben German (N)|BMW||62|-622|,,62,,,,,,|62|0
+45|Bruno Silva|Chevrolet||58|-626|,58,,,,,,,|58|0
+46|L. Franco (N)|Chevrolet||54|-630|,,,,,54,,,|54|0
+47|Jonathan Briseño|Audi||48|-636|,,,48,,,,,|48|0
+48|S. Silva (N)|BMW||48|-636|,48,,,,,,,|48|0
+49|Y. Pelaez (N) / Rafael Palacios Sr.|BMW||48|-636|,,,,,,48,,|48|0
+50|Emilio Sanchez (N)|BMW||46|-638|,,46,,,,,,|46|0
+51|Luis Goulart|BMW||46|-638|,,,46,,,,,|46|0
+52|Arturo Paniagua (N)|BMW||0|-684|,,0,,,,,,|0|0
+53|A. Calzada (N)|BMW||0|-684|,,,0,,,,,|0|0
+54|Alejandro Palacios (N)|BMW||0|-684|,,,0,,,,,|0|0
+55|R. Escobedo (N)|Chevrolet||0|-684|,,,,0,,,,|0|0
+56|P. Rodriguez (N)|Audi||0|-684|,,,,0,,,,|0|0
+57|C. Arjona (N)|Audi||0|-684|,,,,,0,,0,0|0|0
+58|Gael Morales (N)|BMW||0|-684|,,,,,,0,,|0|0
+59|D. Aguilar (N)|BMW||0|-684|,,,,,,0,,|0|0
+60|Ruben Rovelo|BMW||0|-684|,,,,,,,0,0|0|0

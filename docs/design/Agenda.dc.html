@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: #f2b134; } a:hover { color: #f6bb45; }
+          .dv-turn { padding: 48px 52px 40px; }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 700 16px/1.3 'Archivo', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-opts { display: flex; gap: 40px; align-items: flex-start; }
+          .dv-opt { display: flex; flex-direction: column; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; max-width: 384px; margin-bottom: 12px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 1000px; }
+
+          .phone { width: 384px; padding: 13px; border-radius: 46px; background: linear-gradient(160deg,#26282e,#111216); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.05); }
+          .screen { position: relative; border-radius: 34px; overflow: hidden; display: flex; flex-direction: column; background: radial-gradient(120% 40% at 50% 0%, #2a2f3a 0%, #1e222b 42%, #191c24 100%); color: #eceef2; min-height: 812px; }
+          .screen.fix { height: 812px; min-height: 0; }
+          .sbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px 0; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; flex: none; }
+          .sbar .dots { display: flex; gap: 5px; align-items: center; }
+          .sbar .dots span { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+          .sbar .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; position: relative; opacity: 0.85; }
+          .sbar .bat::after { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; right: 6px; background: currentColor; border-radius: 1px; }
+
+          .topbar { display: flex; align-items: center; gap: 8px; padding: 12px 20px 0; flex: none; }
+          .back { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: #eceef2; font-size: 19px; }
+          .tbrand { font: 800 12px 'Archivo', sans-serif; letter-spacing: 2px; color: #fff; margin: 0 auto; }
+          .tspace { width: 34px; flex: none; }
+
+          .appbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px 2px; flex: none; }
+          .appbar .ttl { font: 800 23px 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; }
+          .iconbtn { width: 42px; height: 42px; border-radius: 13px; background: #242833; border: 1px solid #333949; display: flex; align-items: center; justify-content: center; color: #d7dae1; font-size: 22px; }
+          .calhead { display: flex; align-items: center; justify-content: space-between; padding: 10px 22px 0; flex: none; }
+          .calhead .mo { font: 700 15px 'Archivo', sans-serif; color: #eceef2; }
+          .calhead .nav { display: flex; gap: 8px; }
+          .navb { width: 32px; height: 32px; border-radius: 9px; background: #242833; border: 1px solid #333949; color: #aab0bd; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+
+          .cal { padding: 12px 18px 4px; flex: none; }
+          .wd { display: grid; grid-template-columns: repeat(7,1fr); }
+          .wd span { text-align: center; font: 600 10px 'IBM Plex Sans', sans-serif; color: #6f7683; padding-bottom: 8px; text-transform: uppercase; }
+          .grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; }
+          .day { height: 43px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border-radius: 10px; font: 600 13.5px 'IBM Plex Sans', sans-serif; color: #cfd3db; }
+          .day.out { color: #4a505c; }
+          .day.on { background: #f2b134; color: #1c1405; }
+          .dts { display: flex; gap: 3px; height: 4px; align-items: center; }
+          .dts i { width: 4px; height: 4px; border-radius: 50%; }
+          .dts i.e { background: #f2b134; } .dts i.t { background: #7fb7f0; } .dts i.c { background: #3fdd85; }
+          .day.on .dts i { background: rgba(28,20,5,0.6); }
+
+          .dayhdr { padding: 14px 22px 2px; flex: none; display: flex; align-items: baseline; justify-content: space-between; }
+          .dayhdr b { font: 700 14.5px 'Archivo', sans-serif; color: #fff; }
+          .dayhdr small { font: 400 12px 'IBM Plex Sans', sans-serif; color: #8f96a3; }
+          .alist { padding: 8px 22px 0; flex: 1; overflow: hidden; position: relative; }
+          .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 40px; background: linear-gradient(180deg, rgba(25,28,36,0), #191c24); pointer-events: none; }
+          .aitem { display: flex; align-items: center; gap: 13px; padding: 12px 14px 12px 15px; border-radius: 14px; background: #242833; border: 1px solid #333949; margin-bottom: 10px; position: relative; overflow: hidden; }
+          .aitem .ac { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+          .ac.e { background: #f2b134; } .ac.t { background: #7fb7f0; } .ac.c { background: #3fdd85; } .ac.r { background: #8f96a3; }
+          .atime { width: 42px; flex: none; text-align: center; }
+          .atime b { font: 700 13px 'IBM Plex Mono', monospace; color: #e6e9ef; display: block; }
+          .atime small { font: 400 9.5px 'IBM Plex Sans', sans-serif; color: #7f8593; }
+          .acont { flex: 1; }
+          .atitle { font: 600 14px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .ameta { font: 400 12px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 2px; }
+          .atag { font: 600 9.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.3px; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; flex: none; }
+          .atag.e { background: rgba(242,177,52,0.14); color: #f2b134; } .atag.t { background: rgba(127,183,240,0.16); color: #7fb7f0; } .atag.c { background: rgba(63,221,133,0.14); color: #3fdd85; } .atag.r { background: #2b3040; color: #aab0bd; }
+
+          .fab { position: absolute; right: 20px; bottom: 92px; width: 56px; height: 56px; border-radius: 18px; background: linear-gradient(135deg,#f6bb45,#e79a1f); color: #1c1405; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 14px 28px -8px rgba(242,177,52,0.65); z-index: 4; }
+
+          .bnav { display: flex; justify-content: space-around; align-items: center; padding: 12px 8px 18px; background: #191c24; border-top: 1px solid #2c313d; flex: none; }
+          .bitem { display: flex; flex-direction: column; align-items: center; gap: 6px; color: #6f7683; font: 600 10.5px 'IBM Plex Sans', sans-serif; }
+          .bitem.on { color: #f2b134; }
+          .bic { height: 23px; display: flex; align-items: flex-end; }
+          .ic-home { width: 22px; height: 21px; position: relative; }
+          .ic-home::after { content: ''; position: absolute; left: 50%; top: 0; transform: translateX(-50%); border-left: 11px solid transparent; border-right: 11px solid transparent; border-bottom: 10px solid currentColor; }
+          .ic-home::before { content: ''; position: absolute; left: 3px; right: 3px; top: 9px; bottom: 0; border: 2px solid currentColor; border-top: none; border-radius: 0 0 2px 2px; }
+          .ic-cal { width: 21px; height: 21px; border: 2px solid currentColor; border-radius: 5px; position: relative; box-sizing: border-box; }
+          .ic-cal::before { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 6px; background: currentColor; border-radius: 4px 4px 0 0; }
+          .ic-cal::after { content: ''; position: absolute; left: 3px; top: 9px; width: 3px; height: 3px; background: currentColor; box-shadow: 6px 0 currentColor, 12px 0 currentColor, 0 5px currentColor, 6px 5px currentColor; }
+          .ic-chat { width: 22px; height: 18px; border: 2px solid currentColor; border-radius: 8px; position: relative; box-sizing: border-box; }
+          .ic-chat::after { content: ''; position: absolute; left: 5px; bottom: -6px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid currentColor; }
+          .ic-user { width: 22px; height: 21px; position: relative; }
+          .ic-user::before { content: ''; position: absolute; left: 50%; top: 0; width: 10px; height: 10px; border: 2px solid currentColor; border-radius: 50%; transform: translateX(-50%); box-sizing: border-box; }
+          .ic-user::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 19px; height: 11px; border: 2px solid currentColor; border-bottom: none; border-radius: 10px 10px 0 0; transform: translateX(-50%); box-sizing: border-box; }
+
+          .th { padding: 12px 22px 0; flex: none; }
+          .th .nm { font: 800 20px/1.1 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; }
+          .th .sub { display: flex; align-items: center; gap: 8px; color: #aab0bd; font: 400 12.5px 'IBM Plex Sans', sans-serif; margin-top: 6px; }
+          .th .tag { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font: 600 11px 'IBM Plex Sans', sans-serif; color: #7fb7f0; background: rgba(127,183,240,0.12); border: 1px solid rgba(127,183,240,0.28); padding: 6px 12px; border-radius: 100px; }
+          .pin { width: 9px; height: 9px; border: 2px solid currentColor; border-radius: 50% 50% 50% 0; transform: rotate(45deg); flex: none; }
+          .tbody { padding: 8px 22px 26px; }
+          .tsec { font: 700 11px 'IBM Plex Mono', monospace; letter-spacing: 1px; color: #f2b134; text-transform: uppercase; margin: 22px 0 4px; }
+          .titem { display: flex; align-items: flex-start; gap: 13px; padding: 13px 0; border-bottom: 1px solid #262b36; }
+          .tico { width: 38px; height: 38px; border-radius: 11px; flex: none; display: flex; align-items: center; justify-content: center; }
+          .tico.tr { background: rgba(127,183,240,0.14); color: #7fb7f0; } .tico.ho { background: rgba(63,221,133,0.13); color: #3fdd85; } .tico.re { background: rgba(242,177,52,0.13); color: #f2b134; } .tico.ev { background: rgba(242,177,52,0.13); color: #f2b134; }
+          .tc { flex: 1; }
+          .tt { font: 600 14px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .td { font: 400 12.5px/1.4 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 3px; }
+          .ttime { font: 700 11.5px 'IBM Plex Mono', monospace; color: #cfd3db; flex: none; text-align: right; }
+          .sys { font: 500 9.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.3px; color: #6f7683; border: 1px solid #333949; padding: 2px 6px; border-radius: 5px; text-transform: uppercase; }
+          .addbig { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 20px; padding: 14px; border-radius: 14px; border: 1.5px dashed #3a4152; color: #f2b134; font: 700 13.5px 'IBM Plex Sans', sans-serif; }
+
+          .ic-plane { width: 0; height: 0; border-left: 13px solid currentColor; border-top: 7px solid transparent; border-bottom: 7px solid transparent; transform: rotate(-28deg); }
+          .ic-bed { width: 17px; height: 13px; position: relative; }
+          .ic-bed::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: currentColor; border-radius: 2px; }
+          .ic-bed::after { content: ''; position: absolute; top: 0; left: 0; width: 7px; height: 6px; border: 2px solid currentColor; border-bottom: none; border-radius: 3px 3px 0 0; box-sizing: border-box; }
+          .ic-bell { width: 15px; height: 16px; position: relative; }
+          .ic-bell::before { content: ''; position: absolute; left: 50%; top: 0; width: 12px; height: 12px; border: 2px solid currentColor; border-radius: 7px 7px 0 0; transform: translateX(-50%); box-sizing: border-box; }
+          .ic-bell::after { content: ''; position: absolute; left: 50%; bottom: 1px; width: 15px; height: 2px; background: currentColor; transform: translateX(-50%); border-radius: 2px; }
+          .ic-flag { width: 15px; height: 15px; position: relative; }
+          .ic-flag::before { content: ''; position: absolute; left: 2px; top: 0; bottom: 0; width: 2px; background: currentColor; }
+          .ic-flag::after { content: ''; position: absolute; left: 4px; top: 1px; width: 10px; height: 7px; background: currentColor; border-radius: 1px; }
+
+          .scrim { position: absolute; inset: 0; background: rgba(10,12,16,0.62); z-index: 5; }
+          .sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 6; background: #20242e; border-radius: 24px 24px 0 0; border-top: 1px solid #3a4152; display: flex; flex-direction: column; }
+          .grip { width: 40px; height: 5px; border-radius: 3px; background: #3f4756; margin: 10px auto 4px; }
+          .sheet .sh { padding: 8px 22px 4px; }
+          .sheet .sh b { font: 800 19px 'Archivo', sans-serif; color: #fff; }
+          .sheet .sh small { display: block; font: 400 12.5px/1.4 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 5px; }
+          .sl { padding: 10px 16px 20px; }
+          .opt { display: flex; align-items: center; gap: 14px; padding: 14px 12px; border-radius: 14px; }
+          .opt:active { background: #262b36; }
+          .opt .tico { width: 42px; height: 42px; }
+          .opt .on b { font: 700 14.5px 'Archivo', sans-serif; color: #fff; }
+          .opt .on small { display: block; font: 400 12px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 2px; }
+          .opt .chev { color: #5a6070; font-size: 22px; margin-left: auto; }
+        </style>
+      </helmet>
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">AG</a>
+          <span class="dv-tname">Agenda &mdash; Paddock nocturno</span>
+          <span class="dv-tsub">calendario + agenda del d&iacute;a &middot; detalle de viaje ligado a evento &middot; agregar planeaci&oacute;n</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">AG-1</a><span><span class="dv-oname">Agenda.</span> Calendario con eventos, convocatorias y viajes.</span></div>
+            <div class="phone" data-screen-label="Agenda">
+              <div class="screen fix">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="appbar"><div class="ttl">Agenda</div><div class="iconbtn">+</div></div>
+                <div class="calhead"><div class="mo">Julio 2026</div><div class="nav"><div class="navb">&lsaquo;</div><div class="navb">&rsaquo;</div></div></div>
+                <div class="cal">
+                  <div class="wd"><span>Dom</span><span>Lun</span><span>Mar</span><span>Mi&eacute;</span><span>Jue</span><span>Vie</span><span>S&aacute;b</span></div>
+                  <div class="grid">
+                    <div class="day out">29</div><div class="day out">30</div><div class="day">1</div><div class="day">2<span class="dts"><i class="t"></i></span></div><div class="day">3</div><div class="day">4</div><div class="day">5<span class="dts"><i class="c"></i></span></div>
+                    <div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div>
+                    <div class="day">13</div><div class="day">14</div><div class="day">15<span class="dts"><i class="e"></i><i class="t"></i></span></div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div>
+                    <div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24<span class="dts"><i class="e"></i></span></div><div class="day">25<span class="dts"><i class="e"></i></span></div><div class="day on">26<span class="dts"><i class="e"></i></span></div>
+                    <div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div><div class="day out">1</div><div class="day out">2</div>
+                  </div>
+                </div>
+                <div class="dayhdr"><b>S&aacute;bado 26 de julio</b><small>3 actividades</small></div>
+                <div class="alist">
+                  <div class="aitem"><span class="ac e"></span><div class="atime"><b>&mdash;</b><small>d&iacute;a</small></div><div class="acont"><div class="atitle">S&uacute;per Copa &middot; Fecha 4</div><div class="ameta">Hermanos Rodr&iacute;guez &middot; est&aacute;s asignado</div></div><span class="atag e">Evento</span></div>
+                  <div class="aitem"><span class="ac e"></span><div class="atime"><b>07:00</b></div><div class="acont"><div class="atitle">Reuni&oacute;n de oficiales</div><div class="ameta">Punto de reuni&oacute;n &middot; Puesto 7</div></div><span class="atag e">Evento</span></div>
+                  <div class="aitem"><span class="ac t"></span><div class="atime"><b>19:40</b></div><div class="acont"><div class="atitle">Vuelo de regreso</div><div class="ameta">QRO &rarr; CDMX &middot; Aerom&eacute;xico 148</div></div><span class="atag t">Viaje</span></div>
+                  <div class="fade"></div>
+                </div>
+                <div class="fab">+</div>
+                <div class="bnav">
+                  <div class="bitem"><span class="bic"><span class="ic-home"></span></span>Inicio</div>
+                  <div class="bitem on"><span class="bic"><span class="ic-cal"></span></span>Agenda</div>
+                  <div class="bitem"><span class="bic"><span class="ic-chat"></span></span>Chats</div>
+                  <div class="bitem"><span class="bic"><span class="ic-user"></span></span>Perfil</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">AG-2</a><span><span class="dv-oname">Viaje.</span> Planeaci&oacute;n ligada a un evento (transporte, hospedaje, recordatorios).</span></div>
+            <div class="phone" data-screen-label="Agenda / Viaje">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">VIAJE</div><div class="tspace"></div></div>
+                <div class="th">
+                  <div class="nm">Copa Nissan &middot; Fecha 5</div>
+                  <div class="sub"><span class="pin"></span>Quer&eacute;taro &middot; 15&ndash;16 ago</div>
+                  <div class="tag"><span class="pin" style="border-color:#7fb7f0"></span>Planeaci&oacute;n de viaje</div>
+                </div>
+                <div class="tbody">
+                  <div class="tsec">Transporte</div>
+                  <div class="titem"><div class="tico tr"><span class="ic-plane"></span></div><div class="tc"><div class="tt">Vuelo Aerom&eacute;xico 123</div><div class="td">CDMX (MEX) &rarr; Quer&eacute;taro (QRO)</div></div><div class="ttime">15 ago<br />07:20</div></div>
+                  <div class="titem"><div class="tico tr"><span class="pin" style="border-color:#7fb7f0"></span></div><div class="tc"><div class="tt">Auto rentado</div><div class="td">Recoger en aeropuerto QRO</div></div><div class="ttime">15 ago<br />09:00</div></div>
+                  <div class="tsec">Hospedaje</div>
+                  <div class="titem"><div class="tico ho"><span class="ic-bed"></span></div><div class="tc"><div class="tt">Hotel Real de Minas</div><div class="td">Check-in &middot; Quer&eacute;taro centro</div></div><div class="ttime">15 ago<br />15:00</div></div>
+                  <div class="tsec">En pista</div>
+                  <div class="titem"><div class="tico ev"><span class="ic-flag"></span></div><div class="tc"><div class="tt">Reuni&oacute;n de oficiales <span class="sys">del evento</span></div><div class="td">Punto de reuni&oacute;n del circuito</div></div><div class="ttime">16 ago<br />06:45</div></div>
+                  <div class="tsec">Recordatorios</div>
+                  <div class="titem"><div class="tico re"><span class="ic-bell"></span></div><div class="tc"><div class="tt">Llevar overol y credencial OMDAI</div></div></div>
+                  <div class="titem" style="border-bottom:none"><div class="tico re"><span class="ic-bell"></span></div><div class="tc"><div class="tt">Cargar radio y power bank</div></div></div>
+                  <div class="addbig">+ Agregar al viaje</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">AG-3</a><span><span class="dv-oname">Agregar.</span> Solo planeaci&oacute;n personal; eventos y convocatorias llegan del sistema.</span></div>
+            <div class="phone" data-screen-label="Agenda / Agregar">
+              <div class="screen fix">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="appbar"><div class="ttl">Agenda</div><div class="iconbtn">+</div></div>
+                <div class="calhead"><div class="mo">Julio 2026</div><div class="nav"><div class="navb">&lsaquo;</div><div class="navb">&rsaquo;</div></div></div>
+                <div class="cal"><div class="wd"><span>Dom</span><span>Lun</span><span>Mar</span><span>Mi&eacute;</span><span>Jue</span><span>Vie</span><span>S&aacute;b</span></div><div class="grid"><div class="day out">29</div><div class="day out">30</div><div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div></div></div>
+                <div class="scrim"></div>
+                <div class="sheet">
+                  <div class="grip"></div>
+                  <div class="sh"><b>Agregar a tu agenda</b><small>Los eventos y convocatorias aparecen solos desde el sistema. Aqu&iacute; agregas tu planeaci&oacute;n personal.</small></div>
+                  <div class="sl">
+                    <div class="opt"><div class="tico tr"><span class="ic-plane"></span></div><div class="on"><b>Transporte</b><small>Vuelo, auto o autob&uacute;s</small></div><span class="chev">&rsaquo;</span></div>
+                    <div class="opt"><div class="tico ho"><span class="ic-bed"></span></div><div class="on"><b>Hospedaje</b><small>Hotel o alojamiento</small></div><span class="chev">&rsaquo;</span></div>
+                    <div class="opt"><div class="tico re"><span class="ic-bell"></span></div><div class="on"><b>Recordatorio</b><small>Nota o pendiente con hora</small></div><span class="chev">&rsaquo;</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Prueba pedir: &ldquo;vincula el viaje a la <b>convocatoria</b> tambi&eacute;n&rdquo; &middot; &ldquo;vista de <b>lista</b> en vez de calendario&rdquo; &middot; &ldquo;sigamos con Convocatorias&rdquo; (te pedir&eacute; confirmaci&oacute;n primero).</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

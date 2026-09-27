@@ -1,0 +1,36 @@
+campeonato,temporada,categoria,ronda,evento,fecha_inicio,fecha,circuito,sede,fuente,consultado
+IndyCar,2026,IndyCar Series,1,Firestone Grand Prix of St. Petersburg,2026-02-27,2026-03-01,st_petersburg,,https://www.indycar.com/Schedule/2026/St-Petersburg,2026-09-24
+IndyCar,2026,IndyCar Series,2,Good Ranchers 250,2026-03-06,2026-03-07,phoenix,,https://www.indycar.com/Schedule/2026/Phoenix,2026-09-24
+IndyCar,2026,IndyCar Series,3,Java House Grand Prix of Arlington,2026-03-13,2026-03-15,arlington,,https://www.indycar.com/Schedule/2026/Arlington,2026-09-24
+IndyCar,2026,IndyCar Series,4,Children's of Alabama Indy Grand Prix,2026-03-27,2026-03-29,barber,,https://www.indycar.com/Schedule/2026/Barber,2026-09-24
+IndyCar,2026,IndyCar Series,5,Acura Grand Prix of Long Beach,2026-04-17,2026-04-19,long_beach,,https://www.indycar.com/Schedule/2026/Long-Beach,2026-09-24
+IndyCar,2026,IndyCar Series,6,Sonsio Grand Prix (IMS Road Course),2026-05-08,2026-05-09,indianapolis,,https://www.indycar.com/Schedule/2026/Indianapolis,2026-09-24
+IndyCar,2026,IndyCar Series,7,Indianapolis 500,2026-05-12,2026-05-24,indianapolis,,https://www.indycar.com/Schedule/2026/Indianapolis-500,2026-09-24
+IndyCar,2026,IndyCar Series,8,Chevrolet Detroit Grand Prix,2026-05-29,2026-05-31,detroit,,https://www.indycar.com/Schedule/2026/Detroit,2026-09-24
+IndyCar,2026,IndyCar Series,9,Bommarito Automotive Group 500,2026-06-06,2026-06-07,gateway,,https://www.indycar.com/Schedule/2026/WWTR,2026-09-24
+IndyCar,2026,IndyCar Series,10,XPEL Grand Prix at Road America,2026-06-19,2026-06-21,road_america,,https://www.indycar.com/Schedule/2026/Road-America,2026-09-24
+IndyCar,2026,IndyCar Series,11,Honda Indy 200 at Mid-Ohio,2026-07-03,2026-07-05,mid_ohio,,https://www.indycar.com/Schedule/2026/Mid-Ohio,2026-09-24
+IndyCar,2026,IndyCar Series,12,Borchetta Bourbon Music City Grand Prix,2026-07-18,2026-07-20,nashville_superspeedway,,https://www.indycar.com/Schedule/2026/Nashville,2026-09-24
+IndyCar,2026,IndyCar Series,13,OnlyBulls Grand Prix of Portland,2026-08-07,2026-08-09,portland,,https://www.indycar.com/Schedule/2026/Portland,2026-09-24
+IndyCar,2026,IndyCar Series,14,Ontario Honda Dealers Indy at Markham,2026-08-14,2026-08-16,markham,,https://www.indycar.com/Schedule/2026/Markham,2026-09-24
+IndyCar,2026,IndyCar Series,15,Freedom 250 Grand Prix of Washington DC,2026-08-22,2026-08-23,washington_dc,,https://www.indycar.com/Schedule/2026/Washington-DC,2026-09-24
+IndyCar,2026,IndyCar Series,16,Snap-on Makers and Fixers 250,2026-08-28,2026-08-29,milwaukee_mile,,https://www.indycar.com/news/2026/08/08-29-milwaukee-restart,2026-09-24
+IndyCar,2026,IndyCar Series,17,Snap-on Milwaukee Mile 250,2026-08-28,2026-08-30,milwaukee_mile,,https://www.indycar.com/Schedule/2026/Milwaukee-Race2,2026-09-24
+IndyCar,2026,IndyCar Series,18,Mission Foods Grand Prix of Monterey,2026-09-04,2026-09-06,laguna_seca,,https://www.indycar.com/Schedule/2026/Laguna-Seca,2026-09-24
+IndyCar,2026,Indy NXT,1,Grand Prix of St. Petersburg,2026-02-27,2026-03-01,st_petersburg,,https://www.indynxt.com/Schedule/2026/St-Petersburg,2026-09-24
+IndyCar,2026,Indy NXT,2,Grand Prix of Arlington,2026-03-13,2026-03-15,arlington,,https://www.indynxt.com/Schedule/2026/Arlington,2026-09-24
+IndyCar,2026,Indy NXT,3,Grand Prix of Alabama Race 1,2026-03-27,2026-03-28,barber,,https://www.indynxt.com/Schedule/2026/Barber-Race1,2026-09-24
+IndyCar,2026,Indy NXT,4,Grand Prix of Alabama Race 2,2026-03-27,2026-03-29,barber,,https://www.indynxt.com/Schedule/2026/Barber-Race2,2026-09-24
+IndyCar,2026,Indy NXT,5,Indianapolis Grand Prix Race 1 (IMS Road Course),2026-05-08,2026-05-08,indianapolis,,https://www.indynxt.com/Schedule/2026/Indianapolis-Race1,2026-09-24
+IndyCar,2026,Indy NXT,6,Indianapolis Grand Prix Race 2 (IMS Road Course),2026-05-08,2026-05-09,indianapolis,,https://www.indynxt.com/Schedule/2026/Indianapolis-Race2,2026-09-24
+IndyCar,2026,Indy NXT,7,Detroit Grand Prix,2026-05-29,2026-05-31,detroit,,https://www.indynxt.com/Schedule/2026/Detroit,2026-09-24
+IndyCar,2026,Indy NXT,8,INDY NXT by Firestone at World Wide Technology Raceway,2026-06-06,2026-06-07,gateway,,https://www.indynxt.com/Schedule/2026/WWTR,2026-09-24
+IndyCar,2026,Indy NXT,9,Grand Prix at Road America Race 1,2026-06-19,2026-06-20,road_america,,https://www.indynxt.com/Schedule/2026/Road-America-Race1,2026-09-24
+IndyCar,2026,Indy NXT,10,Grand Prix at Road America Race 2,2026-06-19,2026-06-21,road_america,,https://www.indynxt.com/Schedule/2026/Road-America-Race2,2026-09-24
+IndyCar,2026,Indy NXT,11,Grand Prix at Mid-Ohio Race 1,2026-07-03,2026-07-04,mid_ohio,,https://www.indynxt.com/Schedule/2026/Mid-Ohio-Race1,2026-09-24
+IndyCar,2026,Indy NXT,12,Grand Prix at Mid-Ohio Race 2,2026-07-03,2026-07-05,mid_ohio,,https://www.indynxt.com/Schedule/2026/Mid-Ohio-Race2,2026-09-24
+IndyCar,2026,Indy NXT,13,Music City Grand Prix,2026-07-18,2026-07-19,nashville_superspeedway,,https://www.indynxt.com/Schedule/2026/Nashville,2026-09-24
+IndyCar,2026,Indy NXT,14,Grand Prix of Portland,2026-08-07,2026-08-09,portland,,https://www.indynxt.com/Schedule/2026/Portland,2026-09-24
+IndyCar,2026,Indy NXT,15,INDY NXT by Firestone at Milwaukee Mile,2026-08-29,2026-08-30,milwaukee_mile,,https://www.indynxt.com/Schedule/2026/Milwaukee,2026-09-24
+IndyCar,2026,Indy NXT,16,Grand Prix of Monterey Race 1,2026-09-04,2026-09-05,laguna_seca,,https://www.indynxt.com/Schedule/2026/Laguna-Seca-Race1,2026-09-24
+IndyCar,2026,Indy NXT,17,Grand Prix of Monterey Race 2,2026-09-04,2026-09-06,laguna_seca,,https://www.indynxt.com/Schedule/2026/Laguna-Seca-Race2,2026-09-24

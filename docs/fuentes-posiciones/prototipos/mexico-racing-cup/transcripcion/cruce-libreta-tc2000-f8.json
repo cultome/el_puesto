@@ -1,0 +1,288 @@
+{
+ "libreta": "https://duncanwebmin.notiauto.com/repository/s/pdf/F10-26-TC2000-Libreta-de-Resultados-1.pdf",
+ "conclusion": "Las columnas 8a/8b de la imagen de TC2000 son las dos carreras de la fecha 8 (12-sep, Puebla): los 40 valores coinciden con el orden de llegada. Escala deducida: 100, 90, 85, 80, 78, 76, 74, 72, 70, 68, 66, 64, 62, 60, 58, 56, 54… (+3 pole en C1, +3 vuelta rápida: Aldo 5º=81, A. Sanchez 2º C2=93); menos del 50% de la distancia = 0. Un auto compartido suma a CADA piloto en filas separadas.",
+ "carrera_1": [
+  {
+   "llegada": 1,
+   "numero": "42",
+   "nombre_libreta": "Juan_M González",
+   "fila_imagen": "Juan M. González",
+   "puntos_imagen": 103
+  },
+  {
+   "llegada": 2,
+   "numero": "9",
+   "nombre_libreta": "Enrique Ferrer",
+   "fila_imagen": "Enrique Ferrer",
+   "puntos_imagen": 90
+  },
+  {
+   "llegada": 3,
+   "numero": "28",
+   "nombre_libreta": "A. VanRankin / M. Garrido",
+   "fila_imagen": "Allan VanRankin / Michel Garrido",
+   "puntos_imagen": 85
+  },
+  {
+   "llegada": 4,
+   "numero": "93",
+   "nombre_libreta": "Luis Cobos",
+   "fila_imagen": "Luis Cobos",
+   "puntos_imagen": 80
+  },
+  {
+   "llegada": 5,
+   "numero": "26",
+   "nombre_libreta": "Aldo Vincenti",
+   "fila_imagen": "Aldo Vincenti",
+   "puntos_imagen": 81
+  },
+  {
+   "llegada": 6,
+   "numero": "62",
+   "nombre_libreta": "A. Sanchez/G.Rodriguez",
+   "fila_imagen": "A. Sanchez + Gerardo Rodriguez (dos filas)",
+   "puntos_imagen": 76
+  },
+  {
+   "llegada": 7,
+   "numero": "8",
+   "nombre_libreta": "C. Lopez / E. Lopezpape",
+   "fila_imagen": "Calos Lopez / Edgar Lopezpape",
+   "puntos_imagen": 74
+  },
+  {
+   "llegada": 8,
+   "numero": "60",
+   "nombre_libreta": "V. Alfaro / E. Olvera",
+   "fila_imagen": "Victor Alfaro / Edgar Olvera",
+   "puntos_imagen": 72
+  },
+  {
+   "llegada": 9,
+   "numero": "2",
+   "nombre_libreta": "Carlos Guzmán Jr",
+   "fila_imagen": "Carlos Guzmán Jr.",
+   "puntos_imagen": 70
+  },
+  {
+   "llegada": 10,
+   "numero": "88",
+   "nombre_libreta": "Emiliano Ortíz",
+   "fila_imagen": "Emiliano Ortíz",
+   "puntos_imagen": 68
+  },
+  {
+   "llegada": 11,
+   "numero": "27",
+   "nombre_libreta": "S. Navarra / E. VanRankin",
+   "fila_imagen": "Santiago Navarro (N) + Elliot VanRankin (dos filas)",
+   "puntos_imagen": 66
+  },
+  {
+   "llegada": 12,
+   "numero": "23",
+   "nombre_libreta": "Camilo Mojica",
+   "fila_imagen": "Camilo Mojica (N)",
+   "puntos_imagen": 64
+  },
+  {
+   "llegada": 13,
+   "numero": "25",
+   "nombre_libreta": "H. Lemos / R. Vazquez",
+   "fila_imagen": "Rodrigo Vazquez / Henrique Lemos",
+   "puntos_imagen": 62
+  },
+  {
+   "llegada": 14,
+   "numero": "4",
+   "nombre_libreta": "Yahir Aguilar",
+   "fila_imagen": "Yahir Aguilar (N)",
+   "puntos_imagen": 60
+  },
+  {
+   "llegada": 15,
+   "numero": "81",
+   "nombre_libreta": "Emilio Aguilar",
+   "fila_imagen": "Emilio Aguilar Sr. (N)",
+   "puntos_imagen": 58
+  },
+  {
+   "llegada": 16,
+   "numero": "66",
+   "nombre_libreta": "Gerardo Garibay",
+   "fila_imagen": "Jerry Garibay (N)",
+   "puntos_imagen": 56
+  },
+  {
+   "llegada": 17,
+   "numero": "95",
+   "nombre_libreta": "Angel Salgado",
+   "fila_imagen": "Angel Salgado",
+   "puntos_imagen": 54
+  },
+  {
+   "llegada": 18,
+   "numero": "94",
+   "nombre_libreta": "R .Osorio / A. Gamboa",
+   "fila_imagen": "Ramon Osorio / Adiel Gamboa",
+   "puntos_imagen": 0
+  },
+  {
+   "llegada": 19,
+   "numero": "1",
+   "nombre_libreta": "Rubén Rovelo",
+   "fila_imagen": "Ruben Rovelo",
+   "puntos_imagen": 0
+  },
+  {
+   "llegada": 20,
+   "numero": "50",
+   "nombre_libreta": "C. Arjona / A. Leal",
+   "fila_imagen": "C. Arjona (N) + A. Leal (dos filas)",
+   "puntos_imagen": 0
+  }
+ ],
+ "carrera_2": [
+  {
+   "llegada": 1,
+   "numero": "42",
+   "nombre_libreta": "Juan M González",
+   "fila_imagen": "Juan M. González",
+   "puntos_imagen": 100
+  },
+  {
+   "llegada": 2,
+   "numero": "62",
+   "nombre_libreta": "A. Sanchez/G.Rodriguez",
+   "fila_imagen": "A. Sanchez + Gerardo Rodriguez",
+   "puntos_imagen": 93
+  },
+  {
+   "llegada": 3,
+   "numero": "93",
+   "nombre_libreta": "Luis Cobos",
+   "fila_imagen": "Luis Cobos",
+   "puntos_imagen": 85
+  },
+  {
+   "llegada": 4,
+   "numero": "9",
+   "nombre_libreta": "Enrique Ferrer",
+   "fila_imagen": "Enrique Ferrer",
+   "puntos_imagen": 80
+  },
+  {
+   "llegada": 5,
+   "numero": "88",
+   "nombre_libreta": "Emiliano Ortíz",
+   "fila_imagen": "Emiliano Ortíz",
+   "puntos_imagen": 78
+  },
+  {
+   "llegada": 6,
+   "numero": "66",
+   "nombre_libreta": "Gerardo Garibay",
+   "fila_imagen": "Jerry Garibay (N)",
+   "puntos_imagen": 76
+  },
+  {
+   "llegada": 7,
+   "numero": "28",
+   "nombre_libreta": "A. VanRankin / M. Garrido",
+   "fila_imagen": "Allan VanRankin / Michel Garrido",
+   "puntos_imagen": 74
+  },
+  {
+   "llegada": 8,
+   "numero": "4",
+   "nombre_libreta": "Yahir Aguilar",
+   "fila_imagen": "Yahir Aguilar (N)",
+   "puntos_imagen": 72
+  },
+  {
+   "llegada": 9,
+   "numero": "2",
+   "nombre_libreta": "Carlos Guzmán Jr",
+   "fila_imagen": "Carlos Guzmán Jr.",
+   "puntos_imagen": 70
+  },
+  {
+   "llegada": 10,
+   "numero": "23",
+   "nombre_libreta": "Camilo Mojica",
+   "fila_imagen": "Camilo Mojica (N)",
+   "puntos_imagen": 68
+  },
+  {
+   "llegada": 11,
+   "numero": "26",
+   "nombre_libreta": "Aldo Vincenti",
+   "fila_imagen": "Aldo Vincenti",
+   "puntos_imagen": 66
+  },
+  {
+   "llegada": 12,
+   "numero": "27",
+   "nombre_libreta": "S. Navarra / E. VanRankin",
+   "fila_imagen": "Santiago Navarro + Elliot VanRankin",
+   "puntos_imagen": 64
+  },
+  {
+   "llegada": 13,
+   "numero": "25",
+   "nombre_libreta": "H. Lemos / R. Vazquez",
+   "fila_imagen": "Rodrigo Vazquez / Henrique Lemos",
+   "puntos_imagen": 62
+  },
+  {
+   "llegada": 14,
+   "numero": "60",
+   "nombre_libreta": "V. Alfaro / E. Olvera",
+   "fila_imagen": "Victor Alfaro / Edgar Olvera",
+   "puntos_imagen": 0
+  },
+  {
+   "llegada": 15,
+   "numero": "94",
+   "nombre_libreta": "R .Osorio / A. Gamboa",
+   "fila_imagen": "Ramon Osorio / Adiel Gamboa",
+   "puntos_imagen": 0
+  },
+  {
+   "llegada": 16,
+   "numero": "8",
+   "nombre_libreta": "C. Lopez / E. Lopezpape",
+   "fila_imagen": "Calos Lopez / Edgar Lopezpape",
+   "puntos_imagen": 0
+  },
+  {
+   "llegada": 17,
+   "numero": "95",
+   "nombre_libreta": "Angel Salgado",
+   "fila_imagen": "Angel Salgado",
+   "puntos_imagen": 0
+  },
+  {
+   "llegada": 18,
+   "numero": "81",
+   "nombre_libreta": "Emilio Aguilar",
+   "fila_imagen": "Emilio Aguilar Sr. (N)",
+   "puntos_imagen": 0
+  },
+  {
+   "llegada": 19,
+   "numero": "1",
+   "nombre_libreta": "Rubén Rovelo",
+   "fila_imagen": "Ruben Rovelo",
+   "puntos_imagen": 0
+  },
+  {
+   "llegada": 20,
+   "numero": "50",
+   "nombre_libreta": "C. Arjona / A. Leal",
+   "fila_imagen": "C. Arjona + A. Leal",
+   "puntos_imagen": 0
+  }
+ ]
+}

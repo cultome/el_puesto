@@ -1,0 +1,24 @@
+# Postgres dedicado para El Puesto (desarrollo local).
+# Puerto host 55433 para no chocar con otros Postgres de la máquina (5432/55432).
+# Credenciales de DEV; se sobreescriben por env en otros entornos.
+services:
+  postgres:
+    image: postgres:16
+    container_name: el_puesto-postgres
+    environment:
+      POSTGRES_DB: el_puesto
+      POSTGRES_USER: el_puesto
+      POSTGRES_PASSWORD: el_puesto_dev
+    # Solo loopback: la base no queda expuesta a la red local.
+    ports:
+      - "127.0.0.1:55433:5432"
+    volumes:
+      - el_puesto_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U el_puesto -d el_puesto"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  el_puesto_pgdata:

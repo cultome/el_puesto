@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: #f2b134; } a:hover { color: #f6bb45; }
+          .dv-turn { padding: 48px 52px 40px; }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 700 16px/1.3 'Archivo', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-opts { display: flex; gap: 40px; align-items: flex-start; }
+          .dv-opt { display: flex; flex-direction: column; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; max-width: 384px; margin-bottom: 12px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 1000px; }
+
+          .phone { width: 384px; padding: 13px; border-radius: 46px; background: linear-gradient(160deg,#26282e,#111216); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.05); }
+          .screen { position: relative; border-radius: 34px; overflow: hidden; display: flex; flex-direction: column; background: radial-gradient(120% 40% at 50% 0%, #2a2f3a 0%, #1e222b 42%, #191c24 100%); color: #eceef2; min-height: 812px; }
+          .screen.fix { height: 812px; min-height: 0; }
+          .sbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px 0; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; flex: none; }
+          .sbar .dots { display: flex; gap: 5px; align-items: center; }
+          .sbar .dots span { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+          .sbar .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; position: relative; opacity: 0.85; }
+          .sbar .bat::after { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; right: 6px; background: currentColor; border-radius: 1px; }
+
+          .topbar { display: flex; align-items: center; gap: 8px; padding: 12px 20px 0; flex: none; }
+          .back { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: #eceef2; font-size: 19px; }
+          .tbrand { font: 800 12px 'Archivo', sans-serif; letter-spacing: 2px; color: #fff; margin: 0 auto; }
+          .tspace { width: 34px; flex: none; }
+          .offline { display: inline-flex; align-items: center; gap: 6px; font: 600 10px 'IBM Plex Sans', sans-serif; letter-spacing: 0.4px; color: #8aa0b2; text-transform: uppercase; }
+          .offline .d { width: 7px; height: 7px; border-radius: 50%; background: #5a6478; }
+
+          .h1 { font: 800 25px 'Archivo', sans-serif; color: #fff; letter-spacing: -0.4px; padding: 12px 22px 0; }
+          .search { display: flex; align-items: center; gap: 11px; height: 48px; margin: 14px 22px 0; padding: 0 15px; border-radius: 14px; background: #242833; border: 1px solid #333949; color: #6b7280; font: 400 14px 'IBM Plex Sans', sans-serif; }
+          .ic-search { width: 16px; height: 16px; position: relative; color: #8f96a3; flex: none; }
+          .ic-search::before { content: ''; position: absolute; width: 11px; height: 11px; border: 2px solid currentColor; border-radius: 50%; box-sizing: border-box; }
+          .ic-search::after { content: ''; position: absolute; right: -1px; bottom: -1px; width: 6px; height: 2px; background: currentColor; transform: rotate(45deg); transform-origin: right; border-radius: 2px; }
+
+          .body { padding: 6px 22px 26px; }
+          .pin { width: 9px; height: 9px; border: 2px solid currentColor; border-radius: 50% 50% 50% 0; transform: rotate(45deg); flex: none; }
+
+          .ccard { display: flex; gap: 15px; align-items: center; padding: 14px; border-radius: 18px; background: #242833; border: 1px solid #333949; margin-top: 14px; }
+          .thumb { width: 84px; height: 66px; border-radius: 12px; background: #1c2029; border: 1px solid #333949; position: relative; flex: none; overflow: hidden; }
+          .thumb .tl { position: absolute; left: 18px; top: 13px; width: 48px; height: 40px; border: 2px solid #5a6478; border-radius: 58% 42% 50% 50% / 55% 50% 50% 45%; }
+          .thumb .cfg { position: absolute; right: 5px; bottom: 4px; font: 700 8px 'IBM Plex Mono', monospace; color: #8f96a3; background: rgba(20,24,30,0.8); padding: 2px 5px; border-radius: 4px; }
+          .cc-info { flex: 1; }
+          .cc-name { font: 700 15.5px/1.2 'Archivo', sans-serif; color: #fff; }
+          .cc-loc { display: flex; align-items: center; gap: 7px; color: #8f96a3; font: 400 12.5px 'IBM Plex Sans', sans-serif; margin-top: 5px; }
+          .cc-meta { display: flex; gap: 8px; margin-top: 10px; font: 500 11.5px 'IBM Plex Mono', monospace; color: #aab0bd; }
+          .cc-meta span { display: inline-flex; gap: 4px; }
+          .cc-meta b { color: #f2b134; font-weight: 600; }
+          .chev { color: #5a6070; font-size: 22px; line-height: 1; flex: none; }
+
+          .cdt-head { padding: 12px 22px 0; flex: none; }
+          .cdt-head .nm { font: 800 19px/1.1 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; }
+          .cdt-head .lc { display: flex; align-items: center; gap: 7px; color: #aab0bd; font: 400 12px 'IBM Plex Sans', sans-serif; margin-top: 5px; }
+
+          .trbtn { flex: none; margin: 12px 22px 0; display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-radius: 16px; background: linear-gradient(150deg,#2c3141,#232735); border: 1px solid rgba(242,177,52,0.4); cursor: pointer; }
+          .trbtn .lab { flex: 1; }
+          .trbtn .lab small { display: block; font: 700 9px 'IBM Plex Mono', monospace; letter-spacing: 1.2px; color: #f2b134; text-transform: uppercase; margin-bottom: 4px; }
+          .trbtn .lab b { font: 800 17px 'Archivo', sans-serif; color: #fff; }
+          .trbtn .lab .mt { font: 600 11px 'IBM Plex Mono', monospace; color: #8f96a3; margin-top: 3px; }
+          .trbtn .car { width: 30px; height: 30px; border-radius: 9px; background: rgba(242,177,52,0.14); color: #f2b134; display: flex; align-items: center; justify-content: center; font-size: 12px; flex: none; }
+
+          .trackmap { flex: none; position: relative; height: 214px; border-radius: 18px; margin: 12px 22px 0; overflow: hidden; background: #1a1e26; background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size: 24px 24px; border: 1px solid #333949; }
+          .loop { position: absolute; left: 66px; top: 34px; width: 214px; height: 150px; border: 3px solid #737d92; border-radius: 60% 40% 52% 48% / 55% 52% 48% 45%; }
+          .sf { position: absolute; left: 150px; top: 28px; width: 24px; height: 11px; background-image: conic-gradient(#e7edf1 25%, transparent 0 50%, #e7edf1 0 75%, transparent 0); background-size: 5px 5px; background-color: #f2b134; border-radius: 2px; transform: rotate(-8deg); }
+          .mpin { position: absolute; width: 21px; height: 21px; border-radius: 50%; background: #2b3040; border: 2px solid #737d92; color: #c3c8d2; font: 700 10px 'IBM Plex Mono', monospace; display: flex; align-items: center; justify-content: center; }
+          .mpin.hist { border-color: #f2b134; color: #f5d493; box-shadow: 0 0 0 3px rgba(242,177,52,0.16); z-index: 2; }
+          .masset { position: absolute; width: 22px; height: 22px; border-radius: 7px; display: flex; align-items: center; justify-content: center; z-index: 2; }
+          .masset.gr { background: #16283d; border: 2px solid #4a90e2; color: #7fb7f0; }
+          .masset.am { background: #3a1c1f; border: 2px solid #f0524d; color: #ff8a86; }
+          .ic-cross { position: relative; width: 11px; height: 11px; }
+          .ic-cross::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 3.5px; background: currentColor; transform: translateX(-50%); border-radius: 1px; }
+          .ic-cross::after { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3.5px; background: currentColor; transform: translateY(-50%); border-radius: 1px; }
+          .ic-crane { position: relative; width: 12px; height: 12px; }
+          .ic-crane::before { content: ''; position: absolute; left: 1px; top: 0; width: 2.5px; height: 12px; background: currentColor; border-radius: 1px; }
+          .ic-crane::after { content: ''; position: absolute; left: 1px; top: 0; width: 10px; height: 2.5px; background: currentColor; border-radius: 1px; }
+          .mcap { position: absolute; left: 12px; bottom: 10px; font: 600 9px 'IBM Plex Mono', monospace; letter-spacing: 0.5px; color: #6f7683; text-transform: uppercase; }
+          .mtag { position: absolute; right: 11px; top: 11px; font: 700 8.5px 'IBM Plex Mono', monospace; letter-spacing: 0.6px; color: #f2b134; text-transform: uppercase; background: rgba(20,24,30,0.8); border: 1px solid rgba(242,177,52,0.3); padding: 4px 8px; border-radius: 6px; }
+
+          .legend { flex: none; display: flex; flex-wrap: wrap; gap: 9px 14px; padding: 11px 22px 0; font: 500 11px 'IBM Plex Sans', sans-serif; color: #aab0bd; }
+          .legend .it { display: flex; align-items: center; gap: 6px; }
+          .lsw { width: 16px; height: 16px; border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+          .lsw.p { border-radius: 50%; background: #2b3040; border: 2px solid #737d92; }
+          .lsw.hist { border-radius: 50%; background: #2b3040; border: 2px solid #f2b134; }
+          .lsw.g { background: #16283d; border: 2px solid #4a90e2; color: #7fb7f0; }
+          .lsw.a { background: #3a1c1f; border: 2px solid #f0524d; color: #ff8a86; }
+
+          .filters { flex: none; display: flex; gap: 8px; padding: 14px 22px 12px; overflow: hidden; border-bottom: 1px solid #262b36; }
+          .fchip { display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 100px; background: #242833; border: 1px solid #333949; font: 600 12.5px 'IBM Plex Sans', sans-serif; color: #9aa0ac; white-space: nowrap; }
+          .fchip .c { font: 700 11px 'IBM Plex Mono', monospace; opacity: 0.75; }
+          .fchip.on { background: #f2b134; border-color: #f2b134; color: #1c1405; }
+
+          .list { flex: 1; overflow: hidden; padding: 0 22px; position: relative; }
+          .litem { display: flex; align-items: center; gap: 13px; padding: 12px 0; border-bottom: 1px solid #262b36; }
+          .mk { width: 36px; height: 36px; border-radius: 10px; flex: none; display: flex; align-items: center; justify-content: center; font: 800 14px 'Archivo', sans-serif; }
+          .mk.p { background: #242833; border: 1px solid #3a4152; color: #eceef2; }
+          .mk.p.hist { border-color: rgba(242,177,52,0.55); color: #f5d493; }
+          .mk.g { background: #16283d; border: 1px solid #4a90e2; color: #7fb7f0; }
+          .mk.a { background: #3a1c1f; border: 1px solid #f0524d; color: #ff8a86; }
+          .ln { flex: 1; font: 600 14px 'IBM Plex Sans', sans-serif; color: #eceef2; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+          .past { font: 600 9.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.3px; color: #cf9f45; background: rgba(242,177,52,0.1); border: 1px solid rgba(242,177,52,0.28); padding: 3px 8px; border-radius: 6px; }
+          .locate { color: #5a6070; display: flex; align-items: center; gap: 5px; font: 500 11px 'IBM Plex Sans', sans-serif; flex: none; }
+          .list .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 46px; background: linear-gradient(180deg, rgba(25,28,36,0), #191c24); pointer-events: none; }
+
+          .scrim { position: absolute; inset: 0; background: rgba(10,12,16,0.62); z-index: 5; }
+          .sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 6; background: #20242e; border-radius: 24px 24px 0 0; border-top: 1px solid #3a4152; display: flex; flex-direction: column; max-height: 80%; }
+          .grip { width: 40px; height: 5px; border-radius: 3px; background: #3f4756; margin: 10px auto 4px; flex: none; }
+          .sheet .sh { padding: 8px 22px 6px; flex: none; }
+          .sheet .sh b { font: 800 19px 'Archivo', sans-serif; color: #fff; }
+          .sheet .sh small { display: block; font: 400 12.5px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 3px; }
+          .sl { flex: 1; overflow: hidden; padding: 8px 14px 18px; position: relative; }
+          .tzrow { display: flex; align-items: center; gap: 13px; padding: 13px 12px; border-radius: 14px; margin-bottom: 5px; border: 1px solid transparent; }
+          .tzrow.on { background: rgba(242,177,52,0.12); border-color: rgba(242,177,52,0.32); }
+          .tzrow .tn { flex: 1; }
+          .tzrow .tn b { font: 700 14.5px 'Archivo', sans-serif; color: #fff; }
+          .tzrow .tn small { display: block; font: 600 11px 'IBM Plex Mono', monospace; color: #8f96a3; margin-top: 3px; }
+          .tzrow.on .tn small { color: #d3b06a; }
+          .tzchk { width: 24px; height: 24px; border-radius: 50%; flex: none; border: 2px solid #3a4152; display: flex; align-items: center; justify-content: center; }
+          .tzrow.on .tzchk { background: #f2b134; border-color: #f2b134; color: #1c1405; font: 700 12px 'IBM Plex Sans', sans-serif; }
+        </style>
+      </helmet>
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">CI</a>
+          <span class="dv-tname">Circuitos &mdash; Paddock nocturno</span>
+          <span class="dv-tsub">cat&aacute;logo (independiente del evento) &middot; detalle: mapa fijo + filtro + lista &middot; selector de trazado</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CI-1</a><span><span class="dv-oname">Cat&aacute;logo.</span> Aut&oacute;dromos con su n&uacute;mero de configuraciones.</span></div>
+            <div class="phone" data-screen-label="Circuitos / Catalogo">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">CIRCUITOS</div><div class="tspace"></div></div>
+                <div class="h1">Circuitos</div>
+                <div class="search"><span class="ic-search"></span>Buscar circuito&hellip;</div>
+                <div class="body">
+                  <div class="ccard">
+                    <div class="thumb"><div class="tl"></div><div class="cfg">3</div></div>
+                    <div class="cc-info"><div class="cc-name">Aut&oacute;dromo Hermanos Rodr&iacute;guez</div><div class="cc-loc"><span class="pin"></span>Ciudad de M&eacute;xico</div><div class="cc-meta"><span><b>3</b> configuraciones</span></div></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                  <div class="ccard">
+                    <div class="thumb"><div class="tl" style="border-radius:45% 55% 60% 40% / 50% 50% 50% 50%"></div><div class="cfg">4</div></div>
+                    <div class="cc-info"><div class="cc-name">Aut&oacute;dromo de Quer&eacute;taro</div><div class="cc-loc"><span class="pin"></span>El Marqu&eacute;s, Quer&eacute;taro</div><div class="cc-meta"><span><b>4</b> configuraciones</span></div></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                  <div class="ccard">
+                    <div class="thumb"><div class="tl" style="border-radius:55% 45% 45% 55% / 60% 45% 55% 40%"></div><div class="cfg">2</div></div>
+                    <div class="cc-info"><div class="cc-name">Aut&oacute;dromo Miguel E. Abed</div><div class="cc-loc"><span class="pin"></span>Amozoc, Puebla</div><div class="cc-meta"><span><b>2</b> configuraciones</span></div></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                  <div class="ccard">
+                    <div class="thumb"><div class="tl" style="border-radius:50% 50% 55% 45% / 45% 55% 45% 55%"></div><div class="cfg">2</div></div>
+                    <div class="cc-info"><div class="cc-name">Aut&oacute;dromo Monterrey</div><div class="cc-loc"><span class="pin"></span>Apodaca, Nuevo Le&oacute;n</div><div class="cc-meta"><span><b>2</b> configuraciones</span></div></div>
+                    <span class="chev">&rsaquo;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CI-2</a><span><span class="dv-oname">Detalle.</span> Posiciones en mapa fijo; los puestos donde ya estuviste van marcados.</span></div>
+            <div class="phone" data-screen-label="Circuitos / Detalle">
+              <div class="screen fix">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">CIRCUITO</div><div class="tspace"></div></div>
+                <div class="cdt-head">
+                  <div class="nm">Aut&oacute;dromo Hermanos Rodr&iacute;guez</div>
+                  <div class="lc"><span class="pin"></span>Ciudad de M&eacute;xico &middot; <span class="offline"><span class="d"></span>Sin conexi&oacute;n</span></div>
+                </div>
+                <div class="trbtn">
+                  <div class="lab"><small>Trazado</small><b>Gran Premio</b><div class="mt">4.304 km &middot; 15 curvas &middot; 50 puestos</div></div>
+                  <div class="car">&#9660;</div>
+                </div>
+                <div class="trackmap">
+                  <div class="loop"></div><div class="sf"></div>
+                  <div class="mpin" style="left:112px;top:40px">2</div>
+                  <div class="mpin" style="left:150px;top:34px">3</div>
+                  <div class="mpin" style="left:196px;top:40px">5</div>
+                  <div class="mpin" style="left:240px;top:64px">6</div>
+                  <div class="mpin hist" style="left:264px;top:104px">7</div>
+                  <div class="mpin" style="left:250px;top:150px">9</div>
+                  <div class="mpin" style="left:196px;top:172px">11</div>
+                  <div class="mpin hist" style="left:120px;top:170px">14</div>
+                  <div class="mpin" style="left:72px;top:140px">17</div>
+                  <div class="mpin" style="left:62px;top:90px">19</div>
+                  <div class="mpin" style="left:82px;top:52px">21</div>
+                  <div class="masset gr" style="left:216px;top:100px"><span class="ic-crane"></span></div>
+                  <div class="masset gr" style="left:150px;top:150px"><span class="ic-crane"></span></div>
+                  <div class="masset am" style="left:100px;top:110px"><span class="ic-cross"></span></div>
+                  <div class="masset am" style="left:186px;top:66px"><span class="ic-cross"></span></div>
+                  <div class="mtag">Gran Premio</div>
+                  <div class="mcap">Toca un elemento para ubicarlo</div>
+                </div>
+                <div class="legend"><span class="it"><span class="lsw p"></span>Puestos</span><span class="it"><span class="lsw hist"></span>Asignado antes</span><span class="it"><span class="lsw g"><span class="ic-crane"></span></span>Gr&uacute;as</span><span class="it"><span class="lsw a"><span class="ic-cross"></span></span>Ambulancias</span></div>
+                <div class="filters">
+                  <span class="fchip on">Todos <span class="c">62</span></span>
+                  <span class="fchip">Puestos <span class="c">50</span></span>
+                  <span class="fchip">Gr&uacute;as <span class="c">8</span></span>
+                  <span class="fchip">Ambulancias <span class="c">4</span></span>
+                </div>
+                <div class="list">
+                  <div class="litem"><span class="mk p">6</span><span class="ln">Puesto 6</span><span class="locate"><span class="pin"></span>Ubicar</span></div>
+                  <div class="litem"><span class="mk p hist">7</span><span class="ln">Puesto 7 <span class="past">Asignado antes</span></span><span class="locate"><span class="pin"></span>Ubicar</span></div>
+                  <div class="litem"><span class="mk g"><span class="ic-crane"></span></span><span class="ln">Gr&uacute;a 3</span><span class="locate"><span class="pin"></span>Ubicar</span></div>
+                  <div class="litem"><span class="mk p">8</span><span class="ln">Puesto 8</span><span class="locate"><span class="pin"></span>Ubicar</span></div>
+                  <div class="litem"><span class="mk a"><span class="ic-cross"></span></span><span class="ln">Ambulancia 1</span><span class="locate"><span class="pin"></span>Ubicar</span></div>
+                  <div class="litem"><span class="mk p">9</span><span class="ln">Puesto 9</span><span class="locate"><span class="pin"></span>Ubicar</span></div>
+                  <div class="litem"><span class="mk p">10</span><span class="ln">Puesto 10</span><span class="locate"><span class="pin"></span>Ubicar</span></div>
+                  <div class="fade"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CI-3</a><span><span class="dv-oname">Selector de trazado.</span> Hoja desplegable; escala a una docena.</span></div>
+            <div class="phone" data-screen-label="Circuitos / Selector trazado">
+              <div class="screen fix">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">CIRCUITO</div><div class="tspace"></div></div>
+                <div class="cdt-head">
+                  <div class="nm">Aut&oacute;dromo Hermanos Rodr&iacute;guez</div>
+                  <div class="lc"><span class="pin"></span>Ciudad de M&eacute;xico</div>
+                </div>
+                <div class="trbtn"><div class="lab"><small>Trazado</small><b>Gran Premio</b><div class="mt">4.304 km &middot; 15 curvas &middot; 50 puestos</div></div><div class="car">&#9660;</div></div>
+                <div class="trackmap"><div class="loop"></div><div class="sf"></div><div class="mtag">Gran Premio</div></div>
+                <div class="scrim"></div>
+                <div class="sheet">
+                  <div class="grip"></div>
+                  <div class="sh"><b>Elegir trazado</b><small>12 configuraciones en este aut&oacute;dromo</small></div>
+                  <div class="sl">
+                    <div class="tzrow on"><div class="tn"><b>Gran Premio</b><small>4.304 km &middot; 15 curvas &middot; 50 puestos</small></div><div class="tzchk">&#10003;</div></div>
+                    <div class="tzrow"><div class="tn"><b>GP sin peralte</b><small>4.150 km &middot; 14 curvas &middot; 48 puestos</small></div><div class="tzchk"></div></div>
+                    <div class="tzrow"><div class="tn"><b>Alterno norte</b><small>3.900 km &middot; 13 curvas &middot; 44 puestos</small></div><div class="tzchk"></div></div>
+                    <div class="tzrow"><div class="tn"><b>Alterno sur</b><small>3.720 km &middot; 12 curvas &middot; 42 puestos</small></div><div class="tzchk"></div></div>
+                    <div class="tzrow"><div class="tn"><b>Corto A</b><small>2.640 km &middot; 10 curvas &middot; 30 puestos</small></div><div class="tzchk"></div></div>
+                    <div class="tzrow"><div class="tn"><b>Corto B</b><small>2.310 km &middot; 9 curvas &middot; 26 puestos</small></div><div class="tzchk"></div></div>
+                    <div class="tzrow"><div class="tn"><b>&Oacute;valo</b><small>2.100 km &middot; 4 curvas &middot; 18 puestos</small></div><div class="tzchk"></div></div>
+                    <div class="fade"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Cat&aacute;logo cerrado. Prueba pedir: &ldquo;sigamos con Campeonatos&rdquo; &middot; &ldquo;muestra el detalle de un activo (gr&uacute;a) al tocarlo&rdquo; (te pedir&eacute; confirmaci&oacute;n primero).</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

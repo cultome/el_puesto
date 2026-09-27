@@ -1,0 +1,43 @@
+WRC 2026 — posiciones de pilotos (investigación 2026-09-27, verificado con curl)
+
+Página pedida: https://www.wrc.com/en/results-and-standings/championship-standings
+  - 200 con el UA del proyecto (Akamai; x-akamai-user-cache-control 600 s). "Java-http-client/21" → 403 Access Denied (bloqueo por UA, no reto).
+  - robots.txt de www.wrc.com: Disallow /*?* (salvo /v3/api/*?* y /v3/config/pages?*). La página no lleva query → permitida.
+  - El HTML NO trae la tabla: un panel "custom-scripts-panel" carga
+    https://p-p.redbull.com/rb-wrccom-lintegration-yv-prod/bundle.js (scriptConfig {page: "standings"})
+    y ese bundle hace fetch() SIN cabeceras ni llave a https://p-p.redbull.com/rb-wrccom-lintegration-yv-prod/api/*.json
+  - p-p.redbull.com: Cloudflare (cookie __cf_bm, sin reto, sin cf-mitigated), Express en DigitalOcean,
+    cache-control public max-age=30; robots.txt = 404 (no hay reglas).
+  - El widget elige la temporada con year === new Date().getFullYear() (el 1-ene cambia sola); nosotros pedimos por año.
+
+Peticiones por corrida (base B = …/api):
+  1 B/seasons.json                                          → seasonId (name == "World Rally Championship" && year == 2026 → 47; 2025 → 34)
+  2 B/season-detail.json?seasonId=47                        → championships[] (id por nombre exacto) + seasonRounds[] (order, eventId, start/finishDate)
+  3 B/championship-overall-results.json?championshipId=C&seasonId=47  → entryResults (pos, puntos, roundResults por rally; SIN nombres)
+  4 B/championship-detail.json?championshipId=C&seasonId=47           → championshipEntries (nombre, país, marca, equipo, personId)
+  5 B/live-events.json                                      → [] o [{eventId, seasonName, …}] (opcional)
+  (+2 por rally, opcional) B/events/<eventId>.json → rallies[isMain].rallyId ; B/events/<eventId>/rallies/<rallyId>/entries.json → número y entrant
+
+Tablas 2026: WRC 333 "FIA World Rally Championship for Drivers", WRC2 337 "FIA WRC2 Championship for Drivers",
+             WRC3 344 "FIA WRC3 Championship for Drivers", JWRC 346 "FIA Junior WRC Championship for Drivers" (2025: 287/291/298/300).
+
+Hallazgos nuevos vs docs/fuentes-posiciones/wrc.md (2026-09-25):
+  - personId NO es estable entre temporadas (Ogier 2025 = 670, 2026 = 21334; Evans 534 → 21336). Solo dentro de la temporada.
+  - Y puede cambiar a media temporada en las inscripciones: Zaldivar = 21789 en la tabla ("Fau") y en sus rallies 3-9 ("Fabrizio"),
+    pero 24330 en Finlandia/Paraguay/Chile. La tabla conserva 21789.
+  - WRC3 tiene un piloto sin nombre de pila (fieldOne "", fieldTwo "FLANDY").
+  - El equipo de un privado es su propio nombre (entrant "GUS GREENSMITH") → usar la marca.
+  - Suma de puntos por rally: WRC = 130 en los 12 rallies (100 rally + 15 Super Sunday + 15 Power Stage); WRC2 = 100 en los 12.
+  - Números de coche: solo en entries.json, por rally; se repiten entre pilotos (Fontana #54 en Finlandia, Lassila #54 en Chile).
+  - live-events: los elementos traen eventId y seasonName (del bundle: setLiveEvents).
+  - La página de standings muestra overall-results; la tabla "Provisional" en vivo es otra (championship-live-results, página results).
+
+Términos (policies.redbull.com/policies/WorldRallyChampionship/202608261510/en/terms.html → terminos-wrc.txt):
+  "vii. use any means to spider, harvest, scrape, crawl, or participate in the use of software … to collect data from the Properties"
+
+Archivos:
+  wrc_standings.py      prototipo (--year --category wrc|wrc2|wrc3|jwrc --round --race-day [--numbers] [--offline muestras])
+  muestras/             respuestas crudas del API (seasons, season-detail 34/47/48, overall/detail 333/337/344/346 + 287, events + entries 635-646, live-events)
+  out-*.json            salida del prototipo (tablas completas con número)
+  page.html/.hdr        la página de standings; bundle.js/.hdr el widget; robots.txt; java403.html; terminos-wrc.txt
+  overall-*.json detail-*.json season-detail-47.json seasons.json entries-646.json event-646.json  (primeras descargas)

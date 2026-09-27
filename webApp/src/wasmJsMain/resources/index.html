@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1E222B">
+  <meta name="referrer" content="no-referrer">
+  <title>El Puesto</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #191C24; overflow: hidden; }
+    #app { position: fixed; inset: 0; }
+    #cargando { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
+                justify-content: center; gap: 14px; color: #9AA3B5; font: 14px system-ui, sans-serif; }
+    #cargando b { color: #F2B134; letter-spacing: 3px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <div id="cargando"><b>EL PUESTO</b><span>Cargando…</span></div>
+  <div id="app"></div>
+  <script src="elpuesto.js"></script>
+</body>
+</html>

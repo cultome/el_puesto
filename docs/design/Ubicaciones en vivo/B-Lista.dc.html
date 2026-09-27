@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>B · Mapa en vivo con la lista abierta</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#141720;font-family:'IBM Plex Sans',sans-serif;color:#ECEEF2}
+a{color:#F2B134;text-decoration:none}a:hover{color:#F6BB45}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #171A22; display: flex; flex-direction: column; overflow: hidden; position: relative">
+<div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; background: #171A22">
+<div style="position: absolute; left: -10px; top: 110px; width: 420px; height: 300px">
+<svg width="420" height="300" viewBox="0 0 340 240" style="position: absolute; left: 0; top: 0; opacity: 0.4" aria-hidden="true"><path d="M40 62 L270 40 C300 36 314 52 306 74 L292 110 C286 128 300 140 296 162 C292 188 262 198 240 190 L172 170 C150 164 140 180 128 198 C112 218 80 216 70 198 L52 162 C44 146 60 134 58 118 C56 102 34 98 34 82 C34 70 36 64 40 62 Z" fill="none" stroke="#3E4556" stroke-width="12" stroke-linejoin="round"></path><path d="M40 62 L270 40 C300 36 314 52 306 74 L292 110 C286 128 300 140 296 162 C292 188 262 198 240 190 L172 170 C150 164 140 180 128 198 C112 218 80 216 70 198 L52 162 C44 146 60 134 58 118 C56 102 34 98 34 82 C34 70 36 64 40 62 Z" fill="none" stroke="#565E71" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+
+</div></div><div style="position: absolute; left: 0; top: 0; width: 390px; padding: 12px 20px; box-sizing: border-box; display: flex; align-items: center; gap: 12px">
+<button aria-label="Regresar" style="width: 42px; height: 42px; border-radius: 12px; background: rgba(42,46,57,0.94); border: 1px solid #3A4152; color: #ECEEF2; font-size: 22px">‹</button>
+<div style="flex-grow: 1; display: flex; align-items: center; gap: 8px"><div style="width: 8px; height: 8px; border-radius: 4px; background: #3FDD85; box-shadow: 0 0 0 5px rgba(63,221,133,0.18)"></div><div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 2px; color: #F2B134">MAPA EN VIVO</div></div>
+<button style="height: 36px; padding: 0 12px; border-radius: 18px; background: rgba(42,46,57,0.94); border: 1px solid #3A4152; color: #AAB0BD; font-size: 12px; font-weight: 600">Puestos ✓</button></div>
+<div style="position: absolute; left: 0; bottom: 0; width: 390px; height: 560px; box-sizing: border-box; padding: 10px 20px 24px 20px; border-radius: 22px 22px 0 0; background: #242833; border-top: 1px solid #3A4152; display: flex; flex-direction: column; gap: 6px">
+<div style="align-self: center; width: 40px; height: 4px; border-radius: 2px; background: #3A4152"></div>
+<div style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 6px"><div style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 17px; color: #FFFFFF">Te comparten su ubicación</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #F2B134">4</div></div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid #2A2F3B"><div style="width: 44px; height: 44px; border-radius: 50%; overflow: hidden; box-sizing: border-box; border: 2px solid #7FB7F0;  background: #56697E; flex-shrink: 0"><svg width="100%" height="100%" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="13.5" r="6.2" fill="#D5DBE4"></circle><path d="M4.5 34c1.2-8 6.3-12.2 12.5-12.2S28.3 26 29.5 34z" fill="#D5DBE4"></path></svg></div><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><div style="font-size: 14px; font-weight: 600; color: #ECEEF2">Ana Ruiz</div><div style="font-size: 12px; color: #AAB0BD">Intervención 2 · 11.5</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #3FDD85">hace 20 s · ±6 m</div></div><button style="height: 36px; padding: 0 12px; border-radius: 10px; background: none; border: 1px solid #3A4152; color: #F2B134; font-size: 12.5px; font-weight: 600">Ubicar</button></div><div style="display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid #2A2F3B"><div style="width: 44px; height: 44px; border-radius: 50%; overflow: hidden; box-sizing: border-box; border: 2px solid #7FB7F0;  background: #6E5B7E; flex-shrink: 0"><svg width="100%" height="100%" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="13.5" r="6.2" fill="#D5DBE4"></circle><path d="M4.5 34c1.2-8 6.3-12.2 12.5-12.2S28.3 26 29.5 34z" fill="#D5DBE4"></path></svg></div><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><div style="font-size: 14px; font-weight: 600; color: #ECEEF2">Luis Mora</div><div style="font-size: 12px; color: #AAB0BD">Bandera Azul · 0.5</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #3FDD85">hace 45 s · ±11 m</div></div><button style="height: 36px; padding: 0 12px; border-radius: 10px; background: none; border: 1px solid #3A4152; color: #F2B134; font-size: 12.5px; font-weight: 600">Ubicar</button></div><div style="display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid #2A2F3B"><div style="width: 44px; height: 44px; border-radius: 50%; overflow: hidden; box-sizing: border-box; border: 2px solid #7FB7F0; filter: grayscale(1); opacity: 0.55; background: #5B7F6E; flex-shrink: 0"><svg width="100%" height="100%" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="13.5" r="6.2" fill="#D5DBE4"></circle><path d="M4.5 34c1.2-8 6.3-12.2 12.5-12.2S28.3 26 29.5 34z" fill="#D5DBE4"></path></svg></div><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><div style="font-size: 14px; font-weight: 600; color: #ECEEF2">Rosa Díaz</div><div style="font-size: 12px; color: #AAB0BD">Comunicador · 9.8</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #8F96A3">hace 4 min · señal vieja</div></div><button style="height: 36px; padding: 0 12px; border-radius: 10px; background: none; border: 1px solid #3A4152; color: #F2B134; font-size: 12.5px; font-weight: 600">Ubicar</button></div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600; letter-spacing: 1px; color: #8F96A3; padding-top: 10px">FUERA DEL CIRCUITO</div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 8px 0"><div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; box-sizing: border-box; border: 2px solid #3A4152;  background: #7F6A5B; flex-shrink: 0"><svg width="100%" height="100%" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="13.5" r="6.2" fill="#D5DBE4"></circle><path d="M4.5 34c1.2-8 6.3-12.2 12.5-12.2S28.3 26 29.5 34z" fill="#D5DBE4"></path></svg></div><div style="flex-grow: 1"><div style="font-size: 14px; font-weight: 600; color: #ECEEF2">Iván Soto</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #8F96A3">hace 1 min · fuera del mapa</div></div></div>
+<div style="margin-top: auto; font-size: 12px; color: #8F96A3">Solo ves a quien decide compartirte. <a href="#">Configurar</a></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-09-25T18:48:10Z"
+ },
+ "title": "Ubicaciones en vivo",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "A-Puesto.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "A · Tab Puesto: el mapa primero"
+  },
+  "A-Home.dc.html": {
+   "x": 470,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "A · Home: aviso en la tarjeta del evento"
+  },
+  "Pines.dc.html": {
+   "x": 1040,
+   "y": 0,
+   "w": 390,
+   "h": 620,
+   "title": "Pin de persona (ambas opciones)"
+  },
+  "B-Mapa.dc.html": {
+   "x": 0,
+   "y": 1264,
+   "w": 390,
+   "h": 844,
+   "title": "B · Mapa en vivo (pantalla completa)"
+  },
+  "B-Lista.dc.html": {
+   "x": 470,
+   "y": 1264,
+   "w": 390,
+   "h": 844,
+   "title": "B · Mapa en vivo: lista abierta"
+  }
+ },
+ "order": [
+  "A-Puesto.dc.html",
+  "A-Home.dc.html",
+  "Pines.dc.html",
+  "B-Mapa.dc.html",
+  "B-Lista.dc.html"
+ ],
+ "notes": {
+  "tA": {
+   "x": 0,
+   "y": -300,
+   "text": "A · El mapa primero, dentro del Modo evento",
+   "kind": "title1",
+   "maxW": 1430
+  },
+  "tB": {
+   "x": 0,
+   "y": 964,
+   "text": "B · Un «Mapa en vivo» a pantalla completa",
+   "kind": "title1",
+   "maxW": 860
+  },
+  "sA": {
+   "x": 1040,
+   "y": 700,
+   "w": 390,
+   "text": "A: el chip «3 en vivo · Encuadrar» ajusta el mapa para ver a todos; la tira bajo el mapa reemplaza la lista del fondo. En el Home, la tarjeta del evento avisa quién te comparte y abre el mapa. El aviso «X te comparte» también abre el mapa.",
+   "size": "s"
+  },
+  "sB": {
+   "x": 940,
+   "y": 1264,
+   "w": 390,
+   "text": "B: pantalla propia (desde el Home, el aviso y el ⤢ del mapa del tab Puesto) con la hoja inferior: vistazo con avatares, arrastrar para la lista completa con rol y posición. El tab Puesto se queda con su mapa chico.",
+   "size": "s"
+  }
+ },
+ "designSystems": []
+}

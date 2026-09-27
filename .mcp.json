@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "el-puesto-admin": {
+      "command": "./adminMcp/run.sh"
+    }
+  }
+}

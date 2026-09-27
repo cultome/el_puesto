@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Agenda · lo que viene</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: {{alto}}px; box-sizing: border-box; background: linear-gradient(180deg,#2A2F3A 0%,#1E222B 40%,#191C24 100%); display: flex; flex-direction: column; overflow: hidden; font-family: 'IBM Plex Sans', sans-serif; color: #ECEEF2">
+
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 22px 0 22px; flex-shrink: 0">
+<h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px; color: #FFFFFF">Agenda</h1>
+<button type="button" aria-label="Agregar planeación" style="width: 42px; height: 42px; border-radius: 12px; background: #242833; border: 1px solid #333949; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2B134" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
+</div>
+
+<div style="flex-grow: 1; overflow-y: auto; padding: 14px 22px 24px 22px; display: flex; flex-direction: column">
+
+<div style="display: flex; align-items: center; justify-content: space-between; min-height: 36px">
+<div style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 16px; color: #FFFFFF">{{monthLabel}}</div>
+<div style="display: flex; gap: 6px; align-items: center">
+<sc-if value="{{showHoy}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{goHoy}}" style="height: 36px; padding: 0 12px; border-radius: 10px; background: #242833; border: 1px solid #333949; color: #F2B134; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: 1px; cursor: pointer">HOY</button>
+</sc-if>
+<button type="button" onClick="{{prev}}" aria-label="Mes anterior" style="width: 36px; height: 36px; border-radius: 10px; background: #242833; border: 1px solid #333949; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F2B134" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></button>
+<button type="button" onClick="{{next}}" aria-label="Mes siguiente" style="width: 36px; height: 36px; border-radius: 10px; background: #242833; border: 1px solid #333949; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F2B134" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); margin-top: 12px">
+<span style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; color: #8F96A3">Do</span>
+<span style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; color: #8F96A3">Lu</span>
+<span style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; color: #8F96A3">Ma</span>
+<span style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; color: #8F96A3">Mi</span>
+<span style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; color: #8F96A3">Ju</span>
+<span style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; color: #8F96A3">Vi</span>
+<span style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; color: #8F96A3">Sa</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 2px; margin-top: 4px">
+<sc-for list="{{weeks}}" as="week" hint-placeholder-count="5">
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr))">
+<sc-for list="{{week.cells}}" as="cell" hint-placeholder-count="7">
+<div style="height: 48px; position: relative">
+<sc-if value="{{cell.real}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{cell.pick}}" aria-label="{{cell.aria}}" aria-pressed="{{cell.selected}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: transparent; border: none; padding: 0; cursor: pointer">
+<sc-if value="{{cell.band}}" hint-placeholder-val="{{false}}">
+<span style="position: absolute; top: 4px; height: 34px; left: {{cell.bl}}px; right: {{cell.br}}px; border-radius: {{cell.radius}}; background: rgba(242,177,52,0.15)"></span>
+</sc-if>
+<span style="position: absolute; top: 4px; left: 50%; margin-left: -17px; width: 34px; height: 34px; box-sizing: border-box; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; font-weight: {{cell.weight}}; color: {{cell.color}}; background: {{cell.bg}}; border: {{cell.border}}">{{cell.num}}</span>
+<span style="position: absolute; left: 0; right: 0; top: 41px; display: flex; justify-content: center; gap: 3px; opacity: {{cell.dotOpacity}}">
+<sc-for list="{{cell.dots}}" as="dot" hint-placeholder-count="1">
+<span style="width: 4px; height: 4px; border-radius: 999px; background: {{dot.color}}"></span>
+</sc-for>
+</span>
+</button>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+
+<sc-if value="{{isDay}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px">
+<div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10.5px; letter-spacing: 1px; color: #F2B134">{{day.kicker}}</span>
+<h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 18px; color: #FFFFFF">{{day.title}}</h2>
+</div>
+<button type="button" onClick="{{clearSel}}" style="height: 44px; padding: 0 14px; flex-shrink: 0; border-radius: 12px; background: #242833; border: 1px solid #3A4152; display: flex; align-items: center; gap: 7px; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 13px; color: #D5D9E0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#AAB0BD" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>Todo el mes</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isOverview}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; align-items: baseline; justify-content: space-between; margin-top: 18px">
+<h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-size: 16px; color: #FFFFFF">{{ov.title}}</h2>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8F96A3">{{ov.count}}</span>
+</div>
+<sc-if value="{{ov.hasPast}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{togglePast}}" aria-expanded="{{expanded}}" style="margin-top: 12px; min-height: 44px; width: 100%; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 12px; background: transparent; border: 1px dashed #3A4152; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; letter-spacing: 0.8px; color: #AAB0BD; text-align: left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#AAB0BD" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate({{ov.chevRot}}deg)"><path d="M9 5l7 7-7 7"></path></svg>{{ov.pastLabel}}</button>
+</sc-if>
+</sc-if>
+
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+<div style="display: flex; flex-direction: column; margin-top: 14px; opacity: {{g.opacity}}">
+<sc-if value="{{g.showHeader}}" hint-placeholder-val="{{true}}">
+<div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10.5px; letter-spacing: 1px; color: {{g.headerColor}}; margin-bottom: 8px">{{g.header}}</div>
+</sc-if>
+<sc-for list="{{g.mine}}" as="c" hint-placeholder-count="1">
+<button type="button" style="display: flex; gap: 12px; align-items: flex-start; width: 100%; text-align: left; padding: 12px 14px; margin-bottom: 8px; border-radius: 14px; background: #242833; border: 1px solid {{c.border}}; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif; color: #ECEEF2">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: {{c.tint}}; border: 1px solid {{c.line}}">
+<sc-if value="{{c.hasBadge}}" hint-placeholder-val="{{false}}">
+<span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 12px; color: {{c.accent}}">{{c.badge}}</span>
+</sc-if>
+<sc-if value="{{c.hasIcon}}" hint-placeholder-val="{{true}}">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="{{c.icon}}"></path></svg>
+</sc-if>
+</span>
+<span style="display: flex; flex-direction: column; gap: 3px; min-width: 0; flex-grow: 1">
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: 0.8px; color: {{c.accent}}">{{c.kicker}}</span>
+<span style="font-weight: 600; font-size: 14px; line-height: 1.3; color: #ECEEF2">{{c.title}}</span>
+<sc-if value="{{c.hasSub}}" hint-placeholder-val="{{true}}">
+<span style="font-size: 12px; color: #8F96A3">{{c.sub}}</span>
+</sc-if>
+<sc-if value="{{c.hasChip}}" hint-placeholder-val="{{false}}">
+<span style="align-self: flex-start; margin-top: 5px; padding: 4px 9px; border-radius: 8px; background: rgba(242,177,52,0.14); border: 1px solid rgba(242,177,52,0.3); font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; color: #F2B134">{{c.chip}}</span>
+</sc-if>
+</span>
+</button>
+</sc-for>
+<sc-if value="{{g.hasRaces}}" hint-placeholder-val="{{true}}">
+<div style="border-radius: 14px; background: #20242E; border: 1px solid #2B303C; overflow: hidden; display: flex; flex-direction: column">
+<sc-for list="{{g.races}}" as="r" hint-placeholder-count="2">
+<button type="button" style="display: flex; align-items: center; gap: 10px; width: 100%; min-height: 52px; text-align: left; padding: 8px 12px; background: transparent; border: none; border-top: {{r.divider}}; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif">
+<span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 8px; background: #2C3141; border: 1px solid #3A4152; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 9px; color: #AAB0BD">{{r.badge}}</span>
+<span style="display: flex; flex-direction: column; gap: 1px; min-width: 0; flex-grow: 1">
+<span style="font-weight: 500; font-size: 13.5px; color: #DDE0E6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.title}}</span>
+<span style="font-size: 11.5px; color: #8F96A3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.sub}}</span>
+</span>
+<span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: 0.5px; color: #8F96A3">{{r.right}}</span>
+</button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-for>
+
+<sc-if value="{{isEmptyDay}}" hint-placeholder-val="{{false}}">
+<div style="margin-top: 14px; padding: 28px 20px; border-radius: 16px; border: 1px dashed #333949; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<span style="width: 52px; height: 52px; border-radius: 999px; background: #242833; border: 1px solid #333949; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8F96A3" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"></path></svg></span>
+<span style="margin-top: 4px; font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF">{{day.emptyTitle}}</span>
+<span style="font-size: 12.5px; line-height: 1.45; color: #8F96A3; max-width: 250px">Sin carreras ni planes este día.</span>
+<button type="button" style="margin-top: 10px; height: 44px; padding: 0 18px; border-radius: 12px; background: #F2B134; border: none; display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 13.5px; color: #1C1405"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C1405" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Planear algo este día</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ovEmpty}}" hint-placeholder-val="{{false}}">
+<div style="margin-top: 14px; padding: 24px 20px; border-radius: 16px; border: 1px dashed #333949; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center">
+<span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF">{{ov.emptyTitle}}</span>
+<span style="font-size: 12.5px; line-height: 1.45; color: #8F96A3; max-width: 260px">Toca + para planear un viaje o agregar un recordatorio.</span>
+</div>
+</sc-if>
+
+<sc-if value="{{ov.hasNext}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{goNext}}" style="margin-top: 18px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 16px; border-radius: 14px; background: #242833; border: 1px solid #333949; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif; text-align: left">
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: 1px; color: #8F96A3">SIGUIENTE</span>
+<span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF">{{ov.nextLabel}}</span>
+</span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2B134" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+</button>
+</sc-if>
+
+</div>
+
+<nav aria-label="Principal" style="flex-shrink: 0; background: #191C24; border-top: 1px solid #262B36; display: flex; justify-content: space-around; padding: 12px 8px 14px 8px">
+<button type="button" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 2px 14px; background: transparent; border: none; cursor: pointer">
+<svg width="22" height="21" viewBox="0 0 22 21"><path d="M11 0L22 10.1H0z" fill="#6F7683"></path><rect x="4.5" y="10" width="13" height="9.5" rx="2" fill="none" stroke="#6F7683" stroke-width="2"></rect></svg>
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: 1px; color: #8F96A3">INICIO</span>
+</button>
+<button type="button" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 2px 14px; background: transparent; border: none; cursor: pointer">
+<svg width="21" height="21" viewBox="0 0 21 21"><rect x="1" y="1" width="19" height="19" rx="5" fill="none" stroke="#F2B134" stroke-width="2"></rect><rect x="0" y="0" width="21" height="6.3" rx="4" fill="#F2B134"></rect><rect x="3.1" y="10.9" width="3" height="3" fill="#F2B134"></rect><rect x="9" y="10.9" width="3" height="3" fill="#F2B134"></rect><rect x="14.9" y="10.9" width="3" height="3" fill="#F2B134"></rect><rect x="3.1" y="15.9" width="3" height="3" fill="#F2B134"></rect><rect x="9" y="15.9" width="3" height="3" fill="#F2B134"></rect></svg>
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: 1px; color: #F2B134">AGENDA</span>
+</button>
+<button type="button" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 2px 14px; background: transparent; border: none; cursor: pointer">
+<svg width="22" height="22" viewBox="0 0 22 22"><rect x="1" y="1" width="20" height="15" rx="7" fill="none" stroke="#6F7683" stroke-width="2"></rect><path d="M4.8 14.5H10.1L6.6 22z" fill="#6F7683"></path></svg>
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: 1px; color: #8F96A3">CHATS</span>
+</button>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"escena":{"editor":"enum","options":["entrada","anteriores","dia","vacio","otroMes"],"default":"entrada"},"alto":{"editor":"int","default":1020,"min":844,"max":2400,"unit":"px"},"rangoTrabajas":{"editor":"boolean","default":true},"$preview":{"width":390,"height":1020}}'>
+// Hoy fijo para la maqueta (domingo 27 de septiembre de 2026).
+const HOY = '2026-09-27';
+const AMBER = '#F2B134';
+const BLUE = '#7FB7F0';
+const GREEN = '#3FDD85';
+const RACE_DOT = '#5B6272';
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const MES_CORTO = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+const ICON = {
+  transport: 'M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z',
+  lodging: 'M3 19V7M3 15h18v4M21 15v-3a3 3 0 0 0-3-3h-7v6M5.2 11.5a1.8 1.8 0 1 0 3.6 0a1.8 1.8 0 1 0 -3.6 0',
+  reminder: 'M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0',
+  conv: 'M6 4h9l3 3v13H6zM9 11h6M9 15h4',
+};
+
+// Fines de semana de campeonato reales (data/campeonatos/2026), sept–dic. "days" = qué
+// categorías corren cada día. El GP de México no está aquí: se funde con el evento que trabajas.
+const RACES = [
+  { serie: 'F1', title: 'Italian Grand Prix', place: 'Autodromo Nazionale di Monza', start: '2026-09-04', end: '2026-09-06', days: { '2026-09-06': 'Fórmula 1, Fórmula 2, Fórmula 3' } },
+  { serie: 'INDY', title: 'Mission Foods Grand Prix of Monterey', place: 'WeatherTech Raceway Laguna Seca', start: '2026-09-04', end: '2026-09-06', days: { '2026-09-05': 'Indy NXT', '2026-09-06': 'Indy NXT, IndyCar Series' } },
+  { serie: 'WEC', title: 'Lone Star Le Mans', place: 'Circuit of the Americas', start: '2026-09-04', end: '2026-09-06', days: { '2026-09-06': 'Hypercar, LMGT3' } },
+  { serie: 'NAS', title: 'Cook Out Southern 500', place: 'Darlington Raceway', start: '2026-09-05', end: '2026-09-06', days: { '2026-09-05': "O'Reilly Auto Parts Series", '2026-09-06': 'Cup Series' } },
+  { serie: 'WRC', title: 'Rally Chile Bio Bío', place: 'Talcahuano, Chile', start: '2026-09-10', end: '2026-09-13', days: { '2026-09-13': 'WRC, WRC2, WRC3, Junior WRC' } },
+  { serie: 'F1', title: 'Spanish Grand Prix', place: 'Madring', start: '2026-09-11', end: '2026-09-13', days: { '2026-09-13': 'Fórmula 1, Fórmula 2, Fórmula 3' } },
+  { serie: 'MRC', title: 'Gran Premio México Súper Fan', place: 'Autódromo Miguel E. Abed', start: '2026-09-11', end: '2026-09-13', days: { '2026-09-12': 'Copa TC2000, Copa 1.8, F4 NACAM, Súper Turismos, Súper Turismos Light 1, Súper Turismos Light 2', '2026-09-13': 'TCR México, Endurance Challenge' } },
+  { serie: 'NAS', title: 'Enjoy Illinois 300', place: 'World Wide Technology Raceway', start: '2026-09-12', end: '2026-09-13', days: { '2026-09-12': "O'Reilly Auto Parts Series", '2026-09-13': 'Cup Series' } },
+  { serie: 'NAS', title: 'Bass Pro Shops Night Race', place: 'Bristol Motor Speedway', start: '2026-09-17', end: '2026-09-19', days: { '2026-09-17': 'Craftsman Truck Series', '2026-09-18': "O'Reilly Auto Parts Series", '2026-09-19': 'Cup Series' } },
+  { serie: 'F1', title: 'Azerbaijan Grand Prix', place: 'Baku City Circuit', start: '2026-09-24', end: '2026-09-26', days: { '2026-09-26': 'Fórmula 1, Fórmula 2' } },
+  { serie: 'NAS', title: 'Hollywood Casino 400', place: 'Kansas Speedway', start: '2026-09-25', end: '2026-09-27', days: { '2026-09-26': 'Craftsman Truck Series', '2026-09-27': 'Cup Series' } },
+  { serie: 'WEC', title: '6 Hours of Fuji', place: 'Fuji Speedway', start: '2026-09-25', end: '2026-09-27', days: { '2026-09-27': 'Hypercar, LMGT3' } },
+  { serie: 'NMX', title: 'Aguascalientes El Gigante de México 170', place: 'Óvalo Aguascalientes México', start: '2026-09-26', end: '2026-09-27', days: { '2026-09-27': 'NASCAR México Series, NASCAR Challenge Series, Trucks México Series' } },
+  { serie: 'WRC', title: 'Rally Italia Sardegna', place: 'Alghero, Italia', start: '2026-10-01', end: '2026-10-04', days: { '2026-10-04': 'WRC, WRC2, WRC3' } },
+  { serie: 'F1', title: 'Bahrain Grand Prix in Malaysia', place: 'Sepang International Circuit', start: '2026-10-02', end: '2026-10-04', days: { '2026-10-04': 'Fórmula 1' } },
+  { serie: 'MRC', title: 'GT Challenge de las Américas', place: 'Autódromo Miguel E. Abed', start: '2026-10-03', end: '2026-10-04', days: { '2026-10-04': 'F4 NACAM, TCR México' } },
+  { serie: 'NAS', title: 'South Point 400', place: 'Las Vegas Motor Speedway', start: '2026-10-03', end: '2026-10-04', days: { '2026-10-03': "O'Reilly Auto Parts Series", '2026-10-04': 'Cup Series' } },
+  { serie: 'F1', title: 'Singapore Grand Prix', place: 'Marina Bay Street Circuit', start: '2026-10-09', end: '2026-10-11', days: { '2026-10-11': 'Fórmula 1' } },
+  { serie: 'NAS', title: 'Bank of America 400', place: 'Charlotte Motor Speedway', start: '2026-10-09', end: '2026-10-11', days: { '2026-10-09': 'Craftsman Truck Series', '2026-10-10': "O'Reilly Auto Parts Series", '2026-10-11': 'Cup Series' } },
+  { serie: 'NAS', title: 'Freeway Insurance 500', place: 'Phoenix Raceway', start: '2026-10-16', end: '2026-10-18', days: { '2026-10-16': 'Craftsman Truck Series', '2026-10-17': "O'Reilly Auto Parts Series", '2026-10-18': 'Cup Series' } },
+  { serie: 'WEC', title: '6 Hours of Barcelona', place: 'Circuit de Barcelona-Catalunya', start: '2026-10-16', end: '2026-10-18', days: { '2026-10-18': 'Hypercar, LMGT3' } },
+  { serie: 'MRC', title: 'BYD Grand Prix', place: 'Autódromo Monterrey', start: '2026-10-17', end: '2026-10-18', days: { '2026-10-17': 'Copa TC2000, Copa 1.8, Súper Turismos, Súper Turismos Light 1, Súper Turismos Light 2', '2026-10-18': 'Endurance Challenge' } },
+  { serie: 'NMX', title: 'Gran Premio Yucatán 200 (carrera 1)', place: 'Autódromo Yucatán Emerson Fittipaldi', start: '2026-10-17', end: '2026-10-18', days: { '2026-10-17': 'NASCAR México Series, NASCAR Challenge Series, Trucks México Series', '2026-10-18': 'NASCAR México Series, NASCAR Challenge Series, Trucks México Series' } },
+  { serie: 'F1', title: 'United States Grand Prix', place: 'Circuit of the Americas', start: '2026-10-22', end: '2026-10-25', days: { '2026-10-25': 'Fórmula 1, F1 Academy' } },
+  { serie: 'NAS', title: 'YellaWood 500', place: 'Talladega Superspeedway', start: '2026-10-23', end: '2026-10-25', days: { '2026-10-23': 'Craftsman Truck Series', '2026-10-24': "O'Reilly Auto Parts Series", '2026-10-25': 'Cup Series' } },
+  { serie: 'MRC', title: 'Gran Premio de la Ciudad de México', place: 'Autódromo Hermanos Rodríguez', start: '2026-10-30', end: '2026-11-01', days: { '2026-11-01': 'F4 NACAM' } },
+  { serie: 'NAS', title: 'Xfinity 500', place: 'Martinsville Speedway', start: '2026-10-30', end: '2026-11-01', days: { '2026-10-30': 'Craftsman Truck Series', '2026-10-31': "O'Reilly Auto Parts Series", '2026-11-01': 'Cup Series' } },
+  { serie: 'NAS', title: 'NASCAR Championship Race', place: 'Homestead-Miami Speedway', start: '2026-11-05', end: '2026-11-08', days: { '2026-11-06': 'Craftsman Truck Series', '2026-11-07': "O'Reilly Auto Parts Series", '2026-11-08': 'Cup Series' } },
+  { serie: 'F1', title: 'Brazilian Grand Prix', place: 'Autódromo José Carlos Pace', start: '2026-11-06', end: '2026-11-08', days: { '2026-11-08': 'Fórmula 1' } },
+  { serie: 'WEC', title: '6 Hours of Monza', place: 'Autodromo Nazionale di Monza', start: '2026-11-06', end: '2026-11-08', days: { '2026-11-08': 'Hypercar, LMGT3' } },
+  { serie: 'MRC', title: 'La Batalla Final - Speed Fest', place: 'Autódromo Hermanos Rodríguez', start: '2026-11-07', end: '2026-11-08', days: { '2026-11-08': 'Copa TC2000, Copa 1.8, Súper Turismos, Súper Turismos Light 1, Súper Turismos Light 2' } },
+  { serie: 'NMX', title: 'Fecha 12 — Ciudad de México', place: 'Autódromo Hermanos Rodríguez', start: '2026-11-07', end: '2026-11-08', days: { '2026-11-08': 'NASCAR México Series, NASCAR Challenge Series, Trucks México Series' } },
+  { serie: 'F1', title: 'Las Vegas Grand Prix', place: 'Las Vegas Strip Street Circuit', start: '2026-11-19', end: '2026-11-21', days: { '2026-11-21': 'Fórmula 1, F1 Academy' } },
+  { serie: 'MRC', title: 'Por anunciar', place: 'Ciudad de México, CDMX', start: '2026-11-21', end: '2026-11-22', days: { '2026-11-22': 'TCR México' } },
+  { serie: 'F1', title: 'Qatar Grand Prix', place: 'Lusail International Circuit', start: '2026-11-27', end: '2026-11-29', days: { '2026-11-29': 'Fórmula 1, Fórmula 2' } },
+  { serie: 'F1', title: 'Abu Dhabi Grand Prix', place: 'Yas Marina Circuit', start: '2026-12-04', end: '2026-12-06', days: { '2026-12-06': 'Fórmula 1, Fórmula 2' } },
+  { serie: 'MRC', title: 'Endurance 24', place: 'Autódromo Miguel E. Abed', start: '2026-12-11', end: '2026-12-12', days: { '2026-12-12': 'Endurance Challenge' } },
+  { serie: 'FE', title: 'Jeddah E-Prix', place: 'Jeddah Corniche Circuit', start: '2026-12-18', end: '2026-12-19', days: { '2026-12-18': 'Fórmula E', '2026-12-19': 'Fórmula E' } },
+];
+
+// Lo del oficial: el evento que trabaja, su planeación y una convocatoria (ejemplos).
+const MINE = [
+  { kind: 'work', serie: 'F1', title: 'Gran Premio de la Ciudad de México 2026', place: 'Autódromo Hermanos Rodríguez', start: '2026-10-30', end: '2026-11-01', chip: '11.7 · Intervención 1' },
+  { kind: 'transport', title: 'Autobús a CDMX', start: '2026-10-29', end: '2026-10-29', time: '07:30', endTime: '13:10', link: 'GP Ciudad de México' },
+  { kind: 'lodging', title: 'Hotel en Iztacalco', start: '2026-10-29', end: '2026-11-02', time: '15:00', endTime: '12:00', link: 'GP Ciudad de México' },
+  { kind: 'reminder', title: 'Recoger acreditación', start: '2026-10-29', end: '2026-10-29', time: '17:00', link: 'GP Ciudad de México' },
+  { kind: 'transport', title: 'Regreso a casa', start: '2026-11-02', end: '2026-11-02', time: '14:00', endTime: '19:40', link: 'GP Ciudad de México' },
+  { kind: 'conv', title: 'Gran Premio Yucatán 200', place: 'Autódromo Yucatán Emerson Fittipaldi', start: '2026-09-30', end: '2026-09-30', time: '23:59' },
+];
+
+const ESCENAS = {
+  entrada: { month: '2026-09', sel: null, expanded: false },
+  anteriores: { month: '2026-09', sel: null, expanded: true },
+  dia: { month: '2026-10', sel: '2026-10-30', expanded: false },
+  vacio: { month: '2026-10', sel: '2026-10-13', expanded: false },
+  otroMes: { month: '2026-11', sel: null, expanded: false },
+};
+
+function ms(s) { const p = s.split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2]); }
+function iso(t) { const d = new Date(t); return d.getUTCFullYear() + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') + '-' + String(d.getUTCDate()).padStart(2, '0'); }
+function diff(a, b) { return Math.round((ms(b) - ms(a)) / 86400000); }
+function dow(s) { return new Date(ms(s)).getUTCDay(); }
+function dnum(s) { return Number(s.slice(8, 10)); }
+function mnum(s) { return Number(s.slice(5, 7)); }
+function firstOf(m) { return m + '-01'; }
+function lastOf(m) { const p = m.split('-').map(Number); return iso(Date.UTC(p[0], p[1], 0)); }
+function shift(m, n) { const p = m.split('-').map(Number); return iso(Date.UTC(p[0], p[1] - 1 + n, 1)).slice(0, 7); }
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function plural(n, one, many) { return n === 1 ? '1 ' + one : n + ' ' + many; }
+function covers(e, d) { return e.start <= d && d <= e.end; }
+function touchesMonth(e, m) { return e.start <= lastOf(m) && e.end >= firstOf(m); }
+function tmin(t) { if (!t) return 0; const p = t.split(':').map(Number); return p[0] * 60 + p[1]; }
+function hexA(hex, a) { const n = parseInt(hex.slice(1), 16); return 'rgba(' + (n >> 16) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')'; }
+function range(a, b) {
+  if (a === b) return dnum(a) + ' ' + MES_CORTO[mnum(a) - 1];
+  if (a.slice(0, 7) === b.slice(0, 7)) return dnum(a) + '–' + dnum(b) + ' ' + MES_CORTO[mnum(b) - 1];
+  return dnum(a) + ' ' + MES_CORTO[mnum(a) - 1] + ' – ' + dnum(b) + ' ' + MES_CORTO[mnum(b) - 1];
+}
+function cats(s) {
+  if (!s) return null;
+  const p = s.split(', ');
+  if (p.length === 1) return p[0];
+  if (p.length === 2) return p[0] + ' y ' + p[1];
+  return p[0] + ' y ' + (p.length - 1) + ' más';
+}
+
+// Tarjeta de lo del oficial. day = día seleccionado (estado B) o null (estado A);
+// anchor = día bajo el que se lista (para ordenar).
+function mineCard(e, day, anchor) {
+  const acc = e.kind === 'work' ? AMBER : e.kind === 'conv' ? GREEN : BLUE;
+  const c = {
+    accent: acc, tint: hexA(acc, 0.14), line: hexA(acc, 0.3),
+    border: e.kind === 'work' ? hexA(AMBER, 0.45) : '#333949',
+    title: e.title, sub: null, chip: null, badge: null, icon: ICON[e.kind] || null, kicker: '', sort: 0,
+  };
+  const span = diff(e.start, e.end) + 1;
+  if (e.kind === 'work') {
+    c.badge = e.serie;
+    c.kicker = day ? 'TRABAJAS · DÍA ' + (diff(e.start, day) + 1) + ' DE ' + span : 'TRABAJAS · ' + range(e.start, e.end).toUpperCase();
+    c.sub = e.place; c.chip = e.chip; c.sort = -1;
+  } else if (e.kind === 'lodging') {
+    const nights = diff(e.start, e.end);
+    if (!day) c.kicker = 'HOSPEDAJE · ' + range(e.start, e.end).toUpperCase();
+    else if (day === e.start) c.kicker = 'HOSPEDAJE · ENTRADA ' + e.time;
+    else if (day === e.end) c.kicker = 'HOSPEDAJE · SALIDA ' + e.endTime;
+    else c.kicker = 'HOSPEDAJE · NOCHE ' + (diff(e.start, day) + 1) + ' DE ' + nights;
+    c.sub = plural(nights, 'noche', 'noches') + ' · ' + e.link;
+    const on = day || anchor;
+    c.sort = on === e.start ? tmin(e.time) : on === e.end ? tmin(e.endTime) : 0;
+  } else if (e.kind === 'transport') {
+    c.kicker = 'TRANSPORTE · ' + e.time + ' → ' + e.endTime; c.sub = e.link; c.sort = tmin(e.time);
+  } else if (e.kind === 'reminder') {
+    c.kicker = 'RECORDATORIO · ' + e.time; c.sub = e.link; c.sort = tmin(e.time);
+  } else if (e.kind === 'conv') {
+    c.kicker = 'CONVOCATORIA · CIERRA ' + e.time; c.sub = e.place; c.sort = tmin(e.time);
+  }
+  c.hasBadge = !!c.badge; c.hasIcon = !c.badge && !!c.icon; c.hasSub = !!c.sub; c.hasChip = !!c.chip;
+  return c;
+}
+
+// Fila compacta de un fin de semana de campeonato que no trabajas.
+function raceRow(e, day, first) {
+  const r = { badge: e.serie, title: e.title, divider: first ? 'none' : '1px solid #2B303C' };
+  if (day) {
+    const c = cats(e.days[day]);
+    r.sub = c ? c + ' · ' + e.place : e.place;
+    r.right = 'DÍA ' + (diff(e.start, day) + 1) + '/' + (diff(e.start, e.end) + 1);
+  } else {
+    r.sub = e.place;
+    r.right = range(e.start, e.end).toUpperCase();
+  }
+  return r;
+}
+
+function groupFor(d, list, dayMode, faded) {
+  const mine = list.filter((e) => e.kind !== 'race').map((e) => mineCard(e, dayMode ? d : null, d)).sort((a, b) => a.sort - b.sort);
+  const races = list.filter((e) => e.kind === 'race')
+    .sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : a.title.localeCompare(b.title)))
+    .map((e, i) => raceRow(e, dayMode ? d : null, i === 0));
+  const isHoy = d === HOY;
+  return {
+    header: (isHoy ? 'HOY · ' : '') + DIAS[dow(d)].toUpperCase() + ' ' + dnum(d),
+    headerColor: isHoy && !faded ? AMBER : '#8F96A3',
+    showHeader: !dayMode, opacity: faded ? 0.5 : 1,
+    mine, races, hasRaces: races.length > 0,
+  };
+}
+
+function buildGroups(items, anchorOf, faded) {
+  const by = {};
+  items.forEach((e) => { const a = anchorOf(e); (by[a] = by[a] || []).push(e); });
+  return Object.keys(by).sort().map((d) => groupFor(d, by[d], false, faded));
+}
+
+class Component extends DCLogic {
+  renderVals() {
+    const escena = this.props.escena ?? 'entrada';
+    const sc = ESCENAS[escena] || ESCENAS.entrada;
+    const st = this.state && this.state.forEscena === escena ? this.state : sc;
+    const month = st.month;
+    const sel = st.sel;
+    const expanded = !!st.expanded;
+    const set = (patch) => this.setState(Object.assign({ forEscena: escena, month, sel, expanded }, patch));
+    const all = MINE.concat(RACES.map((r) => Object.assign({ kind: 'race' }, r)));
+    const curMonth = HOY.slice(0, 7);
+    const isCur = month === curMonth;
+    const showBand = this.props.rangoTrabajas !== false;
+
+    // Calendario: puntos por tipo (trabajas, planeación, convocatoria, carreras) en cada
+    // día que la entrada abarca, y la franja ámbar del evento que trabajas.
+    const first = firstOf(month);
+    const nDays = dnum(lastOf(month));
+    const cells = [];
+    for (let i = 0; i < dow(first); i++) cells.push({ real: false });
+    for (let d = 1; d <= nDays; d++) {
+      const date = month + '-' + String(d).padStart(2, '0');
+      const here = all.filter((e) => covers(e, date));
+      const work = here.find((e) => e.kind === 'work');
+      const dots = [];
+      if (work) dots.push({ color: AMBER });
+      if (here.some((e) => e.kind === 'transport' || e.kind === 'lodging' || e.kind === 'reminder')) dots.push({ color: BLUE });
+      if (here.some((e) => e.kind === 'conv')) dots.push({ color: GREEN });
+      if (here.some((e) => e.kind === 'race') && dots.length < 3) dots.push({ color: RACE_DOT });
+      const selected = date === sel;
+      const today = date === HOY;
+      const past = date < HOY;
+      const w = dow(date);
+      const capL = !!work && (date === work.start || w === 0 || d === 1);
+      const capR = !!work && (date === work.end || w === 6 || d === nDays);
+      cells.push({
+        real: true, num: d, selected,
+        aria: cap(DIAS[w]) + ' ' + d + ' de ' + MESES[mnum(date) - 1] + (here.length ? ', ' + plural(here.length, 'actividad', 'actividades') : ', sin actividades'),
+        pick: () => set({ sel: selected ? null : date }),
+        band: !!work && showBand,
+        bl: capL ? 7 : 0, br: capR ? 7 : 0,
+        radius: (capL ? '17px' : '0') + ' ' + (capR ? '17px' : '0') + ' ' + (capR ? '17px' : '0') + ' ' + (capL ? '17px' : '0'),
+        bg: selected ? AMBER : 'transparent',
+        border: today && !selected ? '1.5px solid ' + AMBER : '1.5px solid transparent',
+        color: selected ? '#1C1405' : today ? AMBER : past ? '#6F7683' : '#ECEEF2',
+        weight: selected || today ? 700 : 500,
+        dots, dotOpacity: past ? 0.45 : 1,
+      });
+    }
+    while (cells.length % 7) cells.push({ real: false });
+    const weeks = [];
+    for (let i = 0; i < cells.length; i += 7) weeks.push({ cells: cells.slice(i, i + 7) });
+
+    // Lista: B = solo el día tocado (lo de varios días sale en cada día que abarca);
+    // A = lo que viene (mes actual desde hoy, lo anterior colapsado) o el mes completo.
+    let groups = [];
+    let day = {};
+    let ov = {};
+    const isDay = !!sel;
+    let isEmptyDay = false;
+    if (isDay) {
+      const list = all.filter((e) => covers(e, sel));
+      if (list.length) groups = [groupFor(sel, list, true, false)];
+      isEmptyDay = list.length === 0;
+      day = {
+        kicker: (sel === HOY ? 'HOY · ' : '') + (list.length ? plural(list.length, 'ACTIVIDAD', 'ACTIVIDADES') : 'SIN ACTIVIDADES'),
+        title: cap(DIAS[dow(sel)]) + ' ' + dnum(sel) + ' de ' + MESES[mnum(sel) - 1],
+        emptyTitle: 'Nada el ' + DIAS[dow(sel)] + ' ' + dnum(sel),
+      };
+    } else {
+      const inM = all.filter((e) => touchesMonth(e, month));
+      const upcoming = isCur ? inM.filter((e) => e.end >= HOY) : inM;
+      const past = isCur ? inM.filter((e) => e.end < HOY) : [];
+      const from = isCur ? HOY : first;
+      const up = buildGroups(upcoming, (e) => (e.start > from ? e.start : from), false);
+      const pg = expanded ? buildGroups(past, (e) => (e.start > first ? e.start : first), true) : [];
+      groups = pg.concat(up);
+      const nextM = shift(month, 1);
+      const nextCount = all.filter((e) => touchesMonth(e, nextM)).length;
+      ov = {
+        title: isCur ? 'Lo que viene' : 'Todo ' + MESES[mnum(first) - 1],
+        count: plural(upcoming.length, 'actividad', 'actividades'),
+        hasPast: past.length > 0,
+        pastLabel: expanded ? 'OCULTAR ANTERIORES' : plural(past.length, 'ANTERIOR ESTE MES', 'ANTERIORES ESTE MES'),
+        chevRot: expanded ? 90 : 0,
+        empty: upcoming.length === 0,
+        emptyTitle: past.length ? 'Nada más en ' + MESES[mnum(first) - 1] : 'Sin actividades este mes',
+        nextLabel: cap(MESES[mnum(firstOf(nextM)) - 1]) + ' · ' + plural(nextCount, 'actividad', 'actividades'),
+        hasNext: nextCount > 0,
+      };
+    }
+
+    return {
+      alto: Number(this.props.alto ?? 1020),
+      monthLabel: cap(MESES[mnum(first) - 1]) + ' ' + first.slice(0, 4),
+      showHoy: !isCur,
+      goHoy: () => set({ month: curMonth, sel: null, expanded: false }),
+      prev: () => set({ month: shift(month, -1), sel: null, expanded: false }),
+      next: () => set({ month: shift(month, 1), sel: null, expanded: false }),
+      goNext: () => set({ month: shift(month, 1), sel: null, expanded: false }),
+      clearSel: () => set({ sel: null }),
+      togglePast: () => set({ expanded: !expanded }),
+      weeks, groups, day, ov, expanded, isDay, isEmptyDay,
+      isOverview: !isDay,
+      ovEmpty: !isDay && !!ov.empty,
+    };
+  }
+}
+</script>
+</body>
+</html>

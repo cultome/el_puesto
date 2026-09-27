@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Paddock</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#12151B;font-family:'IBM Plex Sans',sans-serif;color:#ECEEF2}
+.ic{display:block;overflow:visible}
+.ic .s{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.ic .sb{fill:none;stroke:currentColor;stroke-width:2}
+.ic .f{fill:currentColor;stroke:none}
+.navbtn{background:transparent;border:0;margin:0;padding:2px 14px;border-radius:10px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;font:inherit}
+.navbtn:focus-visible{outline:2px solid #F2B134;outline-offset:2px}
+.opt{background:#20242E;border-radius:12px;padding:10px 0 8px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;font:inherit}
+.opt:focus-visible{outline:2px solid #F2B134;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 430px; height: 800px; box-sizing: border-box; padding: 28px 20px; background: #12151B; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 0 4px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.6px; color: #F2B134">PROPUESTA C</span>
+<h1 style="margin: 0; font-family: Archivo, sans-serif; font-size: 30px; font-weight: 800; color: #ECEEF2; letter-spacing: -0.3px">Paddock</h1>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div style="background: #242833; border: 1px solid #333949; border-radius: 16px; padding: 22px 8px 14px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<svg class="ic" viewBox="{{ini.vb}}" style="width: 64px; height: 64px; color: #F2B134"><path class="s" d="{{ini.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{ini.sb}}"></path><path class="f" d="{{ini.f}}"></path></svg>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 3px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; color: #8F96A3">INICIO</span>
+<span style="font-size: 13px; font-weight: 500; color: #ECEEF2; text-align: center">Box de pits</span>
+</div>
+</div><div style="background: #242833; border: 1px solid #333949; border-radius: 16px; padding: 22px 8px 14px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<svg class="ic" viewBox="{{age.vb}}" style="width: 64px; height: 64px; color: #F2B134"><path class="s" d="{{age.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{age.sb}}"></path><path class="f" d="{{age.f}}"></path></svg>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 3px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; color: #8F96A3">AGENDA</span>
+<span style="font-size: 13px; font-weight: 500; color: #ECEEF2; text-align: center">Bandera a cuadros</span>
+</div>
+</div><div style="background: #242833; border: 1px solid #333949; border-radius: 16px; padding: 22px 8px 14px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<svg class="ic" viewBox="{{cha.vb}}" style="width: 64px; height: 64px; color: #F2B134"><path class="s" d="{{cha.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{cha.sb}}"></path><path class="f" d="{{cha.f}}"></path></svg>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 3px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; color: #8F96A3">CHATS</span>
+<span style="font-size: 13px; font-weight: 500; color: #ECEEF2; text-align: center">Radio</span>
+</div>
+</div>
+</div>
+<div style="display: flex; justify-content: space-around; align-items: center; padding: 14px 8px; background: #191C24; border: 1px solid #262B36; border-radius: 14px">
+<div style="display: flex; gap: 14px; align-items: center"><svg class="ic" viewBox="{{ini.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #6F7683"><path class="s" d="{{ini.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{ini.sb}}"></path><path class="f" d="{{ini.f}}"></path></svg><svg class="ic" viewBox="{{ini.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #F2B134"><path class="s" d="{{ini.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{ini.sb}}"></path><path class="f" d="{{ini.f}}"></path></svg></div><div style="display: flex; gap: 14px; align-items: center"><svg class="ic" viewBox="{{age.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #6F7683"><path class="s" d="{{age.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{age.sb}}"></path><path class="f" d="{{age.f}}"></path></svg><svg class="ic" viewBox="{{age.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #F2B134"><path class="s" d="{{age.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{age.sb}}"></path><path class="f" d="{{age.f}}"></path></svg></div><div style="display: flex; gap: 14px; align-items: center"><svg class="ic" viewBox="{{cha.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #6F7683"><path class="s" d="{{cha.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{cha.sb}}"></path><path class="f" d="{{cha.f}}"></path></svg><svg class="ic" viewBox="{{cha.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #F2B134"><path class="s" d="{{cha.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{cha.sb}}"></path><path class="f" d="{{cha.f}}"></path></svg></div>
+</div>
+<sc-for list="{{bars}}" as="bar" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 1.2px; color: #6F7683">ACTIVO · {{bar.name}}</div>
+<div style="width: 390px; border-radius: 18px; overflow: hidden; background: #191C24; border: 1px solid #262B36; box-sizing: border-box">
+<div style="height: 26px; background: #191C24"></div>
+<div style="height: 1px; background: #262B36"></div>
+<div style="display: flex; justify-content: space-around; padding: 12px 8px">
+<sc-for list="{{bar.items}}" as="it" hint-placeholder-count="3">
+<div class="navbtn" style="color: {{it.tint}}">
+<svg class="ic" viewBox="{{it.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: {{it.tint}}"><path class="s" d="{{it.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{it.sb}}"></path><path class="f" d="{{it.f}}"></path></svg>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1px; color: {{it.tint}}">{{it.label}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"trazo": {"editor": "range", "default": 2, "min": 1.5, "max": 2.5, "step": 0.25, "section": "Íconos"}, "tamano": {"editor": "range", "default": 26, "min": 22, "max": 30, "step": 1, "unit": "px", "section": "Íconos"}, "$preview": {"width": 430, "height": 800}}'>
+var SET = {"vb": "0 0 24 24", "icons": {"ini": {"s": "M3 20V9.5L12 4l9 5.5V20M6.5 20v-8h11v8M6.5 15h11M6.5 17.5h11", "sb": "", "f": ""}, "age": {"s": "M5 21V3.5M5 4h14v10H5", "f": "M5 4h3.5v3.33h-3.5zM12 4h3.5v3.33h-3.5zM8.5 7.33h3.5v3.33h-3.5zM15.5 7.33h3.5v3.33h-3.5zM5 10.66h3.5v3.34h-3.5zM12 10.66h3.5v3.34h-3.5z", "sb": ""}, "cha": {"s": "M7.5 8h9A1.5 1.5 0 0 1 18 9.5v10a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 19.5v-10A1.5 1.5 0 0 1 7.5 8zM9 8V2.5M9.5 12h5M9.5 14.75h5M9.5 17.5h5", "sb": "", "f": ""}}};
+
+var AMBER = '#F2B134', FAINT = '#6F7683';
+var TABS = [['ini', 'INICIO'], ['age', 'AGENDA'], ['cha', 'CHATS']];
+function withVb(ic, vb) { return { vb: vb, s: ic.s, sb: ic.sb, f: ic.f }; }
+function barsFor(set) {
+  return TABS.map(function (on) {
+    return { name: on[1], items: TABS.map(function (t) {
+      var ic = withVb(set.icons[t[0]], set.vb);
+      ic.label = t[1]; ic.tint = t[0] === on[0] ? AMBER : FAINT;
+      return ic;
+    }) };
+  });
+}
+
+class Component extends DCLogic {
+  renderVals() {
+    var vb = SET.vb;
+    return {
+      sw: this.props.trazo ?? 2, szpx: (this.props.tamano ?? 26) + 'px',
+      ini: withVb(SET.icons.ini, vb), age: withVb(SET.icons.age, vb), cha: withVb(SET.icons.cha, vb),
+      bars: barsFor(SET)
+    };
+  }
+}
+</script>
+</body>
+</html>

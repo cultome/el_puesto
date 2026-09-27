@@ -1,0 +1,401 @@
+{
+ "campeonato": "México Racing Cup",
+ "temporada": "2026",
+ "categoria": "Copa 1.8",
+ "imageUrl": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1787541946047187754.jpg",
+ "throughRound": 7,
+ "leidaEl": "2026-09-27",
+ "nota": "Transcrita de la imagen por un agente; validada (suma por carrera = SUMA en todas las filas). Posición IMPRESA; puntos = PUNTOS REALES.",
+ "rows": [
+  {
+   "pos": 1,
+   "name": "Joaquin Forcelledo",
+   "team": "Audi",
+   "points": 999
+  },
+  {
+   "pos": 2,
+   "name": "Adrian Jimenez / Emilio Jimenez",
+   "team": "Audi",
+   "points": 976
+  },
+  {
+   "pos": 3,
+   "name": "Eduardo Ramirez",
+   "team": "Mini",
+   "points": 917
+  },
+  {
+   "pos": 4,
+   "name": "Dirk Archundia",
+   "team": "BMW",
+   "points": 922
+  },
+  {
+   "pos": 5,
+   "name": "Christian Bravo",
+   "team": "Mini",
+   "points": 916
+  },
+  {
+   "pos": 6,
+   "name": "Carlos Quevedo",
+   "team": "Audi",
+   "points": 894
+  },
+  {
+   "pos": 7,
+   "name": "Pedro Montero",
+   "team": "Audi",
+   "points": 820
+  },
+  {
+   "pos": 8,
+   "name": "Adiel Gamboa",
+   "team": "Mini",
+   "points": 793
+  },
+  {
+   "pos": 9,
+   "name": "Mauro Vega",
+   "team": "Audi",
+   "points": 720
+  },
+  {
+   "pos": 10,
+   "name": "Genaro Davalos",
+   "team": "Seat",
+   "points": 700
+  },
+  {
+   "pos": 11,
+   "name": "A. Sanchez / V. Sanchez",
+   "team": "Audi",
+   "points": 702
+  },
+  {
+   "pos": 12,
+   "name": "Alejandro Reyes (N)",
+   "team": "Audi",
+   "points": 712
+  },
+  {
+   "pos": 13,
+   "name": "Jose Luis Hernandez",
+   "team": "Mini",
+   "points": 720
+  },
+  {
+   "pos": 14,
+   "name": "Danae Ruz / Andrea Lozano (N)",
+   "team": "Audi",
+   "points": 712
+  },
+  {
+   "pos": 15,
+   "name": "Laura Sanz / Danae Ruz",
+   "team": "Seat",
+   "points": 670
+  },
+  {
+   "pos": 16,
+   "name": "Franco Martinez (N)",
+   "team": "Audi",
+   "points": 670
+  },
+  {
+   "pos": 17,
+   "name": "Beto Abarca Jr",
+   "team": "Audi",
+   "points": 594
+  },
+  {
+   "pos": 18,
+   "name": "Gabriel Peña (N)",
+   "team": "Audi",
+   "points": 562
+  },
+  {
+   "pos": 19,
+   "name": "Samuel Sebastian",
+   "team": "Mini",
+   "points": 542
+  },
+  {
+   "pos": 20,
+   "name": "Juan Rodriguez",
+   "team": "Audi",
+   "points": 524
+  },
+  {
+   "pos": 21,
+   "name": "Diego Gonzalez (N)",
+   "team": "Audi",
+   "points": 498
+  },
+  {
+   "pos": 22,
+   "name": "Jan Budziszewski (N)",
+   "team": "Audi",
+   "points": 490
+  },
+  {
+   "pos": 23,
+   "name": "Marco Montoya",
+   "team": "Mini",
+   "points": 468
+  },
+  {
+   "pos": 24,
+   "name": "Salvador Estrada",
+   "team": "BMW/Mini",
+   "points": 455
+  },
+  {
+   "pos": 25,
+   "name": "Oskar Cervates",
+   "team": "Audi",
+   "points": 404
+  },
+  {
+   "pos": 26,
+   "name": "Kevin Salgado",
+   "team": "Audi",
+   "points": 378
+  },
+  {
+   "pos": 27,
+   "name": "F. Oropeza / D. Huerta",
+   "team": "Ford",
+   "points": 370
+  },
+  {
+   "pos": 28,
+   "name": "Arturo Toledo",
+   "team": "Audi",
+   "points": 360
+  },
+  {
+   "pos": 29,
+   "name": "Hector Pedroza",
+   "team": "Audi",
+   "points": 358
+  },
+  {
+   "pos": 30,
+   "name": "Zaky Ibrahim Sr",
+   "team": "Mini",
+   "points": 342
+  },
+  {
+   "pos": 31,
+   "name": "Adrián De La Torre",
+   "team": "Audi",
+   "points": 336
+  },
+  {
+   "pos": 32,
+   "name": "Arturo Ponce",
+   "team": "Audi",
+   "points": 260
+  },
+  {
+   "pos": 33,
+   "name": "Guy Savoir",
+   "team": "Seat",
+   "points": 230
+  },
+  {
+   "pos": 34,
+   "name": "Horia Chirigut",
+   "team": "Audi",
+   "points": 226
+  },
+  {
+   "pos": 35,
+   "name": "Michel Betanvourt",
+   "team": "Audi",
+   "points": 224
+  },
+  {
+   "pos": 36,
+   "name": "Hector Sanchez (N)",
+   "team": "Audi",
+   "points": 210
+  },
+  {
+   "pos": 37,
+   "name": "Salvador Arellano (N)",
+   "team": "Alfa Romeo",
+   "points": 202
+  },
+  {
+   "pos": 38,
+   "name": "Ricardo Bello",
+   "team": "Mini",
+   "points": 190
+  },
+  {
+   "pos": 39,
+   "name": "Yves Savoir (N)",
+   "team": "Seat",
+   "points": 186
+  },
+  {
+   "pos": 40,
+   "name": "Juan Musi / E. Mora (N)",
+   "team": "Audi",
+   "points": 162
+  },
+  {
+   "pos": 41,
+   "name": "D. Sandoval (N)",
+   "team": "Mini",
+   "points": 158
+  },
+  {
+   "pos": 42,
+   "name": "R. Moreno (N)",
+   "team": "Mini",
+   "points": 158
+  },
+  {
+   "pos": 43,
+   "name": "Carlos Lopez (N)",
+   "team": "Audi",
+   "points": 150
+  },
+  {
+   "pos": 44,
+   "name": "Roberto Moreno N)",
+   "team": "Audi",
+   "points": 142
+  },
+  {
+   "pos": 45,
+   "name": "E. Acosta",
+   "team": "Audi",
+   "points": 126
+  },
+  {
+   "pos": 46,
+   "name": "Jose Carlos de la Torre",
+   "team": "Mini",
+   "points": 120
+  },
+  {
+   "pos": 47,
+   "name": "Paulo Moran (N)",
+   "team": "Audi",
+   "points": 118
+  },
+  {
+   "pos": 48,
+   "name": "Victor Medina (N)",
+   "team": "Audi",
+   "points": 108
+  },
+  {
+   "pos": 49,
+   "name": "E. Guilbert / O. Trejo",
+   "team": "Audi",
+   "points": 102
+  },
+  {
+   "pos": 50,
+   "name": "Raymudo Paz / Arturo Aldana",
+   "team": "Mini",
+   "points": 102
+  },
+  {
+   "pos": 51,
+   "name": "Higinio Cabiedes (N)",
+   "team": "Audi",
+   "points": 98
+  },
+  {
+   "pos": 52,
+   "name": "Gustavo Tinajero",
+   "team": "Audi",
+   "points": 92
+  },
+  {
+   "pos": 53,
+   "name": "A. Guerra (N) / F. Gonzalez (N)",
+   "team": "Audi",
+   "points": 92
+  },
+  {
+   "pos": 54,
+   "name": "Santiago Dominguez (N)",
+   "team": "Mini",
+   "points": 90
+  },
+  {
+   "pos": 55,
+   "name": "Miguel Zetina",
+   "team": "Mini",
+   "points": 88
+  },
+  {
+   "pos": 56,
+   "name": "Majo Rodriguez / Rafael Palacios Jr.",
+   "team": "Audi",
+   "points": 84
+  },
+  {
+   "pos": 57,
+   "name": "Jose Manning (N)",
+   "team": "Audi",
+   "points": 84
+  },
+  {
+   "pos": 58,
+   "name": "Armando Pagazza",
+   "team": "Audi",
+   "points": 80
+  },
+  {
+   "pos": 59,
+   "name": "Carlos Moncada",
+   "team": "Audi",
+   "points": 54
+  },
+  {
+   "pos": 60,
+   "name": "Emiliano Flores (N)",
+   "team": "Audi",
+   "points": 46
+  },
+  {
+   "pos": 61,
+   "name": "Zaky Ibrahim Jr",
+   "team": "Mini",
+   "points": 43
+  },
+  {
+   "pos": 62,
+   "name": "Rafael Villazon / L. Gutierrez (N)",
+   "team": "Mini",
+   "points": 42
+  },
+  {
+   "pos": 63,
+   "name": "A. Arguimbau (N) / J. Machuca (N)",
+   "team": "Audi",
+   "points": 38
+  },
+  {
+   "pos": 64,
+   "name": "Eduardo Olguín",
+   "team": "Mini",
+   "points": 0
+  },
+  {
+   "pos": 65,
+   "name": "Joe Sandoval",
+   "team": "Mini",
+   "points": 0
+  }
+ ]
+}

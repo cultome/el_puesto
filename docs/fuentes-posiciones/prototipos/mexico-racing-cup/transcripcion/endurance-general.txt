@@ -1,0 +1,64 @@
+# categoria=Endurance Challenge — tabla "PILOTO GENERAL" (absoluto). La misma imagen trae además PILOTO E1..E8 y AUTO E1..E8 (no transcritas).
+# pagina=https://mexicoracingcup.com/33-endurance-challenge
+# imagen=https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1790036455354149227.jpg
+# fecha_impresa=19-sep-26 (subida 2026-09-21; título "Endurace Challenge" con errata)
+# hasta_fecha=3
+# columnas=1,2,3,4,5
+# peor=no (sin columna PEOR FECHA; REALES = SUMA)
+# nota="Victor Gonzalez / Paco Gomez" aparece dos veces (pos 4 y 23): dos autos distintos con la misma tripulación.
+1|Ricardo Cordero|Hyundai||265|0|85,90,90,,|265|
+2|Salvador Estrada|Mercedes||243|-22|78,80,85,,|243|
+3|Ramon Osorio|Seat/Mini||222|-43|68,78,76,,|222|
+4|Victor Gonzalez / Paco Gomez|Seat SC||204|-61|80,72,52,,|204|
+5|Juan Pablo Sierra|Cupra / Hyudai||193|-72|0,90,103,,|193|
+6|Dagoberto de la O / Kevin Salgado|Audi||192|-73|70,52,70,,|192|
+7|Julio Rejon / Gerardo Rejon Jr. / Rodrigo Rejon|Cupra||167|-98|106,,61,,|167|
+8|Luis Javier Camargo|Mercedes||158|-107|78,80,,,|158|
+9|Michel Betancourt / Genaro Davalos|Audi||156|-109|76,0,80,,|156|
+10|Adiel Gamboa|Mini||154|-111|,78,76,,|154|
+11|Manuel Cano / Enrique Ibarra / Miguel Angel Espinosa|Audi||150|-115|74,76,,,|150|
+12|Guy Savoa|Seat/Mini||144|-121|68,,76,,|144|
+13|Jose Miguel Díaz Goñi / Derek Diaz Goñi|Renault||130|-135|,62,68,,|130|
+14|Jose Maria Castro / Adrian Ramírez|Volkswagen||120|-145|0,70,50,,|120|
+15|Arturo Aldana / Raymundo Paz|Mini||118|-147|64,54,0,,|118|
+16|Marco Piza|Mini||118|-147|64,54,,,|118|
+17|Jorge Casso / Oscar Santurino|Renault||114|-151|,60,54,,|114|
+18|Marco Montoya / Jose Luis Hernandez / Pedro Martínez|Audi||106|-159|,106,,,|106|
+19|Luis Cervantes / Pablo Cervantes|Cupra||106|-159|0,,106,,|106|
+20|Omar Chavez / Jorge Abed|Audi||90|-175|90,,,,|90|
+21|Andres Orea Jr.|Hyundai||90|-175|,,90,,|90|
+22|Miguel Calvo|Hyundai||85|-180|85,,,,|85|
+23|Victor Gonzalez / Paco Gomez|Seat SC||85|-180|,85,,,|85|
+24|Gerardo Hernandez / Dirkan Archundia|Mercedes||85|-180|,,85,,|85|
+25|Rodrigo Espinosa / Joaquin Toranzo|Audi||74|-191|,74,,,|74|
+26|Juan Musi|Seat||72|-193|72,0,,,|72|
+27|Omar Valderrama|Seat||72|-193|72,,,,|72|
+28|Antonio Arginbau / Jorge Machuca|Audi||72|-193|,,72,,|72|
+29|Juan Carlos Torres|Audi||68|-197|0,68,,,|68|
+30|Jerry Hernandez|Audi||68|-197|,68,,,|68|
+31|Mauro Vega / Roberto Abarca Jr|Audi||66|-199|66,0,,,|66|
+32|Norberto Piñon Jr. / Hector Pedroza|Audi||66|-199|,66,,,|66|
+33|Patricio Hoppenstedt / Fernando Hoppenstedt|Audi||66|-199|,,66,,|66|
+34|Alex Sanchez / Gustavo Tinajero / Gerardo Ylizaliturri|Audi||64|-201|,64,,,|64|
+35|Diego Ruiz / Rodrigo Velazquez|Renault||64|-201|,,64,,|64|
+36|Jose Espindola / Asael Ovando|Cupra||62|-203|62,,,,|62|
+37|David Rodríguez / Pablo Rodríguez / Omar Rodríguez|Chevrolet||62|-203|,,62,,|62|
+38|Jonathan Delgado / Santiago Dominguez|Seat SC||60|-205|60,0,,,|60|
+39|Yashir Medina|Renault||60|-205|,60,,,|60|
+40|Jorge Estevez / Armando Anaya / Omar Cardenas|Chevrolet||60|-205|,,60,,|60|
+41|Omar Raul Cardenas|Chevrolet||58|-207|58,0,,,|58|
+42|Omar Funes / Claus Shinkel|Chevrolet||58|-207|58,,,,|58|
+43|Fernando Perez / Arturo Rayas / Agustín Valero|Renault||58|-207|,58,,,|58|
+44|Agustin Muñoz / Erick Sierra / Santiago del Rincon|Seat||56|-209|56,,,,|56|
+45|Lalo de la Cajiga / Steffen Schubert / Miguel Limon|Chevrolet||56|-209|,56,,,|56|
+46|Luis Cobos / Hector Ulises Carrillo|Subaru||56|-209|,,56,,|56|
+47|Manuel Gracia|Seat SC||52|-213|,,52,,|52|
+48|Jorge Alejandro Sanchez / Sergio Gonzalez|Renault||50|-215|,50,,,|50|
+49|Luis Manuel Garcia / Carlos Manuel Garcia|Cupra||0|-265|0,,,,|0|
+50|Rogelio Castro|Volkswagen||0|-265|0,,,,|0|
+51|Carlos Rodrigo Ramirez|Audi||0|-265|0,,,,|0|
+52|Emilio Mora|Audi||0|-265|,0,,,|0|
+53|Said Mora / Luis Ramos|Alfa Romeo||0|-265|,0,,,|0|
+54|Anthony Michel Luna Rivera / Elliot Luna Rivera|Chevrolet||0|-265|,0,,,|0|
+55|Erik del Olmo / Alfredo Leal|Chevrolet||0|-265|,0,,,|0|
+56|Luis Calvillo|Chevrolet||0|-265|,,0,,|0|

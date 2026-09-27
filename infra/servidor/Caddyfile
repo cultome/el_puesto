@@ -1,0 +1,99 @@
+# API de El Puesto (api.elpuesto.app), app web de los oficiales (app.elpuesto.app) y
+# administración (admin.elpuesto.app), los tres al mismo backend. Caddy saca y renueva cada certificado solo (Let's Encrypt) en cuanto su registro A
+# apunta a la IP elástica y redirige http → https. Mientras el A de admin no exista, Caddy
+# reintenta ese certificado en segundo plano (se ve en su log) y api sigue igual.
+# WebSocket (/stream, /stream/web, /chats/stream) y SSE pasan tal cual: Caddy no les pone límite de
+# inactividad y vacía los text/event-stream al instante. Sin `encode`: el grueso es
+# protobuf/JPEG y comprimir un SSE puede retenerlo.
+{
+	servers {
+		# Conexiones que mandan los encabezados a cuentagotas (slowloris) se cortan. Sin
+		# tope de escritura ni de inactividad: cortaría los WebSockets y el SSE.
+		timeouts {
+			read_header 10s
+		}
+	}
+}
+
+(comun) {
+	# Tope absoluto del cuerpo (también sin Content-Length). El backend además revisa
+	# por ruta: 256 KB lo normal, 15 MB las fotos (BodyLimits).
+	request_body {
+		max_size 20MB
+	}
+	# Encabezados de respuesta (diferidos: pisan lo que mande el backend). El backend pone
+	# por su cuenta CSP, X-Frame-Options, nosniff, Referrer-Policy y Permissions-Policy
+	# (por ruta: la app web /app/ puede pedir la ubicación para sí misma); la de aquí (`?`)
+	# solo cubre lo que responde Caddy sin pasar por el backend.
+	header {
+		defer
+		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+		?Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+		-Server
+	}
+	log {
+		output stdout
+		# Fuera de los logs: la clave de admin (Caddy ya oculta Authorization, Cookie y
+		# Set-Cookie) y lo sensible que viaja en la query: token (página puente del correo),
+		# t (stream del admin), ticket (WebSocket de la app web), q (búsqueda de oficiales:
+		# puede ser un correo) y text (pie de foto del chat).
+		format filter {
+			wrap console
+			fields {
+				request>headers>X-Admin-Key delete
+				request>uri query {
+					replace token REDACTADO
+					replace t REDACTADO
+					replace ticket REDACTADO
+					replace q REDACTADO
+					replace text REDACTADO
+				}
+			}
+		}
+	}
+}
+
+api.elpuesto.app {
+	import comun
+	reverse_proxy 127.0.0.1:8080
+}
+
+# App web de los oficiales (Kotlin/Wasm) y la API que usa, en su propio origen (backend:
+# APP_HOST=app.elpuesto.app; en otros hosts /app redirige aquí). Sus archivos estáticos (/app/*,
+# ~17 MB: el runtime de Skia, la app y su JS) SÍ van comprimidos; la API, el WebSocket y el SSE
+# no (ver arriba).
+app.elpuesto.app {
+	import comun
+	header X-Robots-Tag "noindex, nofollow"
+	@estaticos path /app/*
+	encode @estaticos {
+		zstd
+		gzip
+		match {
+			header Content-Type text/*
+			header Content-Type application/javascript*
+			header Content-Type application/wasm*
+			header Content-Type application/json*
+			header Content-Type application/octet-stream*
+			header Content-Type font/*
+		}
+	}
+	reverse_proxy 127.0.0.1:8080
+}
+
+# Admin web y API /admin/*. El backend (ADMIN_HOST=admin.elpuesto.app) sirve /admin/* SOLO en
+# este host; aquí además no pasa nada que no sea /admin/* o /health.
+admin.elpuesto.app {
+	import comun
+	header X-Robots-Tag "noindex, nofollow"
+	@admin path /admin /admin/* /health
+	handle @admin {
+		reverse_proxy 127.0.0.1:8080
+	}
+	handle / {
+		redir * /admin/ui/ 302
+	}
+	handle {
+		respond 404
+	}
+}

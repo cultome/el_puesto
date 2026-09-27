@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: inherit; }
+          a:hover { color: inherit; }
+          .dv-turn { padding: 48px 52px 40px; }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 600 15px/1.3 'Space Grotesk', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-opts { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+          .dv-opt { flex: none; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 16px; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; max-width: 384px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-opt:target .dv-oid { background: #f2b134; color: #1a1206; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 900px; }
+          .dv-next .dv-oid { padding: 2px 6px; }
+
+          /* ===== Device shell ===== */
+          .phone { width: 384px; padding: 13px; border-radius: 46px; background: linear-gradient(160deg,#26282e,#111216); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.05); }
+          .screen { position: relative; height: 812px; border-radius: 34px; overflow: hidden; display: flex; flex-direction: column; }
+          .sbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px 0; font: 600 13px 'IBM Plex Sans', sans-serif; }
+          .sbar .dots { display: flex; gap: 5px; align-items: center; }
+          .sbar .dots span { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+          .sbar .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; position: relative; opacity: 0.85; }
+          .sbar .bat::after { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; right: 6px; background: currentColor; border-radius: 1px; }
+
+          .hero { position: relative; }
+          .body { flex: 1; display: flex; flex-direction: column; padding: 0 30px 34px; }
+          .brandrow { display: flex; align-items: center; gap: 13px; }
+          .mark { width: 46px; height: 46px; border-radius: 13px; flex: none; position: relative; overflow: hidden; }
+          .wordmark { font-weight: 800; letter-spacing: 1.5px; line-height: 0.95; }
+          .wordmark small { display: block; font: 500 10.5px 'IBM Plex Mono', monospace; letter-spacing: 3px; opacity: 0.6; margin-top: 3px; }
+          .headline { font-weight: 700; letter-spacing: -0.5px; margin: 30px 0 12px; }
+          .tagline { font: 400 15.5px/1.5 'IBM Plex Sans', sans-serif; margin: 0; }
+          .form { margin-top: auto; display: flex; flex-direction: column; gap: 14px; }
+          .flabel { font: 600 12.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.3px; text-transform: uppercase; }
+          .field { display: flex; align-items: center; gap: 11px; height: 56px; padding: 0 16px; border-radius: 14px; }
+          .field input { flex: 1; background: transparent; border: none; outline: none; font: 400 16px 'IBM Plex Sans', sans-serif; }
+          .btn { height: 56px; border: none; border-radius: 14px; font: 700 15.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.2px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px; }
+          .microcopy { font: 400 12.5px/1.5 'IBM Plex Sans', sans-serif; text-align: center; margin: 2px 0 0; }
+          .divider { display: flex; align-items: center; gap: 12px; margin: 22px 0 4px; font: 500 11.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.4px; }
+          .divider::before, .divider::after { content: ''; height: 1px; flex: 1; }
+          .invite { display: flex; align-items: center; gap: 10px; padding: 13px 15px; border-radius: 13px; font: 400 12.8px/1.45 'IBM Plex Sans', sans-serif; }
+          .invite b { font-weight: 600; }
+
+          /* ===== 1a  Paddock nocturno (amber + cuadros) ===== */
+          .a .screen { background: radial-gradient(120% 80% at 50% 0%, #2a2f3a 0%, #1e222b 55%, #191c24 100%); color: #eceef2; }
+          .a .sbar { color: #eceef2; }
+          .a .checker { height: 152px; background-image: conic-gradient(rgba(255,255,255,0.09) 25%, transparent 0 50%, rgba(255,255,255,0.09) 0 75%, transparent 0); background-size: 26px 26px; -webkit-mask-image: linear-gradient(#000, transparent); mask-image: linear-gradient(#000, transparent); }
+          .a .glow { position: absolute; inset: 0; background: radial-gradient(90% 120% at 78% -10%, rgba(242,177,52,0.28), transparent 55%); }
+          .a .body { margin-top: -108px; }
+          .a .mark { background: linear-gradient(140deg,#f2b134,#d98a1a); }
+          .a .mark::before { content: ''; position: absolute; inset: 0; background-image: conic-gradient(rgba(0,0,0,0.55) 25%, transparent 0 50%, rgba(0,0,0,0.55) 0 75%, transparent 0); background-size: 12px 12px; opacity: 0.5; }
+          .a .wordmark { font-family: 'Archivo', sans-serif; font-size: 26px; color: #ffffff; }
+          .a .wordmark small { color: #f2b134; opacity: 0.9; }
+          .a .headline { font-family: 'Archivo', sans-serif; font-size: 28px; color: #ffffff; }
+          .a .headline em { font-style: normal; color: #f2b134; }
+          .a .tagline { color: #aab0bd; }
+          .a .flabel { color: #8f96a3; }
+          .a .field { background: #242833; border: 1.5px solid #333949; }
+          .a .field input { color: #eceef2; }
+          .a .field input::placeholder { color: #6b7280; }
+          .a .fico { color: #f2b134; }
+          .a .btn { background: linear-gradient(135deg,#f6bb45,#e79a1f); color: #1c1405; box-shadow: 0 12px 26px -10px rgba(242,177,52,0.6); }
+          .a .microcopy { color: #7f8593; }
+          .a .invite { background: rgba(242,177,52,0.09); border: 1px solid rgba(242,177,52,0.22); color: #c3c8d2; }
+          .a .invite b { color: #f2b134; }
+
+          /* ===== 1b  Tres banderas (verde/amarillo/rojo) ===== */
+          .b .screen { background: linear-gradient(180deg,#20242c 0%,#1a1d24 100%); color: #eef0f4; }
+          .b .sbar { color: #eef0f4; }
+          .b .flags { height: 168px; position: relative; overflow: hidden; }
+          .b .flags i { position: absolute; top: -40px; width: 62px; height: 260px; transform: rotate(24deg); filter: saturate(1.05); }
+          .b .flags .g { left: 30px; background: linear-gradient(180deg,#3fdd85,#22b869); }
+          .b .flags .y { left: 96px; background: linear-gradient(180deg,#ffd23f,#f2b81f); }
+          .b .flags .r { left: 162px; background: linear-gradient(180deg,#ff5a52,#e5352c); }
+          .b .flags::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,29,36,0) 40%, #1a1d24 92%), linear-gradient(90deg, rgba(26,29,36,0.2), transparent 30%, transparent 70%, rgba(26,29,36,0.75)); }
+          .b .body { margin-top: -46px; }
+          .b .mark { background: #23272f; display: flex; }
+          .b .mark u { flex: 1; text-decoration: none; }
+          .b .mark .g { background: #3fdd85; } .b .mark .y { background: #ffd23f; } .b .mark .r { background: #ff5a52; }
+          .b .wordmark { font-family: 'Space Grotesk', sans-serif; font-size: 25px; color: #ffffff; }
+          .b .wordmark small { color: #9aa0ac; }
+          .b .headline { font-family: 'Space Grotesk', sans-serif; font-size: 29px; color: #ffffff; }
+          .b .headline em { font-style: normal; color: #3fdd85; }
+          .b .tagline { color: #a7adba; }
+          .b .flabel { color: #8f96a3; }
+          .b .field { background: #23272f; border: 1.5px solid #333844; }
+          .b .field input { color: #eef0f4; }
+          .b .field input::placeholder { color: #6b7280; }
+          .b .fico { color: #3fdd85; }
+          .b .btn { background: linear-gradient(135deg,#42e58c,#22b869); color: #06251a; box-shadow: 0 12px 26px -10px rgba(63,221,133,0.55); }
+          .b .microcopy { color: #7f8593; }
+          .b .divider { color: #6b7280; } .b .divider::before, .b .divider::after { background: #2e3440; }
+          .b .invite { background: #23272f; border: 1px solid #333844; color: #b6bcc7; }
+          .b .invite b { color: #ffd23f; }
+
+          /* ===== 1c  Trazado (teal + curva de circuito) ===== */
+          .c .screen { background: radial-gradient(130% 90% at 20% 0%, #1c3340 0%, #16252f 55%, #121d25 100%); color: #e7edf1; }
+          .c .sbar { color: #e7edf1; }
+          .c .track { height: 190px; position: relative; overflow: hidden; }
+          .c .track .line { position: absolute; inset: 0; background-image: repeating-linear-gradient(115deg, transparent 0 26px, rgba(255,255,255,0.035) 26px 28px); }
+          .c .track .curve { position: absolute; width: 300px; height: 300px; right: -70px; top: -120px; border: 22px solid rgba(47,208,122,0.16); border-radius: 55% 45% 60% 40%; }
+          .c .track .curve.b { width: 210px; height: 210px; right: -20px; top: -60px; border-color: rgba(255,90,82,0.14); border-radius: 60% 40% 50% 50%; }
+          .c .track .sf { position: absolute; left: 30px; top: 96px; width: 46px; height: 20px; background-image: conic-gradient(#e7edf1 25%, transparent 0 50%, #e7edf1 0 75%, transparent 0); background-size: 10px 10px; background-color: #2fd07a; transform: skewX(-16deg); opacity: 0.85; }
+          .c .track::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,29,37,0) 45%, #121d25 95%); }
+          .c .body { margin-top: -58px; }
+          .c .mark { background: linear-gradient(140deg,#2fd07a,#1f9d64); }
+          .c .mark::before { content: ''; position: absolute; left: 8px; right: 8px; top: 50%; height: 10px; transform: translateY(-50%); border: 2.5px solid rgba(6,32,22,0.7); border-radius: 60% 40% 55% 45%; }
+          .c .wordmark { font-family: 'Oswald', sans-serif; font-size: 27px; letter-spacing: 2px; color: #ffffff; }
+          .c .wordmark small { color: #7fa9a0; }
+          .c .headline { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 30px; letter-spacing: 0.2px; color: #ffffff; }
+          .c .headline em { font-style: normal; color: #2fd07a; }
+          .c .tagline { color: #9db1b8; }
+          .c .flabel { color: #86999f; }
+          .c .field { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.12); }
+          .c .field input { color: #e7edf1; }
+          .c .field input::placeholder { color: #6f8087; }
+          .c .fico { color: #2fd07a; }
+          .c .btn { background: linear-gradient(135deg,#37db85,#1f9d64); color: #052318; box-shadow: 0 12px 26px -10px rgba(47,208,122,0.5); }
+          .c .microcopy { color: #7b8d93; }
+          .c .invite { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #aebcc1; }
+          .c .invite b { color: #2fd07a; }
+        </style>
+      </helmet>
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">1</a>
+          <span class="dv-tname">Pantalla de acceso &mdash; 3 direcciones visuales</span>
+          <span class="dv-tsub">tema oscuro, tem&aacute;tica de automovilismo, acentos de banderas &middot; logo placeholder</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt" id="1a">
+            <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a><span><span class="dv-oname">Paddock nocturno.</span> Carb&oacute;n c&aacute;lido, bandera a cuadros y un solo acento &aacute;mbar. Sobrio y con foco.</span></div>
+            <div class="dv-card">
+              <div class="phone a" data-screen-label="1a Acceso">
+                <div class="screen">
+                  <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                  <div class="hero">
+                    <div class="checker"></div>
+                    <div class="glow"></div>
+                  </div>
+                  <div class="body">
+                    <div class="brandrow">
+                      <div class="mark"></div>
+                      <div class="wordmark">EL PUESTO<small>OFICIALES DE PISTA</small></div>
+                    </div>
+                    <h1 class="headline">Tu puesto, listo <em>antes</em> de la bandera verde.</h1>
+                    <p class="tagline">Asignaci&oacute;n, compa&ntilde;eros y cronograma en un solo lugar, antes y durante cada evento.</p>
+                    <div class="form">
+                      <span class="flabel">Correo electr&oacute;nico</span>
+                      <div class="field"><span class="fico">&#9993;</span><input type="email" placeholder="nombre@correo.com" /></div>
+                      <button class="btn">Enviar enlace de acceso &rarr;</button>
+                      <p class="microcopy">Te enviamos un enlace para entrar. Sin contrase&ntilde;as.</p>
+                      <div class="invite"><span>&#128273;</span><span>El acceso es <b>solo por invitaci&oacute;n</b> de otro oficial y aprobaci&oacute;n del administrador.</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt" id="1b">
+            <div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a><span><span class="dv-oname">Tres banderas.</span> Verde, amarillo y rojo como energ&iacute;a gr&aacute;fica. Vistoso y en&eacute;rgico.</span></div>
+            <div class="dv-card">
+              <div class="phone b" data-screen-label="1b Acceso">
+                <div class="screen">
+                  <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                  <div class="hero">
+                    <div class="flags"><i class="g"></i><i class="y"></i><i class="r"></i></div>
+                  </div>
+                  <div class="body">
+                    <div class="brandrow">
+                      <div class="mark"><u class="g"></u><u class="y"></u><u class="r"></u></div>
+                      <div class="wordmark">EL PUESTO<small>OFICIALES DE PISTA</small></div>
+                    </div>
+                    <h1 class="headline">Coordina tu puesto, <em>vuelta tras vuelta</em>.</h1>
+                    <p class="tagline">Asignaci&oacute;n, compa&ntilde;eros y cronograma en un solo lugar, antes y durante cada evento.</p>
+                    <div class="form">
+                      <span class="flabel">Correo electr&oacute;nico</span>
+                      <div class="field"><span class="fico">&#9993;</span><input type="email" placeholder="nombre@correo.com" /></div>
+                      <button class="btn">Enviar enlace de acceso &rarr;</button>
+                      <p class="microcopy">Te enviamos un enlace para entrar. Sin contrase&ntilde;as.</p>
+                      <div class="invite"><span>&#128273;</span><span>El acceso es <b>solo por invitaci&oacute;n</b> de otro oficial y aprobaci&oacute;n del administrador.</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt" id="1c">
+            <div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a><span><span class="dv-oname">Trazado.</span> Base petr&oacute;leo con la curva del circuito y meta a cuadros. M&aacute;s atmosf&eacute;rico.</span></div>
+            <div class="dv-card">
+              <div class="phone c" data-screen-label="1c Acceso">
+                <div class="screen">
+                  <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                  <div class="hero">
+                    <div class="track"><div class="line"></div><div class="curve"></div><div class="curve b"></div><div class="sf"></div></div>
+                  </div>
+                  <div class="body">
+                    <div class="brandrow">
+                      <div class="mark"></div>
+                      <div class="wordmark">EL PUESTO<small>OFICIALES DE PISTA</small></div>
+                    </div>
+                    <h1 class="headline">Conoce tu curva antes de <em>pisar la pista</em>.</h1>
+                    <p class="tagline">Asignaci&oacute;n, compa&ntilde;eros y cronograma en un solo lugar, antes y durante cada evento.</p>
+                    <div class="form">
+                      <span class="flabel">Correo electr&oacute;nico</span>
+                      <div class="field"><span class="fico">&#9993;</span><input type="email" placeholder="nombre@correo.com" /></div>
+                      <button class="btn">Enviar enlace de acceso &rarr;</button>
+                      <p class="microcopy">Te enviamos un enlace para entrar. Sin contrase&ntilde;as.</p>
+                      <div class="invite"><span>&#128273;</span><span>El acceso es <b>solo por invitaci&oacute;n</b> de otro oficial y aprobaci&oacute;n del administrador.</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Prueba pedir: &ldquo;desarrolla <a class="dv-oid" href="#1b">1b</a> con los otros estados (enlace enviado, pendiente de aprobaci&oacute;n, sin invitaci&oacute;n)&rdquo; &middot; &ldquo;mezcla el acento &aacute;mbar de <a class="dv-oid" href="#1a">1a</a> con el trazado de <a class="dv-oid" href="#1c">1c</a>&rdquo; &middot; &ldquo;m&aacute;s sobrio&rdquo; o &ldquo;m&aacute;s vistoso&rdquo;.</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+campeonato,temporada,categoria,ronda,evento,fecha_inicio,fecha,circuito,sede,fuente,consultado
+FE,2025-26,Fórmula E,1,São Paulo E-Prix,2025-12-05,2025-12-06,sao_paulo_street,,https://www.fiaformulae.com/en/news/822290,2026-09-24
+FE,2025-26,Fórmula E,2,Mexico City E-Prix,2026-01-09,2026-01-10,rodriguez,,https://www.fiaformulae.com/en/news/824495,2026-09-24
+FE,2025-26,Fórmula E,3,Miami E-Prix,2026-01-30,2026-01-31,miami,,https://www.fiaformulae.com/en/news/826677,2026-09-24
+FE,2025-26,Fórmula E,4,Jeddah E-Prix,2026-02-12,2026-02-13,jeddah_corniche,,https://www.fiaformulae.com/en/news/873269,2026-09-24
+FE,2025-26,Fórmula E,5,Jeddah E-Prix,2026-02-12,2026-02-14,jeddah_corniche,,https://www.fiaformulae.com/en/news/873269,2026-09-24
+FE,2025-26,Fórmula E,6,Madrid E-Prix,2026-03-20,2026-03-21,jarama,,https://www.fiaformulae.com/en/news/1005554,2026-09-24
+FE,2025-26,Fórmula E,7,Berlin E-Prix,2026-05-01,2026-05-02,tempelhof,,https://www.fiaformulae.com/en/news/1060729,2026-09-24
+FE,2025-26,Fórmula E,8,Berlin E-Prix,2026-05-01,2026-05-03,tempelhof,,https://www.fiaformulae.com/en/news/1060729,2026-09-24
+FE,2025-26,Fórmula E,9,Monaco E-Prix,2026-05-16,2026-05-16,monaco,,https://www.fiaformulae.com/en/news/1067537,2026-09-24
+FE,2025-26,Fórmula E,10,Monaco E-Prix,2026-05-16,2026-05-17,monaco,,https://www.fiaformulae.com/en/news/1067537,2026-09-24
+FE,2025-26,Fórmula E,11,Sanya E-Prix,2026-06-19,2026-06-20,sanya_street,,https://www.fiaformulae.com/en/news/1073161,2026-09-24
+FE,2025-26,Fórmula E,12,Shanghai E-Prix,2026-07-03,2026-07-04,shanghai,,https://www.fiaformulae.com/en/news/1076199,2026-09-24
+FE,2025-26,Fórmula E,13,Shanghai E-Prix,2026-07-03,2026-07-05,shanghai,,https://www.fiaformulae.com/en/news/1076199,2026-09-24
+FE,2025-26,Fórmula E,14,Tokyo E-Prix,2026-07-24,2026-07-25,tokyo_street,,https://www.fiaformulae.com/en/news/1079181,2026-09-24
+FE,2025-26,Fórmula E,15,Tokyo E-Prix,2026-07-24,2026-07-26,tokyo_street,,https://www.fiaformulae.com/en/news/1079181,2026-09-24
+FE,2025-26,Fórmula E,16,London E-Prix,2026-08-14,2026-08-15,excel_london,,https://www.fiaformulae.com/en/news/755455,2026-09-24
+FE,2025-26,Fórmula E,17,London E-Prix,2026-08-14,2026-08-16,excel_london,,https://www.fiaformulae.com/en/news/755455,2026-09-24
+FE,2026-27,Fórmula E,1,Jeddah E-Prix,,2026-12-18,jeddah_corniche,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,2,Jeddah E-Prix,,2026-12-19,jeddah_corniche,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,3,Mexico City E-Prix,,2027-01-16,rodriguez,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,4,Austin E-Prix,,2027-02-06,americas,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,5,Miami E-Prix,,2027-02-20,miami,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,6,São Paulo E-Prix,,2027-03-13,sao_paulo_street,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,7,Sanya E-Prix,,2027-04-17,sanya_street,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,8,Monaco E-Prix,,2027-05-01,monaco,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,9,Monaco E-Prix,,2027-05-02,monaco,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,10,Berlin E-Prix,,2027-05-08,tempelhof,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,11,Berlin E-Prix,,2027-05-09,tempelhof,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,12,London E-Prix,,2027-05-29,brands_hatch,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,13,London E-Prix,,2027-05-30,brands_hatch,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,14,Zandvoort E-Prix,,2027-06-18,zandvoort,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,15,Zandvoort E-Prix,,2027-06-19,zandvoort,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,16,Madrid E-Prix,,2027-06-26,jarama,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,17,Madrid E-Prix,,2027-06-27,jarama,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,18,Shanghai E-Prix,,2027-07-10,shanghai,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,19,Shanghai E-Prix,,2027-07-11,shanghai,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,20,Tokyo E-Prix,,2027-07-24,tokyo_street,,https://www.fiaformulae.com/en/news/1074658,2026-09-24
+FE,2026-27,Fórmula E,21,Tokyo E-Prix,,2027-07-25,tokyo_street,,https://www.fiaformulae.com/en/news/1074658,2026-09-24

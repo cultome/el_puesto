@@ -1,0 +1,104 @@
+# Despliega el backend (con la app web de app.elpuesto.app adentro) a producción (EC2) en cada
+# push a master que toque su código o el de la app web, o a mano
+# desde la pestaña Actions. Dos jobs, para que el código que corre al compilar (Gradle y sus
+# plugins) nunca vea credenciales de AWS:
+#   construir  sin credenciales (solo lee el repo): scripts/desplegar-backend.sh --construir →
+#              backend-<versión>.tgz como artefacto del run.
+#   desplegar  entorno "produccion" (solo master; con aprobación si el entorno la exige): baja el
+#              artefacto, asume el rol de AWS por OIDC (infra/aws/7-github.sh) y corre
+#              scripts/desplegar-backend.sh --activar → S3 despliegues/ + documento de SSM
+#              ElPuesto-Activar (activar.sh regresa sola a la versión anterior si la nueva no
+#              contesta /health). Sin Gradle.
+# La configuración del servidor (infra/servidor/) NO se despliega aquí: corre como root, así que
+# es scripts/desplegar-servidor.sh, a mano. Todas las acciones van fijadas por SHA de commit.
+name: Desplegar backend
+
+on:
+  push:
+    branches: [master]
+    # Mismas rutas que RUTAS_BACKEND en scripts/nueva-version.sh (mantenerlas iguales).
+    paths:
+      - backend/**
+      - shared/**
+      # La app web viaja dentro del paquete del backend (releases/<versión>/web).
+      - app/**
+      - webApp/**
+      - kotlin-js-store/**
+      - infra/aws/comun.sh
+      - scripts/desplegar-backend.sh
+      - gradle/**
+      - build.gradle.kts
+      - settings.gradle.kts
+      - gradle.properties
+      - .github/workflows/desplegar-backend.yml
+  workflow_dispatch:
+
+# Un despliegue a la vez; si llegan varios pushes seguidos, gana el más reciente.
+concurrency:
+  group: produccion-backend
+  cancel-in-progress: false
+
+permissions: {}   # cada job pide lo suyo
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+        with:
+          validate-wrappers: true   # gradle-wrapper.jar contra las sumas oficiales de Gradle
+
+      - name: Construir
+        env:
+          GRADLE: ./gradlew   # relativo al worktree que arma el script
+        run: scripts/desplegar-backend.sh --construir "$RUNNER_TEMP/backend" "$GITHUB_SHA"
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: backend
+          path: ${{ runner.temp }}/backend/
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0   # ya es .tgz
+
+  desplegar:
+    needs: construir
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: produccion
+      url: https://api.elpuesto.app/health
+    permissions:
+      id-token: write   # token OIDC para asumir el rol de AWS
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: backend
+          path: ${{ runner.temp }}/backend
+
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          role-session-name: github-desplegar-backend
+          role-duration-seconds: 1800
+          aws-region: mx-central-1
+
+      - name: Activar
+        run: scripts/desplegar-backend.sh --activar "$RUNNER_TEMP/backend"

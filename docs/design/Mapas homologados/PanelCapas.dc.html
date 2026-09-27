@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Panel de capas (componente, opción B)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 232px; height: {{hgt}}px; box-sizing: border-box; padding: 6px 0 8px 0; border-radius: 16px; background: rgba(36,40,51,0.98); border: 1px solid #3A4152; box-shadow: 0 12px 32px rgba(0,0,0,0.45); display: flex; flex-direction: column; font-family: 'IBM Plex Sans', sans-serif; color: #ECEEF2">
+<div style="height: 36px; padding: 0 6px 0 14px; display: flex; align-items: center; justify-content: space-between">
+<div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: 1px; color: #F2B134">MOSTRAR EN EL MAPA</div>
+<button aria-label="Cerrar capas" onClick="{{close}}" style="width: 32px; height: 32px; margin: 0; padding: 0; border: none; border-radius: 8px; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#AAB0BD" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+</div>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="4">
+<button aria-pressed="{{r.pressed}}" aria-label="{{r.aria}}" onClick="{{r.toggle}}" style="height: 48px; margin: 0; padding: 0 14px; border: none; background: transparent; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left">
+<span style="width: 22px; height: 13px; border-radius: 7px; box-sizing: border-box; background: {{r.swBg}}; border: 1.5px solid {{r.swBd}}; flex-shrink: 0"></span>
+<span style="flex-grow: 1; font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 13.5px; color: {{r.fg}}">{{r.label}}</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 11px; color: #8F96A3">{{r.count}}</span>
+<span style="width: 36px; height: 20px; border-radius: 10px; box-sizing: border-box; padding: 2px; background: {{r.trackBg}}; display: flex; justify-content: {{r.knobSide}}; flex-shrink: 0"><span style="width: 16px; height: 16px; border-radius: 8px; background: {{r.knob}}"></span></span>
+</button>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"puestos":{"editor":null,"default":true},"rescate":{"editor":null,"default":true},"soporte":{"editor":null,"default":true},"medicos":{"editor":null,"default":true},"hasMedicos":{"editor":null,"default":true},"counts":{"editor":null},"onToggle":{"editor":null},"onClose":{"editor":null},"rescateColor":{"editor":"color","default":"#B58CF0","options":["#B58CF0","#F08A4B","#7FB7F0"],"section":"Colores"},"$preview":{"width":232,"height":244}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const rc = p.rescateColor ?? '#B58CF0';
+    const counts = p.counts ?? { P: 15, R: 6, S: 2, M: 2 };
+    const DEF = [
+      { k: 'P', label: 'Puestos', on: p.puestos ?? true, sw: '#20242E', swBd: '#F2B134' },
+      { k: 'R', label: 'Rescate', on: p.rescate ?? true, sw: rc, swBd: rc },
+      { k: 'S', label: 'Soporte', on: p.soporte ?? true, sw: '#C4CAD6', swBd: '#C4CAD6' },
+      { k: 'M', label: 'Médicos', on: p.medicos ?? true, sw: '#F0524D', swBd: '#F0524D' },
+    ];
+    const rows = DEF.filter((c) => (counts[c.k] ?? 0) > 0 && !(c.k === 'M' && p.hasMedicos === false)).map((c) => ({
+      label: c.label,
+      count: String(counts[c.k]),
+      swBg: c.on ? c.sw : 'transparent',
+      swBd: c.on ? c.swBd : '#5A6172',
+      fg: c.on ? '#ECEEF2' : '#7D8494',
+      trackBg: c.on ? '#F2B134' : '#3A4152',
+      knob: c.on ? '#1C1405' : '#8F96A3',
+      knobSide: c.on ? 'flex-end' : 'flex-start',
+      pressed: c.on ? 'true' : 'false',
+      aria: (c.on ? 'Ocultar ' : 'Mostrar ') + c.label.toLowerCase(),
+      toggle: () => { if (p.onToggle) p.onToggle(c.k); },
+    }));
+    return {
+      rows,
+      hgt: 52 + rows.length * 48,
+      close: () => { if (p.onClose) p.onClose(); },
+    };
+  }
+}
+</script>
+</body>
+</html>

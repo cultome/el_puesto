@@ -1,0 +1,257 @@
+{
+ "meta": {
+  "categoria": "TCR México — \"Campeonato General (Sprint)\" (campo auto = Cat Pro/Am). Hay además \"Campeonato Pro (Sprint)\" y \"Campeonato Am (Sprint)\" (mismos datos filtrados) y \"Campeonato General Endurance\" (tcr-endurance.txt)",
+  "pagina": "https://mexicoracingcup.com/33-tcr-mxico (idéntica en https://tcrmexico.com/puntuacin)",
+  "imagen": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1788388507272679086.jpg",
+  "fecha_impresa": "(ninguna; subida 2026-09-02)",
+  "hasta_fecha": "4 (columnas Fecha 2, 3 y 4; la fecha 1 es de resistencia y va en su propia tabla; falta la fecha 5, 6 Horas de Puebla del 13-sep)",
+  "columnas": "2,3,4",
+  "peor": "no (sin columna PEOR FECHA)",
+  "nota": "Puntos con DECIMALES (Julio Rejón 280,6 = 90+106+84,6); nuestro Standing.points es Int. Paolo Zesati (76) aparece DEBAJO de dos pilotos con 74."
+ },
+ "filas": [
+  {
+   "pos": 1,
+   "piloto": "Juan Pablo Sierra",
+   "auto": "Pro",
+   "extra": null,
+   "puntos_reales": 291,
+   "diferencia": null,
+   "por_carrera": [
+    85,
+    103,
+    103
+   ],
+   "sancionadas": [],
+   "suma": 291,
+   "peor_fecha": null
+  },
+  {
+   "pos": 2,
+   "piloto": "Rodrigo Rejón",
+   "auto": "Pro",
+   "extra": null,
+   "puntos_reales": 287,
+   "diferencia": null,
+   "por_carrera": [
+    93,
+    93,
+    101
+   ],
+   "sancionadas": [],
+   "suma": 287,
+   "peor_fecha": null
+  },
+  {
+   "pos": 3,
+   "piloto": "Pablo Cervantes",
+   "auto": "Pro",
+   "extra": null,
+   "puntos_reales": 281,
+   "diferencia": null,
+   "por_carrera": [
+    106,
+    85,
+    90
+   ],
+   "sancionadas": [],
+   "suma": 281,
+   "peor_fecha": null
+  },
+  {
+   "pos": 4,
+   "piloto": "Julio Rejón",
+   "auto": "Pro",
+   "extra": null,
+   "puntos_reales": 280.6,
+   "diferencia": null,
+   "por_carrera": [
+    90,
+    106,
+    84.6
+   ],
+   "sancionadas": [],
+   "suma": 280.6,
+   "peor_fecha": null
+  },
+  {
+   "pos": 5,
+   "piloto": "Gerardo Rejón",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 253,
+   "diferencia": null,
+   "por_carrera": [
+    90,
+    85,
+    78
+   ],
+   "sancionadas": [],
+   "suma": 253,
+   "peor_fecha": null
+  },
+  {
+   "pos": 6,
+   "piloto": "Mauricio Uribe",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 165,
+   "diferencia": null,
+   "por_carrera": [
+    85,
+    0,
+    80
+   ],
+   "sancionadas": [],
+   "suma": 165,
+   "peor_fecha": null
+  },
+  {
+   "pos": 7,
+   "piloto": "Luis Cervantes",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 156,
+   "diferencia": null,
+   "por_carrera": [
+    0,
+    80,
+    76
+   ],
+   "sancionadas": [],
+   "suma": 156,
+   "peor_fecha": null
+  },
+  {
+   "pos": 8,
+   "piloto": "Oscar Uribe",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 103,
+   "diferencia": null,
+   "por_carrera": [
+    103,
+    0,
+    0
+   ],
+   "sancionadas": [],
+   "suma": 103,
+   "peor_fecha": null
+  },
+  {
+   "pos": 9,
+   "piloto": "Alex Uribe",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 100,
+   "diferencia": null,
+   "por_carrera": [
+    100,
+    0,
+    0
+   ],
+   "sancionadas": [],
+   "suma": 100,
+   "peor_fecha": null
+  },
+  {
+   "pos": 10,
+   "piloto": "Carlo Zesati",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 85,
+   "diferencia": null,
+   "por_carrera": [
+    0,
+    0,
+    85
+   ],
+   "sancionadas": [],
+   "suma": 85,
+   "peor_fecha": null
+  },
+  {
+   "pos": 11,
+   "piloto": "Jose Luis Hernández",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 78,
+   "diferencia": null,
+   "por_carrera": [
+    0,
+    78,
+    0
+   ],
+   "sancionadas": [],
+   "suma": 78,
+   "peor_fecha": null
+  },
+  {
+   "pos": 12,
+   "piloto": "Marco Montoya",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 78,
+   "diferencia": null,
+   "por_carrera": [
+    0,
+    78,
+    0
+   ],
+   "sancionadas": [],
+   "suma": 78,
+   "peor_fecha": null
+  },
+  {
+   "pos": 13,
+   "piloto": "Jorge Abed",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 74,
+   "diferencia": null,
+   "por_carrera": [
+    0,
+    0,
+    74
+   ],
+   "sancionadas": [],
+   "suma": 74,
+   "peor_fecha": null
+  },
+  {
+   "pos": 14,
+   "piloto": "Bruno Zesati",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 74,
+   "diferencia": null,
+   "por_carrera": [
+    0,
+    0,
+    74
+   ],
+   "sancionadas": [],
+   "suma": 74,
+   "peor_fecha": null
+  },
+  {
+   "pos": 15,
+   "piloto": "Paolo Zesati",
+   "auto": "Am",
+   "extra": null,
+   "puntos_reales": 76,
+   "diferencia": null,
+   "por_carrera": [
+    0,
+    0,
+    76
+   ],
+   "sancionadas": [],
+   "suma": 76,
+   "peor_fecha": null
+  }
+ ],
+ "problemas": [
+  "V5 pos 15 Paolo Zesati (76) tiene más puntos que pos 14 (74)"
+ ]
+}

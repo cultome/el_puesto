@@ -1,0 +1,1023 @@
+{
+ "meta": {
+  "categoria": "Endurance Challenge — tabla \"PILOTO GENERAL\" (absoluto). La misma imagen trae además PILOTO E1..E8 y AUTO E1..E8 (no transcritas).",
+  "pagina": "https://mexicoracingcup.com/33-endurance-challenge",
+  "imagen": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1790036455354149227.jpg",
+  "fecha_impresa": "19-sep-26 (subida 2026-09-21; título \"Endurace Challenge\" con errata)",
+  "hasta_fecha": "3",
+  "columnas": "1,2,3,4,5",
+  "peor": "no (sin columna PEOR FECHA; REALES = SUMA)",
+  "nota": "\"Victor Gonzalez / Paco Gomez\" aparece dos veces (pos 4 y 23): dos autos distintos con la misma tripulación."
+ },
+ "filas": [
+  {
+   "pos": 1,
+   "piloto": "Ricardo Cordero",
+   "auto": "Hyundai",
+   "extra": null,
+   "puntos_reales": 265,
+   "diferencia": 0,
+   "por_carrera": [
+    85,
+    90,
+    90,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 265,
+   "peor_fecha": null
+  },
+  {
+   "pos": 2,
+   "piloto": "Salvador Estrada",
+   "auto": "Mercedes",
+   "extra": null,
+   "puntos_reales": 243,
+   "diferencia": -22,
+   "por_carrera": [
+    78,
+    80,
+    85,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 243,
+   "peor_fecha": null
+  },
+  {
+   "pos": 3,
+   "piloto": "Ramon Osorio",
+   "auto": "Seat/Mini",
+   "extra": null,
+   "puntos_reales": 222,
+   "diferencia": -43,
+   "por_carrera": [
+    68,
+    78,
+    76,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 222,
+   "peor_fecha": null
+  },
+  {
+   "pos": 4,
+   "piloto": "Victor Gonzalez / Paco Gomez",
+   "auto": "Seat SC",
+   "extra": null,
+   "puntos_reales": 204,
+   "diferencia": -61,
+   "por_carrera": [
+    80,
+    72,
+    52,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 204,
+   "peor_fecha": null
+  },
+  {
+   "pos": 5,
+   "piloto": "Juan Pablo Sierra",
+   "auto": "Cupra / Hyudai",
+   "extra": null,
+   "puntos_reales": 193,
+   "diferencia": -72,
+   "por_carrera": [
+    0,
+    90,
+    103,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 193,
+   "peor_fecha": null
+  },
+  {
+   "pos": 6,
+   "piloto": "Dagoberto de la O / Kevin Salgado",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 192,
+   "diferencia": -73,
+   "por_carrera": [
+    70,
+    52,
+    70,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 192,
+   "peor_fecha": null
+  },
+  {
+   "pos": 7,
+   "piloto": "Julio Rejon / Gerardo Rejon Jr. / Rodrigo Rejon",
+   "auto": "Cupra",
+   "extra": null,
+   "puntos_reales": 167,
+   "diferencia": -98,
+   "por_carrera": [
+    106,
+    null,
+    61,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 167,
+   "peor_fecha": null
+  },
+  {
+   "pos": 8,
+   "piloto": "Luis Javier Camargo",
+   "auto": "Mercedes",
+   "extra": null,
+   "puntos_reales": 158,
+   "diferencia": -107,
+   "por_carrera": [
+    78,
+    80,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 158,
+   "peor_fecha": null
+  },
+  {
+   "pos": 9,
+   "piloto": "Michel Betancourt / Genaro Davalos",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 156,
+   "diferencia": -109,
+   "por_carrera": [
+    76,
+    0,
+    80,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 156,
+   "peor_fecha": null
+  },
+  {
+   "pos": 10,
+   "piloto": "Adiel Gamboa",
+   "auto": "Mini",
+   "extra": null,
+   "puntos_reales": 154,
+   "diferencia": -111,
+   "por_carrera": [
+    null,
+    78,
+    76,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 154,
+   "peor_fecha": null
+  },
+  {
+   "pos": 11,
+   "piloto": "Manuel Cano / Enrique Ibarra / Miguel Angel Espinosa",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 150,
+   "diferencia": -115,
+   "por_carrera": [
+    74,
+    76,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 150,
+   "peor_fecha": null
+  },
+  {
+   "pos": 12,
+   "piloto": "Guy Savoa",
+   "auto": "Seat/Mini",
+   "extra": null,
+   "puntos_reales": 144,
+   "diferencia": -121,
+   "por_carrera": [
+    68,
+    null,
+    76,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 144,
+   "peor_fecha": null
+  },
+  {
+   "pos": 13,
+   "piloto": "Jose Miguel Díaz Goñi / Derek Diaz Goñi",
+   "auto": "Renault",
+   "extra": null,
+   "puntos_reales": 130,
+   "diferencia": -135,
+   "por_carrera": [
+    null,
+    62,
+    68,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 130,
+   "peor_fecha": null
+  },
+  {
+   "pos": 14,
+   "piloto": "Jose Maria Castro / Adrian Ramírez",
+   "auto": "Volkswagen",
+   "extra": null,
+   "puntos_reales": 120,
+   "diferencia": -145,
+   "por_carrera": [
+    0,
+    70,
+    50,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 120,
+   "peor_fecha": null
+  },
+  {
+   "pos": 15,
+   "piloto": "Arturo Aldana / Raymundo Paz",
+   "auto": "Mini",
+   "extra": null,
+   "puntos_reales": 118,
+   "diferencia": -147,
+   "por_carrera": [
+    64,
+    54,
+    0,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 118,
+   "peor_fecha": null
+  },
+  {
+   "pos": 16,
+   "piloto": "Marco Piza",
+   "auto": "Mini",
+   "extra": null,
+   "puntos_reales": 118,
+   "diferencia": -147,
+   "por_carrera": [
+    64,
+    54,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 118,
+   "peor_fecha": null
+  },
+  {
+   "pos": 17,
+   "piloto": "Jorge Casso / Oscar Santurino",
+   "auto": "Renault",
+   "extra": null,
+   "puntos_reales": 114,
+   "diferencia": -151,
+   "por_carrera": [
+    null,
+    60,
+    54,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 114,
+   "peor_fecha": null
+  },
+  {
+   "pos": 18,
+   "piloto": "Marco Montoya / Jose Luis Hernandez / Pedro Martínez",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 106,
+   "diferencia": -159,
+   "por_carrera": [
+    null,
+    106,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 106,
+   "peor_fecha": null
+  },
+  {
+   "pos": 19,
+   "piloto": "Luis Cervantes / Pablo Cervantes",
+   "auto": "Cupra",
+   "extra": null,
+   "puntos_reales": 106,
+   "diferencia": -159,
+   "por_carrera": [
+    0,
+    null,
+    106,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 106,
+   "peor_fecha": null
+  },
+  {
+   "pos": 20,
+   "piloto": "Omar Chavez / Jorge Abed",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 90,
+   "diferencia": -175,
+   "por_carrera": [
+    90,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 90,
+   "peor_fecha": null
+  },
+  {
+   "pos": 21,
+   "piloto": "Andres Orea Jr.",
+   "auto": "Hyundai",
+   "extra": null,
+   "puntos_reales": 90,
+   "diferencia": -175,
+   "por_carrera": [
+    null,
+    null,
+    90,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 90,
+   "peor_fecha": null
+  },
+  {
+   "pos": 22,
+   "piloto": "Miguel Calvo",
+   "auto": "Hyundai",
+   "extra": null,
+   "puntos_reales": 85,
+   "diferencia": -180,
+   "por_carrera": [
+    85,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 85,
+   "peor_fecha": null
+  },
+  {
+   "pos": 23,
+   "piloto": "Victor Gonzalez / Paco Gomez",
+   "auto": "Seat SC",
+   "extra": null,
+   "puntos_reales": 85,
+   "diferencia": -180,
+   "por_carrera": [
+    null,
+    85,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 85,
+   "peor_fecha": null
+  },
+  {
+   "pos": 24,
+   "piloto": "Gerardo Hernandez / Dirkan Archundia",
+   "auto": "Mercedes",
+   "extra": null,
+   "puntos_reales": 85,
+   "diferencia": -180,
+   "por_carrera": [
+    null,
+    null,
+    85,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 85,
+   "peor_fecha": null
+  },
+  {
+   "pos": 25,
+   "piloto": "Rodrigo Espinosa / Joaquin Toranzo",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 74,
+   "diferencia": -191,
+   "por_carrera": [
+    null,
+    74,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 74,
+   "peor_fecha": null
+  },
+  {
+   "pos": 26,
+   "piloto": "Juan Musi",
+   "auto": "Seat",
+   "extra": null,
+   "puntos_reales": 72,
+   "diferencia": -193,
+   "por_carrera": [
+    72,
+    0,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 72,
+   "peor_fecha": null
+  },
+  {
+   "pos": 27,
+   "piloto": "Omar Valderrama",
+   "auto": "Seat",
+   "extra": null,
+   "puntos_reales": 72,
+   "diferencia": -193,
+   "por_carrera": [
+    72,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 72,
+   "peor_fecha": null
+  },
+  {
+   "pos": 28,
+   "piloto": "Antonio Arginbau / Jorge Machuca",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 72,
+   "diferencia": -193,
+   "por_carrera": [
+    null,
+    null,
+    72,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 72,
+   "peor_fecha": null
+  },
+  {
+   "pos": 29,
+   "piloto": "Juan Carlos Torres",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 68,
+   "diferencia": -197,
+   "por_carrera": [
+    0,
+    68,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 68,
+   "peor_fecha": null
+  },
+  {
+   "pos": 30,
+   "piloto": "Jerry Hernandez",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 68,
+   "diferencia": -197,
+   "por_carrera": [
+    null,
+    68,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 68,
+   "peor_fecha": null
+  },
+  {
+   "pos": 31,
+   "piloto": "Mauro Vega / Roberto Abarca Jr",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 66,
+   "diferencia": -199,
+   "por_carrera": [
+    66,
+    0,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 66,
+   "peor_fecha": null
+  },
+  {
+   "pos": 32,
+   "piloto": "Norberto Piñon Jr. / Hector Pedroza",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 66,
+   "diferencia": -199,
+   "por_carrera": [
+    null,
+    66,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 66,
+   "peor_fecha": null
+  },
+  {
+   "pos": 33,
+   "piloto": "Patricio Hoppenstedt / Fernando Hoppenstedt",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 66,
+   "diferencia": -199,
+   "por_carrera": [
+    null,
+    null,
+    66,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 66,
+   "peor_fecha": null
+  },
+  {
+   "pos": 34,
+   "piloto": "Alex Sanchez / Gustavo Tinajero / Gerardo Ylizaliturri",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 64,
+   "diferencia": -201,
+   "por_carrera": [
+    null,
+    64,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 64,
+   "peor_fecha": null
+  },
+  {
+   "pos": 35,
+   "piloto": "Diego Ruiz / Rodrigo Velazquez",
+   "auto": "Renault",
+   "extra": null,
+   "puntos_reales": 64,
+   "diferencia": -201,
+   "por_carrera": [
+    null,
+    null,
+    64,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 64,
+   "peor_fecha": null
+  },
+  {
+   "pos": 36,
+   "piloto": "Jose Espindola / Asael Ovando",
+   "auto": "Cupra",
+   "extra": null,
+   "puntos_reales": 62,
+   "diferencia": -203,
+   "por_carrera": [
+    62,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 62,
+   "peor_fecha": null
+  },
+  {
+   "pos": 37,
+   "piloto": "David Rodríguez / Pablo Rodríguez / Omar Rodríguez",
+   "auto": "Chevrolet",
+   "extra": null,
+   "puntos_reales": 62,
+   "diferencia": -203,
+   "por_carrera": [
+    null,
+    null,
+    62,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 62,
+   "peor_fecha": null
+  },
+  {
+   "pos": 38,
+   "piloto": "Jonathan Delgado / Santiago Dominguez",
+   "auto": "Seat SC",
+   "extra": null,
+   "puntos_reales": 60,
+   "diferencia": -205,
+   "por_carrera": [
+    60,
+    0,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 60,
+   "peor_fecha": null
+  },
+  {
+   "pos": 39,
+   "piloto": "Yashir Medina",
+   "auto": "Renault",
+   "extra": null,
+   "puntos_reales": 60,
+   "diferencia": -205,
+   "por_carrera": [
+    null,
+    60,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 60,
+   "peor_fecha": null
+  },
+  {
+   "pos": 40,
+   "piloto": "Jorge Estevez / Armando Anaya / Omar Cardenas",
+   "auto": "Chevrolet",
+   "extra": null,
+   "puntos_reales": 60,
+   "diferencia": -205,
+   "por_carrera": [
+    null,
+    null,
+    60,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 60,
+   "peor_fecha": null
+  },
+  {
+   "pos": 41,
+   "piloto": "Omar Raul Cardenas",
+   "auto": "Chevrolet",
+   "extra": null,
+   "puntos_reales": 58,
+   "diferencia": -207,
+   "por_carrera": [
+    58,
+    0,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 58,
+   "peor_fecha": null
+  },
+  {
+   "pos": 42,
+   "piloto": "Omar Funes / Claus Shinkel",
+   "auto": "Chevrolet",
+   "extra": null,
+   "puntos_reales": 58,
+   "diferencia": -207,
+   "por_carrera": [
+    58,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 58,
+   "peor_fecha": null
+  },
+  {
+   "pos": 43,
+   "piloto": "Fernando Perez / Arturo Rayas / Agustín Valero",
+   "auto": "Renault",
+   "extra": null,
+   "puntos_reales": 58,
+   "diferencia": -207,
+   "por_carrera": [
+    null,
+    58,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 58,
+   "peor_fecha": null
+  },
+  {
+   "pos": 44,
+   "piloto": "Agustin Muñoz / Erick Sierra / Santiago del Rincon",
+   "auto": "Seat",
+   "extra": null,
+   "puntos_reales": 56,
+   "diferencia": -209,
+   "por_carrera": [
+    56,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 56,
+   "peor_fecha": null
+  },
+  {
+   "pos": 45,
+   "piloto": "Lalo de la Cajiga / Steffen Schubert / Miguel Limon",
+   "auto": "Chevrolet",
+   "extra": null,
+   "puntos_reales": 56,
+   "diferencia": -209,
+   "por_carrera": [
+    null,
+    56,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 56,
+   "peor_fecha": null
+  },
+  {
+   "pos": 46,
+   "piloto": "Luis Cobos / Hector Ulises Carrillo",
+   "auto": "Subaru",
+   "extra": null,
+   "puntos_reales": 56,
+   "diferencia": -209,
+   "por_carrera": [
+    null,
+    null,
+    56,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 56,
+   "peor_fecha": null
+  },
+  {
+   "pos": 47,
+   "piloto": "Manuel Gracia",
+   "auto": "Seat SC",
+   "extra": null,
+   "puntos_reales": 52,
+   "diferencia": -213,
+   "por_carrera": [
+    null,
+    null,
+    52,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 52,
+   "peor_fecha": null
+  },
+  {
+   "pos": 48,
+   "piloto": "Jorge Alejandro Sanchez / Sergio Gonzalez",
+   "auto": "Renault",
+   "extra": null,
+   "puntos_reales": 50,
+   "diferencia": -215,
+   "por_carrera": [
+    null,
+    50,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 50,
+   "peor_fecha": null
+  },
+  {
+   "pos": 49,
+   "piloto": "Luis Manuel Garcia / Carlos Manuel Garcia",
+   "auto": "Cupra",
+   "extra": null,
+   "puntos_reales": 0,
+   "diferencia": -265,
+   "por_carrera": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 0,
+   "peor_fecha": null
+  },
+  {
+   "pos": 50,
+   "piloto": "Rogelio Castro",
+   "auto": "Volkswagen",
+   "extra": null,
+   "puntos_reales": 0,
+   "diferencia": -265,
+   "por_carrera": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 0,
+   "peor_fecha": null
+  },
+  {
+   "pos": 51,
+   "piloto": "Carlos Rodrigo Ramirez",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 0,
+   "diferencia": -265,
+   "por_carrera": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 0,
+   "peor_fecha": null
+  },
+  {
+   "pos": 52,
+   "piloto": "Emilio Mora",
+   "auto": "Audi",
+   "extra": null,
+   "puntos_reales": 0,
+   "diferencia": -265,
+   "por_carrera": [
+    null,
+    0,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 0,
+   "peor_fecha": null
+  },
+  {
+   "pos": 53,
+   "piloto": "Said Mora / Luis Ramos",
+   "auto": "Alfa Romeo",
+   "extra": null,
+   "puntos_reales": 0,
+   "diferencia": -265,
+   "por_carrera": [
+    null,
+    0,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 0,
+   "peor_fecha": null
+  },
+  {
+   "pos": 54,
+   "piloto": "Anthony Michel Luna Rivera / Elliot Luna Rivera",
+   "auto": "Chevrolet",
+   "extra": null,
+   "puntos_reales": 0,
+   "diferencia": -265,
+   "por_carrera": [
+    null,
+    0,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 0,
+   "peor_fecha": null
+  },
+  {
+   "pos": 55,
+   "piloto": "Erik del Olmo / Alfredo Leal",
+   "auto": "Chevrolet",
+   "extra": null,
+   "puntos_reales": 0,
+   "diferencia": -265,
+   "por_carrera": [
+    null,
+    0,
+    null,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 0,
+   "peor_fecha": null
+  },
+  {
+   "pos": 56,
+   "piloto": "Luis Calvillo",
+   "auto": "Chevrolet",
+   "extra": null,
+   "puntos_reales": 0,
+   "diferencia": -265,
+   "por_carrera": [
+    null,
+    null,
+    0,
+    null,
+    null
+   ],
+   "sancionadas": [],
+   "suma": 0,
+   "peor_fecha": null
+  }
+ ],
+ "problemas": []
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=El Puesto: respaldo diario en la madrugada (hora de CDMX)
+
+[Timer]
+OnCalendar=*-*-* 03:30:00 America/Mexico_City
+RandomizedDelaySec=10min
+# Si la instancia estaba apagada a esa hora, respalda al arrancar.
+Persistent=true
+
+[Install]
+WantedBy=timers.target

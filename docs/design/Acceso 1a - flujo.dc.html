@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: #f2b134; } a:hover { color: #f6bb45; }
+          .dv-turn { padding: 48px 52px 40px; }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 700 16px/1.3 'Archivo', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-opts { display: flex; flex-wrap: nowrap; gap: 36px; align-items: flex-start; }
+          .dv-opt { flex: none; display: flex; flex-direction: column; gap: 12px; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; max-width: 384px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 1000px; }
+
+          /* ===== Device shell ===== */
+          .phone { width: 384px; padding: 13px; border-radius: 46px; background: linear-gradient(160deg,#26282e,#111216); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.05); }
+          .screen { position: relative; height: 812px; border-radius: 34px; overflow: hidden; display: flex; flex-direction: column; background: radial-gradient(120% 80% at 50% 0%, #2a2f3a 0%, #1e222b 55%, #191c24 100%); color: #eceef2; }
+          .sbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px 0; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; z-index: 3; }
+          .sbar .dots { display: flex; gap: 5px; align-items: center; }
+          .sbar .dots span { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+          .sbar .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; position: relative; opacity: 0.85; }
+          .sbar .bat::after { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; right: 6px; background: currentColor; border-radius: 1px; }
+
+          /* ===== Brand hero (welcome) ===== */
+          .hero { position: relative; }
+          .checker { height: 152px; background-image: conic-gradient(rgba(255,255,255,0.09) 25%, transparent 0 50%, rgba(255,255,255,0.09) 0 75%, transparent 0); background-size: 26px 26px; -webkit-mask-image: linear-gradient(#000, transparent); mask-image: linear-gradient(#000, transparent); }
+          .glow { position: absolute; inset: 0; background: radial-gradient(90% 120% at 78% -10%, rgba(242,177,52,0.28), transparent 55%); }
+          .body { flex: 1; display: flex; flex-direction: column; padding: 0 30px 34px; margin-top: -108px; }
+          .brandrow { display: flex; align-items: center; gap: 13px; }
+          .mark { width: 46px; height: 46px; border-radius: 13px; flex: none; position: relative; overflow: hidden; background: linear-gradient(140deg,#f2b134,#d98a1a); }
+          .mark::before { content: ''; position: absolute; inset: 0; background-image: conic-gradient(rgba(0,0,0,0.55) 25%, transparent 0 50%, rgba(0,0,0,0.55) 0 75%, transparent 0); background-size: 12px 12px; opacity: 0.5; }
+          .wordmark { font: 800 26px 'Archivo', sans-serif; letter-spacing: 1.5px; line-height: 0.95; color: #fff; }
+          .wordmark small { display: block; font: 500 10.5px 'IBM Plex Mono', monospace; letter-spacing: 3px; color: #f2b134; opacity: 0.9; margin-top: 3px; }
+          .headline { font: 700 28px/1.15 'Archivo', sans-serif; letter-spacing: -0.5px; color: #fff; margin: 30px 0 12px; }
+          .headline em { font-style: normal; color: #f2b134; }
+          .tagline { font: 400 15.5px/1.5 'IBM Plex Sans', sans-serif; color: #aab0bd; margin: 0; }
+          .form { margin-top: auto; display: flex; flex-direction: column; gap: 14px; }
+          .flabel { font: 600 12.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.3px; text-transform: uppercase; color: #8f96a3; }
+          .field { display: flex; align-items: center; gap: 11px; height: 56px; padding: 0 16px; border-radius: 14px; background: #242833; border: 1.5px solid #333949; }
+          .field input { flex: 1; background: transparent; border: none; outline: none; font: 400 16px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .field input::placeholder { color: #6b7280; }
+          .fico { color: #f2b134; font-size: 16px; }
+          .btn { height: 56px; border: none; border-radius: 14px; font: 700 15.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.2px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px; background: linear-gradient(135deg,#f6bb45,#e79a1f); color: #1c1405; box-shadow: 0 12px 26px -10px rgba(242,177,52,0.6); }
+          .btn.ghost { background: transparent; border: 1.5px solid #3a4152; color: #f2b134; box-shadow: none; }
+          .btn .hint { font-weight: 500; opacity: 0.72; font-size: 13.5px; }
+          .microcopy { font: 400 12.5px/1.5 'IBM Plex Sans', sans-serif; text-align: center; color: #7f8593; margin: 2px 0 0; }
+          .invite { display: flex; align-items: center; gap: 10px; padding: 13px 15px; border-radius: 13px; font: 400 12.8px/1.45 'IBM Plex Sans', sans-serif; background: rgba(242,177,52,0.09); border: 1px solid rgba(242,177,52,0.22); color: #c3c8d2; }
+          .invite b { font-weight: 600; color: #f2b134; }
+          .invite .k { width: 15px; height: 15px; border: 3px solid #f2b134; border-radius: 50%; position: relative; flex: none; }
+          .invite .k::after { content: ''; position: absolute; left: 50%; top: 13px; width: 3px; height: 9px; background: #f2b134; transform: translateX(-50%); }
+
+          /* ===== Sub-state layout ===== */
+          .minihero { position: absolute; top: 0; left: 0; right: 0; height: 120px; overflow: hidden; z-index: 0; }
+          .minihero .checker { height: 120px; }
+          .topbar { display: flex; align-items: center; gap: 8px; padding: 12px 20px 0; position: relative; z-index: 2; }
+          .back { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: #eceef2; font-size: 19px; }
+          .tbrand { font: 800 13px 'Archivo', sans-serif; letter-spacing: 2px; color: #fff; margin: 0 auto; }
+          .tspace { width: 34px; flex: none; }
+          .state { flex: 1; display: flex; flex-direction: column; align-items: stretch; padding: 24px 30px 34px; position: relative; z-index: 1; }
+          .cblock { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 20px; }
+          .badge { width: 78px; height: 78px; border-radius: 22px; display: flex; align-items: center; justify-content: center; background: rgba(242,177,52,0.12); border: 1px solid rgba(242,177,52,0.28); color: #f2b134; margin-bottom: 24px; }
+          .badge.err { background: rgba(240,82,77,0.12); border-color: rgba(240,82,77,0.32); color: #f0524d; }
+          .ic-check { width: 30px; height: 15px; border-left: 4.5px solid currentColor; border-bottom: 4.5px solid currentColor; transform: rotate(-45deg); margin-top: -8px; }
+          .ic-clock { width: 38px; height: 38px; border: 4px solid currentColor; border-radius: 50%; position: relative; }
+          .ic-clock::before { content: ''; position: absolute; left: 50%; top: 8px; width: 3px; height: 12px; background: currentColor; border-radius: 2px; transform: translateX(-50%); }
+          .ic-clock::after { content: ''; position: absolute; left: 50%; top: 50%; width: 11px; height: 3px; background: currentColor; border-radius: 2px; transform: translateY(-50%); }
+          .ic-key { width: 18px; height: 18px; border: 4.5px solid currentColor; border-radius: 50%; position: relative; }
+          .ic-key::after { content: ''; position: absolute; left: 50%; top: 15px; width: 4.5px; height: 15px; background: currentColor; transform: translateX(-50%); border-radius: 0 0 2px 2px; }
+          .ic-off { width: 36px; height: 36px; border: 4px solid currentColor; border-radius: 50%; position: relative; }
+          .ic-off::after { content: ''; position: absolute; left: 50%; top: -4px; width: 4px; height: 44px; background: currentColor; transform: translateX(-50%) rotate(45deg); border-radius: 2px; }
+          .st-head { font: 700 25px/1.2 'Archivo', sans-serif; color: #fff; margin: 0 0 12px; letter-spacing: -0.3px; }
+          .st-text { font: 400 15px/1.55 'IBM Plex Sans', sans-serif; color: #aab0bd; margin: 0; max-width: 302px; }
+          .st-text b { color: #e6e9ef; font-weight: 600; }
+          .chip { display: inline-flex; align-items: center; gap: 10px; padding: 7px 15px 7px 7px; border-radius: 100px; background: #242833; border: 1px solid #333949; margin-top: 22px; font: 400 13px 'IBM Plex Sans', sans-serif; color: #c3c8d2; }
+          .chip b { color: #fff; font-weight: 600; }
+          .chip .av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(140deg,#f2b134,#d98a1a); color: #1c1405; font: 700 11px 'Archivo', sans-serif; display: flex; align-items: center; justify-content: center; }
+          .steps { display: flex; align-items: flex-start; margin-top: 30px; width: 100%; }
+          .step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 9px; position: relative; }
+          .step:not(:first-child)::before { content: ''; position: absolute; top: 15px; left: -50%; width: 100%; height: 2px; background: #333949; z-index: 0; }
+          .step.done::before, .step.active::before { background: #f2b134; }
+          .step .dot { width: 31px; height: 31px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 700 12px 'IBM Plex Sans', sans-serif; z-index: 1; }
+          .step.done .dot { background: #f2b134; color: #1c1405; }
+          .step.active .dot { background: rgba(242,177,52,0.16); border: 2px solid #f2b134; color: #f2b134; }
+          .step.todo .dot { background: #242833; border: 1px solid #333949; color: #6b7280; }
+          .step .lbl { font: 500 11.5px 'IBM Plex Sans', sans-serif; color: #8f96a3; text-align: center; }
+          .step.active .lbl { color: #f2b134; }
+          .card { margin-top: 24px; padding: 15px 16px; border-radius: 14px; background: #242833; border: 1px solid #333949; text-align: left; font: 400 13px/1.5 'IBM Plex Sans', sans-serif; color: #b0b6c2; width: 100%; box-sizing: border-box; }
+          .card .h { display: block; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; margin-bottom: 4px; }
+          .card b { color: #f2b134; font-weight: 600; }
+          .actions { margin-top: auto; display: flex; flex-direction: column; gap: 12px; padding-top: 26px; }
+          .tlink { display: block; text-align: center; font: 600 13.5px 'IBM Plex Sans', sans-serif; color: #f2b134; text-decoration: none; padding: 7px; }
+          .tlink.muted { color: #8f96a3; }
+        </style>
+      </helmet>
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">1a</a>
+          <span class="dv-tname">Flujo de acceso &mdash; Paddock nocturno</span>
+          <span class="dv-tsub">bienvenida &rarr; enlace enviado &rarr; pendiente de aprobaci&oacute;n &rarr; sin invitaci&oacute;n &rarr; sin conexi&oacute;n</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt" id="e1">
+            <div class="dv-olabel"><a class="dv-oid" href="#e1">E1</a><span><span class="dv-oname">Bienvenida.</span> Entrada con correo y magic link.</span></div>
+            <div class="phone" data-screen-label="Acceso / Bienvenida">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="hero"><div class="checker"></div><div class="glow"></div></div>
+                <div class="body">
+                  <div class="brandrow"><div class="mark"></div><div class="wordmark">EL PUESTO<small>OFICIALES DE PISTA</small></div></div>
+                  <h1 class="headline">Tu puesto, listo <em>antes</em> de la bandera verde.</h1>
+                  <p class="tagline">Asignaci&oacute;n, compa&ntilde;eros y cronograma en un solo lugar, antes y durante cada evento.</p>
+                  <div class="form">
+                    <span class="flabel">Correo electr&oacute;nico</span>
+                    <div class="field"><span class="fico">&#9993;</span><input type="email" placeholder="nombre@correo.com" /></div>
+                    <button class="btn">Enviar enlace de acceso &rarr;</button>
+                    <p class="microcopy">Te enviamos un enlace para entrar. Sin contrase&ntilde;as.</p>
+                    <div class="invite"><span class="k"></span><span>El acceso es <b>solo por invitaci&oacute;n</b> de otro oficial y aprobaci&oacute;n del administrador.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt" id="e2">
+            <div class="dv-olabel"><a class="dv-oid" href="#e2">E2</a><span><span class="dv-oname">Enlace enviado.</span> Revisa el correo; reenv&iacute;o y cambiar correo.</span></div>
+            <div class="phone" data-screen-label="Acceso / Enlace enviado">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="minihero"><div class="checker"></div><div class="glow"></div></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">EL PUESTO</div><div class="tspace"></div></div>
+                <div class="state">
+                  <div class="cblock">
+                    <div class="badge"><div class="ic-check"></div></div>
+                    <h2 class="st-head">Revisa tu correo</h2>
+                    <p class="st-text">Enviamos un enlace de acceso a <b>nombre@correo.com</b>. &Aacute;brelo desde este tel&eacute;fono para entrar.</p>
+                    <div class="card"><span class="h">El enlace caduca en 15 minutos</span>Si no lo ves, revisa spam o correo no deseado.</div>
+                  </div>
+                  <div class="actions">
+                    <button class="btn ghost">Reenviar enlace <span class="hint">&middot; en 0:42</span></button>
+                    <a class="tlink" href="#e1">Usar otro correo</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt" id="e3">
+            <div class="dv-olabel"><a class="dv-oid" href="#e3">E3</a><span><span class="dv-oname">Pendiente de aprobaci&oacute;n.</span> Tras registrarse, en revisi&oacute;n del admin.</span></div>
+            <div class="phone" data-screen-label="Acceso / Pendiente">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="minihero"><div class="checker"></div><div class="glow"></div></div>
+                <div class="topbar"><div class="tspace"></div><div class="tbrand">EL PUESTO</div><div class="tspace"></div></div>
+                <div class="state">
+                  <div class="cblock">
+                    <div class="badge"><div class="ic-clock"></div></div>
+                    <h2 class="st-head">Tu solicitud est&aacute; en revisi&oacute;n</h2>
+                    <p class="st-text">Un administrador de OMDAI revisar&aacute; tu acceso. Te avisaremos por correo en cuanto quede aprobado, normalmente en menos de 24 h.</p>
+                    <div class="chip"><span class="av">CM</span>Invitado por <b>Carlos Mendoza</b></div>
+                    <div class="steps">
+                      <div class="step done"><div class="dot">&#10003;</div><div class="lbl">Invitaci&oacute;n</div></div>
+                      <div class="step active"><div class="dot">2</div><div class="lbl">En revisi&oacute;n</div></div>
+                      <div class="step todo"><div class="dot">3</div><div class="lbl">Acceso</div></div>
+                    </div>
+                  </div>
+                  <div class="actions">
+                    <button class="btn ghost">Actualizar estado</button>
+                    <a class="tlink muted" href="#e1">Cerrar sesi&oacute;n</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt" id="e4">
+            <div class="dv-olabel"><a class="dv-oid" href="#e4">E4</a><span><span class="dv-oname">Sin invitaci&oacute;n.</span> Correo no reconocido; c&oacute;mo conseguir una.</span></div>
+            <div class="phone" data-screen-label="Acceso / Sin invitacion">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="minihero"><div class="checker"></div><div class="glow"></div></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">EL PUESTO</div><div class="tspace"></div></div>
+                <div class="state">
+                  <div class="cblock">
+                    <div class="badge"><div class="ic-key"></div></div>
+                    <h2 class="st-head">Necesitas una invitaci&oacute;n</h2>
+                    <p class="st-text">No encontramos una invitaci&oacute;n para <b>nombre@correo.com</b>. El acceso es solo por invitaci&oacute;n de otro oficial ya registrado.</p>
+                    <div class="card"><span class="h">&iquest;C&oacute;mo consigo una invitaci&oacute;n?</span>P&iacute;dele a un compa&ntilde;ero de puesto que te invite desde su app con tu <b>OMDAI ID</b>.</div>
+                  </div>
+                  <div class="actions">
+                    <button class="btn ghost">Usar otro correo</button>
+                    <a class="tlink" href="#e4">Contactar a coordinaci&oacute;n</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt" id="e5">
+            <div class="dv-olabel"><a class="dv-oid" href="#e5">E5</a><span><span class="dv-oname">Sin conexi&oacute;n.</span> Error al enviar; el acceso requiere internet.</span></div>
+            <div class="phone" data-screen-label="Acceso / Sin conexion">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="minihero"><div class="checker"></div><div class="glow"></div></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">EL PUESTO</div><div class="tspace"></div></div>
+                <div class="state">
+                  <div class="cblock">
+                    <div class="badge err"><div class="ic-off"></div></div>
+                    <h2 class="st-head">Sin conexi&oacute;n</h2>
+                    <p class="st-text">No pudimos enviar el enlace. Revisa tu conexi&oacute;n a internet e int&eacute;ntalo de nuevo.</p>
+                    <div class="card"><span class="h">En pista funciona sin se&ntilde;al</span>El puesto guarda tu asignaci&oacute;n y cronograma sin conexi&oacute;n, pero <b>iniciar sesi&oacute;n</b> s&iacute; necesita internet.</div>
+                  </div>
+                  <div class="actions">
+                    <button class="btn">Reintentar</button>
+                    <a class="tlink muted" href="#e1">Usar otro correo</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Prueba pedir: &ldquo;afinar el copy de <a class="dv-oid" href="#e3">E3</a>&rdquo; &middot; &ldquo;el logo placeholder no me convence, prop&oacute;n 2 marcas&rdquo; &middot; &ldquo;seguimos con la siguiente pantalla&rdquo; (te pedir&eacute; confirmaci&oacute;n del alcance primero).</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

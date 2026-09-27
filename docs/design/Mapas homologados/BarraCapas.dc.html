@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Barra de capas (componente)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: {{w}}px; height: {{hgt}}px; box-sizing: border-box; display: flex; gap: 6px; padding: {{pad}}px; border-radius: 16px; background: {{rootBg}}; border: {{rootBw}}px solid #333949; font-family: 'IBM Plex Sans', sans-serif; color: #ECEEF2">
+<sc-for list="{{cells}}" as="c" hint-placeholder-count="4">
+<button aria-pressed="{{c.pressed}}" aria-label="{{c.aria}}" onClick="{{c.toggle}}" style="flex: 1 1 0; min-width: 0; height: 52px; margin: 0; padding: 0 4px; box-sizing: border-box; border-radius: 12px; background: {{c.bg}}; border: {{c.bw}}px solid {{c.bd}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer">
+<span style="font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 12.5px; color: {{c.fg}}; white-space: nowrap">{{c.label}}</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10.5px; color: {{c.sub}}; white-space: nowrap">{{c.countText}}</span>
+</button>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"w":{"editor":null,"default":346},"puestos":{"editor":null,"default":true},"rescate":{"editor":null,"default":true},"soporte":{"editor":null,"default":true},"medicos":{"editor":null,"default":true},"hasMedicos":{"editor":null,"default":true},"counts":{"editor":null},"onToggle":{"editor":null},"overlay":{"editor":null,"default":false},"paleta":{"editor":"enum","default":"Contorno (propuesta)","options":["Contorno (propuesta)","Rellenos (anterior)"],"section":"Colores"},"$preview":{"width":346,"height":52}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const COLOR = { P: '#FF8A45', R: '#FFD43B', S: '#3FDD85', M: '#FF6B66' };
+    const alpha = (hex, a) => {
+      const v = hex.replace('#', '');
+      const r = parseInt(v.slice(0, 2), 16), g = parseInt(v.slice(2, 4), 16), b = parseInt(v.slice(4, 6), 16);
+      return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+    };
+    const counts = p.counts ?? { P: 15, R: 6, S: 2, M: 2 };
+    const overlay = !!p.overlay;
+    const DEF = [
+      { k: 'P', label: 'Puestos', on: p.puestos ?? true },
+      { k: 'R', label: 'Rescate', on: p.rescate ?? true },
+      { k: 'S', label: 'Soporte', on: p.soporte ?? true },
+      { k: 'M', label: 'Médicos', on: p.medicos ?? true },
+    ];
+    // Una capa sin elementos en este trazado no se muestra.
+    const cells = DEF.filter((c) => (counts[c.k] ?? 0) > 0 && !(c.k === 'M' && p.hasMedicos === false)).map((c) => ({
+      label: c.label,
+      countText: String(counts[c.k]),
+      // Prendida: borde y texto del color de su capa (la misma regla que los marcadores).
+      // Apagada: todo en gris.
+      bg: c.on ? alpha(COLOR[c.k], 0.1) : 'transparent',
+      bd: c.on ? COLOR[c.k] : '#333949',
+      bw: c.on ? 1.5 : 1,
+      fg: c.on ? COLOR[c.k] : '#7D8494',
+      sub: c.on ? alpha(COLOR[c.k], 0.75) : '#5F6676',
+      pressed: c.on ? 'true' : 'false',
+      aria: (c.on ? 'Ocultar ' : 'Mostrar ') + c.label.toLowerCase(),
+      toggle: () => { if (p.onToggle) p.onToggle(c.k); },
+    }));
+    return {
+      w: p.w ?? 346,
+      hgt: overlay ? 66 : 52,
+      pad: overlay ? 6 : 0,
+      rootBg: overlay ? 'rgba(27,30,39,0.94)' : 'transparent',
+      rootBw: overlay ? 1 : 0,
+      cells,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+[Unit]
+Description=El Puesto: respaldo de Postgres a S3
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/el-puesto/servidor/respaldar.sh

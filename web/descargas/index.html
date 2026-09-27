@@ -1,0 +1,136 @@
+<!doctype html>
+<!--
+  Plantilla de https://elpuesto.app/descargas/ — scripts/publicar-descargas.sh (a mano; lo
+  llama publicar-app.sh) rellena los marcadores entre llaves dobles con /version.json. CI no
+  puede escribir esta página. La lista de permisos está calcada de
+  androidApp/src/main/AndroidManifest.xml: mantenerla al día si cambian.
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El Puesto — descargas</title>
+  <meta name="description" content="Descarga El Puesto para Android: la app de cabecera del oficial de pista mexicano.">
+  <link rel="icon" href="/favicon.png">
+  <meta name="theme-color" content="#191C24">
+  <link rel="canonical" href="https://elpuesto.app/descargas/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="El Puesto">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:url" content="https://elpuesto.app/descargas/">
+  <meta property="og:title" content="Descarga El Puesto para Android">
+  <meta property="og:description" content="La app de cabecera del oficial de pista mexicano. Aquí te explicamos por qué no está en Google Play y qué permisos pide.">
+  <meta property="og:image" content="https://elpuesto.app/og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="El Puesto: contigo en el puesto. La app de cabecera del oficial de pista mexicano, sobre el trazado del Autódromo Hermanos Rodríguez.">
+  <meta name="twitter:card" content="summary_large_image">
+  <!--ld-->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "@id": "https://elpuesto.app/#app",
+    "name": "El Puesto",
+    "url": "https://elpuesto.app/",
+    "operatingSystem": "Android 8.0 o superior",
+    "applicationCategory": "SportsApplication",
+    "softwareVersion": "{{VERSION}}",
+    "datePublished": "{{FECHA_ISO}}",
+    "downloadUrl": "{{APK_URL_ABS}}",
+    "fileSize": "{{MB}} MB",
+    "image": "https://elpuesto.app/og.png",
+    "inLanguage": "es-MX"
+  }
+  </script>
+  <!--/ld-->
+  <style>
+    body { margin:0; background:#12151C; color:#E8EAF0; font-family:system-ui,Arial,sans-serif;
+           display:flex; min-height:100vh; align-items:center; justify-content:center; }
+    .card { background:#1E222B; border:1px solid #333949; border-radius:18px; max-width:500px;
+            margin:20px 16px; padding:30px; }
+    .brand { font-weight:800; letter-spacing:2px; font-size:20px; text-align:center; }
+    .brand a { color:inherit; text-decoration:none; }
+    .sub { font-family:monospace; letter-spacing:4px; font-size:11px; color:#F2B134; margin-top:4px; text-align:center; }
+    p { color:#9AA3B5; font-size:14px; line-height:1.55; margin:8px 0 0; }
+    .intro { text-align:center; margin-top:16px; }
+    .meta { font-family:monospace; font-size:12px; text-align:center; margin-top:20px; }
+    .btn { display:block; text-align:center; background:#F2B134; color:#1E222B; font-weight:800; font-size:16px;
+           text-decoration:none; padding:15px 24px; border-radius:14px; margin-top:14px; }
+    .trust { font-size:13px; text-align:center; margin-top:12px; }
+    details { margin-top:14px; font-size:12.5px; color:#9AA3B5; }
+    summary { cursor:pointer; text-align:center; font-family:monospace; font-size:12px; color:#9AA3B5; }
+    .hash { display:block; margin-top:8px; font-family:monospace; font-size:11.5px; word-break:break-all;
+            background:#191C24; border:1px solid #333949; border-radius:10px; padding:10px 12px; color:#E8EAF0; }
+    h2 { font-size:15px; color:#FFFFFF; margin:28px 0 0; padding-top:22px; border-top:1px solid #333949; }
+    h2 + p { margin-top:6px; }
+    .kicker { font-family:monospace; font-size:11px; letter-spacing:2px; color:#F2B134; margin:30px 0 -14px; }
+    .link { display:inline-block; margin-top:10px; font-family:monospace; font-size:13px; color:#F2B134;
+            text-decoration:none; border:1px solid rgba(242,177,52,.35); background:rgba(242,177,52,.08);
+            padding:8px 12px; border-radius:10px; }
+    ul, ol { color:#9AA3B5; font-size:13.5px; line-height:1.6; padding-left:20px; margin:10px 0 0; }
+    li + li { margin-top:6px; }
+    .warn { margin-top:24px; padding:14px 16px; border-radius:12px; font-size:13.5px; line-height:1.55;
+            color:#9AA3B5; background:rgba(240,82,77,.08); border:1px solid rgba(240,82,77,.3); }
+    .contact { text-align:center; font-size:13px; margin-top:20px; }
+    .contact a { color:#F2B134; }
+    b { color:#E8EAF0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand"><a href="/">EL PUESTO</a></div>
+    <div class="sub">OFICIALES DE PISTA</div>
+    <p class="intro">La app de cabecera del oficial de pista mexicano, hecha por oficiales para oficiales. Se instala desde esta página, no desde Google Play.</p>
+    <!--descarga-->
+    <p class="meta">Versión {{VERSION}} · publicada el {{FECHA}} · {{MB}} MB</p>
+    <a class="btn" href="{{APK_URL}}">Descargar El Puesto&nbsp;&nbsp;↓</a>
+    <p class="trust">¿Una app fuera de Google Play? Aquí abajo te explicamos por qué y cómo puedes revisarla.</p>
+    <details>
+      <summary>Huella del archivo (SHA-256)</summary>
+      <p>Si alguien de tu confianza quiere comprobar que el archivo que bajaste es exactamente el que publicamos, su huella SHA-256 debe ser:</p>
+      <code class="hash">{{SHA256}}</code>
+    </details>
+    <!--/descarga-->
+    <p class="trust">¿iPhone o computadora? Usa El Puesto en el navegador: <a href="https://app.elpuesto.app/">app.elpuesto.app</a>.</p>
+
+    <p class="kicker">ANTES DE INSTALAR</p>
+    <h2>¿Por qué no está en Google Play?</h2>
+    <p>Publicar en la tienda de Google tiene costos y tiempos de revisión que, por ahora, preferimos
+    ahorrarnos para poder corregir y mejorar la app rápido, de un evento a otro. Por eso la
+    distribuimos directamente desde aquí.</p>
+
+    <h2>Puedes revisar lo que instalas</h2>
+    <p>El código completo de El Puesto está publicado en GitHub. Tú, o alguien de tu confianza que
+    sepa de programación, puede revisar exactamente qué hace la app y qué datos envía.</p>
+    <a class="link" href="https://github.com/cultome/el_puesto" rel="noopener">github.com/cultome/el_puesto&nbsp;↗</a>
+
+    <h2>Lo que pide en tu teléfono</h2>
+    <ul>
+      <li><b>Internet</b> para sincronizar tus datos y saber si hay señal (sin ella, guarda tus cambios y los envía después).</li>
+      <li><b>Notificaciones</b> para avisarte de mensajes, cambios en el MbM y tus recordatorios.</li>
+      <li><b>Ubicación</b> solo si tú activas «Compartir ubicación», solo durante un evento y solo cerca del circuito (la pista y medio kilómetro alrededor; más lejos, el teléfono deja de enviarla). No pide ubicación en segundo plano: mientras la compartes ves una notificación fija con el botón <b>Pausar</b>. Tu posición no se guarda en nuestro sistema: solo se reenvía a quienes elegiste.</li>
+      <li><b>Aviso al encender el teléfono</b> solo para volver a programar tus recordatorios (y al actualizarse la app).</li>
+      <li><b>Instalar actualizaciones</b> solo de la propia app: cuando hay versión nueva te avisa, te muestra qué cambió y, si tú aceptas, la descarga de aquí y Android te pide confirmar. Android te pedirá permitirlo la primera vez; nunca instala otras apps ni se actualiza sin que confirmes.</li>
+    </ul>
+    <p>No pide acceso a tus contactos, tus mensajes, tu micrófono ni tus archivos. Las fotos las tomas
+    con la cámara o las eliges tú: la app no ve el resto de tu galería.</p>
+
+    <h2>Cómo instalarla</h2>
+    <ol>
+      <li>Toca <b>Descargar</b> y abre el archivo <b>{{APK_NOMBRE}}</b> al terminar.</li>
+      <li>Si Android lo pide, permite <b>instalar apps de este origen</b> (solo la primera vez).</li>
+      <li>Si Play Protect avisa que la app no está verificada, elige <b>Instalar de todas formas</b>. Ese aviso sale con cualquier app que no viene de la tienda.</li>
+      <li>Si ya tienes una versión que no se deja actualizar (por ejemplo, una de prueba), desinstálala y vuelve a instalar.</li>
+    </ol>
+    <p>Después ya no tienes que volver aquí: la app te avisa cuando hay una versión nueva y se
+    actualiza con un toque (desde el Inicio o en Configuración → Actualizaciones).</p>
+
+    <div class="warn"><b>Descárgala solo de elpuesto.app.</b> Si alguien te manda el archivo por WhatsApp
+    o por otro medio, no lo instales: pídele el enlace a esta página.</div>
+
+    <p class="contact">¿Dudas o problemas al instalar? Escríbenos a <a href="mailto:hola@elpuesto.app">hola@elpuesto.app</a>.</p>
+  </div>
+</body>
+</html>

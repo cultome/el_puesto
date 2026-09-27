@@ -1,0 +1,67 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-09-27T19:15:24Z"
+ },
+ "title": "Iconos del bottom bar",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 430,
+   "h": 800,
+   "title": "Arma tu barra",
+   "is_interactive": true
+  },
+  "Actual.dc.html": {
+   "x": 510,
+   "y": 0,
+   "w": 430,
+   "h": 800,
+   "title": "Actual"
+  },
+  "A-Linea.dc.html": {
+   "x": 1020,
+   "y": 0,
+   "w": 430,
+   "h": 800,
+   "title": "A · Línea limpia"
+  },
+  "B-Pista.dc.html": {
+   "x": 1530,
+   "y": 0,
+   "w": 430,
+   "h": 800,
+   "title": "B · Pista"
+  },
+  "C-Paddock.dc.html": {
+   "x": 2040,
+   "y": 0,
+   "w": 430,
+   "h": 800,
+   "title": "C · Paddock"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Actual.dc.html",
+  "A-Linea.dc.html",
+  "B-Pista.dc.html",
+  "C-Paddock.dc.html"
+ ],
+ "notes": {
+  "titulo": {
+   "x": 0,
+   "y": -300,
+   "text": "Iconos del bottom bar · El Puesto",
+   "kind": "title1",
+   "maxW": 2470
+  }
+ },
+ "designSystems": []
+}

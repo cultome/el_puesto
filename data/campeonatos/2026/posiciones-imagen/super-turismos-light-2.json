@@ -1,0 +1,215 @@
+{
+ "campeonato": "México Racing Cup",
+ "temporada": "2026",
+ "categoria": "Súper Turismos Light 2",
+ "imageUrl": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1789949686830572242.jpg",
+ "throughRound": 8,
+ "leidaEl": "2026-09-27",
+ "nota": "Transcrita de la imagen por un agente; validada (suma por carrera = SUMA en todas las filas). Posición IMPRESA; puntos = PUNTOS REALES.",
+ "rows": [
+  {
+   "pos": 1,
+   "name": "Jerry Hernandez (N)",
+   "team": "Chevrolet",
+   "points": 1273
+  },
+  {
+   "pos": 2,
+   "name": "Luis Calvillo",
+   "team": "Chevrolet",
+   "points": 1083
+  },
+  {
+   "pos": 3,
+   "name": "D. Beltran (N) / S. Valadez (N)",
+   "team": "Chevrolet",
+   "points": 966
+  },
+  {
+   "pos": 4,
+   "name": "Sebastian Allard (N)",
+   "team": "Chevrolet",
+   "points": 952
+  },
+  {
+   "pos": 5,
+   "name": "Alfredo Gasco / Carlos Viñamata",
+   "team": "Chevrolet",
+   "points": 886
+  },
+  {
+   "pos": 6,
+   "name": "A. Silva (N) / B. Silva (N)",
+   "team": "Chevrolet",
+   "points": 706
+  },
+  {
+   "pos": 7,
+   "name": "G. Perez (N) / C. Godinez (N)",
+   "team": "Chevrolet",
+   "points": 682
+  },
+  {
+   "pos": 8,
+   "name": "Adrian Parada (N)",
+   "team": "Chevrolet",
+   "points": 588
+  },
+  {
+   "pos": 9,
+   "name": "Alonso Cuevas",
+   "team": "Chevrolet",
+   "points": 539
+  },
+  {
+   "pos": 10,
+   "name": "Ruben Chagoya",
+   "team": "Chevrolet",
+   "points": 484
+  },
+  {
+   "pos": 11,
+   "name": "Aldo Ruíz (N)",
+   "team": "Chevrolet",
+   "points": 465
+  },
+  {
+   "pos": 12,
+   "name": "David Barruenta (N)",
+   "team": "Chevrolet",
+   "points": 456
+  },
+  {
+   "pos": 13,
+   "name": "K. Ortega / A. Ortega",
+   "team": "Chevrolet",
+   "points": 403
+  },
+  {
+   "pos": 14,
+   "name": "E. Cedillo (N) / J. Martinez (N)",
+   "team": "Chevrolet",
+   "points": 398
+  },
+  {
+   "pos": 15,
+   "name": "Jose Rios (N)",
+   "team": "Chevrolet",
+   "points": 351
+  },
+  {
+   "pos": 16,
+   "name": "Ricardo Bello",
+   "team": "Chevrolet",
+   "points": 337
+  },
+  {
+   "pos": 17,
+   "name": "Juan Carlos Murad (N)",
+   "team": "Chevrolet",
+   "points": 293
+  },
+  {
+   "pos": 18,
+   "name": "Luis Lobato",
+   "team": "Chevrolet",
+   "points": 290
+  },
+  {
+   "pos": 19,
+   "name": "Luis Alva (N)",
+   "team": "Chevrolet",
+   "points": 284
+  },
+  {
+   "pos": 20,
+   "name": "Jesus Flores (N)",
+   "team": "Chevrolet",
+   "points": 268
+  },
+  {
+   "pos": 21,
+   "name": "Alonso Cuevas Jr. (N)",
+   "team": "Chevrolet",
+   "points": 249
+  },
+  {
+   "pos": 22,
+   "name": "Daniel Huerta (N)",
+   "team": "Chevrolet",
+   "points": 190
+  },
+  {
+   "pos": 23,
+   "name": "A. Vazquez",
+   "team": "Chevrolet",
+   "points": 168
+  },
+  {
+   "pos": 24,
+   "name": "E. Ortiz (N)",
+   "team": "Chevrolet",
+   "points": 168
+  },
+  {
+   "pos": 25,
+   "name": "Dirk Archundia",
+   "team": "Chevrolet",
+   "points": 161
+  },
+  {
+   "pos": 26,
+   "name": "Esteban Cuevas (N)",
+   "team": "Chevrolet",
+   "points": 158
+  },
+  {
+   "pos": 27,
+   "name": "Alberto Flores (N)",
+   "team": "Chevrolet",
+   "points": 152
+  },
+  {
+   "pos": 28,
+   "name": "A. Luna (N) / E. Luna (N)",
+   "team": "Chevrolet",
+   "points": 150
+  },
+  {
+   "pos": 29,
+   "name": "Andres Brockmann (N)",
+   "team": "Chevrolet",
+   "points": 148
+  },
+  {
+   "pos": 30,
+   "name": "R. Chagoya / Ayrton Garza (N)",
+   "team": "Chevrolet",
+   "points": 146
+  },
+  {
+   "pos": 31,
+   "name": "E. Valdepeñas",
+   "team": "Chevrolet",
+   "points": 142
+  },
+  {
+   "pos": 32,
+   "name": "Alfredo Leal",
+   "team": "Chevrolet",
+   "points": 142
+  },
+  {
+   "pos": 33,
+   "name": "Luis Gutierrez (N)",
+   "team": "Renault",
+   "points": 124
+  },
+  {
+   "pos": 34,
+   "name": "M. Cercas (N)",
+   "team": "Chevrolet",
+   "points": 120
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+# categoria=Súper Turismos Light 2
+# pagina=https://mexicoracingcup.com/33-st-light-2
+# imagen=https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1789949686830572242.jpg
+# fecha_impresa=20-sep-26 (subida 2026-09-20)
+# hasta_fecha=8
+# columnas=1-1,1-2,2-1,2-2,3-1,3-2,4-1,4-2,5-1,5-2,6-1,6-2,7-1,7-2,8-1
+# peor=todas
+# nota=celdas con * = fondo amarillo (sanción; varias valen 3 puntos, no 0)
+1|Jerry Hernandez (N)|Chevrolet||1273|0|106,100,106,103,103,100,100,0,80,72,77,68,93,62,203|1373|100
+2|Luis Calvillo|Chevrolet||1083|-190|85,80,85,90,85,0,80,76,,,80,85,78,103,156|1083|0
+3|D. Beltran (N) / S. Valadez (N)|Chevrolet||966|-307|74,76,78,80,70,80,66,78,55*,93,0,0,0,56,160|966|0
+4|Sebastian Allard (N)|Chevrolet||952|-321|,,,,74,76,74,74,70,74,85,80,85,90,170|952|0
+5|Alfredo Gasco / Carlos Viñamata|Chevrolet||886|-387|78,72,,,90,85,90,100,78,85,0,70,68,70,|886|0
+6|A. Silva (N) / B. Silva (N)|Chevrolet||706|-567|0,0,,,68,0,68,72,76,76,76,0*,66,60,144|706|0
+7|G. Perez (N) / C. Godinez (N)|Chevrolet||682|-591|,,,,,,,,90,100,78,78,76,80,180|682|0
+8|Adrian Parada (N)|Chevrolet||588|-685|,,,,3*,93,3*,90,106,0,90,100,103,0*,|588|0
+9|Alonso Cuevas|Chevrolet||539|-734|0,0,,,78,74,70,68,0,0,103,76,70,0,|539|0
+10|Ruben Chagoya|Chevrolet||484|-789|80,85,,,80,78,76,85,,,,,,,|484|0
+11|Aldo Ruíz (N)|Chevrolet||465|-808|80,85,,,80,78,72,70,,,,,,,|465|0
+12|David Barruenta (N)|Chevrolet||456|-817|,,,,,,,,72,78,72,66,80,85,3*|456|0
+13|K. Ortega / A. Ortega|Chevrolet||403|-870|0,78,90,85,72,0,78,0,,,,,,,|403|0
+14|E. Cedillo (N) / J. Martinez (N)|Chevrolet||398|-875|,,,,,,,,74,80,0*,90,78,76,|398|0
+15|Jose Rios (N)|Chevrolet||351|-922|90,93,,,,,88,80,,,,,,,|351|0
+16|Ricardo Bello|Chevrolet||337|-936|,,,,,,,,,,,,78,103,156|337|0
+17|Juan Carlos Murad (N)|Chevrolet||293|-980|,,,,,,,,,,90,100,103,0*,|293|0
+18|Luis Lobato|Chevrolet||290|-983|,,,,,,,,,,66,72,74,78,|290|0
+19|Luis Alva (N)|Chevrolet||284|-989|,,,,,,,,,,,,64,72,148|284|0
+20|Jesus Flores (N)|Chevrolet||268|-1005|,,,,,,,,,,68,74,58,68,|268|0
+21|Alonso Cuevas Jr. (N)|Chevrolet||249|-1024|,,,,,,,,,,103,76,70,0,|249|0
+22|Daniel Huerta (N)|Chevrolet||190|-1083|,,,,,,,,,,70,0,62,58,|190|0
+23|A. Vazquez|Chevrolet||168|-1105|,,,,,,88,80,,,,,,,|168|0
+24|E. Ortiz (N)|Chevrolet||168|-1105|,,,,,,,,,,,,80,85,3*|168|0
+25|Dirk Archundia|Chevrolet||161|-1112|,,,,,,76,85,,,,,,,|161|0
+26|Esteban Cuevas (N)|Chevrolet||158|-1115|,,80,78,,,,,,,,,,,|158|0
+27|Alberto Flores (N)|Chevrolet||152|-1121|,,,,,,,,,,,,,,152|152|0
+28|A. Luna (N) / E. Luna (N)|Chevrolet||150|-1123|76,74,,,,,,,,,,,,,|150|0
+29|Andres Brockmann (N)|Chevrolet||148|-1125|,,,,76,72,,,,,,,,,|148|0
+30|R. Chagoya / Ayrton Garza (N)|Chevrolet||146|-1127|,,,,,,,,,,,,72,74,|146|0
+31|E. Valdepeñas|Chevrolet||142|-1131|,,,,,,72,70,,,,,,,|142|0
+32|Alfredo Leal|Chevrolet||142|-1131|,,,,,,,,,,,,76,66,|142|0
+33|Luis Gutierrez (N)|Renault||124|-1149|,,,,,,,,,,,,60,64,|124|0
+34|M. Cercas (N)|Chevrolet||120|-1153|,,,,,,,,,,,,62,58,|120|0

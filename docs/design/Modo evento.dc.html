@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: #f2b134; } a:hover { color: #f6bb45; }
+          .dv-turn { padding: 48px 52px 40px; }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 700 16px/1.3 'Archivo', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-opts { display: flex; gap: 40px; align-items: flex-start; }
+          .dv-opt { display: flex; flex-direction: column; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; max-width: 384px; margin-bottom: 12px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 1000px; }
+
+          .phone { width: 384px; padding: 13px; border-radius: 46px; background: linear-gradient(160deg,#26282e,#111216); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.05); }
+          .screen { position: relative; border-radius: 34px; overflow: hidden; display: flex; flex-direction: column; background: radial-gradient(120% 40% at 50% 0%, #2a2f3a 0%, #1e222b 42%, #191c24 100%); color: #eceef2; min-height: 812px; }
+          .screen.fix { height: 812px; min-height: 0; }
+          .sbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px 0; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .sbar .dots { display: flex; gap: 5px; align-items: center; }
+          .sbar .dots span { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+          .sbar .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; position: relative; opacity: 0.85; }
+          .sbar .bat::after { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; right: 6px; background: currentColor; border-radius: 1px; }
+
+          .topbar { display: flex; align-items: center; gap: 8px; padding: 12px 20px 0; }
+          .back { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: #eceef2; font-size: 19px; }
+          .tbrand { font: 800 12px 'Archivo', sans-serif; letter-spacing: 2px; color: #fff; margin: 0 auto; }
+          .tspace { width: 34px; flex: none; }
+          .live { display: inline-flex; align-items: center; gap: 7px; font: 700 10.5px 'IBM Plex Sans', sans-serif; letter-spacing: 1px; color: #3fdd85; }
+          .live .d { width: 8px; height: 8px; border-radius: 50%; background: #3fdd85; box-shadow: 0 0 0 4px rgba(63,221,133,0.16); }
+          .pin { width: 9px; height: 9px; border: 2px solid currentColor; border-radius: 50% 50% 50% 0; transform: rotate(45deg); flex: none; }
+
+          .evhead { padding: 14px 22px 0; }
+          .evhead .nm { font: 800 19px 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; }
+          .evhead .sub { display: flex; align-items: center; gap: 12px; margin-top: 6px; font: 400 12.5px 'IBM Plex Sans', sans-serif; color: #aab0bd; }
+          .evhead .sub .cir { display: flex; align-items: center; gap: 6px; }
+
+          .seg { display: flex; gap: 4px; padding: 4px; background: #20242e; border: 1px solid #313846; border-radius: 14px; margin: 16px 22px 0; }
+          .seg a { flex: 1; text-align: center; padding: 10px 6px; border-radius: 10px; font: 600 13px 'IBM Plex Sans', sans-serif; color: #9aa0ac; text-decoration: none; }
+          .seg a.on { background: #f2b134; color: #1c1405; }
+
+          .body { padding: 4px 22px 26px; }
+          .sec-h { display: flex; align-items: baseline; justify-content: space-between; margin: 24px 0 6px; }
+          .sec-h h3 { font: 700 15.5px 'Archivo', sans-serif; color: #fff; margin: 0; }
+          .sec-h .n { font: 600 12px 'IBM Plex Sans', sans-serif; color: #f2b134; padding: 4px 10px; border-radius: 100px; background: rgba(242,177,52,0.13); border: 1px solid rgba(242,177,52,0.24); }
+
+          .asg { margin-top: 18px; padding: 18px; border-radius: 20px; background: linear-gradient(150deg,#2c3141,#222633); border: 1px solid #3a4152; position: relative; overflow: hidden; }
+          .asg .amb { position: absolute; inset: 0; background: radial-gradient(80% 90% at 90% 0%, rgba(242,177,52,0.15), transparent 60%); }
+          .asg .lbl { font: 600 10.5px 'IBM Plex Mono', monospace; letter-spacing: 1.2px; color: #f2b134; text-transform: uppercase; position: relative; }
+          .asg .big { display: flex; align-items: baseline; gap: 12px; margin-top: 10px; position: relative; }
+          .asg .p { font: 800 34px 'Archivo', sans-serif; color: #fff; line-height: 0.9; }
+          .asg .role { font: 700 16px 'Archivo', sans-serif; color: #f2b134; }
+          .asg .meta { margin-top: 12px; display: flex; gap: 8px; position: relative; }
+          .tagp { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 100px; font: 600 12px 'IBM Plex Sans', sans-serif; background: rgba(255,255,255,0.06); color: #d7dae1; border: 1px solid #3a4152; }
+
+          .mem { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid #262b36; }
+          .av { width: 42px; height: 42px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font: 700 14px 'Archivo', sans-serif; color: #10131a; }
+          .mem .info { flex: 1; }
+          .mem .nm { font: 600 14px 'IBM Plex Sans', sans-serif; color: #eceef2; display: flex; align-items: center; gap: 8px; }
+          .mem .you { font: 700 9.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.5px; color: #f2b134; border: 1px solid rgba(242,177,52,0.4); padding: 2px 6px; border-radius: 5px; }
+          .mem .ro { font: 400 12.5px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 2px; }
+          .chief { font: 700 9.5px 'IBM Plex Sans', sans-serif; letter-spacing: 0.5px; color: #10131a; background: #f2b134; padding: 3px 8px; border-radius: 6px; flex: none; }
+          .chev { color: #5a6070; font-size: 22px; line-height: 1; flex: none; }
+
+          .chk { display: flex; align-items: center; gap: 13px; padding: 13px 0; border-bottom: 1px solid #262b36; }
+          .box { width: 24px; height: 24px; border-radius: 8px; border: 2px solid #3a4152; flex: none; display: flex; align-items: center; justify-content: center; color: #10131a; font-size: 14px; }
+          .box.done { background: #f2b134; border-color: #f2b134; }
+          .chk .tx { font: 500 14px 'IBM Plex Sans', sans-serif; color: #d7dae1; }
+          .chk.done .tx { color: #6f7683; text-decoration: line-through; }
+
+          .days { display: flex; gap: 8px; padding: 16px 22px 0; }
+          .day { padding: 8px 16px; border-radius: 100px; font: 600 12.5px 'IBM Plex Sans', sans-serif; background: #242833; border: 1px solid #333949; color: #9aa0ac; }
+          .day.on { background: #f2b134; color: #1c1405; border-color: #f2b134; }
+          .tl { padding: 8px 22px 26px; }
+          .tlrow { display: flex; gap: 13px; }
+          .tltime { width: 46px; flex: none; font: 700 12.5px 'IBM Plex Mono', monospace; color: #aab0bd; padding-top: 15px; }
+          .tlline { display: flex; flex-direction: column; align-items: center; flex: none; width: 16px; }
+          .tldot { width: 13px; height: 13px; border-radius: 50%; background: #333949; margin-top: 16px; flex: none; }
+          .tldot.done { background: #5a6070; } .tldot.live { background: #3fdd85; box-shadow: 0 0 0 4px rgba(63,221,133,0.16); }
+          .tlbar { width: 2px; flex: 1; background: #2c313d; min-height: 14px; }
+          .tlcard { flex: 1; margin-bottom: 10px; padding: 13px 15px; border-radius: 14px; background: #242833; border: 1px solid #333949; }
+          .tlcard.done { opacity: 0.6; } .tlcard.live { border-color: rgba(63,221,133,0.4); background: linear-gradient(150deg,#223029,#1f2630); }
+          .tlcat { font: 600 10px 'IBM Plex Mono', monospace; letter-spacing: 0.5px; color: #f2b134; text-transform: uppercase; }
+          .tlname { font: 700 15px 'Archivo', sans-serif; color: #fff; margin-top: 4px; }
+          .tlstate { font: 600 12px 'IBM Plex Sans', sans-serif; margin-top: 6px; color: #8f96a3; }
+          .tlstate.live { color: #3fdd85; } .tlstate.next { color: #aab0bd; }
+
+          .subseg { display: flex; gap: 6px; padding: 12px 22px 0; }
+          .subseg a { padding: 7px 16px; border-radius: 100px; font: 600 12.5px 'IBM Plex Sans', sans-serif; text-decoration: none; color: #9aa0ac; border: 1px solid #333949; background: #242833; }
+          .subseg a.on { background: rgba(242,177,52,0.14); color: #f2b134; border-color: rgba(242,177,52,0.3); }
+          .chatwrap { flex: 1; display: flex; flex-direction: column; gap: 13px; padding: 16px 20px; overflow: hidden; }
+          .msg { display: flex; gap: 10px; max-width: 84%; }
+          .msg .av { width: 32px; height: 32px; font-size: 11px; }
+          .bub { background: #242833; border: 1px solid #333949; border-radius: 5px 15px 15px 15px; padding: 9px 13px; }
+          .who { font: 600 11.5px 'IBM Plex Sans', sans-serif; color: #f2b134; margin-bottom: 3px; }
+          .mtx { font: 400 13.5px/1.42 'IBM Plex Sans', sans-serif; color: #e2e5ea; }
+          .msg.me { align-self: flex-end; flex-direction: row-reverse; }
+          .msg.me .bub { background: rgba(242,177,52,0.13); border-color: rgba(242,177,52,0.26); border-radius: 15px 5px 15px 15px; }
+          .msg.me .who { color: #e6ba6a; text-align: right; }
+          .ctrl { align-self: center; max-width: 90%; text-align: center; }
+          .ctrl .bub { background: rgba(240,82,77,0.1); border-color: rgba(240,82,77,0.28); border-radius: 12px; }
+          .ctrl .who { color: #f0794d; }
+          .composer { display: flex; align-items: center; gap: 10px; padding: 13px 18px; border-top: 1px solid #2c313d; background: #191c24; }
+          .composer .inp { flex: 1; height: 44px; border-radius: 100px; background: #242833; border: 1px solid #333949; padding: 0 16px; display: flex; align-items: center; color: #6b7280; font: 400 14px 'IBM Plex Sans', sans-serif; }
+          .composer .send { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg,#f6bb45,#e79a1f); color: #1c1405; display: flex; align-items: center; justify-content: center; font-size: 18px; flex: none; }
+        </style>
+      </helmet>
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">EV</a>
+          <span class="dv-tname">Modo evento &mdash; Paddock nocturno</span>
+          <span class="dv-tsub">navegaci&oacute;n interna: Puesto &middot; Cronograma &middot; Chat</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">EV-1</a><span><span class="dv-oname">Puesto.</span> Asignaci&oacute;n, compa&ntilde;eros (llevan al perfil) y checklist del d&iacute;a.</span></div>
+            <div class="phone" data-screen-label="Modo evento / Puesto">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">MODO EVENTO</div><div class="tspace"></div></div>
+                <div class="evhead">
+                  <div class="nm">S&uacute;per Copa Telcel &middot; Fecha 4</div>
+                  <div class="sub"><span class="cir"><span class="pin"></span>Hermanos Rodr&iacute;guez</span><span class="live"><span class="d"></span>EN CURSO</span></div>
+                </div>
+                <div class="seg"><a class="on" href="#t1">Puesto</a><a href="#t1">Cronograma</a><a href="#t1">Chat</a></div>
+                <div class="body">
+                  <div class="asg">
+                    <div class="amb"></div>
+                    <div class="lbl">Tu asignaci&oacute;n</div>
+                    <div class="big"><span class="p">P7</span><span class="role">Banderas</span></div>
+                    <div class="meta"><span class="tagp">Sector 3</span><span class="tagp">Curvas 7&ndash;8</span><span class="tagp">Turno completo</span></div>
+                  </div>
+
+                  <div class="sec-h"><h3>Compa&ntilde;eros de puesto</h3><span class="n">4</span></div>
+                  <div class="mem"><div class="av" style="background:#e6a3c0">LF</div><div class="info"><div class="nm">Laura Fern&aacute;ndez</div><div class="ro">Jefe de puesto</div></div><span class="chief">JEFE</span><span class="chev">&rsaquo;</span></div>
+                  <div class="mem"><div class="av" style="background:#f2b134">CM</div><div class="info"><div class="nm">Carlos Mendoza <span class="you">T&Uacute;</span></div><div class="ro">Banderas</div></div><span class="chev">&rsaquo;</span></div>
+                  <div class="mem"><div class="av" style="background:#7fb7f0">MR</div><div class="info"><div class="nm">Miguel R&iacute;os</div><div class="ro">Banderas</div></div><span class="chev">&rsaquo;</span></div>
+                  <div class="mem" style="border-bottom:none"><div class="av" style="background:#7fe0b0">AS</div><div class="info"><div class="nm">Ana Sosa</div><div class="ro">Intervenci&oacute;n</div></div><span class="chev">&rsaquo;</span></div>
+
+                  <div class="sec-h"><h3>Checklist del puesto</h3><span class="n">3/6</span></div>
+                  <div class="chk done"><div class="box done">&#10003;</div><div class="tx">Revisar banderas y astas</div></div>
+                  <div class="chk done"><div class="box done">&#10003;</div><div class="tx">Probar radio con Control</div></div>
+                  <div class="chk done"><div class="box done">&#10003;</div><div class="tx">Verificar extintor y kit</div></div>
+                  <div class="chk"><div class="box"></div><div class="tx">Colocar se&ntilde;alizaci&oacute;n del sector</div></div>
+                  <div class="chk"><div class="box"></div><div class="tx">Confirmar puntos de extracci&oacute;n</div></div>
+                  <div class="chk" style="border-bottom:none"><div class="box"></div><div class="tx">Briefing con jefe de puesto</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">EV-2</a><span><span class="dv-oname">Cronograma.</span> Sesiones del d&iacute;a con estado en vivo.</span></div>
+            <div class="phone" data-screen-label="Modo evento / Cronograma">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">MODO EVENTO</div><div class="tspace"></div></div>
+                <div class="evhead">
+                  <div class="nm">S&uacute;per Copa Telcel &middot; Fecha 4</div>
+                  <div class="sub"><span class="cir"><span class="pin"></span>Hermanos Rodr&iacute;guez</span><span class="live"><span class="d"></span>EN CURSO</span></div>
+                </div>
+                <div class="seg"><a href="#t1">Puesto</a><a class="on" href="#t1">Cronograma</a><a href="#t1">Chat</a></div>
+                <div class="days"><span class="day">Vie</span><span class="day on">S&aacute;b</span><span class="day">Dom</span></div>
+                <div class="tl">
+                  <div class="tlrow"><div class="tltime">08:30</div><div class="tlline"><div class="tldot done"></div><div class="tlbar"></div></div><div class="tlcard done"><div class="tlcat">Oficial</div><div class="tlname">Verificaci&oacute;n t&eacute;cnica</div><div class="tlstate">Terminada</div></div></div>
+                  <div class="tlrow"><div class="tltime">09:15</div><div class="tlline"><div class="tldot done"></div><div class="tlbar"></div></div><div class="tlcard done"><div class="tlcat">GT300</div><div class="tlname">Pr&aacute;ctica libre 1</div><div class="tlstate">Terminada</div></div></div>
+                  <div class="tlrow"><div class="tltime">10:30</div><div class="tlline"><div class="tldot live"></div><div class="tlbar"></div></div><div class="tlcard live"><div class="tlcat">S&uacute;per Copa</div><div class="tlname">Pr&aacute;ctica libre 2</div><div class="tlstate live">En curso &middot; termina en 18 min</div></div></div>
+                  <div class="tlrow"><div class="tltime">12:00</div><div class="tlline"><div class="tldot"></div><div class="tlbar"></div></div><div class="tlcard"><div class="tlcat">S&uacute;per Copa</div><div class="tlname">Calificaci&oacute;n</div><div class="tlstate next">Pr&oacute;xima</div></div></div>
+                  <div class="tlrow"><div class="tltime">14:30</div><div class="tlline"><div class="tldot"></div></div><div class="tlcard"><div class="tlcat">GT300</div><div class="tlname">Carrera 1</div><div class="tlstate next">Pr&oacute;xima</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">EV-3</a><span><span class="dv-oname">Chat.</span> Chat del evento y del puesto; mensajes de Control.</span></div>
+            <div class="phone" data-screen-label="Modo evento / Chat">
+              <div class="screen fix">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">MODO EVENTO</div><div class="tspace"></div></div>
+                <div class="seg"><a href="#t1">Puesto</a><a href="#t1">Cronograma</a><a class="on" href="#t1">Chat</a></div>
+                <div class="subseg"><a class="on" href="#t1">Evento</a><a href="#t1">Mi puesto</a></div>
+                <div class="chatwrap">
+                  <div class="msg ctrl"><div class="bub"><div class="who">CONTROL DE CARRERA</div><div class="mtx">Bandera amarilla en sector 3 retirada. Pista verde.</div></div></div>
+                  <div class="msg"><div class="av" style="background:#e6a3c0">LF</div><div class="bub"><div class="who">Laura Fern&aacute;ndez</div><div class="mtx">Equipo, al cerrar PL2 revisamos la se&ntilde;alizaci&oacute;n del sector, porfa.</div></div></div>
+                  <div class="msg"><div class="av" style="background:#7fb7f0">MR</div><div class="bub"><div class="who">Miguel R&iacute;os</div><div class="mtx">Voy con el extintor a la curva 8.</div></div></div>
+                  <div class="msg me"><div class="av" style="background:#f2b134">CM</div><div class="bub"><div class="who">T&uacute;</div><div class="mtx">Copiado, listo por ac&aacute;.</div></div></div>
+                </div>
+                <div class="composer"><div class="inp">Mensaje al evento&hellip;</div><div class="send">&uarr;</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Prueba pedir: &ldquo;el chat de <b>Mi puesto</b> en vez del de evento&rdquo; &middot; &ldquo;agrega estado de <b>bandera actual</b> en el header&rdquo; &middot; &ldquo;sigamos con Perfil&rdquo; (te pedir&eacute; confirmaci&oacute;n primero).</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

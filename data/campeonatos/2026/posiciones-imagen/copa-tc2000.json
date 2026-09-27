@@ -1,0 +1,371 @@
+{
+ "campeonato": "México Racing Cup",
+ "temporada": "2026",
+ "categoria": "Copa TC2000",
+ "imageUrl": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1789949652243494037.jpg",
+ "throughRound": 8,
+ "leidaEl": "2026-09-27",
+ "nota": "Transcrita de la imagen por un agente; validada (suma por carrera = SUMA en todas las filas). Posición IMPRESA; puntos = PUNTOS REALES.",
+ "rows": [
+  {
+   "pos": 1,
+   "name": "Aldo Vincenti",
+   "team": "BMW",
+   "points": 684
+  },
+  {
+   "pos": 2,
+   "name": "Carlos Guzmán Jr.",
+   "team": "BMW /Audi",
+   "points": 556
+  },
+  {
+   "pos": 3,
+   "name": "Elliot VanRankin",
+   "team": "BMW",
+   "points": 613
+  },
+  {
+   "pos": 4,
+   "name": "Allan VanRankin / Michel Garrido",
+   "team": "BMW",
+   "points": 611
+  },
+  {
+   "pos": 5,
+   "name": "Emiliano Ortíz",
+   "team": "BMW",
+   "points": 578
+  },
+  {
+   "pos": 6,
+   "name": "Santiago Navarro (N)",
+   "team": "BMW",
+   "points": 571
+  },
+  {
+   "pos": 7,
+   "name": "Jerry Garibay (N)",
+   "team": "BMW",
+   "points": 514
+  },
+  {
+   "pos": 8,
+   "name": "Victor Alfaro / Edgar Olvera",
+   "team": "BMW",
+   "points": 541
+  },
+  {
+   "pos": 9,
+   "name": "Luis Cobos",
+   "team": "Ford",
+   "points": 522
+  },
+  {
+   "pos": 10,
+   "name": "Juan M. González",
+   "team": "Ford",
+   "points": 520
+  },
+  {
+   "pos": 11,
+   "name": "Massimilaino Zona / Manuel Mier",
+   "team": "BMW",
+   "points": 480
+  },
+  {
+   "pos": 12,
+   "name": "A. Sanchez",
+   "team": "BMW",
+   "points": 469
+  },
+  {
+   "pos": 13,
+   "name": "Rodrigo Vazquez / Henrique Lemos",
+   "team": "BMW",
+   "points": 466
+  },
+  {
+   "pos": 14,
+   "name": "Calos Lopez / Edgar Lopezpape",
+   "team": "BMW",
+   "points": 452
+  },
+  {
+   "pos": 15,
+   "name": "Ivan German / S. German",
+   "team": "Chevrolet",
+   "points": 442
+  },
+  {
+   "pos": 16,
+   "name": "Ramon Osorio / Adiel Gamboa",
+   "team": "Ford",
+   "points": 432
+  },
+  {
+   "pos": 17,
+   "name": "Wilfredo Quesada / Hugo Quesada",
+   "team": "BMW",
+   "points": 408
+  },
+  {
+   "pos": 18,
+   "name": "Jorge Hagstotz",
+   "team": "BMW /Audi",
+   "points": 390
+  },
+  {
+   "pos": 19,
+   "name": "Enrique Ferrer",
+   "team": "Ford",
+   "points": 351
+  },
+  {
+   "pos": 20,
+   "name": "Camilo Mojica (N)",
+   "team": "Ford",
+   "points": 348
+  },
+  {
+   "pos": 21,
+   "name": "D. Urritia (N)",
+   "team": "BMW",
+   "points": 342
+  },
+  {
+   "pos": 22,
+   "name": "Angel Salgado",
+   "team": "Cupra/BMW",
+   "points": 278
+  },
+  {
+   "pos": 23,
+   "name": "Giovanni Rodrigo",
+   "team": "BMW",
+   "points": 256
+  },
+  {
+   "pos": 24,
+   "name": "Kevin Salgado",
+   "team": "Cupra",
+   "points": 244
+  },
+  {
+   "pos": 25,
+   "name": "Emilio Aguilar",
+   "team": "Chevrolet",
+   "points": 230
+  },
+  {
+   "pos": 26,
+   "name": "Walter Leyva",
+   "team": "BMW",
+   "points": 213
+  },
+  {
+   "pos": 27,
+   "name": "Adrián Vázquez",
+   "team": "BMW",
+   "points": 203
+  },
+  {
+   "pos": 28,
+   "name": "Javier Fernandez",
+   "team": "BMW",
+   "points": 186
+  },
+  {
+   "pos": 29,
+   "name": "Fernando Olvera / A. Olvera",
+   "team": "BMW",
+   "points": 182
+  },
+  {
+   "pos": 30,
+   "name": "Joaquin Forcelledo",
+   "team": "Ford",
+   "points": 181
+  },
+  {
+   "pos": 31,
+   "name": "Emilio Aguilar Sr. (N)",
+   "team": "Ford",
+   "points": 174
+  },
+  {
+   "pos": 32,
+   "name": "Gerardo Rodriguez",
+   "team": "BMW",
+   "points": 169
+  },
+  {
+   "pos": 33,
+   "name": "Raul Galvan",
+   "team": "BMW",
+   "points": 163
+  },
+  {
+   "pos": 34,
+   "name": "A. Leal",
+   "team": "Audi",
+   "points": 146
+  },
+  {
+   "pos": 35,
+   "name": "Yahir Aguilar (N)",
+   "team": "Chevrolet",
+   "points": 132
+  },
+  {
+   "pos": 36,
+   "name": "Rafael Palacios",
+   "team": "Ford",
+   "points": 116
+  },
+  {
+   "pos": 37,
+   "name": "Arturo Rayas (N)",
+   "team": "BMW",
+   "points": 106
+  },
+  {
+   "pos": 38,
+   "name": "Miguel Roman (N)",
+   "team": "BMW",
+   "points": 104
+  },
+  {
+   "pos": 39,
+   "name": "A. Palma",
+   "team": "Audi",
+   "points": 98
+  },
+  {
+   "pos": 40,
+   "name": "Emilio Blockzyl (N)",
+   "team": "BMW",
+   "points": 72
+  },
+  {
+   "pos": 41,
+   "name": "D. González / A. Salinas (N)",
+   "team": "Chevrolet",
+   "points": 66
+  },
+  {
+   "pos": 42,
+   "name": "A. Tenorio (N)",
+   "team": "BMW",
+   "points": 66
+  },
+  {
+   "pos": 43,
+   "name": "O. Ruano (N)",
+   "team": "BMW",
+   "points": 66
+  },
+  {
+   "pos": 44,
+   "name": "Ruben German (N)",
+   "team": "BMW",
+   "points": 62
+  },
+  {
+   "pos": 45,
+   "name": "Bruno Silva",
+   "team": "Chevrolet",
+   "points": 58
+  },
+  {
+   "pos": 46,
+   "name": "L. Franco (N)",
+   "team": "Chevrolet",
+   "points": 54
+  },
+  {
+   "pos": 47,
+   "name": "Jonathan Briseño",
+   "team": "Audi",
+   "points": 48
+  },
+  {
+   "pos": 48,
+   "name": "S. Silva (N)",
+   "team": "BMW",
+   "points": 48
+  },
+  {
+   "pos": 49,
+   "name": "Y. Pelaez (N) / Rafael Palacios Sr.",
+   "team": "BMW",
+   "points": 48
+  },
+  {
+   "pos": 50,
+   "name": "Emilio Sanchez (N)",
+   "team": "BMW",
+   "points": 46
+  },
+  {
+   "pos": 51,
+   "name": "Luis Goulart",
+   "team": "BMW",
+   "points": 46
+  },
+  {
+   "pos": 52,
+   "name": "Arturo Paniagua (N)",
+   "team": "BMW",
+   "points": 0
+  },
+  {
+   "pos": 53,
+   "name": "A. Calzada (N)",
+   "team": "BMW",
+   "points": 0
+  },
+  {
+   "pos": 54,
+   "name": "Alejandro Palacios (N)",
+   "team": "BMW",
+   "points": 0
+  },
+  {
+   "pos": 55,
+   "name": "R. Escobedo (N)",
+   "team": "Chevrolet",
+   "points": 0
+  },
+  {
+   "pos": 56,
+   "name": "P. Rodriguez (N)",
+   "team": "Audi",
+   "points": 0
+  },
+  {
+   "pos": 57,
+   "name": "C. Arjona (N)",
+   "team": "Audi",
+   "points": 0
+  },
+  {
+   "pos": 58,
+   "name": "Gael Morales (N)",
+   "team": "BMW",
+   "points": 0
+  },
+  {
+   "pos": 59,
+   "name": "D. Aguilar (N)",
+   "team": "BMW",
+   "points": 0
+  },
+  {
+   "pos": 60,
+   "name": "Ruben Rovelo",
+   "team": "BMW",
+   "points": 0
+  }
+ ]
+}

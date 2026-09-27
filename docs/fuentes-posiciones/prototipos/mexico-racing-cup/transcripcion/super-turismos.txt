@@ -1,0 +1,22 @@
+# categoria=Súper Turismos (tabla "Super Turismos 1"; columna División: Plataforma Turbo / Tubular Turbo / Tubular / ST2)
+# pagina=https://mexicoracingcup.com/33-super-turismos-1
+# imagen=https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1782341175039544277.jpg
+# fecha_impresa=18-jun-26 (subida 2026-06-24; DESACTUALIZADA: faltan las fechas 6, 7 y 8)
+# hasta_fecha=5
+# columnas=1-1,1-2,2-1,2-2,3-1,3-2,3-3,4-1,4-2,4-3,5-1,5-2
+# peor=todas
+1|Jonathan Briseño|Seat|Plataforma Turbo|804|0|,,90,103,106,93,100,106,103,103,,|804|0
+2|Raul Garza|Honda|Plataforma Turbo|683|-121|90,90,78,0,85,85,85,0,85,85,,|683|0
+3|Javier JImenez|BMW|Tubular Turbo|649|-155|106,103,85,85,,,,90,90,90,,|649|0
+4|Jorge Solis (N)|Seat|ST2|637|-167|80,85,,,78,80,78,78,78,80,,|637|0
+5|Luma Garcia|Cupra|Tubular Turbo|550|-254|76,0,80,80,80,78,80,76,,0,,|550|0
+6|Guillermo Izquierdo (N)|Seat|Plataforma Turbo|479|-325|,,106,90,90,100,93,,,,,|479|0
+7|Miguel Adame|Honda|Plataforma Turbo|471|-333|85,80,76,78,,76,76,,,,0,0|471|0
+8|J. Solorzao (N) / D. Rosenberg (N)|Cupra|Plataforma Turbo|232|-572|,,,,,,,80,76,76,,|232|0
+9|Jose Luis Callejo|Seat|Tubular|230|-574|78,78,,,0,74,0,,,,,|230|0
+10|Miguel Calvo|Seat|Tubular|226|-578|,,,,0,74,0,74,0,78,,|226|0
+11|Miguel Manzur (N)|Audi|ST2|209|-595|,,,,,,,,,,106,103|209|0
+12|Vidal Lopez (N)|Seat|ST2|165|-639|,,,,,,,85,80,0,,|165|0
+13|Luis Callejo Jr. (N)|Seat|Tubular|152|-652|,,,,,,,74,0,78,,|152|0
+14|Char Garcia|Cupra|Tubular Turbo|76|-728|76,0,,,,,,,,,,|76|0
+15|Roberto Marquez|BMW|Tubular|0|-804|0,0,,,,,,,,,,|0|0

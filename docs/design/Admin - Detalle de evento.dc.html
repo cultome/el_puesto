@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: #f2b134; } a:hover { color: #f6bb45; }
+          .dv-turn { padding: 48px 52px 40px; }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 700 16px/1.3 'Archivo', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; margin-bottom: 12px; max-width: 900px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 1000px; }
+
+          /* ——— marco del admin web (Paddock nocturno) ——— */
+          .win { width: 1380px; border-radius: 14px; overflow: hidden; border: 1px solid #2a2f3a; box-shadow: 0 30px 70px -25px rgba(0,0,0,0.75); background: #14171e; display: flex; }
+          .side { width: 210px; flex: none; background: #12141a; border-right: 1px solid #262b36; padding: 18px 14px; display: flex; flex-direction: column; gap: 4px; }
+          .brand { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; padding: 0 6px; }
+          .bflag { width: 26px; height: 26px; border-radius: 6px; background: conic-gradient(#f2b134 25%, #241a08 0 50%, #f2b134 0 75%, #241a08 0); }
+          .bname { font: 800 13px 'Archivo', sans-serif; letter-spacing: 2px; color: #fff; }
+          .bsub { font: 600 8.5px 'IBM Plex Mono', monospace; letter-spacing: 2px; color: #8b909b; }
+          .nav { font: 600 11px 'IBM Plex Mono', monospace; letter-spacing: 1px; color: #9aa0ac; padding: 9px 10px; border-radius: 8px; text-transform: uppercase; }
+          .nav.on { background: rgba(242,177,52,0.12); color: #f2b134; }
+          .main { flex: 1; padding: 20px 26px 30px; min-width: 0; }
+          .crumbs { display: flex; align-items: center; gap: 10px; font: 500 12px 'IBM Plex Mono', monospace; color: #8b909b; margin-bottom: 16px; }
+          .backb { font: 600 11px 'IBM Plex Mono', monospace; color: #cfd3da; background: #1d212b; border: 1px solid #333949; border-radius: 8px; padding: 6px 11px; }
+
+          /* header del evento */
+          .evh { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 16px; }
+          .evh .tit { flex: 1; min-width: 0; }
+          .evh h1 { margin: 0; font: 800 24px/1.1 'Archivo', sans-serif; color: #fff; letter-spacing: -0.3px; }
+          .chiprow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+          .chip { display: inline-flex; align-items: center; gap: 6px; font: 600 11px 'IBM Plex Mono', monospace; color: #aab0bd; background: #1d212b; border: 1px solid #333949; padding: 5px 10px; border-radius: 100px; }
+          .chip.ok { color: #3fdd85; border-color: rgba(63,221,133,0.35); }
+          .btn { font: 600 11px 'IBM Plex Mono', monospace; letter-spacing: 0.5px; color: #cfd3da; background: #1d212b; border: 1px solid #333949; border-radius: 8px; padding: 8px 13px; }
+          .btn.pri { background: #f2b134; border-color: #f2b134; color: #1c1405; }
+
+          /* grid principal */
+          .grid { display: grid; grid-template-columns: 1fr 340px; gap: 14px; align-items: start; }
+          .panel { background: #191d26; border: 1px solid #2a2f3a; border-radius: 14px; padding: 16px; min-width: 0; }
+          .ptit { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+          .ptit b { font: 700 11px 'IBM Plex Mono', monospace; letter-spacing: 1.4px; color: #8b909b; text-transform: uppercase; }
+          .plink { font: 600 11px 'IBM Plex Mono', monospace; color: #f2b134; cursor: pointer; }
+
+          /* tabs de trazado */
+          .tztabs { display: flex; gap: 8px; margin-bottom: 12px; }
+          .tzt { font: 600 12px 'IBM Plex Sans', sans-serif; color: #9aa0ac; background: #1d212b; border: 1px solid #333949; border-radius: 100px; padding: 7px 14px; display: inline-flex; gap: 8px; align-items: center; }
+          .tzt.on { background: rgba(242,177,52,0.13); border-color: rgba(242,177,52,0.4); color: #f5d493; }
+          .tzt .m { font: 600 10px 'IBM Plex Mono', monospace; opacity: 0.7; }
+
+          /* mapa */
+          .map { position: relative; height: 430px; border-radius: 12px; overflow: hidden; background: #161a22; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 28px 28px; border: 1px solid #2a2f3a; }
+          .loop { position: absolute; left: 140px; top: 55px; width: 470px; height: 315px; border: 4px solid #5f6a80; border-radius: 58% 42% 52% 48% / 55% 50% 50% 45%; }
+          .sf { position: absolute; left: 330px; top: 44px; width: 30px; height: 13px; background-image: conic-gradient(#e7edf1 25%, transparent 0 50%, #e7edf1 0 75%, transparent 0); background-size: 6px 6px; background-color: #f2b134; border-radius: 2px; transform: rotate(-8deg); }
+          .pin { position: absolute; width: 30px; height: 30px; border-radius: 50%; background: #232838; border: 2px solid #5f6a80; color: #c3c8d2; font: 700 11.5px 'IBM Plex Mono', monospace; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+          .pin.staffed { border-color: #f2b134; color: #f5d493; }
+          .pin.staffed::after { content: attr(data-n); position: absolute; right: -7px; top: -7px; min-width: 15px; height: 15px; border-radius: 8px; background: #f2b134; color: #1c1405; font: 700 9px 'IBM Plex Mono', monospace; display: flex; align-items: center; justify-content: center; padding: 0 3px; }
+          .pin.sel { box-shadow: 0 0 0 4px rgba(242,177,52,0.35); background: #f2b134; color: #1c1405; border-color: #f2b134; z-index: 3; }
+          .asset { position: absolute; width: 26px; height: 26px; border-radius: 8px; display: flex; align-items: center; justify-content: center; z-index: 2; }
+          .asset.g { background: #16283d; border: 2px solid #4a90e2; color: #7fb7f0; }
+          .asset.a { background: #3a1c1f; border: 2px solid #f0524d; color: #ff8a86; }
+          .ic-cross { position: relative; width: 12px; height: 12px; }
+          .ic-cross::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: currentColor; transform: translateX(-50%); border-radius: 1px; }
+          .ic-cross::after { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 4px; background: currentColor; transform: translateY(-50%); border-radius: 1px; }
+          .ic-crane { position: relative; width: 13px; height: 13px; }
+          .ic-crane::before { content: ''; position: absolute; left: 1px; top: 0; width: 3px; height: 13px; background: currentColor; border-radius: 1px; }
+          .ic-crane::after { content: ''; position: absolute; left: 1px; top: 0; width: 11px; height: 3px; background: currentColor; border-radius: 1px; }
+          .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; font: 500 11px 'IBM Plex Sans', sans-serif; color: #9aa0ac; }
+          .legend .it { display: flex; align-items: center; gap: 6px; }
+          .lsw { width: 15px; height: 15px; border-radius: 50%; background: #232838; border: 2px solid #5f6a80; }
+          .lsw.st { border-color: #f2b134; }
+          .lsw.sq { border-radius: 5px; }
+          .lsw.g { background: #16283d; border-color: #4a90e2; }
+          .lsw.a { background: #3a1c1f; border-color: #f0524d; }
+          .mapcap { position: absolute; left: 12px; bottom: 10px; font: 600 9.5px 'IBM Plex Mono', monospace; letter-spacing: 0.5px; color: #6f7683; text-transform: uppercase; }
+
+          /* panel del puesto */
+          .pp-h { display: flex; align-items: baseline; gap: 9px; }
+          .pp-h b { font: 800 18px 'Archivo', sans-serif; color: #fff; }
+          .pp-h small { font: 600 10.5px 'IBM Plex Mono', monospace; color: #8b909b; }
+          .arow { display: flex; align-items: center; gap: 11px; padding: 10px 0; border-bottom: 1px solid #232834; }
+          .arow:last-child { border-bottom: 0; }
+          .avt { width: 34px; height: 34px; border-radius: 50%; flex: none; background: #2b3040; border: 1px solid #3a4152; color: #cfd3da; font: 700 12px 'Archivo', sans-serif; display: flex; align-items: center; justify-content: center; }
+          .arow.chief .avt { border-color: #f2b134; color: #f5d493; }
+          .ainfo { flex: 1; min-width: 0; }
+          .ainfo b { display: block; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .ainfo small { font: 600 10.5px 'IBM Plex Mono', monospace; color: #8b909b; }
+          .rolec { font: 600 10px 'IBM Plex Mono', monospace; color: #aab0bd; background: #1d212b; border: 1px solid #333949; padding: 4px 8px; border-radius: 6px; white-space: nowrap; }
+          .arow.chief .rolec { color: #f2b134; border-color: rgba(242,177,52,0.4); background: rgba(242,177,52,0.08); }
+          .empty { font: 400 12.5px 'IBM Plex Sans', sans-serif; color: #8b909b; padding: 10px 0; }
+          .covrow { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #232834; font: 500 12.5px 'IBM Plex Sans', sans-serif; color: #cfd3da; cursor: pointer; }
+          .covrow:last-child { border-bottom: 0; }
+          .covrow .n { font: 700 11px 'IBM Plex Mono', monospace; color: #f5d493; width: 42px; flex: none; }
+          .covrow .c { margin-left: auto; font: 600 10.5px 'IBM Plex Mono', monospace; color: #8b909b; }
+          .kpis { display: flex; gap: 10px; margin-bottom: 12px; }
+          .kpi { flex: 1; background: #1d212b; border: 1px solid #2c3240; border-radius: 10px; padding: 10px 12px; }
+          .kpi b { display: block; font: 800 20px 'Archivo', sans-serif; color: #fff; }
+          .kpi.warn b { color: #f0524d; }
+          .kpi small { font: 600 9.5px 'IBM Plex Mono', monospace; letter-spacing: 0.8px; color: #8b909b; text-transform: uppercase; }
+
+          /* secciones inferiores */
+          .below { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+          .mday { font: 700 10.5px 'IBM Plex Mono', monospace; letter-spacing: 1.2px; color: #f2b134; text-transform: uppercase; margin: 12px 0 4px; }
+          .mday:first-of-type { margin-top: 0; }
+          .mrow { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #232834; }
+          .mrow:last-child { border-bottom: 0; }
+          .mtime { font: 700 12.5px 'IBM Plex Mono', monospace; color: #eceef2; width: 46px; flex: none; }
+          .mcat { font: 600 9.5px 'IBM Plex Mono', monospace; color: #7fb7f0; background: rgba(74,144,226,0.1); border: 1px solid rgba(74,144,226,0.3); padding: 3px 7px; border-radius: 5px; flex: none; }
+          .mcat.none { color: #6f7683; background: transparent; border-color: #2c3240; }
+          .mname { flex: 1; font: 500 13px 'IBM Plex Sans', sans-serif; color: #cfd3da; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .mdur { font: 600 10.5px 'IBM Plex Mono', monospace; color: #8b909b; flex: none; }
+          .mlive { width: 7px; height: 7px; border-radius: 50%; background: #3fdd85; box-shadow: 0 0 8px rgba(63,221,133,0.8); flex: none; }
+          .chk { display: flex; align-items: center; gap: 10px; padding: 7px 0; font: 500 12.5px 'IBM Plex Sans', sans-serif; color: #cfd3da; border-bottom: 1px solid #232834; }
+          .chk:last-child { border-bottom: 0; }
+          .chk .bx { width: 16px; height: 16px; border-radius: 5px; border: 2px solid #3a4152; flex: none; }
+          .champ { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid #232834; }
+          .champ:last-child { border-bottom: 0; }
+          .clogo { width: 34px; height: 34px; border-radius: 9px; background: repeating-linear-gradient(45deg, #232838 0 6px, #1d212b 6px 12px); border: 1px solid #333949; flex: none; display: flex; align-items: center; justify-content: center; font: 700 8px 'IBM Plex Mono', monospace; color: #6f7683; }
+          .champ .ci { flex: 1; }
+          .champ .ci b { display: block; font: 600 13.5px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .champ .ci .cats { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
+          .catc { font: 600 9.5px 'IBM Plex Mono', monospace; color: #aab0bd; background: #1d212b; border: 1px solid #333949; padding: 3px 7px; border-radius: 5px; }
+        </style>
+      </helmet>
+
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">EV</a>
+          <span class="dv-tname">Admin &mdash; Detalle de evento (todo en una vista)</span>
+          <span class="dv-tsub">campeonatos + trazados con mapa (puestos y activos) + asignaciones + MbM &middot; clic en un puesto &rarr; sus asignaciones</span>
+        </div>
+
+        <div class="dv-olabel"><a class="dv-oid" href="#t1">EV-1</a><span><span class="dv-oname">Vista completa (interactiva).</span> El mapa es el centro: los puestos con gente van en &aacute;mbar con su contador; <b>haz clic en un puesto</b> y el panel derecho muestra sus asignaciones (jefe destacado). Sin selecci&oacute;n, el panel resume la cobertura del evento. Abajo: MbM, campeonatos con sus categor&iacute;as y la checklist.</span></div>
+
+        <div class="win" data-screen-label="Admin / Detalle de evento">
+          <div class="side">
+            <div class="brand"><div class="bflag"></div><div><div class="bname">EL PUESTO</div><div class="bsub">ADMIN</div></div></div>
+            <div class="nav">Cuentas</div>
+            <div class="nav">Oficiales</div>
+            <div class="nav on">Eventos</div>
+            <div class="nav">Circuitos</div>
+            <div class="nav">Campeonatos</div>
+            <div class="nav">Convocatorias</div>
+            <div class="nav">Agenda global</div>
+            <div class="nav">Claves y auditor&iacute;a</div>
+          </div>
+          <div class="main">
+            <div class="crumbs"><span class="backb">&larr; Volver</span><span>Eventos &rsaquo; S&uacute;per Copa Telcel &middot; Fecha 4</span></div>
+
+            <div class="evh">
+              <div class="tit">
+                <h1>S&uacute;per Copa Telcel &middot; Fecha 4</h1>
+                <div class="chiprow">
+                  <span class="chip">2026-07-24 &rarr; 2026-07-26</span>
+                  <span class="chip ok">LIVE</span>
+                  <span class="chip ok">&#9679; activo en la app</span>
+                  <span class="chip">Aut&oacute;dromo Hermanos Rodr&iacute;guez</span>
+                </div>
+              </div>
+              <span class="btn">desactivar</span>
+              <span class="btn pri">&#9998; Editar evento</span>
+            </div>
+
+            <div class="grid">
+              <div class="panel">
+                <div class="ptit"><b>Trazados y puestos</b><span class="plink">abrir editor del mapa &rsaquo;</span></div>
+                <div class="tztabs">
+                  <span class="tzt on">Gran Premio <span class="m">4,304 m &middot; 11 puestos</span></span>
+                  <span class="tzt">Alterno <span class="m">3,900 m &middot; 8 puestos</span></span>
+                </div>
+                <div class="map">
+                  <div class="loop"></div><div class="sf"></div>
+                  <div class="pin" style="left:238px;top:74px" onClick="{{ s2 }}">2</div>
+                  <div class="pin staffed {{ c3 }}" data-n="2" style="left:328px;top:62px" onClick="{{ s3 }}">3</div>
+                  <div class="pin" style="left:430px;top:74px" onClick="{{ s5 }}">5</div>
+                  <div class="pin" style="left:520px;top:120px" onClick="{{ s6 }}">6</div>
+                  <div class="pin staffed {{ c7 }}" data-n="4" style="left:572px;top:205px" onClick="{{ s7 }}">7</div>
+                  <div class="pin" style="left:540px;top:290px" onClick="{{ s8 }}">8</div>
+                  <div class="pin staffed {{ c9 }}" data-n="1" style="left:452px;top:340px" onClick="{{ s9 }}">9</div>
+                  <div class="pin" style="left:340px;top:358px" onClick="{{ s11 }}">11</div>
+                  <div class="pin staffed {{ c14 }}" data-n="3" style="left:225px;top:340px" onClick="{{ s14 }}">14</div>
+                  <div class="pin" style="left:145px;top:270px" onClick="{{ s17 }}">17</div>
+                  <div class="pin" style="left:128px;top:160px" onClick="{{ s19 }}">19</div>
+                  <div class="asset g" style="left:470px;top:190px"><span class="ic-crane"></span></div>
+                  <div class="asset g" style="left:300px;top:300px"><span class="ic-crane"></span></div>
+                  <div class="asset a" style="left:215px;top:215px"><span class="ic-cross"></span></div>
+                  <div class="asset a" style="left:400px;top:130px"><span class="ic-cross"></span></div>
+                  <div class="mapcap">Clic en un puesto para ver sus asignaciones</div>
+                </div>
+                <div class="legend">
+                  <span class="it"><span class="lsw"></span>Puesto sin asignar</span>
+                  <span class="it"><span class="lsw st"></span>Con oficiales (contador)</span>
+                  <span class="it"><span class="lsw sq g"></span>HIAB</span>
+                  <span class="it"><span class="lsw sq a"></span>Ambulancia</span>
+                </div>
+              </div>
+
+              <div class="panel">
+                <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ true }}">
+                  <div class="ptit"><b>Puesto seleccionado</b><span class="plink" onClick="{{ clearSel }}">ver cobertura &times;</span></div>
+                  <div class="pp-h"><b>{{ selName }}</b><small>{{ selMeta }}</small></div>
+                  <div style="margin-top:6px">
+                    <sc-for list="{{ selRows }}" as="a" hint-placeholder-count="4">
+                      <div class="arow {{ a.cls }}">
+                        <div class="avt">{{ a.ini }}</div>
+                        <div class="ainfo"><b>{{ a.name }}</b><small>{{ a.shift }}</small></div>
+                        <span class="rolec">{{ a.role }}</span>
+                      </div>
+                    </sc-for>
+                    <sc-if value="{{ selEmpty }}" hint-placeholder-val="{{ false }}">
+                      <div class="empty">Sin oficiales asignados a este puesto. Agr&eacute;galos en Asignaciones.</div>
+                    </sc-if>
+                  </div>
+                  <div style="margin-top:12px"><span class="btn pri">&#9998; Editar asignaciones de este puesto</span></div>
+                </sc-if>
+                <sc-if value="{{ noSel }}" hint-placeholder-val="{{ false }}">
+                  <div class="ptit"><b>Cobertura del evento</b><span class="plink">asignaciones &rsaquo;</span></div>
+                  <div class="kpis">
+                    <div class="kpi"><b>10</b><small>oficiales</small></div>
+                    <div class="kpi"><b>4/11</b><small>puestos cubiertos</small></div>
+                    <div class="kpi warn"><b>2</b><small>sin jefe</small></div>
+                  </div>
+                  <sc-for list="{{ coverage }}" as="p" hint-placeholder-count="4">
+                    <div class="covrow" onClick="{{ p.go }}"><span class="n">{{ p.label }}</span><span>{{ p.who }}</span><span class="c">{{ p.count }}</span></div>
+                  </sc-for>
+                </sc-if>
+              </div>
+            </div>
+
+            <div class="below">
+              <div class="panel">
+                <div class="ptit"><b>MbM (cronograma) &middot; 12 actividades</b><span class="plink">editar &rsaquo;</span></div>
+                <div class="mday">Viernes 24 jul</div>
+                <div class="mrow"><span class="mtime">08:30</span><span class="mcat none">&mdash;</span><span class="mname">Verificaci&oacute;n t&eacute;cnica</span><span class="mdur">45 min</span></div>
+                <div class="mrow"><span class="mtime">09:15</span><span class="mcat">GT300</span><span class="mname">Pr&aacute;ctica libre 1</span><span class="mdur">30 min</span></div>
+                <div class="mday">S&aacute;bado 25 jul</div>
+                <div class="mrow"><span class="mlive"></span><span class="mtime">10:30</span><span class="mcat">S&uacute;per Copa</span><span class="mname">Pr&aacute;ctica libre 2 &middot; EN CURSO</span><span class="mdur">18 min</span></div>
+                <div class="mrow"><span class="mtime">12:00</span><span class="mcat">S&uacute;per Copa</span><span class="mname">Calificaci&oacute;n</span><span class="mdur">40 min</span></div>
+                <div class="mrow"><span class="mtime">14:30</span><span class="mcat">GT300</span><span class="mname">Carrera 1</span><span class="mdur">50 min</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+                <div class="panel">
+                  <div class="ptit"><b>Campeonatos del evento</b><span class="plink">editar evento &rsaquo;</span></div>
+                  <div class="champ">
+                    <div class="clogo">LOGO</div>
+                    <div class="ci"><b>S&uacute;per Copa Telcel &middot; 2026</b>
+                      <div class="cats"><span class="catc">S&uacute;per Copa</span><span class="catc">GT300</span><span class="catc">Turismos</span></div>
+                    </div>
+                  </div>
+                  <div class="champ">
+                    <div class="clogo">LOGO</div>
+                    <div class="ci"><b>NACAM F4 &middot; 2026</b>
+                      <div class="cats"><span class="catc">F4</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel">
+                  <div class="ptit"><b>Checklist del puesto (plantilla) &middot; 6</b><span class="plink">editar &rsaquo;</span></div>
+                  <div class="chk"><span class="bx"></span>Revisar banderas y astas</div>
+                  <div class="chk"><span class="bx"></span>Probar radio con Control</div>
+                  <div class="chk"><span class="bx"></span>Verificar extintor y kit</div>
+                  <div class="chk"><span class="bx"></span>Colocar se&ntilde;alizaci&oacute;n del puesto</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="dv-next">Prueba pedir: &ldquo;mueve la cobertura a una barra bajo el mapa&rdquo; &middot; &ldquo;muestra tambi&eacute;n los activos en el panel al hacer clic&rdquo; &middot; &ldquo;una variante con el MbM como l&iacute;nea de tiempo horizontal&rdquo;.</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        constructor(props) {
+          super(props);
+          this.state = { sel: null };
+          this.data = {
+            3:  { name: "Puesto 3",  meta: "MP 3 · Gran Premio", rows: [
+                  { ini: "RD", name: "Raúl Díaz", role: "Comunicador", shift: "Día completo", cls: "" },
+                  { ini: "SM", name: "Sofía Martínez", role: "Bandera Azul", shift: "Turno 1", cls: "" },
+                ] },
+            7:  { name: "Puesto 7",  meta: "MP 7 · Gran Premio", rows: [
+                  { ini: "LF", name: "Laura Fernández", role: "Chief Post Marshal", shift: "Día completo", cls: "chief" },
+                  { ini: "CM", name: "Carlos Mendoza", role: "Bandera Amarilla", shift: "Día completo", cls: "" },
+                  { ini: "MR", name: "Miguel Ríos", role: "Bandera Azul", shift: "Turno 1", cls: "" },
+                  { ini: "AS", name: "Ana Sosa", role: "Intervención 1", shift: "Día completo", cls: "" },
+                ] },
+            9:  { name: "Puesto 9",  meta: "MP 9 · Gran Premio", rows: [
+                  { ini: "JQ", name: "Jorge Quintana", role: "Bandera Azul", shift: "Turno 2", cls: "" },
+                ] },
+            14: { name: "Puesto 14", meta: "MP 14 · Gran Premio", rows: [
+                  { ini: "PL", name: "Paola Lara", role: "Chief Post Marshal", shift: "Día completo", cls: "chief" },
+                  { ini: "HN", name: "Héctor Nava", role: "Bombero 1", shift: "Día completo", cls: "" },
+                  { ini: "KV", name: "Karla Vega", role: "Intervención 2", shift: "Turno 1", cls: "" },
+                ] },
+            2: { name: "Puesto 2", meta: "MP 2 · Gran Premio", rows: [] },
+            5: { name: "Puesto 5", meta: "MP 5 · Gran Premio", rows: [] },
+            6: { name: "Puesto 6", meta: "MP 6 · Gran Premio", rows: [] },
+            8: { name: "Puesto 8", meta: "MP 8 · Gran Premio", rows: [] },
+            11: { name: "Puesto 11", meta: "MP 11 · Gran Premio", rows: [] },
+            17: { name: "Puesto 17", meta: "MP 17 · Gran Premio", rows: [] },
+            19: { name: "Puesto 19", meta: "MP 19 · Gran Premio", rows: [] },
+          };
+        }
+        pick(n) { this.setState({ sel: this.state.sel === n ? null : n }); }
+        renderVals() {
+          const sel = this.state.sel;
+          const d = sel !== null ? this.data[sel] : null;
+          const mk = (n) => () => this.pick(n);
+          return {
+            hasSel: sel !== null,
+            noSel: sel === null,
+            selName: d ? d.name : "",
+            selMeta: d ? d.meta : "",
+            selRows: d ? d.rows : [],
+            selEmpty: !!d && d.rows.length === 0,
+            clearSel: () => this.setState({ sel: null }),
+            s2: mk(2), s3: mk(3), s5: mk(5), s6: mk(6), s7: mk(7), s8: mk(8),
+            s9: mk(9), s11: mk(11), s14: mk(14), s17: mk(17), s19: mk(19),
+            c3: sel === 3 ? "sel" : "", c7: sel === 7 ? "sel" : "",
+            c9: sel === 9 ? "sel" : "", c14: sel === 14 ? "sel" : "",
+            coverage: [
+              { label: "P 7", who: "Laura F. (jefe) + 3", count: "4", go: mk(7) },
+              { label: "P 14", who: "Paola L. (jefe) + 2", count: "3", go: mk(14) },
+              { label: "P 3", who: "Raúl D. + 1 · sin jefe", count: "2", go: mk(3) },
+              { label: "P 9", who: "Jorge Q. · sin jefe", count: "1", go: mk(9) },
+            ],
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

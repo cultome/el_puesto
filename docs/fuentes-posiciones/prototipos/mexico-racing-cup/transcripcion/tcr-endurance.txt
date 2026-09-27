@@ -1,0 +1,13 @@
+# categoria=TCR México — "Campeonato General Endurance"
+# pagina=https://mexicoracingcup.com/33-tcr-mxico
+# imagen=https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1788388546069216396.jpg
+# fecha_impresa=(ninguna; subida 2026-09-02)
+# hasta_fecha=1
+# columnas=1-puntos,1-polevr
+# peor=no
+# nota=Tripulaciones: los 3 pilotos del auto ganador comparten la posición 1 (celda combinada) y los 2 del segundo la 2. Columna "Posición" de la fecha 1 omitida (1 y 2).
+1|Julio Rejón|||316||300,16|316|
+1|Gerardo Rejón|||316||300,16|316|
+1|Rodrigo Rejón|||316||300,16|316|
+2|Jorge Abed|||270||270,0|270|
+2|Omar Chávez|||270||270,0|270|

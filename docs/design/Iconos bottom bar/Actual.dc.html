@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Actual</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#12151B;font-family:'IBM Plex Sans',sans-serif;color:#ECEEF2}
+.ic{display:block;overflow:visible}
+.ic .s{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.ic .sb{fill:none;stroke:currentColor;stroke-width:2}
+.ic .f{fill:currentColor;stroke:none}
+.navbtn{background:transparent;border:0;margin:0;padding:2px 14px;border-radius:10px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;font:inherit}
+.navbtn:focus-visible{outline:2px solid #F2B134;outline-offset:2px}
+.opt{background:#20242E;border-radius:12px;padding:10px 0 8px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;font:inherit}
+.opt:focus-visible{outline:2px solid #F2B134;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 430px; height: 800px; box-sizing: border-box; padding: 28px 20px; background: #12151B; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 0 4px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.6px; color: #F2B134">HOY EN LA APP</span>
+<h1 style="margin: 0; font-family: Archivo, sans-serif; font-size: 30px; font-weight: 800; color: #ECEEF2; letter-spacing: -0.3px">Actual</h1>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div style="background: #242833; border: 1px solid #333949; border-radius: 16px; padding: 22px 8px 14px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<svg class="ic" viewBox="{{ini.vb}}" style="width: 64px; height: 64px; color: #F2B134"><path class="s" d="{{ini.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{ini.sb}}"></path><path class="f" d="{{ini.f}}"></path></svg>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 3px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; color: #8F96A3">INICIO</span>
+<span style="font-size: 13px; font-weight: 500; color: #ECEEF2; text-align: center">Casa (techo relleno)</span>
+</div>
+</div><div style="background: #242833; border: 1px solid #333949; border-radius: 16px; padding: 22px 8px 14px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<svg class="ic" viewBox="{{age.vb}}" style="width: 64px; height: 64px; color: #F2B134"><path class="s" d="{{age.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{age.sb}}"></path><path class="f" d="{{age.f}}"></path></svg>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 3px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; color: #8F96A3">AGENDA</span>
+<span style="font-size: 13px; font-weight: 500; color: #ECEEF2; text-align: center">Calendario</span>
+</div>
+</div><div style="background: #242833; border: 1px solid #333949; border-radius: 16px; padding: 22px 8px 14px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<svg class="ic" viewBox="{{cha.vb}}" style="width: 64px; height: 64px; color: #F2B134"><path class="s" d="{{cha.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{cha.sb}}"></path><path class="f" d="{{cha.f}}"></path></svg>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 3px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; color: #8F96A3">CHATS</span>
+<span style="font-size: 13px; font-weight: 500; color: #ECEEF2; text-align: center">Burbuja</span>
+</div>
+</div>
+</div>
+<div style="display: flex; justify-content: space-around; align-items: center; padding: 14px 8px; background: #191C24; border: 1px solid #262B36; border-radius: 14px">
+<div style="display: flex; gap: 14px; align-items: center"><svg class="ic" viewBox="{{ini.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #6F7683"><path class="s" d="{{ini.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{ini.sb}}"></path><path class="f" d="{{ini.f}}"></path></svg><svg class="ic" viewBox="{{ini.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #F2B134"><path class="s" d="{{ini.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{ini.sb}}"></path><path class="f" d="{{ini.f}}"></path></svg></div><div style="display: flex; gap: 14px; align-items: center"><svg class="ic" viewBox="{{age.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #6F7683"><path class="s" d="{{age.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{age.sb}}"></path><path class="f" d="{{age.f}}"></path></svg><svg class="ic" viewBox="{{age.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #F2B134"><path class="s" d="{{age.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{age.sb}}"></path><path class="f" d="{{age.f}}"></path></svg></div><div style="display: flex; gap: 14px; align-items: center"><svg class="ic" viewBox="{{cha.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #6F7683"><path class="s" d="{{cha.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{cha.sb}}"></path><path class="f" d="{{cha.f}}"></path></svg><svg class="ic" viewBox="{{cha.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: #F2B134"><path class="s" d="{{cha.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{cha.sb}}"></path><path class="f" d="{{cha.f}}"></path></svg></div>
+</div>
+<sc-for list="{{bars}}" as="bar" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 1.2px; color: #6F7683">ACTIVO · {{bar.name}}</div>
+<div style="width: 390px; border-radius: 18px; overflow: hidden; background: #191C24; border: 1px solid #262B36; box-sizing: border-box">
+<div style="height: 26px; background: #191C24"></div>
+<div style="height: 1px; background: #262B36"></div>
+<div style="display: flex; justify-content: space-around; padding: 12px 8px">
+<sc-for list="{{bar.items}}" as="it" hint-placeholder-count="3">
+<div class="navbtn" style="color: {{it.tint}}">
+<svg class="ic" viewBox="{{it.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: {{it.tint}}"><path class="s" d="{{it.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{it.sb}}"></path><path class="f" d="{{it.f}}"></path></svg>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1px; color: {{it.tint}}">{{it.label}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview": {"width": 430, "height": 800}}'>
+var SET = {"vb": "0 0 23 22", "icons": {"ini": {"sb": "M6.02 10.45h10.96a2 2 0 0 1 2 2v6.5a2 2 0 0 1-2 2H6.02a2 2 0 0 1-2-2v-6.5a2 2 0 0 1 2-2z", "f": "M11.5 1L22.5 11.08L0.5 11.08Z", "s": ""}, "age": {"sb": "M7 2h9a5 5 0 0 1 5 5v9a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z", "f": "M4.15 1h14.7a3.15 3.15 0 0 1 0 6.3H4.15a3.15 3.15 0 0 1 0-6.3zM4.12 11.92h3v3h-3zM10 11.92h3v3h-3zM15.88 11.92h3v3h-3zM4.12 16.96h3v3h-3zM10 16.96h3v3h-3z", "s": ""}, "cha": {"sb": "M9.42 1h4.16a7.92 7.92 0 0 1 0 15.84H9.42a7.92 7.92 0 0 1 0-15.84z", "f": "M5.34 14.52L10.62 14.52L7.1 22Z", "s": ""}}};
+
+var AMBER = '#F2B134', FAINT = '#6F7683';
+var TABS = [['ini', 'INICIO'], ['age', 'AGENDA'], ['cha', 'CHATS']];
+function withVb(ic, vb) { return { vb: vb, s: ic.s, sb: ic.sb, f: ic.f }; }
+function barsFor(set) {
+  return TABS.map(function (on) {
+    return { name: on[1], items: TABS.map(function (t) {
+      var ic = withVb(set.icons[t[0]], set.vb);
+      ic.label = t[1]; ic.tint = t[0] === on[0] ? AMBER : FAINT;
+      return ic;
+    }) };
+  });
+}
+
+class Component extends DCLogic {
+  renderVals() {
+    var vb = SET.vb;
+    return {
+      sw: 2, szpx: (23) + 'px',
+      ini: withVb(SET.icons.ini, vb), age: withVb(SET.icons.age, vb), cha: withVb(SET.icons.cha, vb),
+      bars: barsFor(SET)
+    };
+  }
+}
+</script>
+</body>
+</html>

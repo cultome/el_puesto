@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "2.2",
+  "description": "El Puesto: activa una version del backend ya subida a s3://elpuesto-app-ops/despliegues/ (infra/servidor/activar.sh). Es lo UNICO que el despliegue desde GitHub Actions puede correr en la instancia. Lo crea infra/aws/6-servidor.sh.",
+  "parameters": {
+    "version": {
+      "type": "String",
+      "description": "Version a activar: AAAAMMDD-HHMM-<sha de 10> (la que arma scripts/desplegar-backend.sh).",
+      "allowedPattern": "^[0-9]{8}-[0-9]{4}-[0-9a-f]{10}$",
+      "interpolationType": "ENV_VAR"
+    }
+  },
+  "mainSteps": [
+    {
+      "action": "aws:runShellScript",
+      "name": "activar",
+      "precondition": {
+        "StringEquals": ["platformType", "Linux"]
+      },
+      "inputs": {
+        "timeoutSeconds": "900",
+        "runCommand": [
+          "if [ -z \"${SSM_version+x}\" ]; then export SSM_version=\"{{ version }}\"; fi",
+          "exec /bin/bash /opt/el-puesto/servidor/activar.sh \"$SSM_version\""
+        ]
+      }
+    }
+  ]
+}

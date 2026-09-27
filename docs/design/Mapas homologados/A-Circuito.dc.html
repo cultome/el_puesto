@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>A · Circuito: mapa en tarjeta</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#141720}
+a{color:#F2B134;text-decoration:none}a:hover{color:#F6BB45}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #1B1E27; display: flex; flex-direction: column; overflow: hidden; font-family: 'IBM Plex Sans', sans-serif; color: #ECEEF2">
+<div style="padding: 12px 20px 0 20px; display: flex; align-items: center">
+<button aria-label="Regresar" style="width: 42px; height: 42px; margin: 0; padding: 0; box-sizing: border-box; border-radius: 12px; background: #2A2E39; border: 1px solid #3A4152; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ECEEF2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+<div style="flex-grow: 1; text-align: center; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 2px; color: #FFFFFF">CIRCUITO</div>
+<div style="width: 42px"></div>
+</div>
+<div style="padding: 10px 22px 0 22px; display: flex; align-items: center; gap: 12px">
+<div style="width: 44px; height: 44px; flex-shrink: 0; box-sizing: border-box; border-radius: 12px; background: #242833; border: 1px solid #333949; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8F96A3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4M6 4h11l-2 4 2 4H6"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 19px; color: #FFFFFF">Autódromo Hermanos Rodríguez</div>
+<div style="font-size: 12.5px; color: #8F96A3">Ciudad de México</div>
+</div>
+</div>
+<div style="margin: 12px 22px 0 22px; padding: 12px 14px; box-sizing: border-box; border-radius: 14px; background: #242833; border: 1px solid #3A4152; display: flex; align-items: center">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 9.5px; letter-spacing: 1px; color: #F2B134">TRAZADO</div>
+<div style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF">Gran Premio</div>
+<div style="font-size: 11.5px; color: #AAB0BD">4.304 km · 17 curvas · 15 puestos</div>
+</div>
+<div style="font-size: 12px; color: #F2B134">▼</div>
+</div>
+<div style="margin: 14px 22px 0 22px">
+<dc-import name="MapaTrazado" w="{{mapW}}" h="{{mapH}}" puestos="{{on.P}}" rescate="{{on.R}}" soporte="{{on.S}}" medicos="{{on.M}}" selected="{{sel}}" on-pick="{{pick}}" fs-href="A-Completa.dc.html" before="7" paleta="{{paleta}}" hint-size="346px,277px"></dc-import>
+</div>
+<div style="margin: 10px 22px 0 22px">
+<dc-import name="BarraCapas" w="{{mapW}}" puestos="{{on.P}}" rescate="{{on.R}}" soporte="{{on.S}}" medicos="{{on.M}}" counts="{{counts}}" on-toggle="{{toggle}}" paleta="{{paleta}}" hint-size="346px,52px"></dc-import>
+</div>
+<div style="margin: 6px 22px 0 22px; display: flex; flex-direction: column">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid #2A2F3B">
+<span style="width: 14px; height: 14px; flex-shrink: 0; border-radius: 7px; box-sizing: border-box; background: {{r.dot}}; border: 1.5px solid {{r.dotBd}}"></span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 1px">
+<span style="font-weight: 600; font-size: 14px; color: #ECEEF2">{{r.label}}</span>
+<span style="font-size: 11.5px; color: {{r.subColor}}">{{r.sub}}</span>
+</div>
+<button onClick="{{r.locate}}" style="margin: 0; padding: 8px 0; background: none; border: none; font-size: 12.5px; font-weight: 600; color: {{r.btnColor}}; cursor: pointer">{{r.btn}}</button>
+</div>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"paleta":{"editor":"enum","default":"Contorno (propuesta)","options":["Contorno (propuesta)","Rellenos (anterior)"],"section":"Colores"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const on = st.on || { P: true, R: true, S: true, M: true };
+    const sel = st.sel ?? '';
+    const paleta = this.props.paleta ?? 'Contorno (propuesta)';
+    const COLOR = { P: '#FF8A45', R: '#FFD43B', S: '#3FDD85', M: '#FF6B66' };
+    const FILL = { P: '#FF7A2F', R: '#FFD43B', S: '#3FDD85', M: '#F0524D' };
+    const contorno = paleta !== 'Rellenos (anterior)';
+    const tint = (hex) => {
+      const v = hex.replace('#', '');
+      const c = [0, 2, 4].map((i) => parseInt(v.slice(i, i + 2), 16));
+      return 'rgba(' + c.join(',') + ',0.16)';
+    };
+    // Punto de la lista = el marcador del mapa en miniatura; relleno solo lo especial.
+    const dotOf = (c, special) => (special || !contorno) ? [FILL[c], FILL[c]] : [tint(COLOR[c]), COLOR[c]];
+    const LIST = [
+      { l: '0', c: 'P' }, { l: '0.5', c: 'P' }, { l: '1.4', c: 'P' }, { l: '7', c: 'P', before: true },
+      { l: 'TH1', c: 'R', sub: 'Rescate · Telehandler' }, { l: 'IFRT4', c: 'R', sub: 'Rescate · IFRT' },
+      { l: 'SC', c: 'S', sub: 'Soporte · Safety Car' }, { l: 'AMB1', c: 'M', sub: 'Médicos · Ambulancia' },
+    ];
+    const rows = LIST.filter((it) => on[it.c]).slice(0, 5).map((it) => ({
+      label: it.c === 'P' ? 'Puesto ' + it.l : it.l,
+      sub: it.before ? 'Asignado antes' : (it.sub || 'Puesto'),
+      subColor: it.before ? COLOR.P : '#8F96A3',
+      dot: dotOf(it.c, it.before)[0],
+      dotBd: dotOf(it.c, it.before)[1],
+      btn: sel === it.l ? 'Ubicado ✓' : 'Ubicar',
+      btnColor: sel === it.l ? '#F2B134' : '#AAB0BD',
+      locate: () => this.setState({ sel: it.l }),
+    }));
+    return {
+      on,
+      sel,
+      paleta,
+      mapW: 346,
+      mapH: 277,
+      counts: { P: 15, R: 6, S: 2, M: 2 },
+      toggle: (k) => this.setState({ on: Object.assign({}, on, { [k]: !on[k] }) }),
+      pick: (label) => this.setState({ sel: label }),
+      rows,
+    };
+  }
+}
+</script>
+</body>
+</html>

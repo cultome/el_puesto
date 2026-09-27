@@ -1,0 +1,13 @@
+[Unit]
+Description=El Puesto: el usuario del backend no llega a los metadatos de EC2 (IMDS)
+# Antes del backend (que además lo niega por su cuenta con IPAddressDeny).
+Before=el-puesto.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/nft -f /opt/el-puesto/servidor/imds.nft
+ExecStop=/usr/sbin/nft delete table inet elpuesto_imds
+
+[Install]
+WantedBy=multi-user.target

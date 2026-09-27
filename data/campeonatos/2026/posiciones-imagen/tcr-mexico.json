@@ -1,0 +1,101 @@
+{
+ "campeonato": "México Racing Cup",
+ "temporada": "2026",
+ "categoria": "TCR México",
+ "imageUrl": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1788388507272679086.jpg",
+ "throughRound": 4,
+ "leidaEl": "2026-09-27",
+ "nota": "Transcrita de la imagen por un agente; validada (suma por carrera = SUMA en todas las filas). Posición IMPRESA; puntos = PUNTOS REALES.",
+ "rows": [
+  {
+   "pos": 1,
+   "name": "Juan Pablo Sierra",
+   "team": "Pro",
+   "points": 291
+  },
+  {
+   "pos": 2,
+   "name": "Rodrigo Rejón",
+   "team": "Pro",
+   "points": 287
+  },
+  {
+   "pos": 3,
+   "name": "Pablo Cervantes",
+   "team": "Pro",
+   "points": 281
+  },
+  {
+   "pos": 4,
+   "name": "Julio Rejón",
+   "team": "Pro",
+   "points": 280.6
+  },
+  {
+   "pos": 5,
+   "name": "Gerardo Rejón",
+   "team": "Am",
+   "points": 253
+  },
+  {
+   "pos": 6,
+   "name": "Mauricio Uribe",
+   "team": "Am",
+   "points": 165
+  },
+  {
+   "pos": 7,
+   "name": "Luis Cervantes",
+   "team": "Am",
+   "points": 156
+  },
+  {
+   "pos": 8,
+   "name": "Oscar Uribe",
+   "team": "Am",
+   "points": 103
+  },
+  {
+   "pos": 9,
+   "name": "Alex Uribe",
+   "team": "Am",
+   "points": 100
+  },
+  {
+   "pos": 10,
+   "name": "Carlo Zesati",
+   "team": "Am",
+   "points": 85
+  },
+  {
+   "pos": 11,
+   "name": "Jose Luis Hernández",
+   "team": "Am",
+   "points": 78
+  },
+  {
+   "pos": 12,
+   "name": "Marco Montoya",
+   "team": "Am",
+   "points": 78
+  },
+  {
+   "pos": 13,
+   "name": "Jorge Abed",
+   "team": "Am",
+   "points": 74
+  },
+  {
+   "pos": 14,
+   "name": "Bruno Zesati",
+   "team": "Am",
+   "points": 74
+  },
+  {
+   "pos": 15,
+   "name": "Paolo Zesati",
+   "team": "Am",
+   "points": 76
+  }
+ ]
+}

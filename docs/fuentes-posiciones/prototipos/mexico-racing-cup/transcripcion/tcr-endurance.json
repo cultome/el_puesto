@@ -1,0 +1,95 @@
+{
+ "meta": {
+  "categoria": "TCR México — \"Campeonato General Endurance\"",
+  "pagina": "https://mexicoracingcup.com/33-tcr-mxico",
+  "imagen": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1788388546069216396.jpg",
+  "fecha_impresa": "(ninguna; subida 2026-09-02)",
+  "hasta_fecha": "1",
+  "columnas": "1-puntos,1-polevr",
+  "peor": "no",
+  "nota": "Tripulaciones: los 3 pilotos del auto ganador comparten la posición 1 (celda combinada) y los 2 del segundo la 2. Columna \"Posición\" de la fecha 1 omitida (1 y 2)."
+ },
+ "filas": [
+  {
+   "pos": 1,
+   "piloto": "Julio Rejón",
+   "auto": null,
+   "extra": null,
+   "puntos_reales": 316,
+   "diferencia": null,
+   "por_carrera": [
+    300,
+    16
+   ],
+   "sancionadas": [],
+   "suma": 316,
+   "peor_fecha": null
+  },
+  {
+   "pos": 1,
+   "piloto": "Gerardo Rejón",
+   "auto": null,
+   "extra": null,
+   "puntos_reales": 316,
+   "diferencia": null,
+   "por_carrera": [
+    300,
+    16
+   ],
+   "sancionadas": [],
+   "suma": 316,
+   "peor_fecha": null
+  },
+  {
+   "pos": 1,
+   "piloto": "Rodrigo Rejón",
+   "auto": null,
+   "extra": null,
+   "puntos_reales": 316,
+   "diferencia": null,
+   "por_carrera": [
+    300,
+    16
+   ],
+   "sancionadas": [],
+   "suma": 316,
+   "peor_fecha": null
+  },
+  {
+   "pos": 2,
+   "piloto": "Jorge Abed",
+   "auto": null,
+   "extra": null,
+   "puntos_reales": 270,
+   "diferencia": null,
+   "por_carrera": [
+    270,
+    0
+   ],
+   "sancionadas": [],
+   "suma": 270,
+   "peor_fecha": null
+  },
+  {
+   "pos": 2,
+   "piloto": "Omar Chávez",
+   "auto": null,
+   "extra": null,
+   "puntos_reales": 270,
+   "diferencia": null,
+   "por_carrera": [
+    270,
+    0
+   ],
+   "sancionadas": [],
+   "suma": 270,
+   "peor_fecha": null
+  }
+ ],
+ "problemas": [
+  "V4 fila 2: pos impresa 1",
+  "V4 fila 3: pos impresa 1",
+  "V4 fila 4: pos impresa 2",
+  "V4 fila 5: pos impresa 2"
+ ]
+}

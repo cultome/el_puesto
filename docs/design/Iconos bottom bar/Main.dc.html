@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Arma tu barra</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#12151B;font-family:'IBM Plex Sans',sans-serif;color:#ECEEF2}
+.ic{display:block;overflow:visible}
+.ic .s{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.ic .sb{fill:none;stroke:currentColor;stroke-width:2}
+.ic .f{fill:currentColor;stroke:none}
+.navbtn{background:transparent;border:0;margin:0;padding:2px 14px;border-radius:10px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;font:inherit}
+.navbtn:focus-visible{outline:2px solid #F2B134;outline-offset:2px}
+.opt{background:#20242E;border-radius:12px;padding:10px 0 8px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;font:inherit}
+.opt:focus-visible{outline:2px solid #F2B134;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 430px; height: 800px; box-sizing: border-box; padding: 28px 20px; background: #12151B; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 0 4px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.6px; color: #F2B134">COMBINA</span>
+<h1 style="margin: 0; font-family: Archivo, sans-serif; font-size: 30px; font-weight: 800; color: #ECEEF2; letter-spacing: -0.3px">Arma tu barra</h1>
+<p style="margin: 0; font-size: 13px; color: #8F96A3">Elige un ícono por pestaña; toca la barra para cambiar la activa.</p>
+</div>
+<sc-for list="{{rows}}" as="row" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; color: #8F96A3; padding: 0 4px">{{row.tab}}</span>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{row.options}}" as="opt" hint-placeholder-count="4">
+<button type="button" class="opt" onClick="{{opt.pick}}" aria-pressed="{{opt.pressed}}" style="border: 1px solid {{opt.border}}; color: {{opt.tint}}">
+<svg class="ic" viewBox="{{opt.vb}}" style="width: 30px; height: 30px; color: {{opt.tint}}"><path class="s" d="{{opt.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{opt.sb}}"></path><path class="f" d="{{opt.f}}"></path></svg>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1px; color: {{opt.labelTint}}">{{opt.label}}</span>
+</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<div style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; color: #8F96A3; padding: 0 4px">VISTA PREVIA</span>
+<div style="width: 390px; border-radius: 18px; overflow: hidden; background: #191C24; border: 1px solid #262B36; box-sizing: border-box">
+<div style="height: 40px; background: #191C24"></div>
+<div style="height: 1px; background: #262B36"></div>
+<nav aria-label="Barra inferior" style="display: flex; justify-content: space-around; padding: 12px 8px">
+<sc-for list="{{bar}}" as="it" hint-placeholder-count="3">
+<button type="button" class="navbtn" onClick="{{it.pick}}" aria-current="{{it.current}}" style="color: {{it.tint}}">
+<svg class="ic" viewBox="{{it.vb}}" style="width: {{szpx}}; height: {{szpx}}; color: {{it.tint}}"><path class="s" d="{{it.s}}" style="stroke-width: {{sw}}"></path><path class="sb" d="{{it.sb}}"></path><path class="f" d="{{it.f}}"></path></svg>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1px; color: {{it.tint}}">{{it.label}}</span>
+</button>
+</sc-for>
+</nav>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"trazo": {"editor": "range", "default": 2, "min": 1.5, "max": 2.5, "step": 0.25, "section": "Íconos"}, "tamano": {"editor": "range", "default": 26, "min": 22, "max": 30, "step": 1, "unit": "px", "section": "Íconos"}, "$preview": {"width": 430, "height": 800}}'>
+var SETS = {"actual": {"vb": "0 0 23 22", "icons": {"ini": {"sb": "M6.02 10.45h10.96a2 2 0 0 1 2 2v6.5a2 2 0 0 1-2 2H6.02a2 2 0 0 1-2-2v-6.5a2 2 0 0 1 2-2z", "f": "M11.5 1L22.5 11.08L0.5 11.08Z", "s": ""}, "age": {"sb": "M7 2h9a5 5 0 0 1 5 5v9a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z", "f": "M4.15 1h14.7a3.15 3.15 0 0 1 0 6.3H4.15a3.15 3.15 0 0 1 0-6.3zM4.12 11.92h3v3h-3zM10 11.92h3v3h-3zM15.88 11.92h3v3h-3zM4.12 16.96h3v3h-3zM10 16.96h3v3h-3z", "s": ""}, "cha": {"sb": "M9.42 1h4.16a7.92 7.92 0 0 1 0 15.84H9.42a7.92 7.92 0 0 1 0-15.84z", "f": "M5.34 14.52L10.62 14.52L7.1 22Z", "s": ""}}}, "A": {"vb": "0 0 24 24", "icons": {"ini": {"s": "M4 10.2L12 4l8 6.2V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM9.75 20v-5a1 1 0 0 1 1-1h2.5a1 1 0 0 1 1 1v5", "sb": "", "f": ""}, "age": {"s": "M5.5 5h13A1.5 1.5 0 0 1 20 6.5v12a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-12A1.5 1.5 0 0 1 5.5 5zM4 10h16M8.5 3v4M15.5 3v4M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01", "sb": "", "f": ""}, "cha": {"s": "M6 4.5h12a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2h-7.5L6 20.5V17a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2zM8 9h8M8 12.5h5", "sb": "", "f": ""}}}, "B": {"vb": "0 0 24 24", "icons": {"ini": {"s": "M5.5 12.5V19a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-6.5M3.5 13.5L12 7.5l8.5 6M12 7.5V2.5M10 20v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4", "f": "M12 1.75h6l-1.75 2.25 1.75 2.25H12z", "sb": ""}, "age": {"s": "M5.5 5h13A1.5 1.5 0 0 1 20 6.5v12a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-12A1.5 1.5 0 0 1 5.5 5zM4 10h16M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01", "f": "M5.5 5H8v2.5H4V6.5A1.5 1.5 0 0 1 5.5 5zM12 5h4v2.5h-4zM8 7.5h4v2.5h-4zM16 7.5h4v2.5h-4z", "sb": ""}, "cha": {"s": "M6 4.5h12a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2h-7.5L6 20.5V17a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2zM9.6 8a4 4 0 0 0 0 5.6M14.4 8a4 4 0 0 1 0 5.6M12 10.8h.01", "sb": "", "f": ""}}}, "C": {"vb": "0 0 24 24", "icons": {"ini": {"s": "M3 20V9.5L12 4l9 5.5V20M6.5 20v-8h11v8M6.5 15h11M6.5 17.5h11", "sb": "", "f": ""}, "age": {"s": "M5 21V3.5M5 4h14v10H5", "f": "M5 4h3.5v3.33h-3.5zM12 4h3.5v3.33h-3.5zM8.5 7.33h3.5v3.33h-3.5zM15.5 7.33h3.5v3.33h-3.5zM5 10.66h3.5v3.34h-3.5zM12 10.66h3.5v3.34h-3.5z", "sb": ""}, "cha": {"s": "M7.5 8h9A1.5 1.5 0 0 1 18 9.5v10a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 19.5v-10A1.5 1.5 0 0 1 7.5 8zM9 8V2.5M9.5 12h5M9.5 14.75h5M9.5 17.5h5", "sb": "", "f": ""}}}};
+var KEYS = [['actual', 'ACTUAL'], ['A', 'A'], ['B', 'B'], ['C', 'C']];
+
+var AMBER = '#F2B134', FAINT = '#6F7683';
+var TABS = [['ini', 'INICIO'], ['age', 'AGENDA'], ['cha', 'CHATS']];
+function withVb(ic, vb) { return { vb: vb, s: ic.s, sb: ic.sb, f: ic.f }; }
+function barsFor(set) {
+  return TABS.map(function (on) {
+    return { name: on[1], items: TABS.map(function (t) {
+      var ic = withVb(set.icons[t[0]], set.vb);
+      ic.label = t[1]; ic.tint = t[0] === on[0] ? AMBER : FAINT;
+      return ic;
+    }) };
+  });
+}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { picks: { ini: 'C', age: 'B', cha: 'C' }, active: 'ini' };
+  }
+  renderVals() {
+    var self = this, picks = this.state.picks, active = this.state.active;
+    var rows = TABS.map(function (t) {
+      return { tab: t[1], options: KEYS.map(function (k) {
+        var set = SETS[k[0]], on = picks[t[0]] === k[0];
+        var ic = withVb(set.icons[t[0]], set.vb);
+        ic.label = k[1];
+        ic.pressed = on ? 'true' : 'false';
+        ic.border = on ? AMBER : '#333949';
+        ic.tint = on ? AMBER : '#8F96A3';
+        ic.labelTint = on ? AMBER : FAINT;
+        ic.pick = function () {
+          var next = Object.assign({}, self.state.picks); next[t[0]] = k[0];
+          self.setState({ picks: next });
+        };
+        return ic;
+      }) };
+    });
+    var bar = TABS.map(function (t) {
+      var set = SETS[picks[t[0]]];
+      var ic = withVb(set.icons[t[0]], set.vb);
+      ic.label = t[1];
+      ic.tint = t[0] === active ? AMBER : FAINT;
+      ic.current = t[0] === active ? 'page' : 'false';
+      ic.pick = function () { self.setState({ active: t[0] }); };
+      return ic;
+    });
+    return { sw: this.props.trazo ?? 2, szpx: (this.props.tamano ?? 26) + 'px', rows: rows, bar: bar };
+  }
+}
+</script>
+</body>
+</html>

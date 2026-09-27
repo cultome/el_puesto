@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Saber al instante si hay red (sin señal no se espera el timeout de la petición). -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Notificaciones de mensajes de chat (Android 13+ pide permiso runtime). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Compartir ubicación: solo mientras la app está en uso + servicio en primer plano
+         (tipo location) con notificación fija. Sin ACCESS_BACKGROUND_LOCATION a propósito. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- Recordatorios programados: re-programar las alarmas tras un reinicio. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Actualizaciones fuera de Google Play: la app descarga su versión nueva y se la entrega
+         al instalador de Android, que le pide al oficial confirmar (AppUpdates). Android
+         además pide permitirlo una vez ("Instalar apps desconocidas" de El Puesto). -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <!-- Bitácora: la foto se toma con la app de cámara del sistema (sin permiso CAMERA). -->
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
+
+    <!-- Sin respaldo ni transferencia de datos: la sesión (refresh de 60 días), la caché
+         con la emergencia y la cola de cambios no deben copiarse a la nube ni a otro
+         teléfono. fullBackupContent cubre ≤ Android 11; dataExtractionRules, 12+ (donde
+         device-transfer ignora allowBackup). -->
+    <application
+        android:allowBackup="false"
+        android:fullBackupContent="@xml/backup_rules"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="${usesCleartext}"
+        android:theme="@style/Theme.ElPuesto">
+
+        <!-- Recorte de imagen (avatar): actividad de la librería image-cropper. -->
+        <activity
+            android:name="com.canhub.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+
+        <!-- URI temporal para entregar la foto de bitácora a la app de cámara. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- Compartir ubicación durante el evento activo (arranca con la app en primer plano). -->
+        <service
+            android:name=".LocationShareService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- Recordatorios locales: la alarma dispara la notificación; el boot re-programa. -->
+        <receiver android:name=".ReminderReceiver" android:exported="false" />
+        <receiver android:name=".LiveEventBarReceiver" android:exported="false" />
+        <receiver android:name=".BootReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!-- Recién actualizada: re-programar igual que tras un reinicio. -->
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+        <!-- Respuesta del instalador de Android a la sesión de actualización. -->
+        <receiver android:name=".UpdateInstallReceiver" android:exported="false" />
+
+        <!-- singleTask: el enlace mágico (y las notificaciones) llegan a la instancia que ya
+             existe (onNewIntent). Con "standard", abrir elpuesto:// desde el navegador creaba
+             una SEGUNDA instancia; las dos canjeaban el mismo token de un solo uso y la visible
+             podía quedarse con el fallo → de vuelta a la pantalla del correo. -->
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.ElPuesto">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Deep link del enlace mágico: elpuesto://auth?token=... -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="elpuesto" android:host="auth" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

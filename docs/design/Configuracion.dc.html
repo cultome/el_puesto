@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+        <style>
+          body { margin: 0; background: #0f1013; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+          a { color: #f2b134; } a:hover { color: #f6bb45; }
+          .dv-turn { padding: 48px 52px 40px; }
+          .dv-thd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
+          .dv-tid { font: 600 11px 'IBM Plex Mono', monospace; padding: 4px 8px; background: #f2b134; color: #1a1206; border-radius: 5px; text-decoration: none; }
+          .dv-tname { font: 700 16px/1.3 'Archivo', sans-serif; color: #f4f4f2; }
+          .dv-tsub { font: 400 13px/1.3 'IBM Plex Sans', sans-serif; color: #8b909b; }
+          .dv-opts { display: flex; gap: 40px; align-items: flex-start; }
+          .dv-opt { display: flex; flex-direction: column; }
+          .dv-olabel { display: flex; align-items: baseline; gap: 9px; font: 400 12.5px/1.35 'IBM Plex Sans', sans-serif; color: #9aa0ac; max-width: 384px; margin-bottom: 12px; }
+          .dv-oid { font: 600 11px 'IBM Plex Mono', monospace; padding: 3px 7px; background: rgba(255,255,255,0.1); color: #f4f4f2; border-radius: 5px; text-decoration: none; }
+          .dv-oname { color: #e8e9ec; font-weight: 600; }
+          .dv-next { margin: 30px 0 0; font: 13px/1.6 'IBM Plex Sans', sans-serif; color: #8b909b; max-width: 1000px; }
+
+          .phone { width: 384px; padding: 13px; border-radius: 46px; background: linear-gradient(160deg,#26282e,#111216); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.05); }
+          .screen { position: relative; border-radius: 34px; overflow: hidden; display: flex; flex-direction: column; background: radial-gradient(120% 40% at 50% 0%, #2a2f3a 0%, #1e222b 42%, #191c24 100%); color: #eceef2; min-height: 812px; }
+          .sbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px 0; font: 600 13px 'IBM Plex Sans', sans-serif; color: #eceef2; flex: none; }
+          .sbar .dots { display: flex; gap: 5px; align-items: center; }
+          .sbar .dots span { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+          .sbar .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; position: relative; opacity: 0.85; }
+          .sbar .bat::after { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; right: 6px; background: currentColor; border-radius: 1px; }
+
+          .topbar { display: flex; align-items: center; gap: 8px; padding: 12px 20px 0; flex: none; }
+          .back { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: #eceef2; font-size: 19px; }
+          .tbrand { font: 800 12px 'Archivo', sans-serif; letter-spacing: 2px; color: #fff; margin: 0 auto; }
+          .tspace { width: 34px; flex: none; }
+
+          .h1 { font: 800 25px 'Archivo', sans-serif; color: #fff; letter-spacing: -0.4px; padding: 12px 22px 0; }
+          .body { padding: 6px 22px 30px; }
+
+          .gh { font: 700 11px 'IBM Plex Mono', monospace; letter-spacing: 1px; color: #f2b134; text-transform: uppercase; margin: 24px 0 0; padding: 0 4px; }
+          .group { border-radius: 16px; background: #242833; border: 1px solid #333949; overflow: hidden; margin-top: 10px; }
+          .srow { display: flex; align-items: center; gap: 13px; padding: 14px 15px; }
+          .srow + .srow { border-top: 1px solid #262b36; }
+          .si { width: 34px; height: 34px; border-radius: 10px; background: #2b3040; display: flex; align-items: center; justify-content: center; color: #aab0bd; flex: none; }
+          .si.am { background: rgba(242,177,52,0.13); color: #f2b134; }
+          .sc { flex: 1; min-width: 0; }
+          .sn { font: 600 14px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .sd { font: 400 12px 'IBM Plex Sans', sans-serif; color: #8f96a3; margin-top: 2px; }
+          .sv { font: 600 13px 'IBM Plex Sans', sans-serif; color: #aab0bd; flex: none; }
+          .sv.on { color: #f2b134; }
+          .schev { color: #5a6070; font-size: 20px; flex: none; }
+          .center { justify-content: center; }
+          .center .sn { color: #f2b134; }
+          .danger .sn { color: #ff7a75; }
+          .ver { text-align: center; font: 400 11.5px 'IBM Plex Mono', monospace; color: #6f7683; margin-top: 20px; }
+
+          .sw { width: 46px; height: 28px; border-radius: 100px; position: relative; flex: none; background: #3a4152; }
+          .sw.on { background: #f2b134; }
+          .sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #d7dae1; }
+          .sw.on::after { left: auto; right: 3px; background: #1c1405; }
+
+          .pin { width: 12px; height: 12px; border: 2px solid currentColor; border-radius: 50% 50% 50% 0; transform: rotate(45deg); }
+          .ic-bell { width: 15px; height: 16px; position: relative; }
+          .ic-bell::before { content: ''; position: absolute; left: 50%; top: 0; width: 12px; height: 12px; border: 2px solid currentColor; border-radius: 7px 7px 0 0; transform: translateX(-50%); box-sizing: border-box; }
+          .ic-bell::after { content: ''; position: absolute; left: 50%; bottom: 1px; width: 15px; height: 2px; background: currentColor; transform: translateX(-50%); border-radius: 2px; }
+          .ic-lock { width: 15px; height: 17px; position: relative; }
+          .ic-lock::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: currentColor; border-radius: 3px; }
+          .ic-lock::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; border: 2px solid currentColor; border-bottom: none; border-radius: 6px 6px 0 0; box-sizing: border-box; }
+          .ic-clock { width: 16px; height: 16px; border: 2px solid currentColor; border-radius: 50%; position: relative; box-sizing: border-box; }
+          .ic-clock::before { content: ''; position: absolute; left: 50%; top: 2px; width: 2px; height: 6px; background: currentColor; transform: translateX(-50%); }
+          .ic-clock::after { content: ''; position: absolute; left: 50%; top: 50%; width: 5px; height: 2px; background: currentColor; }
+          .ic-down { width: 16px; height: 16px; position: relative; }
+          .ic-down::before { content: ''; position: absolute; left: 50%; top: 0; width: 2px; height: 9px; background: currentColor; transform: translateX(-50%); border-radius: 1px; }
+          .ic-down::after { content: ''; position: absolute; left: 50%; top: 5px; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateX(-50%) rotate(45deg); box-sizing: border-box; }
+          .ic-mail { width: 18px; height: 13px; border: 2px solid currentColor; border-radius: 3px; position: relative; box-sizing: border-box; }
+          .ic-mail::after { content: ''; position: absolute; left: 1px; right: 1px; top: 1px; height: 7px; border-top: 2px solid currentColor; transform: skewY(0); clip-path: polygon(0 0, 50% 60%, 100% 0); }
+          .ic-globe { width: 16px; height: 16px; border: 2px solid currentColor; border-radius: 50%; position: relative; box-sizing: border-box; }
+          .ic-globe::before { content: ''; position: absolute; inset: -2px 3px; border: 2px solid currentColor; border-radius: 50%; box-sizing: border-box; }
+          .ic-globe::after { content: ''; position: absolute; left: -2px; right: -2px; top: 50%; height: 2px; background: currentColor; transform: translateY(-50%); }
+          .idnum { font: 800 12px 'Archivo', sans-serif; color: currentColor; }
+
+          .ldesc { font: 400 14px/1.55 'IBM Plex Sans', sans-serif; color: #aab0bd; padding: 14px 22px 0; }
+          .mcard { margin: 18px 22px 0; border-radius: 16px; background: linear-gradient(150deg,#2c3141,#232735); border: 1px solid rgba(242,177,52,0.3); padding: 16px; display: flex; align-items: center; gap: 14px; }
+          .mcard .mc { flex: 1; }
+          .mcard .mt { font: 700 16px 'Archivo', sans-serif; color: #fff; }
+          .mcard .ms { font: 400 12px/1.4 'IBM Plex Sans', sans-serif; color: #9aa0ac; margin-top: 4px; }
+          .tnote { display: flex; gap: 11px; align-items: flex-start; margin: 12px 22px 0; padding: 14px 15px; border-radius: 14px; background: rgba(127,183,240,0.07); border: 1px solid rgba(127,183,240,0.2); font: 400 12.5px/1.5 'IBM Plex Sans', sans-serif; color: #b7bcc6; }
+          .ic-eye { width: 18px; height: 12px; border: 2px solid currentColor; border-radius: 50% 50% 50% 50% / 60% 60% 60% 60%; position: relative; flex: none; color: #7fb7f0; margin-top: 2px; box-sizing: border-box; }
+          .ic-eye::after { content: ''; position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; border-radius: 50%; background: currentColor; transform: translate(-50%,-50%); }
+          .lbody { padding: 8px 22px 30px; }
+          .locrow { display: flex; align-items: center; gap: 12px; padding: 12px 15px; }
+          .locrow + .locrow { border-top: 1px solid #262b36; }
+          .lav { width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font: 700 13px 'Archivo', sans-serif; color: #10131a; }
+          .ln { flex: 1; }
+          .lnn { font: 600 14px 'IBM Plex Sans', sans-serif; color: #eceef2; }
+          .lns { font: 400 11.5px 'IBM Plex Sans', sans-serif; color: #3fdd85; margin-top: 2px; }
+          .rm { width: 30px; height: 30px; border-radius: 9px; background: #2b3040; border: 1px solid #3a4152; color: #aab0bd; display: flex; align-items: center; justify-content: center; font-size: 15px; flex: none; }
+          .addrow { display: flex; align-items: center; gap: 12px; padding: 13px 15px; color: #f2b134; font: 600 14px 'IBM Plex Sans', sans-serif; border-top: 1px solid #262b36; }
+          .addrow .plus { width: 40px; height: 40px; border-radius: 11px; background: rgba(242,177,52,0.12); border: 1px dashed rgba(242,177,52,0.4); display: flex; align-items: center; justify-content: center; font-size: 20px; flex: none; }
+        </style>
+      </helmet>
+      <section class="dv-turn" id="t1">
+        <div class="dv-thd">
+          <a class="dv-tid" href="#t1">CF</a>
+          <span class="dv-tname">Configuraci&oacute;n &mdash; Paddock nocturno</span>
+          <span class="dv-tsub">ajustes generales &middot; compartir ubicaci&oacute;n (opt-in, transparente, con oficiales elegidos)</span>
+        </div>
+        <div class="dv-opts">
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CF-1</a><span><span class="dv-oname">Configuraci&oacute;n.</span> Ubicaci&oacute;n, notificaciones, privacidad, cuenta.</span></div>
+            <div class="phone" data-screen-label="Configuracion">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">CONFIGURACI&Oacute;N</div><div class="tspace"></div></div>
+                <div class="h1">Configuraci&oacute;n</div>
+                <div class="body">
+                  <div class="gh">Ubicaci&oacute;n</div>
+                  <div class="group">
+                    <div class="srow"><div class="si am"><span class="pin"></span></div><div class="sc"><div class="sn">Compartir ubicaci&oacute;n</div><div class="sd">Con oficiales que elijas, durante eventos</div></div><span class="sv on">Activado</span><span class="schev">&rsaquo;</span></div>
+                  </div>
+
+                  <div class="gh">Notificaciones</div>
+                  <div class="group">
+                    <div class="srow"><div class="si"><span class="ic-bell"></span></div><div class="sc"><div class="sn">Convocatorias nuevas</div></div><span class="sw on"></span></div>
+                    <div class="srow"><div class="si"><span class="ic-clock"></span></div><div class="sc"><div class="sn">Cambios de cronograma</div></div><span class="sw on"></span></div>
+                    <div class="srow"><div class="si"><span class="ic-bell"></span></div><div class="sc"><div class="sn">Mensajes de chat</div></div><span class="sw on"></span></div>
+                    <div class="srow"><div class="si am"><span class="ic-clock"></span></div><div class="sc"><div class="sn">Evento en curso</div><div class="sd">Barra fija con la actividad actual</div></div><span class="sw on"></span></div>
+                  </div>
+
+                  <div class="gh">Privacidad y datos</div>
+                  <div class="group">
+                    <div class="srow"><div class="si am"><span class="ic-lock"></span></div><div class="sc"><div class="sn">Informaci&oacute;n de emergencia</div></div><span class="schev">&rsaquo;</span></div>
+                    <div class="srow"><div class="si"><span class="ic-clock"></span></div><div class="sc"><div class="sn">Registro de accesos</div><div class="sd">Qui&eacute;n vio tus datos y cu&aacute;ndo</div></div><span class="sv">3</span><span class="schev">&rsaquo;</span></div>
+                    <div class="srow"><div class="si"><span class="ic-down"></span></div><div class="sc"><div class="sn">Descargar mis datos</div></div><span class="schev">&rsaquo;</span></div>
+                  </div>
+
+                  <div class="gh">Cuenta</div>
+                  <div class="group">
+                    <div class="srow"><div class="si"><span class="ic-mail"></span></div><div class="sc"><div class="sn">Correo</div><div class="sd">Privado &middot; solo para acceder</div></div><span class="sv">carlos@&hellip;</span></div>
+                    <div class="srow"><div class="si"><span class="idnum">#</span></div><div class="sc"><div class="sn">OMDAI ID</div></div><span class="sv">4821</span></div>
+                    <div class="srow"><div class="si"><span class="ic-globe"></span></div><div class="sc"><div class="sn">Idioma</div></div><span class="sv">Espa&ntilde;ol</span></div>
+                    <div class="srow"><div class="si"><span class="ic-down" style="transform:rotate(180deg)"></span></div><div class="sc"><div class="sn">Editar perfil</div></div><span class="schev">&rsaquo;</span></div>
+                  </div>
+
+                  <div class="group" style="margin-top:22px">
+                    <div class="srow center"><div class="sn">Cerrar sesi&oacute;n</div></div>
+                    <div class="srow center danger"><div class="sn">Dar de baja mi cuenta</div></div>
+                  </div>
+                  <div class="ver">El puesto &middot; v1.0.0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dv-opt">
+            <div class="dv-olabel"><a class="dv-oid" href="#t1">CF-2</a><span><span class="dv-oname">Compartir ubicaci&oacute;n.</span> Opt-in, transparente, con qui&eacute;n t&uacute; elijas.</span></div>
+            <div class="phone" data-screen-label="Configuracion / Ubicacion">
+              <div class="screen">
+                <div class="sbar"><span>9:41</span><span class="dots"><span></span><span></span><span></span><span class="bat"></span></span></div>
+                <div class="topbar"><div class="back">&lsaquo;</div><div class="tbrand">UBICACI&Oacute;N</div><div class="tspace"></div></div>
+                <div class="h1">Compartir ubicaci&oacute;n</div>
+                <div class="ldesc">Comparte tu ubicaci&oacute;n con oficiales que elijas para encontrarse durante un evento. T&uacute; decides con qui&eacute;n y cu&aacute;ndo.</div>
+                <div class="mcard"><div class="mc"><div class="mt">Compartir mi ubicaci&oacute;n</div><div class="ms">Se activa solo durante eventos activos.</div></div><span class="sw on"></span></div>
+                <div class="tnote"><span class="ic-eye"></span><span>Es transparente: las personas con las que compartes saben que pueden verte, y t&uacute; ves a qui&eacute;n le compartes. Puedes desactivarlo cuando quieras.</span></div>
+                <div class="lbody">
+                  <div class="gh">Compartes con</div>
+                  <div class="group">
+                    <div class="locrow"><div class="lav" style="background:#e6a3c0">LF</div><div class="ln"><div class="lnn">Laura Fern&aacute;ndez</div><div class="lns">Te ve durante eventos</div></div><span class="rm">&times;</span></div>
+                    <div class="locrow"><div class="lav" style="background:#7fb7f0">MR</div><div class="ln"><div class="lnn">Miguel R&iacute;os</div><div class="lns">Te ve durante eventos</div></div><span class="rm">&times;</span></div>
+                    <div class="addrow"><span class="plus">+</span>Agregar oficial</div>
+                  </div>
+                  <div class="gh">Te comparten</div>
+                  <div class="group">
+                    <div class="locrow"><div class="lav" style="background:#7fe0b0">AS</div><div class="ln"><div class="lnn">Ana Sosa</div><div class="lns">Compartes mutuamente</div></div><span class="schev">&rsaquo;</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dv-next">Prueba pedir: &ldquo;el flujo para <b>agregar un oficial</b> a compartir ubicaci&oacute;n&rdquo; &middot; &ldquo;la pantalla de <b>registro de accesos</b>&rdquo; &middot; &ldquo;confirmaci&oacute;n de cerrar sesi&oacute;n&rdquo;.</p>
+      </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+{
+ "Copa TC2000": {
+  "pagina": "https://mexicoracingcup.com/33-copa-tc2000",
+  "tablas": [
+   {
+    "url": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1789949652243494037.jpg",
+    "ancho": 1663,
+    "alto": 1784,
+    "subida_cdmx": "2026-09-20T18:14-06:00"
+   }
+  ]
+ },
+ "Súper Turismos": {
+  "pagina": "https://mexicoracingcup.com/33-super-turismos-1",
+  "tablas": [
+   {
+    "url": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1782341175039544277.jpg",
+    "ancho": 1674,
+    "alto": 981,
+    "subida_cdmx": "2026-06-24T16:46-06:00"
+   }
+  ]
+ },
+ "Copa 1.8": {
+  "pagina": "https://mexicoracingcup.com/33-copa-18",
+  "tablas": [
+   {
+    "url": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1787541946047187754.jpg",
+    "ancho": 1519,
+    "alto": 1619,
+    "subida_cdmx": "2026-08-23T21:25-06:00"
+   }
+  ]
+ },
+ "Súper Turismos Light 1": {
+  "pagina": "https://mexicoracingcup.com/33-st-light-1",
+  "tablas": [
+   {
+    "url": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1789949666474419142.jpg",
+    "ancho": 2105,
+    "alto": 2044,
+    "subida_cdmx": "2026-09-20T18:14-06:00"
+   }
+  ]
+ },
+ "Súper Turismos Light 2": {
+  "pagina": "https://mexicoracingcup.com/33-st-light-2",
+  "tablas": [
+   {
+    "url": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1789949686830572242.jpg",
+    "ancho": 1948,
+    "alto": 1108,
+    "subida_cdmx": "2026-09-20T18:14-06:00"
+   }
+  ]
+ },
+ "TCR México": {
+  "pagina": "https://mexicoracingcup.com/33-tcr-mxico",
+  "tablas": [
+   {
+    "url": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1788388507272679086.jpg",
+    "ancho": 1360,
+    "alto": 1464,
+    "subida_cdmx": "2026-09-02T16:35-06:00"
+   },
+   {
+    "url": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1788388532258627376.jpg",
+    "ancho": 1338,
+    "alto": 1902,
+    "subida_cdmx": "2026-09-02T16:35-06:00"
+   },
+   {
+    "url": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1788388546069216396.jpg",
+    "ancho": 1165,
+    "alto": 508,
+    "subida_cdmx": "2026-09-02T16:35-06:00"
+   }
+  ]
+ },
+ "F4 NACAM": {
+  "pagina": "https://mexicoracingcup.com/33-f4-nacam",
+  "tablas": [
+   {
+    "url": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1789949704135811217.jpg",
+    "ancho": 1989,
+    "alto": 1054,
+    "subida_cdmx": "2026-09-20T18:15-06:00"
+   }
+  ]
+ },
+ "Endurance Challenge": {
+  "pagina": "https://mexicoracingcup.com/33-endurance-challenge",
+  "tablas": [
+   {
+    "url": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1790036455354149227.jpg",
+    "ancho": 1673,
+    "alto": 5330,
+    "subida_cdmx": "2026-09-21T18:20-06:00"
+   }
+  ]
+ }
+}

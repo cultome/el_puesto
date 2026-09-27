@@ -1,0 +1,84 @@
+clave,nombre,ubicacion,pais,lat,lon,fuente
+aeropuerto_tulum,Óvalo Aeropuerto Internacional de Tulum,"Tulum, Quintana Roo",México,20.1622,-87.6482,https://www.openstreetmap.org/way/1218655877
+albert_park,Albert Park Grand Prix Circuit,"Melbourne, Australia",Australia,-37.8497,144.968,https://api.jolpi.ca/ergast/f1/2026/races/
+americas,Circuit of the Americas,"Austin, Estados Unidos",Estados Unidos,30.1328,-97.6411,https://api.jolpi.ca/ergast/f1/2026/races/
+arlington,Streets of Arlington,"Arlington, Estados Unidos",Estados Unidos,32.7482,-97.0884,https://www.indycar.com/Schedule/2026/Arlington
+atlanta,Atlanta Motor Speedway,"Hampton, Estados Unidos",Estados Unidos,33.3835,-84.3179,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+autodromo_yucatan,Autódromo Yucatán Emerson Fittipaldi,"Progreso, Yucatán",México,21.1883,-89.6239,https://www.racingcircuits.info/north-america/mexico/autodromo-yucatan.html
+baku,Baku City Circuit,"Baku, Azerbaiyán",Azerbaiyán,40.3725,49.8533,https://api.jolpi.ca/ergast/f1/2026/races/
+barber,Barber Motorsports Park,"Birmingham, Estados Unidos",Estados Unidos,33.5325,-86.6189,https://www.indycar.com/Schedule/2026/Barber
+brands_hatch,Brands Hatch,"West Kingsdown, Reino Unido",Reino Unido,51.35667,0.2625,https://en.wikipedia.org/wiki/Brands_Hatch
+bristol,Bristol Motor Speedway,"Bristol, Estados Unidos",Estados Unidos,36.5156,-82.2570,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+catalunya,Circuit de Barcelona-Catalunya,"Barcelona, España",España,41.57,2.26111,https://api.jolpi.ca/ergast/f1/2026/races/
+charlotte,Charlotte Motor Speedway,"Concord, Estados Unidos",Estados Unidos,35.3516,-80.6829,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+chicagoland,Chicagoland Speedway,"Joliet, Estados Unidos",Estados Unidos,41.4748,-88.0567,https://cf.nascar.com/cacher/2026/2/race_list_basic.json
+darlington,Darlington Raceway,"Darlington, Estados Unidos",Estados Unidos,34.2951,-79.9056,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+daytona,Daytona International Speedway,"Daytona Beach, Estados Unidos",Estados Unidos,29.1851,-81.0687,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+detroit,Streets of Detroit,"Detroit, Estados Unidos",Estados Unidos,42.3298,-83.0401,https://www.indycar.com/Schedule/2026/Detroit
+dover,Dover Motor Speedway,"Dover, Estados Unidos",Estados Unidos,39.1896,-75.5304,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+excel_london,ExCeL London Circuit,"Londres, Reino Unido",Reino Unido,51.5081,0.0289,https://en.wikipedia.org/wiki/Excel_London
+fuji,Fuji Speedway,"Oyama, Japón",Japón,35.3717,138.927,https://api.jolpi.ca/ergast/f1/circuits/fuji/
+gateway,World Wide Technology Raceway,"Madison, Estados Unidos",Estados Unidos,38.6508,-90.1354,https://www.indycar.com/Schedule/2026/WWTR
+homestead,Homestead-Miami Speedway,"Homestead, Estados Unidos",Estados Unidos,25.4519,-80.4088,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+hungaroring,Hungaroring,"Budapest, Hungría",Hungría,47.5789,19.2486,https://api.jolpi.ca/ergast/f1/2026/races/
+imola,Autodromo Internazionale Enzo e Dino Ferrari,"Imola, Italia",Italia,44.3439,11.7167,https://api.jolpi.ca/ergast/f1/circuits/imola/
+indianapolis,Indianapolis Motor Speedway,"Indianápolis, Estados Unidos",Estados Unidos,39.7983,-86.2328,https://www.indycar.com/Schedule/2026/Indianapolis-500
+indianapolis_raceway_park,Lucas Oil Indianapolis Raceway Park,"Brownsburg, Estados Unidos",Estados Unidos,39.8125,-86.3406,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+interlagos,Autódromo José Carlos Pace,"São Paulo, Brasil",Brasil,-23.7036,-46.6997,https://api.jolpi.ca/ergast/f1/2026/races/
+iowa,Iowa Speedway,"Newton, Estados Unidos",Estados Unidos,41.6747,-93.0132,https://cf.nascar.com/cacher/2026/2/race_list_basic.json
+jarama,Circuito de Madrid Jarama - RACE,"San Sebastián de los Reyes, España",España,40.61722,-3.58556,https://en.wikipedia.org/wiki/Circuito_del_Jarama
+jeddah_corniche,Jeddah Corniche Circuit,"Yeda, Arabia Saudita",Arabia Saudita,21.63194,39.10444,https://en.wikipedia.org/wiki/Jeddah_Corniche_Circuit
+kansas,Kansas Speedway,"Kansas City, Estados Unidos",Estados Unidos,39.1157,-94.8304,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+laguna_seca,WeatherTech Raceway Laguna Seca,"Monterey, Estados Unidos",Estados Unidos,36.5842,-121.7536,https://www.indycar.com/Schedule/2026/Laguna-Seca
+las_vegas_speedway,Las Vegas Motor Speedway,"Las Vegas, Estados Unidos",Estados Unidos,36.2722,-115.0103,https://cf.nascar.com/cacher/2026/2/race_list_basic.json
+le_mans,Circuit des 24 Heures du Mans,"Le Mans, Francia",Francia,47.937694,0.225611,https://fr.wikipedia.org/wiki/Circuit_des_24_Heures
+lime_rock,Lime Rock Park,"Lakeville, Estados Unidos",Estados Unidos,41.9276,-73.3833,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+long_beach,Streets of Long Beach,"Long Beach, Estados Unidos",Estados Unidos,33.7664,-118.1928,https://www.indycar.com/Schedule/2026/Long-Beach
+losail,Lusail International Circuit,"Lusail, Catar",Catar,25.49,51.4542,https://api.jolpi.ca/ergast/f1/2026/races/
+madring,Madring,"Madrid, España",España,40.46528,-3.61528,https://api.jolpi.ca/ergast/f1/2026/races/
+marina_bay,Marina Bay Street Circuit,Singapur,Singapur,1.2914,103.864,https://api.jolpi.ca/ergast/f1/2026/races/
+markham,Streets of Markham,"Markham, Canadá",Canadá,43.851,-79.3148,https://www.indycar.com/Schedule/2026/Markham
+martinsville,Martinsville Speedway,"Martinsville, Estados Unidos",Estados Unidos,36.6341,-79.8517,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+miami,Miami International Autodrome,"Miami, Estados Unidos",Estados Unidos,25.9581,-80.2389,https://api.jolpi.ca/ergast/f1/2026/races/
+michigan,Michigan International Speedway,"Brooklyn, Estados Unidos",Estados Unidos,42.0669,-84.2408,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+mid_ohio,Mid-Ohio Sports Car Course,"Lexington, Estados Unidos",Estados Unidos,40.69,-82.636,https://www.indycar.com/Schedule/2026/Mid-Ohio
+miguel_e_abed,Autódromo Miguel E. Abed,"Amozoc, Puebla",México,19.0263,-97.9894,https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Miguel_E._Abed
+milwaukee_mile,Milwaukee Mile,"West Allis, Estados Unidos",Estados Unidos,43.02,-88.01,https://www.indycar.com/Schedule/2026/Milwaukee-Race1
+monaco,Circuit de Monaco,"Montecarlo, Mónaco",Mónaco,43.7347,7.42056,https://api.jolpi.ca/ergast/f1/2026/races/
+monterrey,Autódromo Monterrey,"Apodaca, Nuevo León",México,25.8561,-100.2172,https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Monterrey
+monza,Autodromo Nazionale di Monza,"Monza, Italia",Italia,45.6156,9.28111,https://api.jolpi.ca/ergast/f1/2026/races/
+nashville_superspeedway,Nashville Superspeedway,"Lebanon, Estados Unidos",Estados Unidos,36.0444,-86.4126,https://www.indycar.com/Schedule/2026/Nashville
+new_hampshire,New Hampshire Motor Speedway,"Loudon, Estados Unidos",Estados Unidos,43.3627,-71.4605,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+north_wilkesboro,North Wilkesboro Speedway,"North Wilkesboro, Estados Unidos",Estados Unidos,36.1427,-81.0725,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+ovalo_aguascalientes,Óvalo Aguascalientes México,"Aguascalientes, Aguascalientes",México,21.7231,-102.3275,https://en.wikipedia.org/wiki/%C3%93valo_Aguascalientes_M%C3%A9xico
+phoenix,Phoenix Raceway,"Avondale, Estados Unidos",Estados Unidos,33.3748,-112.3112,https://www.indycar.com/Schedule/2026/Phoenix
+pocono,Pocono Raceway,"Long Pond, Estados Unidos",Estados Unidos,41.0553,-75.5090,https://cf.nascar.com/cacher/2026/2/race_list_basic.json
+portland,Portland International Raceway,"Portland, Estados Unidos",Estados Unidos,45.5969,-122.6958,https://www.indycar.com/Schedule/2026/Portland
+queretaro,Autódromo de Querétaro,"El Marqués, Querétaro",México,20.5855,-100.3292,https://es.wikipedia.org/wiki/Aut%C3%B3dromo_de_Quer%C3%A9taro
+red_bull_ring,Red Bull Ring,"Spielberg, Austria",Austria,47.2197,14.7647,https://api.jolpi.ca/ergast/f1/2026/races/
+richmond,Richmond Raceway,"Richmond, Estados Unidos",Estados Unidos,37.5923,-77.4194,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+road_america,Road America,"Elkhart Lake, Estados Unidos",Estados Unidos,43.7975,-87.9939,https://www.indycar.com/Schedule/2026/Road-America
+rockingham,Rockingham Speedway,"Rockingham, Estados Unidos",Estados Unidos,34.9745,-79.6105,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+rodriguez,Autódromo Hermanos Rodríguez,Ciudad de México,México,19.4042,-99.0907,https://api.jolpi.ca/ergast/f1/2026/races/
+san_diego_street,San Diego Street Course,"San Diego, Estados Unidos",Estados Unidos,32.7078,-117.1973,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+sanya_street,Sanya Street Circuit,"Sanya, China",China,18.355,109.73694,https://en.wikipedia.org/wiki/Sanya_Street_Circuit
+sao_paulo_street,Anhembi Sambadrome Circuit,"São Paulo, Brasil",Brasil,-23.51639,-46.64722,https://en.wikipedia.org/wiki/S%C3%A3o_Paulo_Street_Circuit
+sepang,Sepang International Circuit,"Sepang, Malasia",Malasia,2.76083,101.738,https://api.jolpi.ca/ergast/f1/2026/races/
+shanghai,Shanghai International Circuit,"Shanghai, China",China,31.3389,121.22,https://api.jolpi.ca/ergast/f1/2026/races/
+silverstone,Silverstone Circuit,"Silverstone, Reino Unido",Reino Unido,52.0786,-1.01694,https://api.jolpi.ca/ergast/f1/2026/races/
+sonoma,Sonoma Raceway,"Sonoma, Estados Unidos",Estados Unidos,38.1627,-122.4579,https://cf.nascar.com/cacher/2026/2/race_list_basic.json
+spa,Circuit de Spa-Francorchamps,"Stavelot, Bélgica",Bélgica,50.4372,5.97139,https://api.jolpi.ca/ergast/f1/2026/races/
+st_petersburg,Streets of St. Petersburg,"St. Petersburg, Estados Unidos",Estados Unidos,27.7664,-82.6292,https://www.indycar.com/Schedule/2026/St-Petersburg
+super_ovalo_chiapas,Súper Óvalo Chiapas,"Berriozábal, Chiapas",México,16.7787,-93.2507,https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Chiapas
+super_ovalo_potosino,Súper Óvalo Potosino,"Villa de Zaragoza, San Luis Potosí",México,22.0914,-100.7256,https://en.wikipedia.org/wiki/Super_%C3%93valo_Potosino
+suzuka,Suzuka Circuit,"Suzuka, Japón",Japón,34.8431,136.541,https://api.jolpi.ca/ergast/f1/2026/races/
+talladega,Talladega Superspeedway,"Talladega, Estados Unidos",Estados Unidos,33.5673,-86.0660,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+tempelhof,Tempelhof Airport Street Circuit,"Berlín, Alemania",Alemania,52.4801,13.3929,https://en.wikipedia.org/wiki/Tempelhof_Airport_Street_Circuit
+texas,Texas Motor Speedway,"Fort Worth, Estados Unidos",Estados Unidos,33.0366,-97.2815,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+tokyo_street,Tokyo Street Circuit,"Tokio, Japón",Japón,35.63333,139.80056,https://en.wikipedia.org/wiki/Tokyo_Street_Circuit
+vegas,Las Vegas Strip Street Circuit,"Las Vegas, Estados Unidos",Estados Unidos,36.1147,-115.173,https://api.jolpi.ca/ergast/f1/2026/races/
+villeneuve,Circuit Gilles Villeneuve,"Montreal, Canadá",Canadá,45.5,-73.5228,https://api.jolpi.ca/ergast/f1/2026/races/
+washington_dc,Streets of Washington,"Washington D. C., Estados Unidos",Estados Unidos,38.8871,-77.0365,https://www.indycar.com/Schedule/2026/Washington-DC
+watkins_glen,Watkins Glen International,"Watkins Glen, Estados Unidos",Estados Unidos,42.3372,-76.9247,https://cf.nascar.com/cacher/2026/3/race_list_basic.json
+yas_marina,Yas Marina Circuit,"Abu Dhabi, Emiratos Árabes Unidos",Emiratos Árabes Unidos,24.4672,54.6031,https://api.jolpi.ca/ergast/f1/2026/races/
+zandvoort,Circuit Park Zandvoort,"Zandvoort, Países Bajos",Países Bajos,52.3888,4.54092,https://api.jolpi.ca/ergast/f1/2026/races/

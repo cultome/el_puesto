@@ -1,0 +1,175 @@
+-- Caché offline local de El puesto.
+-- Entidades cacheadas como blobs protobuf (mismos contratos de :shared); el checklist
+-- vive en columnas para poder alternarlo; `outbox` guarda mutaciones locales pendientes.
+
+CREATE TABLE officer (
+  id TEXT NOT NULL PRIMARY KEY,
+  data BLOB NOT NULL
+);
+
+CREATE TABLE event (
+  id TEXT NOT NULL PRIMARY KEY,
+  data BLOB NOT NULL,
+  active INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE assignment (
+  eventId TEXT NOT NULL PRIMARY KEY,
+  data BLOB NOT NULL
+);
+
+CREATE TABLE mate (
+  eventId TEXT NOT NULL,
+  officerId TEXT NOT NULL,
+  ord INTEGER NOT NULL,
+  data BLOB NOT NULL,
+  PRIMARY KEY (eventId, officerId)
+);
+
+CREATE TABLE session (
+  id TEXT NOT NULL PRIMARY KEY,
+  eventId TEXT NOT NULL,
+  ord INTEGER NOT NULL,
+  data BLOB NOT NULL
+);
+
+CREATE TABLE agenda (
+  id TEXT NOT NULL PRIMARY KEY,
+  ord INTEGER NOT NULL,
+  data BLOB NOT NULL
+);
+
+CREATE TABLE circuit (
+  id TEXT NOT NULL PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE checklist (
+  id TEXT NOT NULL PRIMARY KEY,
+  eventId TEXT NOT NULL,
+  ord INTEGER NOT NULL,
+  text TEXT NOT NULL,
+  done INTEGER NOT NULL
+);
+
+CREATE TABLE outbox (
+  seq INTEGER PRIMARY KEY AUTOINCREMENT,
+  kind TEXT NOT NULL,
+  refId TEXT NOT NULL,
+  payload TEXT NOT NULL,
+  createdAt INTEGER NOT NULL
+);
+
+-- Caché genérica de catálogos (circuitos, campeonatos, convocatorias): lista protobuf
+-- por clave (p. ej. "circuits", "trazados:cir-hr", "standings:cat-sc").
+CREATE TABLE catalog (
+  key TEXT NOT NULL PRIMARY KEY,
+  data BLOB NOT NULL
+);
+
+-- officer
+upsertOfficer:
+INSERT OR REPLACE INTO officer(id, data) VALUES (?, ?);
+selectOfficer:
+SELECT data FROM officer LIMIT 1;
+-- La tabla debe tener SOLO al oficial autenticado: al cambiar de cuenta en el mismo
+-- teléfono quedaban filas viejas y LIMIT 1 podía devolver la equivocada.
+clearOfficers:
+DELETE FROM officer;
+
+-- event
+clearActiveEvent:
+UPDATE event SET active = 0;
+upsertEvent:
+INSERT OR REPLACE INTO event(id, data, active) VALUES (?, ?, ?);
+selectActiveEvent:
+SELECT data FROM event WHERE active = 1 LIMIT 1;
+
+-- assignment
+upsertAssignment:
+INSERT OR REPLACE INTO assignment(eventId, data) VALUES (?, ?);
+selectAssignment:
+SELECT data FROM assignment WHERE eventId = ?;
+
+-- mate
+deleteMates:
+DELETE FROM mate WHERE eventId = ?;
+insertMate:
+INSERT OR REPLACE INTO mate(eventId, officerId, ord, data) VALUES (?, ?, ?, ?);
+selectMates:
+SELECT data FROM mate WHERE eventId = ? ORDER BY ord;
+
+-- session
+deleteSessions:
+DELETE FROM session WHERE eventId = ?;
+insertSession:
+INSERT OR REPLACE INTO session(id, eventId, ord, data) VALUES (?, ?, ?, ?);
+selectSessions:
+SELECT data FROM session WHERE eventId = ? ORDER BY ord;
+
+-- agenda
+deleteAgenda:
+DELETE FROM agenda;
+insertAgenda:
+INSERT OR REPLACE INTO agenda(id, ord, data) VALUES (?, ?, ?);
+selectAgenda:
+SELECT data FROM agenda ORDER BY ord;
+
+-- circuit
+upsertCircuit:
+INSERT OR REPLACE INTO circuit(id, name) VALUES (?, ?);
+selectCircuitName:
+SELECT name FROM circuit WHERE id = ?;
+
+-- checklist
+deleteChecklist:
+DELETE FROM checklist WHERE eventId = ?;
+insertChecklist:
+INSERT OR REPLACE INTO checklist(id, eventId, ord, text, done) VALUES (?, ?, ?, ?, ?);
+selectChecklist:
+SELECT id, text, done FROM checklist WHERE eventId = ? ORDER BY ord;
+setChecklistDone:
+UPDATE checklist SET done = ? WHERE id = ?;
+
+-- outbox
+enqueue:
+INSERT INTO outbox(kind, refId, payload, createdAt) VALUES (?, ?, ?, ?);
+selectOutbox:
+SELECT seq, kind, refId, payload, createdAt FROM outbox ORDER BY seq;
+deleteOutbox:
+DELETE FROM outbox WHERE seq = ?;
+countOutbox:
+SELECT count(*) FROM outbox;
+
+-- catalog (caché genérica)
+putCatalog:
+INSERT OR REPLACE INTO catalog(key, data) VALUES (?, ?);
+getCatalog:
+SELECT data FROM catalog WHERE key = ?;
+selectCatalogKeys:
+SELECT key FROM catalog WHERE key LIKE ?;
+deleteCatalog:
+DELETE FROM catalog WHERE key = ?;
+
+-- Cerrar sesión: lo local del usuario que se va no se queda en el teléfono (privacy-first)
+-- ni se envía con la sesión del siguiente.
+wipeOfficer:
+DELETE FROM officer;
+wipeEvent:
+DELETE FROM event;
+wipeAssignment:
+DELETE FROM assignment;
+wipeMate:
+DELETE FROM mate;
+wipeSession:
+DELETE FROM session;
+wipeAgenda:
+DELETE FROM agenda;
+wipeCircuit:
+DELETE FROM circuit;
+wipeChecklist:
+DELETE FROM checklist;
+wipeOutbox:
+DELETE FROM outbox;
+wipeCatalog:
+DELETE FROM catalog;

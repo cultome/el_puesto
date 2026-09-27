@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Android 12+ (API 31+): NADA de la app sale del teléfono, ni al respaldo en la nube ni al
+  pasar los datos a un teléfono nuevo (device-transfer ignora allowBackup="false"). Aquí
+  viven la sesión (refresh token de 60 días), la caché local con datos de emergencia y los
+  cambios sin enviar: en otro teléfono no deben revivir. Allá se entra de nuevo con el enlace.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="root" path="." />
+        <exclude domain="file" path="." />
+        <exclude domain="database" path="." />
+        <exclude domain="sharedpref" path="." />
+        <exclude domain="external" path="." />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="root" path="." />
+        <exclude domain="file" path="." />
+        <exclude domain="database" path="." />
+        <exclude domain="sharedpref" path="." />
+        <exclude domain="external" path="." />
+    </device-transfer>
+</data-extraction-rules>

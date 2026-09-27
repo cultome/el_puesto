@@ -1,0 +1,347 @@
+{
+ "campeonato": "México Racing Cup",
+ "temporada": "2026",
+ "categoria": "Endurance Challenge",
+ "imageUrl": "https://duncanwebmin.notiauto.com/repository/sitios/innerpicstmp/tinyimg1790036455354149227.jpg",
+ "throughRound": 3,
+ "leidaEl": "2026-09-27",
+ "nota": "Transcrita de la imagen por un agente; validada (suma por carrera = SUMA en todas las filas). Posición IMPRESA; puntos = PUNTOS REALES.",
+ "rows": [
+  {
+   "pos": 1,
+   "name": "Ricardo Cordero",
+   "team": "Hyundai",
+   "points": 265
+  },
+  {
+   "pos": 2,
+   "name": "Salvador Estrada",
+   "team": "Mercedes",
+   "points": 243
+  },
+  {
+   "pos": 3,
+   "name": "Ramon Osorio",
+   "team": "Seat/Mini",
+   "points": 222
+  },
+  {
+   "pos": 4,
+   "name": "Victor Gonzalez / Paco Gomez",
+   "team": "Seat SC",
+   "points": 204
+  },
+  {
+   "pos": 5,
+   "name": "Juan Pablo Sierra",
+   "team": "Cupra / Hyudai",
+   "points": 193
+  },
+  {
+   "pos": 6,
+   "name": "Dagoberto de la O / Kevin Salgado",
+   "team": "Audi",
+   "points": 192
+  },
+  {
+   "pos": 7,
+   "name": "Julio Rejon / Gerardo Rejon Jr. / Rodrigo Rejon",
+   "team": "Cupra",
+   "points": 167
+  },
+  {
+   "pos": 8,
+   "name": "Luis Javier Camargo",
+   "team": "Mercedes",
+   "points": 158
+  },
+  {
+   "pos": 9,
+   "name": "Michel Betancourt / Genaro Davalos",
+   "team": "Audi",
+   "points": 156
+  },
+  {
+   "pos": 10,
+   "name": "Adiel Gamboa",
+   "team": "Mini",
+   "points": 154
+  },
+  {
+   "pos": 11,
+   "name": "Manuel Cano / Enrique Ibarra / Miguel Angel Espinosa",
+   "team": "Audi",
+   "points": 150
+  },
+  {
+   "pos": 12,
+   "name": "Guy Savoa",
+   "team": "Seat/Mini",
+   "points": 144
+  },
+  {
+   "pos": 13,
+   "name": "Jose Miguel Díaz Goñi / Derek Diaz Goñi",
+   "team": "Renault",
+   "points": 130
+  },
+  {
+   "pos": 14,
+   "name": "Jose Maria Castro / Adrian Ramírez",
+   "team": "Volkswagen",
+   "points": 120
+  },
+  {
+   "pos": 15,
+   "name": "Arturo Aldana / Raymundo Paz",
+   "team": "Mini",
+   "points": 118
+  },
+  {
+   "pos": 16,
+   "name": "Marco Piza",
+   "team": "Mini",
+   "points": 118
+  },
+  {
+   "pos": 17,
+   "name": "Jorge Casso / Oscar Santurino",
+   "team": "Renault",
+   "points": 114
+  },
+  {
+   "pos": 18,
+   "name": "Marco Montoya / Jose Luis Hernandez / Pedro Martínez",
+   "team": "Audi",
+   "points": 106
+  },
+  {
+   "pos": 19,
+   "name": "Luis Cervantes / Pablo Cervantes",
+   "team": "Cupra",
+   "points": 106
+  },
+  {
+   "pos": 20,
+   "name": "Omar Chavez / Jorge Abed",
+   "team": "Audi",
+   "points": 90
+  },
+  {
+   "pos": 21,
+   "name": "Andres Orea Jr.",
+   "team": "Hyundai",
+   "points": 90
+  },
+  {
+   "pos": 22,
+   "name": "Miguel Calvo",
+   "team": "Hyundai",
+   "points": 85
+  },
+  {
+   "pos": 23,
+   "name": "Victor Gonzalez / Paco Gomez",
+   "team": "Seat SC",
+   "points": 85
+  },
+  {
+   "pos": 24,
+   "name": "Gerardo Hernandez / Dirkan Archundia",
+   "team": "Mercedes",
+   "points": 85
+  },
+  {
+   "pos": 25,
+   "name": "Rodrigo Espinosa / Joaquin Toranzo",
+   "team": "Audi",
+   "points": 74
+  },
+  {
+   "pos": 26,
+   "name": "Juan Musi",
+   "team": "Seat",
+   "points": 72
+  },
+  {
+   "pos": 27,
+   "name": "Omar Valderrama",
+   "team": "Seat",
+   "points": 72
+  },
+  {
+   "pos": 28,
+   "name": "Antonio Arginbau / Jorge Machuca",
+   "team": "Audi",
+   "points": 72
+  },
+  {
+   "pos": 29,
+   "name": "Juan Carlos Torres",
+   "team": "Audi",
+   "points": 68
+  },
+  {
+   "pos": 30,
+   "name": "Jerry Hernandez",
+   "team": "Audi",
+   "points": 68
+  },
+  {
+   "pos": 31,
+   "name": "Mauro Vega / Roberto Abarca Jr",
+   "team": "Audi",
+   "points": 66
+  },
+  {
+   "pos": 32,
+   "name": "Norberto Piñon Jr. / Hector Pedroza",
+   "team": "Audi",
+   "points": 66
+  },
+  {
+   "pos": 33,
+   "name": "Patricio Hoppenstedt / Fernando Hoppenstedt",
+   "team": "Audi",
+   "points": 66
+  },
+  {
+   "pos": 34,
+   "name": "Alex Sanchez / Gustavo Tinajero / Gerardo Ylizaliturri",
+   "team": "Audi",
+   "points": 64
+  },
+  {
+   "pos": 35,
+   "name": "Diego Ruiz / Rodrigo Velazquez",
+   "team": "Renault",
+   "points": 64
+  },
+  {
+   "pos": 36,
+   "name": "Jose Espindola / Asael Ovando",
+   "team": "Cupra",
+   "points": 62
+  },
+  {
+   "pos": 37,
+   "name": "David Rodríguez / Pablo Rodríguez / Omar Rodríguez",
+   "team": "Chevrolet",
+   "points": 62
+  },
+  {
+   "pos": 38,
+   "name": "Jonathan Delgado / Santiago Dominguez",
+   "team": "Seat SC",
+   "points": 60
+  },
+  {
+   "pos": 39,
+   "name": "Yashir Medina",
+   "team": "Renault",
+   "points": 60
+  },
+  {
+   "pos": 40,
+   "name": "Jorge Estevez / Armando Anaya / Omar Cardenas",
+   "team": "Chevrolet",
+   "points": 60
+  },
+  {
+   "pos": 41,
+   "name": "Omar Raul Cardenas",
+   "team": "Chevrolet",
+   "points": 58
+  },
+  {
+   "pos": 42,
+   "name": "Omar Funes / Claus Shinkel",
+   "team": "Chevrolet",
+   "points": 58
+  },
+  {
+   "pos": 43,
+   "name": "Fernando Perez / Arturo Rayas / Agustín Valero",
+   "team": "Renault",
+   "points": 58
+  },
+  {
+   "pos": 44,
+   "name": "Agustin Muñoz / Erick Sierra / Santiago del Rincon",
+   "team": "Seat",
+   "points": 56
+  },
+  {
+   "pos": 45,
+   "name": "Lalo de la Cajiga / Steffen Schubert / Miguel Limon",
+   "team": "Chevrolet",
+   "points": 56
+  },
+  {
+   "pos": 46,
+   "name": "Luis Cobos / Hector Ulises Carrillo",
+   "team": "Subaru",
+   "points": 56
+  },
+  {
+   "pos": 47,
+   "name": "Manuel Gracia",
+   "team": "Seat SC",
+   "points": 52
+  },
+  {
+   "pos": 48,
+   "name": "Jorge Alejandro Sanchez / Sergio Gonzalez",
+   "team": "Renault",
+   "points": 50
+  },
+  {
+   "pos": 49,
+   "name": "Luis Manuel Garcia / Carlos Manuel Garcia",
+   "team": "Cupra",
+   "points": 0
+  },
+  {
+   "pos": 50,
+   "name": "Rogelio Castro",
+   "team": "Volkswagen",
+   "points": 0
+  },
+  {
+   "pos": 51,
+   "name": "Carlos Rodrigo Ramirez",
+   "team": "Audi",
+   "points": 0
+  },
+  {
+   "pos": 52,
+   "name": "Emilio Mora",
+   "team": "Audi",
+   "points": 0
+  },
+  {
+   "pos": 53,
+   "name": "Said Mora / Luis Ramos",
+   "team": "Alfa Romeo",
+   "points": 0
+  },
+  {
+   "pos": 54,
+   "name": "Anthony Michel Luna Rivera / Elliot Luna Rivera",
+   "team": "Chevrolet",
+   "points": 0
+  },
+  {
+   "pos": 55,
+   "name": "Erik del Olmo / Alfredo Leal",
+   "team": "Chevrolet",
+   "points": 0
+  },
+  {
+   "pos": 56,
+   "name": "Luis Calvillo",
+   "team": "Chevrolet",
+   "points": 0
+  }
+ ]
+}
