@@ -1378,3 +1378,21 @@ alerta de anomalías de costo) y el usuario decidió **dejarlas como están**. O
 suscripciones SNS de auditoría siguen en `PendingConfirmation` (esos avisos no le llegan a
 nadie). Hecho: `hola@elpuesto.app` como contacto visible (`mailto:`) en el pie de la landing y
 al final de `/descargas/` (verificado en headless a 1280 y 390 px, sin scroll horizontal).
+
+**Sesión 2026-09-27 (9ª): repo recreado y público** ✅ Tras el force push y borrar los tags,
+GitHub **seguía sirviendo los commits viejos por su SHA** (API y web), y sus SHA estaban a la
+vista en `version.json` (campo `commit`, público), los runs de Actions y los despliegues del
+entorno. Decisión del usuario: **borrar el repo y crearlo de nuevo, público, con el mismo
+nombre** (tiene otro ID interno). Pasos: el usuario borró el repo; se creó vacío (issues sí, wiki
+no; alertas de Dependabot, escaneo de secretos y bloqueo al subir activados); el usuario corrió
+`infra/aws/7-github.sh` (el rol de AWS confía en un subject INMUTABLE `repo:dueño@ID/repo@ID`:
+sin re-correrlo, el repo nuevo no podía desplegar); luego push de `master` y `v1.5.0`.
+Verificado: los 4 commits viejos probados dan "No commit found" y 404 en la web; commit y tag
+**verificados** por GitHub; el primer push desplegó backend y sitio por OIDC (ambos ✓) y el API,
+la app web, el admin y el sitio responden. Antes de subir se **recomprimió** el historial (el
+primer commit comprimido salió SIN firma: `git commit-tree` ignora `commit.gpgsign`, hay que
+pasarle `-S`), con autor y committer = un correo de la cuenta de GitHub del usuario. Corregido en
+`7-github.sh`: con el entorno aún inexistente, `gh api` escribe el 404 en stdout y el script lo
+tomaba como lista de revisores (salía un aviso falso de "revisores no aceptados"). `/descargas/`
+no lo publica el CI (a propósito): tras cambiar su texto, `scripts/publicar-descargas.sh` a mano.
+`version.json` conserva el SHA viejo (ya da 404) hasta la próxima versión.

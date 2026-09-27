@@ -207,11 +207,13 @@ vez (`DriverPhotos`, lista blanca de hosts) y se sirven como kind `driver`.
   `git log origin/master..HEAD` y commitea solo tus archivos.
 - **Subagentes en paralelo**: `isolation: worktree`, cada uno con su archivo, su copia de la base y
   su puerto; integrar por cherry-pick (los choques típicos son una línea de lista).
-- **Repo para publicar** (historial comprimido en un solo commit el 2026-09-27): en git NADA de
+- **Repo PÚBLICO** (`github.com/cultome/el_puesto`, desde 2026-09-27: recreado con el historial
+  comprimido en un solo commit; lo que un push publica ya no se puede retirar): en git NADA de
   personas (correos, nombres de oficiales, números OMDAI, puestos en rosters) ni material de
   OMDAI (posiciones del plano "Marshal Posts", mapeo de roles): va en `data/privado/`. Lo
   personal de operación (cuentas, usuario y portal de AWS, IP) vive en **`CLAUDE.local.md`**
-  (gitignored). Antes de cada push: `git grep` de correos y nombres reales.
+  (gitignored). Antes de cada push: `git grep` de correos y nombres reales. Commits firmados
+  (SSH, `commit.gpgsign`); `git commit-tree` solo firma con `-S`.
 
 **Pendientes vivos** (lo menor, en `docs/DEUDA-TECNICA.md`; lo grande, en `docs/IDEAS.md`):
 - Posiciones: NASCAR México (pantalla "Importar posiciones desde una imagen"); lectura AUTOMÁTICA
@@ -220,9 +222,7 @@ vez (`DriverPhotos`, lista blanca de hosts) y se sirven como kind `driver`.
 - Push con la app cerrada (FCM; requiere proyecto de Firebase del usuario); video en chats.
 - Logros fases 2 (medalla nueva) y 3 (recuerdo de hace un año, "Tu temporada"); compartir
   bitácora (espera feedback de usuarios); Live Updates de Android 16 para el MbM.
-- Operación: `AUTH_REQUIRE_PKCE=true` cuando la mayoría tenga ≥ 1.1.2; DMARC en Namecheap; cambiar
-  el repo a público (historial ya comprimido; antes, borrar los runs viejos de Actions — ver
-  `docs/HISTORIAL.md`, sesión 2026-09-27 7ª).
+- Operación: `AUTH_REQUIRE_PKCE=true` cuando la mayoría tenga ≥ 1.1.2; DMARC en Namecheap.
 
 ## 5. Build & run (entorno de esta máquina — CachyOS)
 
