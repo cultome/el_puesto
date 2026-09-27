@@ -26,10 +26,11 @@ aws_r ssm describe-document --name "$DOC_ACTIVAR" > /dev/null 2>&1 ||
     falla "no existe el documento de SSM $DOC_ACTIVAR (corre antes 6-servidor.sh)"
 
 paso "Entorno $ENTORNO en github.com/$REPO (solo la rama master)"
-# PUT reemplaza la configuración completa: se conservan los revisores que ya tenga.
+# PUT reemplaza la configuración completa: se conservan los revisores que ya tenga. Si el entorno
+# aún no existe (repo nuevo), gh escribe el 404 en stdout: solo vale la salida de un éxito.
 revisores="$(gh api "repos/$REPO/environments/$ENTORNO" \
     --jq '[.protection_rules[]? | select(.type == "required_reviewers") | .reviewers[] | {type, id: .reviewer.id}]' \
-    2> /dev/null || true)"
+    2> /dev/null)" || revisores='[]'
 [ -n "$revisores" ] || revisores='[]'
 if [ "${REVISOR:-}" = si ]; then
     dueno_id="$(gh api "users/${REPO%%/*}" --jq .id)"
