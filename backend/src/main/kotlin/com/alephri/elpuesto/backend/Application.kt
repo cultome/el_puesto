@@ -961,7 +961,15 @@ fun Application.module() {
                         return@post call.respond(Ack(ok = false, message = "correo inválido"))
                     }
                     // Misma respuesta exista o no la cuenta (ver createInvitation).
-                    call.respond(createInvitation(officerId, email))
+                    val invitation = createInvitation(officerId, email)
+                    // Correo con cómo instalar la app y entrar (ver claimInvitationEmail). Sale
+                    // aparte: tarde lo que tarde el SMTP, la respuesta no cambia.
+                    claimInvitationEmail(officerId, email)?.let { claim ->
+                        call.application.launch(kotlinx.coroutines.Dispatchers.IO) {
+                            if (!EmailSender.sendInvitation(claim.to, claim.inviterName)) releaseInvitationEmail(claim)
+                        }
+                    }
+                    call.respond(invitation)
                 }
             }
 

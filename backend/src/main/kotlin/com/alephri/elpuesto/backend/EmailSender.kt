@@ -45,6 +45,39 @@ object EmailSender {
     }
 
     /**
+     * Invitación de otro oficial: cómo instalar la app y entrar con ESTE correo (el acceso es
+     * por enlace mágico a la dirección invitada). El nombre de quien invita lo escribió un
+     * oficial: va escapado y solo en el cuerpo (el asunto es fijo).
+     */
+    fun sendInvitation(to: String, inviterName: String): Boolean {
+        val descargas = Config.downloadsUrl ?: Config.publicBaseUrl?.let { "$it/descargas" }
+        val web = Config.webAppUrl
+        val instalar = when {
+            descargas != null && web != null -> listOf(
+                "1. Instala la app en tu teléfono Android: $descargas",
+                "   ¿iPhone o computadora? Entra desde el navegador: $web",
+            )
+            descargas != null -> listOf("1. Instala la app en tu teléfono Android: $descargas")
+            web != null -> listOf("1. Entra desde el navegador: $web")
+            else -> listOf("1. Pide a $inviterName el enlace para instalar la app.")
+        }
+        val plain = (
+            listOf("Hola,", "", "$inviterName te invitó a El Puesto, la app de los oficiales de pista.", "", "Para entrar:", "") +
+                instalar +
+                listOf(
+                    "2. En la pantalla de acceso escribe este correo: $to",
+                    "   Te llegará un enlace para entrar (sin contraseñas).",
+                    "3. Tu cuenta quedará en espera hasta que el administrador la apruebe.",
+                    "",
+                    "Si no conoces a $inviterName o no esperabas esta invitación, ignora este correo.",
+                    "",
+                    "— El Puesto",
+                )
+            ).joinToString("\n")
+        return send(to, "Te invitaron a El Puesto", plain, invitationHtml(esc(inviterName), esc(to), descargas, web))
+    }
+
+    /**
      * Aviso de seguridad: se descargó una copia de los datos del oficial. Si no fue él
      * (p. ej. alguien tomó su teléfono), sabe que debe cerrar sesión y avisar.
      */
@@ -93,7 +126,6 @@ object EmailSender {
     /** Alerta para el administrador (picos de errores, reuso de sesiones): ver SecurityMonitor. */
     fun sendSecurityAlert(to: String, title: String, lines: List<String>): Boolean {
         val plain = (listOf("Alerta de seguridad de El Puesto: $title", "") + lines + listOf("", "— El Puesto")).joinToString("\n")
-        val esc = { t: String -> t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;") }
         return send(to, "[El Puesto] $title", plain, noticeHtml(
             esc(title),
             lines.joinToString("<br>") { esc(it) },
@@ -141,6 +173,80 @@ object EmailSender {
             log.error("No se pudo enviar el correo '$subject' a $to", e)
             false
         }
+    }
+
+    /** Texto ajeno dentro del HTML del correo. */
+    private fun esc(t: String) = t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;")
+
+    /**
+     * Correo de invitación con el marco del de acceso: botón a la página de descargas y, aparte,
+     * la app web (iPhone o computadora). [inviter] y [to] llegan ya escapados.
+     */
+    private fun invitationHtml(inviter: String, to: String, descargas: String?, web: String?): String {
+        val step = { n: Int, body: String ->
+            """
+                <tr><td valign="top" style="padding:0 12px 12px 0;font-family:'Courier New',monospace;font-size:13px;font-weight:700;color:#F2B134;">$n</td>
+                <td style="padding:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:21px;color:#9AA3B5;">$body</td></tr>
+            """.trimIndent()
+        }
+        val link = { url: String -> "<a href=\"${esc(url)}\" style=\"color:#7FB7F0;text-decoration:none;\">${esc(url)}</a>" }
+        val instalar = when {
+            descargas != null && web != null ->
+                "Instala la app en tu teléfono Android con el botón de abajo. ¿iPhone o computadora? Entra desde el navegador: ${link(web)}"
+            descargas != null -> "Instala la app en tu teléfono Android con el botón de abajo."
+            web != null -> "Entra desde el navegador: ${link(web)}"
+            else -> "Pide a $inviter el enlace para instalar la app."
+        }
+        val boton = descargas?.let {
+            """
+                <tr><td align="center" style="padding:8px 30px 6px 30px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                    <tr><td align="center" bgcolor="#F2B134" style="border-radius:14px;">
+                      <a href="${esc(it)}" style="display:block;padding:15px 24px;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:800;color:#1E222B;text-decoration:none;">Instalar la app&nbsp;&nbsp;→</a>
+                    </td></tr>
+                  </table>
+                </td></tr>
+            """.trimIndent()
+        } ?: ""
+        return """
+            <!doctype html>
+            <html lang="es">
+            <body style="margin:0;padding:0;background-color:#12151C;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#12151C;padding:32px 12px;">
+                <tr><td align="center">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background-color:#1E222B;border:1px solid #333949;border-radius:18px;">
+                    <tr><td style="padding:28px 30px 0 30px;">
+                      <div style="font-family:Arial,Helvetica,sans-serif;font-size:22px;font-weight:800;letter-spacing:2px;color:#FFFFFF;">EL&nbsp;PUESTO</div>
+                      <div style="font-family:'Courier New',monospace;font-size:11px;letter-spacing:4px;color:#F2B134;padding-top:4px;">OFICIALES&nbsp;DE&nbsp;PISTA</div>
+                    </td></tr>
+                    <tr><td style="padding:22px 30px 0 30px;"><div style="height:1px;background-color:#333949;font-size:0;">&nbsp;</div></td></tr>
+                    <tr><td style="padding:24px 30px 0 30px;font-family:Arial,Helvetica,sans-serif;color:#E8EAF0;">
+                      <div style="font-size:19px;font-weight:700;">Te invitaron a El Puesto</div>
+                      <div style="font-size:14px;line-height:22px;color:#9AA3B5;padding-top:10px;">
+                        <b style="color:#E8EAF0;">$inviter</b> te invitó a El Puesto, la app de los oficiales de pista.
+                      </div>
+                    </td></tr>
+                    <tr><td style="padding:20px 30px 4px 30px;">
+                      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                        ${step(1, instalar)}
+                        ${step(2, "En la pantalla de acceso escribe <b style=\"color:#E8EAF0;\">$to</b>: te llegará un enlace para entrar (sin contraseñas).")}
+                        ${step(3, "Tu cuenta quedará en espera hasta que el administrador la apruebe.")}
+                      </table>
+                    </td></tr>
+                    $boton
+                    <tr><td style="padding:20px 30px 0 30px;">
+                      <div style="height:1px;background-color:#333949;font-size:0;">&nbsp;</div>
+                    </td></tr>
+                    <tr><td style="padding:16px 30px 26px 30px;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:17px;color:#6B7385;">
+                      Si no conoces a $inviter o no esperabas esta invitación, ignora este correo.
+                      <div style="padding-top:14px;color:#4E5566;">— El Puesto</div>
+                    </td></tr>
+                  </table>
+                </td></tr>
+              </table>
+            </body>
+            </html>
+        """.trimIndent()
     }
 
     /** Aviso simple con el mismo marco del correo de acceso (sin botón). */

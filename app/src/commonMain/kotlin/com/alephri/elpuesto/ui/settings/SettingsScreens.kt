@@ -753,7 +753,7 @@ fun InvitationsScreen(repo: AppRepository, onBack: () -> Unit) {
         Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 22.dp)) {
             Spacer(Modifier.height(14.dp))
             Text(
-                "Invita a otro oficial con su correo. Quedará registrado que tú lo invitaste; al entrar, su cuenta esperará la aprobación del administrador.",
+                "Invita a otro oficial con su correo: le llegará un mensaje con cómo instalar la app y entrar. Quedará registrado que tú lo invitaste; al entrar, su cuenta esperará la aprobación del administrador.",
                 fontFamily = PlexSansFamily, fontSize = 12.5.sp, color = TextMut,
             )
             Spacer(Modifier.height(14.dp))
@@ -803,6 +803,13 @@ fun InvitationsScreen(repo: AppRepository, onBack: () -> Unit) {
                     }
                     Box(Modifier.fillMaxWidth().height(1.dp).background(Divider))
                 }
+            }
+            if (list?.any { it.status == com.alephri.elpuesto.model.AccountStatus.INVITED } == true) {
+                Spacer(Modifier.height(12.dp))
+                Text(
+                    "¿No le llegó el correo? Que revise su spam, o vuelve a invitarlo con el mismo correo: se reenvía una vez al día como máximo.",
+                    fontFamily = PlexSansFamily, fontSize = 12.sp, color = TextFaint,
+                )
             }
             Spacer(Modifier.height(24.dp))
         }

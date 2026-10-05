@@ -1396,3 +1396,23 @@ pasarle `-S`), con autor y committer = un correo de la cuenta de GitHub del usua
 tomaba como lista de revisores (salía un aviso falso de "revisores no aceptados"). `/descargas/`
 no lo publica el CI (a propósito): tras cambiar su texto, `scripts/publicar-descargas.sh` a mano.
 `version.json` conserva el SHA viejo (ya da 404) hasta la próxima versión.
+
+**Sesión 2026-10-04: correo de invitación** ✅ Dos oficiales invitados desde la app no
+recibieron nada: invitar **nunca mandaba correo** (desde 2026-08-01 solo registraba quién invita
+a quién y creaba la cuenta INVITED; el invitado tenía que enterarse por otro lado y pedir su
+enlace desde la app), aunque la app decía "Invitación enviada ✓". Hecho: `POST /invitations`
+manda "Te invitaron a El Puesto" (`EmailSender.sendInvitation`: nombre de quien invita, botón a
+`DOWNLOADS_URL`, la app web para iPhone/computadora y los pasos: escribir ESE correo en el
+acceso, esperar aprobación). Reglas (`claimInvitationEmail`): solo la invitación que **creó** la
+cuenta (a quien ya era oficial no se le escribe: invitar sigue sin destapar quién tiene cuenta),
+solo mientras la cuenta siga INVITED, y **como mucho uno cada 24 h** (columna nueva
+`invitations.emailed_at`): volver a invitar el mismo correo lo reenvía, sin servir para llenar
+un buzón. Sale en segundo plano (la respuesta no cambia exista o no la cuenta); si el SMTP falla
+se libera la marca y el siguiente intento reenvía. Las invitaciones viejas reciben su correo
+cuando quien invitó vuelve a invitar el mismo correo. La app (Configuración → Invitar) lo dice y
+sugiere reinvitar si no llegó (el texto de Android llega con la próxima versión; la web, con el
+despliegue). Verificado en local con un SMTP falso con STARTTLS (certificado propio en un
+truststore para la JVM): nueva, repetir inmediato (no), ya con cuenta (no), 23 h (no), 25 h
+(sí), ya entró (no), SMTP caído (se libera y el reintento sale), nombre con `<b>&"` escapado.
+Ojo al probar: `timestamp` sin zona se lee con la zona de la JVM, así que `now() - interval`
+escrito por psql no equivale a lo que escribe el backend: restar sobre el valor guardado.

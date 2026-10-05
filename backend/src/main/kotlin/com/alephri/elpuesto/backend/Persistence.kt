@@ -324,7 +324,51 @@ object Invitations : Table("invitations") {
      * invitador nunca ve su estado: invitar no sirve para averiguar quién es oficial.
      */
     val createdAccount = bool("created_account").default(true)
+    /** Último correo de invitación que salió (null = ninguno): ver [claimInvitationEmail]. */
+    val emailedAt = timestamp("emailed_at").nullable()
     override val primaryKey = PrimaryKey(id)
+}
+
+/** Cada cuánto, como mucho, se reenvía el correo de una misma invitación. */
+private val INVITATION_EMAIL_EVERY: java.time.Duration = java.time.Duration.ofHours(24)
+
+/** Correo de invitación apartado por [claimInvitationEmail]. */
+data class InvitationEmail(
+    val invitationId: String,
+    val to: String,
+    val inviterName: String,
+    val claimedAt: Instant,
+    val previous: Instant?,
+)
+
+/**
+ * Aparta el envío del correo de invitación (null = no toca). Solo la invitación que CREÓ la
+ * cuenta (a quien ya era oficial no se le escribe: invitar no destapa nada) y mientras esa
+ * cuenta no haya entrado; como mucho una vez al día, así volver a invitar reenvía el correo
+ * si no llegó sin que nadie pueda usarlo para llenar un buzón.
+ */
+fun claimInvitationEmail(inviterId: String, email: String): InvitationEmail? = transaction {
+    val row = Invitations.selectAll().where { (Invitations.inviterId eq inviterId) and (Invitations.inviteeEmail eq email) }
+        .forUpdate().firstOrNull() ?: return@transaction null
+    if (!row[Invitations.createdAccount]) return@transaction null
+    val status = Accounts.selectAll().where { Accounts.email eq email }.firstOrNull()?.get(Accounts.status)
+    if (status != AccountStatus.INVITED.name) return@transaction null
+    val now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.MILLIS)
+    val previous = row[Invitations.emailedAt]
+    if (previous != null && previous.isAfter(now.minus(INVITATION_EMAIL_EVERY))) return@transaction null
+    val inviterName = Officers.selectAll().where { Officers.id eq inviterId }.firstOrNull()
+        ?.get(Officers.displayName) ?: return@transaction null
+    Invitations.update({ Invitations.id eq row[Invitations.id] }) { it[emailedAt] = now }
+    InvitationEmail(row[Invitations.id], email, inviterName, now, previous)
+}
+
+/** El correo no salió (sin SMTP o falló): se libera para que volver a invitar lo reintente. */
+fun releaseInvitationEmail(claim: InvitationEmail) {
+    transaction {
+        Invitations.update({ (Invitations.id eq claim.invitationId) and (Invitations.emailedAt eq claim.claimedAt) }) {
+            it[emailedAt] = claim.previous
+        }
+    }
 }
 
 /**
