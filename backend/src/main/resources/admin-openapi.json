@@ -350,7 +350,7 @@
           "cuentas"
         ],
         "summary": "Upsert de cuenta por email",
-        "description": "Crea o actualiza la cuenta identificada por el email (única entidad con upsert por llave natural: NO usa UUID). `officerId` debe existir si viene. Scope requerido: `accounts`. Soporta `?dryRun=true`. Pasarla a `SUSPENDED` o ligarla a otro oficial cierra todas sus sesiones al momento.",
+        "description": "Crea o actualiza la cuenta identificada por el email (única entidad con upsert por llave natural: NO usa UUID). `officerId` debe existir si viene. Scope requerido: `accounts`. Soporta `?dryRun=true`. Pasarla a `SUSPENDED` o ligarla a otro oficial cierra todas sus sesiones al momento. Pasar de `INVITED`/`PENDING_APPROVAL` a `ACTIVE` le manda el correo \"Ya puedes entrar a El Puesto\" (`detail` dice si salió).",
         "operationId": "upsertCuenta",
         "parameters": [
           {
@@ -399,7 +399,7 @@
           "cuentas"
         ],
         "summary": "Aprobar cuenta",
-        "description": "Pasa la cuenta a `ACTIVE` (aprobación manual del admin tras la invitación entre pares). Scope requerido: `accounts`. Exige que la cuenta ya tenga un oficial ligado (400 si no).",
+        "description": "Pasa la cuenta a `ACTIVE` (aprobación manual del admin tras la invitación entre pares). Scope requerido: `accounts`. Exige que la cuenta ya tenga un oficial ligado (400 si no). Si la cuenta estaba `INVITED` o `PENDING_APPROVAL`, le manda el correo \"Ya puedes entrar a El Puesto\" y `detail` dice si salió.",
         "operationId": "aprobarCuenta",
         "parameters": [
           {
@@ -467,6 +467,87 @@
           },
           "403": {
             "$ref": "#/components/responses/SinScope"
+          }
+        }
+      }
+    },
+    "/admin/email-test": {
+      "post": {
+        "tags": [
+          "cuentas"
+        ],
+        "summary": "Probar los correos del sistema",
+        "description": "Manda a `to` una muestra REAL de cada correo del sistema (enlace de acceso, invitación, cuenta aprobada, descarga de datos, sesiones cerradas, alerta de seguridad) con \"[Prueba]\" en el asunto. `sent` = el servidor SMTP lo aceptó. Máximo 3 por hora. Scope requerido: `accounts`.",
+        "operationId": "probarCorreos",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "to"
+                ],
+                "properties": {
+                  "to": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Dirección que recibe las muestras"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Resultado por plantilla",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "to": {
+                      "type": "string"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "enlace-de-acceso",
+                              "invitacion",
+                              "cuenta-aprobada",
+                              "descarga-de-datos",
+                              "sesiones-cerradas",
+                              "alerta-de-seguridad"
+                            ]
+                          },
+                          "sent": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/NoAutorizado"
+          },
+          "403": {
+            "$ref": "#/components/responses/SinScope"
+          },
+          "429": {
+            "description": "Máximo 3 pruebas de correo por hora"
           }
         }
       }

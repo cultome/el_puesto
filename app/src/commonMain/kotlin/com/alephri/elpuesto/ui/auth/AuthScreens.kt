@@ -161,7 +161,7 @@ fun PendingScreen(onLogout: () -> Unit) {
     MessageScaffold(
         badge = { WavingFlag(com.alephri.elpuesto.ui.theme.FlagYellow) }, // amarilla: precaución, espera
         title = "Tu solicitud está en revisión",
-        body = "Un administrador revisará tu acceso. Te avisaremos por correo en cuanto quede aprobado.",
+        body = "Un administrador revisará tu acceso. Te avisaremos por correo en cuanto quede aprobado. Si dejas esta pantalla abierta, entrarás a la app en cuanto lo aprueben.",
         secondary = "Cerrar sesión" to onLogout,
     )
 }

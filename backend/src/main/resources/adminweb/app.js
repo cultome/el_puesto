@@ -709,6 +709,7 @@ function crudView(cfg) {
     const table = h("div", { class: "panel grow" },
       h("div", { class: "panel-head" }, counter, items.length > 5 ? filterInp : null),
       cfg.headerNote ? h("div", { class: "muted", style: "margin-bottom:10px" }, cfg.headerNote) : null,
+      cfg.headerExtra ? cfg.headerExtra() : null,
       h("div", { class: "table-scroll" },
         items.length === 0 ? h("div", { class: "empty" }, "sin registros") :
           h("table", {},
@@ -2223,13 +2224,43 @@ function eventDetailView(evLike) {
   };
 }
 
+/**
+ * Prueba de los correos (POST /admin/email-test): una muestra de cada plantilla a la
+ * dirección que se escriba. Son correos reales: máximo 3 pruebas por hora.
+ */
+function emailTestBox() {
+  const inp = h("input", { type: "email", placeholder: "correo que recibe las muestras", style: "min-width:240px" });
+  const out = h("div", { class: "muted", style: "margin-top:6px" });
+  const btn = h("button", { class: "btn" }, "Probar correos");
+  btn.onclick = async () => {
+    const to = inp.value.trim();
+    if (!to) { toast("escribe la dirección que recibirá las muestras", true); return; }
+    btn.disabled = true;
+    out.textContent = "Enviando…";
+    const r = await api("POST", "/email-test", { to });
+    btn.disabled = false;
+    if (!r.ok) { out.textContent = ""; reportResult(r); return; }
+    const fallidos = r.data.results.filter((x) => !x.sent).map((x) => x.kind);
+    out.textContent = fallidos.length
+      ? `✗ El servidor de correo no aceptó: ${fallidos.join(", ")}. Revisa el log del backend.`
+      : `✓ El servidor de correo aceptó los ${r.data.results.length}. Revisa el buzón de ${r.data.to} (y su carpeta de spam).`;
+  };
+  return h("details", { style: "margin-bottom:10px" },
+    h("summary", {}, "Probar los correos del sistema"),
+    h("div", { class: "muted", style: "margin:6px 0" },
+      "Manda a esa dirección una muestra de cada correo (acceso, invitación, cuenta aprobada, descarga de datos, sesiones cerradas y alerta) con «[Prueba]» en el asunto. Son correos reales: máximo 3 pruebas por hora."),
+    h("div", { style: "display:flex; gap:8px; align-items:center; flex-wrap:wrap" }, inp, btn),
+    out);
+}
+
 // ——— Secciones ———
 
 const secCuentas = {
   id: "cuentas", label: "Cuentas", scope: "accounts",
   render: crudView({
     entity: "cuenta", listPath: "/accounts", itemKey: "email", keyed: true,
-    headerNote: "Alta por invitación: crea la cuenta ligada a un oficial y apruébala.",
+    headerNote: "Alta por invitación: liga la cuenta a un oficial (editar) y apruébala; al aprobarla le llega un correo para entrar.",
+    headerExtra: emailTestBox,
     columns: [
       { key: "email", label: "Email" },
       { key: "officerId", label: "Oficial", fmt: (v) => (v ? officerNameCell(v) : null) },

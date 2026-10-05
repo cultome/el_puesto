@@ -122,7 +122,7 @@ private fun tools(): List<Tool> = listOf(
     ) { a -> "/accounts" + (a.optStr("estatus")?.let { "?status=$it" } ?: "") },
     Tool(
         "guardar_cuenta",
-        "Crea o actualiza una cuenta (upsert por email: una sola dirección simple, sin nombre ni comas). El flujo de alta es: crear INVITED o PENDING_APPROVAL ligada a un oficial y luego aprobar. ACTIVE exige officer_id (una cuenta activa sin oficial se rechaza). Pasarla a SUSPENDED o ligarla a OTRO oficial cierra al momento todas sus sesiones.",
+        "Crea o actualiza una cuenta (upsert por email: una sola dirección simple, sin nombre ni comas). El flujo de alta es: crear INVITED o PENDING_APPROVAL ligada a un oficial y luego aprobar. ACTIVE exige officer_id (una cuenta activa sin oficial se rechaza). Pasarla a SUSPENDED o ligarla a OTRO oficial cierra al momento todas sus sesiones. Pasar de INVITED/PENDING_APPROVAL a ACTIVE le manda el correo \"Ya puedes entrar\".",
         schema("""{"type":"object","properties":{"email":{"type":"string"},"officer_id":{"type":"string","description":"id del oficial ligado (debe existir)"},"estatus":{"type":"string","enum":["INVITED","PENDING_APPROVAL","ACTIVE","SUSPENDED"]},$DRY},"required":["email","estatus"]}"""),
     ) { a ->
         val body = buildString {
@@ -134,7 +134,7 @@ private fun tools(): List<Tool> = listOf(
     },
     Tool(
         "aprobar_cuenta",
-        "Aprueba una cuenta (pasa a ACTIVE) para que el oficial pueda entrar a la app. Exige que la cuenta ya tenga un oficial ligado (guardar_cuenta con officer_id); si no, se rechaza.",
+        "Aprueba una cuenta (pasa a ACTIVE) para que el oficial pueda entrar a la app. Exige que la cuenta ya tenga un oficial ligado (guardar_cuenta con officer_id); si no, se rechaza. Si estaba invitada o en revisión, le manda el correo \"Ya puedes entrar\" (detail dice si salió).",
         schema("""{"type":"object","properties":{"email":{"type":"string"}},"required":["email"]}"""),
     ) { a -> api("POST", "/accounts/${a.str("email")}/approve") },
     Tool(
@@ -142,6 +142,11 @@ private fun tools(): List<Tool> = listOf(
         "Cierra TODAS las sesiones de una cuenta (teléfono perdido, sospecha de robo): sus tokens dejan de valer al momento y debe volver a entrar con su correo. No suspende la cuenta. listar_cuentas muestra activeSessions.",
         schema("""{"type":"object","properties":{"email":{"type":"string"},$DRY},"required":["email"]}"""),
     ) { a -> api("POST", "/accounts/${a.str("email")}/revoke-sessions" + a.dryRunSuffix()) },
+    Tool(
+        "probar_correos",
+        "Manda a una dirección una MUESTRA de cada correo del sistema (enlace de acceso, invitación, cuenta aprobada, descarga de datos, sesiones cerradas, alerta de seguridad) con \"[Prueba]\" en el asunto, para comprobar que salen y si caen en spam. Son correos REALES (máx. 3 pruebas por hora): úsala solo con la dirección que el humano indique. Devuelve qué aceptó el servidor SMTP; la entrega final se ve en el buzón (o en los logs del proveedor).",
+        schema("""{"type":"object","properties":{"para":{"type":"string","description":"dirección que recibe las muestras"}},"required":["para"]}"""),
+    ) { a -> api("POST", "/email-test", """{"to":${kotlinx.serialization.json.JsonPrimitive(a.str("para"))}}""".toByteArray()) },
 
     // —— Oficiales ——
     readTool("listar_oficiales", "Todos los oficiales registrados.", """{"type":"object","properties":{}}""") { "/officers" },

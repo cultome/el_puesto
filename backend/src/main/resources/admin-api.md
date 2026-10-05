@@ -95,6 +95,16 @@ aprobación manual: el flujo es crear la cuenta `INVITED` o `PENDING_APPROVAL` y
   propio estado (`GET /me`); el resto de la API le responde 403.
 - `POST /admin/accounts/{email}/approve` — pasa a `ACTIVE`. Exige que la cuenta ya tenga
   un oficial ligado (400 con hint si no).
+- **Correo al aprobar**: cuando una cuenta pasa de `INVITED` o `PENDING_APPROVAL` a `ACTIVE`
+  (por `approve` o por el `PUT` con `status: ACTIVE`) se le manda "Ya puedes entrar a El
+  Puesto"; el `detail` de la respuesta dice si salió ("se le avisó por correo" / "el correo
+  de aviso NO salió"). Re-aprobar o reactivar una `SUSPENDED` no lo manda. Las invitaciones
+  que hacen los oficiales desde la app también mandan su correo (backend, no esta API).
+- `POST /admin/email-test` body `{to}` — manda a `to` una muestra REAL de cada correo del
+  sistema (enlace de acceso, invitación, cuenta aprobada, descarga de datos, sesiones
+  cerradas, alerta de seguridad) con "[Prueba]" en el asunto → `{to, results: [{kind, sent}]}`
+  (`sent` = el servidor SMTP lo aceptó; la entrega final se ve en el buzón o en los logs del
+  proveedor). Máximo 3 por hora (429); 400 si el backend no tiene SMTP. Auditado como `email-test`.
 - `POST /admin/accounts/{email}/revoke-sessions` — cierra TODAS sus sesiones (teléfono
   perdido, sospecha de robo) sin suspenderla: sus tokens dejan de valer al momento y debe
   volver a entrar con su correo. Acepta `?dryRun=true` (dice cuántas cerraría).

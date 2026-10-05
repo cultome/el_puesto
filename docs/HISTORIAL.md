@@ -1416,3 +1416,29 @@ truststore para la JVM): nueva, repetir inmediato (no), ya con cuenta (no), 23 h
 (sí), ya entró (no), SMTP caído (se libera y el reintento sale), nombre con `<b>&"` escapado.
 Ojo al probar: `timestamp` sin zona se lee con la zona de la JVM, así que `now() - interval`
 escrito por psql no equivale a lo que escribe el backend: restar sobre el valor guardado.
+
+**Sesión 2026-10-04 (2ª): entrada sin huecos y correos verificables** ✅ La pantalla "Tu solicitud
+está en revisión" prometía "te avisaremos por correo en cuanto quede aprobado", pero ese correo
+**no existía** (mismo hueco que la invitación) y la app solo revisaba el estado al volver a
+abrirse. Inventario de TODO lo que promete un correo (app, admin web, landing) contra lo que
+manda `EmailSender`: acceso, invitación, descarga de datos, sesiones cerradas y alertas al
+admin sí salían; faltaba el de aprobación. Hecho:
+- **"Ya puedes entrar a El Puesto"** al pasar de INVITED/PENDING_APPROVAL a ACTIVE, por
+  cualquiera de las 3 rutas (`/accounts/{email}/approve`, `PUT /accounts/{email}`, el `/approve`
+  de compatibilidad); re-aprobar o reactivar una suspendida no lo manda. Sale ANTES de
+  responder y el `detail` dice si salió ("se le avisó por correo" / "NO salió"), así el admin
+  web y el MCP lo muestran.
+- La pantalla de espera revisa el estado **cada minuto** (solo en primer plano): al aprobar, el
+  oficial pasa solo a "Crea tu perfil" (prellenado con lo que capturó el admin).
+- `EmailSender` reorganizado: cada correo es una plantilla privada (`…Mail`) + su `send…`;
+  **`POST /admin/email-test {to}`** (MCP `probar_correos`, admin web → Cuentas → "Probar los
+  correos del sistema") manda una muestra REAL de cada plantilla con "[Prueba]" en el asunto,
+  máx. 3 por hora. Correo nuevo = plantilla + `send…` + una línea en `sendSamples`.
+- Producción revisada: SMTP de Mailgun configurado (Parameter Store), SPF y DKIM bien, **DMARC
+  sigue faltando**, cero fallos de envío en el log desde el 26 sep. Ojo: "aceptado por el SMTP"
+  NO es "entregado": la entrega (o el rechazo de Hotmail/Gmail) solo se ve en los logs de
+  Mailgun; no hay llave de su API en este equipo.
+Verificado en local (SMTP falso con STARTTLS): las 3 rutas mandan, re-aprobar y reactivar no;
+la sesión del que esperaba pasa a ACTIVE al renovar; la app web pasó sola de "en revisión" a
+"Crea tu perfil" ~1 min después de aprobar; muestras por API, MCP y admin web (6/6), 4ª prueba
+de la hora = 429, comilla en el correo del MCP escapada.

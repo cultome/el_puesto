@@ -221,6 +221,31 @@ private suspend fun ApplicationCall.finish(actor: AdminActor, s: ChangeSummary) 
 internal suspend fun ApplicationCall.finishDryRun(entity: String, id: String?, detail: String? = null) =
     respond(ChangeSummary("validated", entity, id, dryRun = true, detail = detail ?: "válido; sin cambios aplicados"))
 
+/**
+ * Correo "ya puedes entrar" si la cuenta acaba de pasar de invitada o en revisión a ACTIVE
+ * (aprobar, o PUT con status ACTIVE); re-aprobar o reactivar una suspendida no lo manda. Sale
+ * antes de responder para que el admin vea en `detail` si salió. null = no tocaba.
+ */
+private suspend fun approvalEmail(email: String, before: AccountStatus?): String? {
+    if (before != AccountStatus.INVITED && before != AccountStatus.PENDING_APPROVAL) return null
+    val acc = findAccount(email)?.takeIf { it.status == AccountStatus.ACTIVE } ?: return null
+    val name = acc.officerId?.let { DomainRepository.officer(it)?.displayName }
+    val sent = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { EmailSender.sendApproved(email, name) }
+    return if (sent) "se le avisó por correo" else "el correo de aviso NO salió (revisa el SMTP en el log)"
+}
+
+private fun ChangeSummary.plus(note: String?): ChangeSummary =
+    if (note == null) this else copy(detail = listOfNotNull(detail, note).joinToString("; "))
+
+@Serializable
+data class EmailTestRequest(val to: String)
+
+@Serializable
+data class EmailTestItem(val kind: String, val sent: Boolean)
+
+@Serializable
+data class EmailTestResult(val to: String, val results: List<EmailTestItem>)
+
 // —— Validaciones por entidad (compartidas por el POST de crear y el PUT de actualizar) ——
 
 private suspend fun ApplicationCall.validOfficer(o: Officer): Boolean {
@@ -438,7 +463,8 @@ fun Route.adminRoutes() = route("/admin") {
                 val n = revokeSessions(email, if (suspended) "suspended" else "admin")
                 AdminAudit.record(actor, "revoke-sessions", "account", email, dryRun = false, detail = if (suspended) "suspendida ($n sesiones)" else "ligada a otro oficial ($n sesiones)")
             }
-            call.finish(actor, result)
+            val aviso = if (result.action != "none") approvalEmail(email, before?.status) else null
+            call.finish(actor, result.plus(aviso))
         }
         // Cerrar TODAS las sesiones de una cuenta (teléfono perdido, sospecha de robo).
         post("/{email}/revoke-sessions") {
@@ -454,11 +480,12 @@ fun Route.adminRoutes() = route("/admin") {
         post("/{email}/approve") {
             val actor = call.requireAdmin("accounts") ?: return@post
             val email = EmailRules.normalize(call.parameters["email"]!!)
+            val before = findAccount(email)?.status
             approveAccount(email)?.let { problem ->
                 return@post call.fail(problem, field = "officerId", hint = "PUT /admin/accounts/{email} con officerId y status ACTIVE")
             }
             AdminAudit.record(actor, "approve", "account", email, dryRun = false)
-            call.respond(ChangeSummary("updated", "account", email, detail = "aprobada (ACTIVE)"))
+            call.respond(ChangeSummary("updated", "account", email, detail = "aprobada (ACTIVE)").plus(approvalEmail(email, before)))
         }
     }
     // Compat con el flujo original de aprobación.
@@ -470,9 +497,34 @@ fun Route.adminRoutes() = route("/admin") {
         val actor = call.requireAdmin("accounts") ?: return@post
         val req = call.receive<com.alephri.elpuesto.model.MagicLinkRequest>()
         val email = EmailRules.normalize(req.email)
+        val before = findAccount(email)?.status
         approveAccount(email)?.let { problem -> return@post call.fail(problem, field = "officerId") }
         AdminAudit.record(actor, "approve", "account", email, dryRun = false)
-        call.respond(Ack(message = "aprobado"))
+        call.respond(Ack(message = listOfNotNull("aprobado", approvalEmail(email, before)).joinToString("; ")))
+    }
+
+    // Prueba de los correos: una muestra de cada plantilla a `to` (¿salen?, ¿llegan o caen en
+    // spam?). Pocas por hora: cada corrida son varios correos reales.
+    post("/email-test") {
+        val actor = call.requireAdmin("accounts") ?: return@post
+        val req = call.receive<EmailTestRequest>()
+        val to = EmailRules.normalize(req.to)
+        if (!EmailRules.isValid(to)) {
+            return@post call.fail("correo inválido: '$to'", field = "to", hint = "una sola dirección simple, sin nombre ni comas")
+        }
+        if (!Config.emailEnabled) {
+            return@post call.fail("el backend no tiene SMTP: no manda ningún correo", field = "SMTP_HOST", hint = "define SMTP_HOST, SMTP_USER, SMTP_PASSWORD y SMTP_FROM")
+        }
+        if (Throttle.hit("admin-email-test", 3, 60 * 60_000L, 60 * 60_000L)) {
+            return@post call.respond(HttpStatusCode.TooManyRequests, AdminError("máximo 3 pruebas de correo por hora", null, "espera y reintenta"))
+        }
+        val results = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { EmailSender.sendSamples(to) }
+        val fallidos = results.filter { !it.second }.map { it.first }
+        AdminAudit.record(
+            actor, "email-test", "email", to, dryRun = false,
+            detail = "${results.size - fallidos.size}/${results.size} aceptados" + (if (fallidos.isEmpty()) "" else "; fallaron: ${fallidos.joinToString()}"),
+        )
+        call.respond(EmailTestResult(to, results.map { EmailTestItem(it.first, it.second) }))
     }
 
     // —— Oficiales (scope: officers) ——

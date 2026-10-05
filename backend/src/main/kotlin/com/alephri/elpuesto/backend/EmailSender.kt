@@ -13,11 +13,21 @@ import org.slf4j.LoggerFactory
 import java.util.Properties
 
 /**
- * Envío del enlace mágico por correo (SMTP). Si SMTP no está configurado ([Config.emailEnabled]
- * = false), no envía nada y el llamador cae al `devLink` (modo desarrollo).
+ * Correos del sistema por SMTP. Si SMTP no está configurado ([Config.emailEnabled] = false),
+ * no envía nada (el enlace mágico cae al `devLink`, modo desarrollo).
+ *
+ * Cada correo se arma en una plantilla privada (`…Mail`) y se envía con `send…`: la muestra
+ * del admin ([sendSamples]) usa las MISMAS plantillas, así que prueba exactamente lo que sale.
+ * Correo nuevo = su plantilla + su `send…` + una línea en [sendSamples].
  */
 object EmailSender {
     private val log = LoggerFactory.getLogger(EmailSender::class.java)
+
+    /** Un correo armado. */
+    private class Mail(val subject: String, val plain: String, val html: String)
+
+    /** Página de descargas (APK) y app web, para los correos que explican cómo entrar. */
+    private val descargasUrl: String? get() = Config.downloadsUrl ?: Config.publicBaseUrl?.let { "$it/descargas" }
 
     /**
      * Envía el enlace mágico. [appLink] es el esquema directo (elpuesto://auth?token=…);
@@ -27,7 +37,58 @@ object EmailSender {
      * habla del navegador donde se pidió (el reto PKCE lo liga a ESE navegador).
      * Devuelve true si el correo se envió realmente.
      */
-    fun sendMagicLink(to: String, appLink: String, buttonLink: String = appLink, web: Boolean = false): Boolean {
+    fun sendMagicLink(to: String, appLink: String, buttonLink: String = appLink, web: Boolean = false): Boolean =
+        send(to, magicLinkMail(appLink, buttonLink, web))
+
+    /**
+     * Invitación de otro oficial: cómo instalar la app y entrar con ESTE correo (el acceso es
+     * por enlace mágico a la dirección invitada). El nombre de quien invita lo escribió un
+     * oficial: va escapado y solo en el cuerpo (el asunto es fijo).
+     */
+    fun sendInvitation(to: String, inviterName: String): Boolean = send(to, invitationMail(to, inviterName))
+
+    /**
+     * Cuenta aprobada: ya puede entrar (lo promete la pantalla "Tu solicitud está en revisión").
+     * [name] = el oficial ligado a la cuenta, si se sabe.
+     */
+    fun sendApproved(to: String, name: String?): Boolean = send(to, approvedMail(to, name))
+
+    /**
+     * Aviso de seguridad: se descargó una copia de los datos del oficial. Si no fue él
+     * (p. ej. alguien tomó su teléfono), sabe que debe cerrar sesión y avisar.
+     */
+    fun sendExportNotice(to: String, whenText: String): Boolean = send(to, exportMail(whenText))
+
+    /**
+     * Aviso de seguridad: la sesión se usó desde dos lugares (un refresh token ya canjeado
+     * volvió a llegar) y se cerraron todas. Quien tenga el teléfono vuelve a entrar con su
+     * correo; quien robó la sesión, no.
+     */
+    fun sendSessionsClosedNotice(to: String): Boolean = send(to, sessionsClosedMail())
+
+    /** Alerta para el administrador (picos de errores, reuso de sesiones): ver SecurityMonitor. */
+    fun sendSecurityAlert(to: String, title: String, lines: List<String>): Boolean = send(to, securityAlertMail(title, lines))
+
+    /**
+     * Prueba de punta a punta (admin): manda a [to] una muestra de CADA correo del sistema, con
+     * datos de ejemplo y "[Prueba]" en el asunto, para comprobar en producción que salen y
+     * dónde caen (bandeja o spam). Devuelve plantilla → si el servidor SMTP lo aceptó.
+     */
+    fun sendSamples(to: String): List<Pair<String, Boolean>> {
+        val appLink = "elpuesto://auth?token=prueba"
+        val ejemplo = "Oficial de ejemplo"
+        val samples = listOf(
+            "enlace-de-acceso" to magicLinkMail(appLink, Config.publicBaseUrl?.let { "$it/auth/open?token=prueba" } ?: appLink, web = false),
+            "invitacion" to invitationMail(to, ejemplo),
+            "cuenta-aprobada" to approvedMail(to, ejemplo),
+            "descarga-de-datos" to exportMail(DataExport.humanDate(java.time.Instant.now())),
+            "sesiones-cerradas" to sessionsClosedMail(),
+            "alerta-de-seguridad" to securityAlertMail("Alerta de ejemplo", listOf("Correo de prueba pedido desde el admin.")),
+        )
+        return samples.map { (kind, mail) -> kind to send(to, mail, subjectPrefix = "[Prueba] ") }
+    }
+
+    private fun magicLinkMail(appLink: String, buttonLink: String, web: Boolean): Mail {
         val donde = if (web) "en el navegador donde lo pediste" else "desde tu teléfono"
         val soloAhi = if (web) " y solo funciona en el navegador donde lo pediste" else ""
         val plain = """
@@ -41,16 +102,11 @@ object EmailSender {
 
             — El Puesto
         """.trimIndent()
-        return send(to, "Tu acceso a El Puesto", plain, magicLinkHtml(buttonLink, appLink, web))
+        return Mail("Tu acceso a El Puesto", plain, magicLinkHtml(buttonLink, appLink, web))
     }
 
-    /**
-     * Invitación de otro oficial: cómo instalar la app y entrar con ESTE correo (el acceso es
-     * por enlace mágico a la dirección invitada). El nombre de quien invita lo escribió un
-     * oficial: va escapado y solo en el cuerpo (el asunto es fijo).
-     */
-    fun sendInvitation(to: String, inviterName: String): Boolean {
-        val descargas = Config.downloadsUrl ?: Config.publicBaseUrl?.let { "$it/descargas" }
+    private fun invitationMail(to: String, inviterName: String): Mail {
+        val descargas = descargasUrl
         val web = Config.webAppUrl
         val instalar = when {
             descargas != null && web != null -> listOf(
@@ -74,14 +130,52 @@ object EmailSender {
                     "— El Puesto",
                 )
             ).joinToString("\n")
-        return send(to, "Te invitaron a El Puesto", plain, invitationHtml(esc(inviterName), esc(to), descargas, web))
+        return Mail("Te invitaron a El Puesto", plain, invitationHtml(esc(inviterName), esc(to), descargas, web))
     }
 
-    /**
-     * Aviso de seguridad: se descargó una copia de los datos del oficial. Si no fue él
-     * (p. ej. alguien tomó su teléfono), sabe que debe cerrar sesión y avisar.
-     */
-    fun sendExportNotice(to: String, whenText: String): Boolean {
+    private fun approvedMail(to: String, name: String?): Mail {
+        val descargas = descargasUrl
+        val web = Config.webAppUrl
+        val sinApp = listOfNotNull(
+            descargas?.let { "Android: $it" },
+            web?.let { "iPhone o computadora: $it" },
+        )
+        val plain = (
+            listOf(
+                if (name != null) "Hola, $name:" else "Hola:",
+                "",
+                "Un administrador aprobó tu cuenta: ya puedes entrar a El Puesto.",
+                "",
+                "Abre la app (o vuelve a ella) y entrarás directo.",
+                "Si te pide tu correo, escribe $to: te llegará un enlace para entrar.",
+                "",
+                "Lo primero será confirmar tu perfil: nombre, número OMDAI, área y, si quieres,",
+                "tus datos de emergencia.",
+            ) +
+                (if (sinApp.isEmpty()) emptyList() else listOf("", "¿No tienes la app a la mano?") + sinApp.map { "- $it" }) +
+                listOf("", "— El Puesto")
+            ).joinToString("\n")
+        val link = { url: String -> "<a href=\"${esc(url)}\" style=\"color:#7FB7F0;text-decoration:none;\">${esc(url)}</a>" }
+        val sinAppHtml = listOfNotNull(
+            descargas?.let { "Android: ${link(it)}" },
+            web?.let { "iPhone o computadora: ${link(it)}" },
+        )
+        return Mail(
+            "Ya puedes entrar a El Puesto",
+            plain,
+            noticeHtml(
+                "Tu cuenta fue aprobada",
+                (if (name != null) "Hola, <b style=\"color:#E8EAF0;\">${esc(name)}</b>: un" else "Un") +
+                    " administrador aprobó tu cuenta. Ya puedes entrar a El Puesto.<br><br>" +
+                    "Abre la app (o vuelve a ella) y entrarás directo. Si te pide tu correo, escribe " +
+                    "<b style=\"color:#E8EAF0;\">${esc(to)}</b>: te llegará un enlace para entrar.<br><br>" +
+                    "Lo primero será confirmar tu perfil: nombre, número OMDAI, área y, si quieres, tus datos de emergencia.",
+                if (sinAppHtml.isEmpty()) "" else "¿No tienes la app a la mano?<br>" + sinAppHtml.joinToString("<br>"),
+            ),
+        )
+    }
+
+    private fun exportMail(whenText: String): Mail {
         val plain = """
             Hola,
 
@@ -92,19 +186,14 @@ object EmailSender {
 
             — El Puesto
         """.trimIndent()
-        return send(to, "Se descargaron tus datos de El Puesto", plain, noticeHtml(
+        return Mail("Se descargaron tus datos de El Puesto", plain, noticeHtml(
             "Se descargaron tus datos",
             "Se descargó una copia de tus datos de El Puesto el <b style=\"color:#E8EAF0;\">$whenText</b> desde la app.",
             "Si fuiste tú, no tienes que hacer nada. Si no reconoces esta descarga, cierra sesión en tu teléfono y avisa al administrador.",
         ))
     }
 
-    /**
-     * Aviso de seguridad: la sesión se usó desde dos lugares (un refresh token ya canjeado
-     * volvió a llegar) y se cerraron todas. Quien tenga el teléfono vuelve a entrar con su
-     * correo; quien robó la sesión, no.
-     */
-    fun sendSessionsClosedNotice(to: String): Boolean {
+    private fun sessionsClosedMail(): Mail {
         val plain = """
             Hola,
 
@@ -116,17 +205,16 @@ object EmailSender {
 
             — El Puesto
         """.trimIndent()
-        return send(to, "Cerramos tus sesiones de El Puesto", plain, noticeHtml(
+        return Mail("Cerramos tus sesiones de El Puesto", plain, noticeHtml(
             "Cerramos tus sesiones",
             "Detectamos que tu sesión de El Puesto se usó desde <b style=\"color:#E8EAF0;\">dos lugares distintos</b>, lo que puede significar que alguien más la tiene. Por seguridad cerramos todas.",
             "Vuelve a entrar con tu correo desde la app. Si no reconoces lo que pasó, avisa al administrador.",
         ))
     }
 
-    /** Alerta para el administrador (picos de errores, reuso de sesiones): ver SecurityMonitor. */
-    fun sendSecurityAlert(to: String, title: String, lines: List<String>): Boolean {
+    private fun securityAlertMail(title: String, lines: List<String>): Mail {
         val plain = (listOf("Alerta de seguridad de El Puesto: $title", "") + lines + listOf("", "— El Puesto")).joinToString("\n")
-        return send(to, "[El Puesto] $title", plain, noticeHtml(
+        return Mail("[El Puesto] $title", plain, noticeHtml(
             esc(title),
             lines.joinToString("<br>") { esc(it) },
             "Revisa el log del backend (journalctl -u el-puesto) para el detalle. Esta alerta se repite como mucho una vez por hora.",
@@ -134,7 +222,8 @@ object EmailSender {
     }
 
     /** Envío multipart (texto + HTML). false si no hay SMTP o si falló. */
-    private fun send(to: String, subject: String, plain: String, html: String): Boolean {
+    private fun send(to: String, mail: Mail, subjectPrefix: String = ""): Boolean {
+        val subject = subjectPrefix + mail.subject
         if (!Config.emailEnabled) return false
         // UNA dirección simple: sin nombre visible ni listas ("a@x, b@y") que alguien haya
         // colado al invitar (el correo sale firmado por nuestro dominio).
@@ -162,8 +251,8 @@ object EmailSender {
                 // multipart/alternative: texto plano + HTML (el cliente muestra el mejor).
                 setContent(
                     MimeMultipart("alternative").apply {
-                        addBodyPart(MimeBodyPart().apply { setText(plain, "UTF-8") })
-                        addBodyPart(MimeBodyPart().apply { setContent(html, "text/html; charset=UTF-8") })
+                        addBodyPart(MimeBodyPart().apply { setText(mail.plain, "UTF-8") })
+                        addBodyPart(MimeBodyPart().apply { setContent(mail.html, "text/html; charset=UTF-8") })
                     },
                 )
             }

@@ -189,6 +189,18 @@ fun ElPuestoApp(appRepo: AppRepository, auth: Auth) {
         lifecycle.addObserver(obs)
         onDispose { lifecycle.removeObserver(obs) }
     }
+    // En revisión: se revisa cada minuto mientras la pantalla está abierta, así al aprobarla
+    // el oficial entra solo, sin cerrar y volver a abrir la app (en segundo plano no pregunta:
+    // al volver ya revisa el ON_START de arriba).
+    if (phase == Phase.PENDING) LaunchedEffect(Unit) {
+        while (true) {
+            kotlinx.coroutines.delay(60_000)
+            if (!lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED)) continue
+            val hadSession = auth.hasSession()
+            val st = auth.currentStatus()
+            if (phase == Phase.PENDING && (st == null || st.toPhase() != Phase.PENDING)) applyStatus(st, hadSession)
+        }
+    }
     // Enlace mágico del correo (deep link elpuesto://auth?token=…), en frío o con la app
     // abierta (p. ej. esperando en "Revisa tu correo"): completa el acceso. Con una sesión
     // ya abierta NO entra solo: un enlace ajeno (o de otra cuenta) pide confirmar antes,

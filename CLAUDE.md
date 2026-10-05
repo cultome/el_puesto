@@ -19,7 +19,7 @@ Este archivo es el **contexto persistente** entre sesiones. Complementos:
 - **Plataformas:** app de oficiales = **Android + web** (decisión 2026-09-26: la MISMA app, compilada también al navegador con Kotlin/Wasm y servida en `/app/`; lo que el navegador no puede —servicios, notificaciones, ubicación propia, recordatorios, actualizaciones— se **oculta**, nunca se muestra inerte); interfaces de **admin = web** (aparte). Idioma **solo español (MX)**.
 - **NO es una red social — privacy-first (principio central).** Lo "social" (chat, perfiles) existe **solo** al servicio de la actividad en pista: **sin amigos/conexiones, sin mensajería directa, sin grafo social**. Los **chats privados** (2026-09-25) no rompen esto: son grupos con nombre por invitación que el invitado ACEPTA, sin botón de "mensaje" en los perfiles ni lista de amigos. Acceso a datos privados (emergencia) **registrado y auditable**, conocido por ambas partes.
 - **Navegación conectada:** todo elemento que representa un objeto lleva a su detalle (listas de oficiales → perfil; circuitos/campeonatos → su detalle), salvo que haya una acción más apropiada.
-- **Registro:** por **invitación entre pares** (un oficial registrado invita a otro; se registra quién invita a quién; el invitado recibe un **correo con cómo instalar y entrar** — 2026-10-04: solo si la invitación creó su cuenta y aún no entra, reenviable una vez al día) **+ aprobación manual del admin**. Estados: invited → pending_approval → active → suspended. **Actualizar tus datos NO requiere aprobación** (la aprobación es a nivel cuenta).
+- **Registro:** por **invitación entre pares** (un oficial registrado invita a otro; se registra quién invita a quién; el invitado recibe un **correo con cómo instalar y entrar** — 2026-10-04: solo si la invitación creó su cuenta y aún no entra, reenviable una vez al día) **+ aprobación manual del admin** (al aprobarla le llega **"Ya puedes entrar"** y la pantalla de espera avanza sola). Estados: invited → pending_approval → active → suspended. **Actualizar tus datos NO requiere aprobación** (la aprobación es a nivel cuenta).
 - **Login:** **magic link por email** con deep link a la app (sin contraseñas). No passkeys.
 - **Datos mínimos del oficial:** OMDAI ID (número) + display name + email (email privado, solo auth/notificaciones) + avatar opcional (usado en todo el sistema).
 - **Perfil:** una sola **"Área asignada"** a la vez (**Intervención, Comunicación, Recovery, Escrutinio, Médico** — corregidas por el usuario 2026-08-01; distinto del rol operativo de la asignación en un evento). **Sin "certificaciones"** (no hay fuente autoritativa). Info de **emergencia** = contacto + tipo de sangre + alergias (**sin seguro**), **privada pero NO cifrada** (decisión 2026-09-25: no lo amerita; la protección es el acceso restringido y auditado — la app no debe prometer cifrado), acceso restringido (solo el jefe de puesto durante un evento activo) y **cada acceso queda registrado**. Historial de eventos.
@@ -83,7 +83,7 @@ Monorepo Gradle KMP:
 - **`backend/`** — Ktor + Netty. Sirve `shared` sobre **protobuf** (y JSON para debug/externos). **Todo en Postgres** (Exposed + Hikari): auth (cuentas/tokens) y **dominio en tablas normalizadas** (`DomainTables`/`DomainRepository`, fechas como ISO-8601); **arranca vacío** (sin siembra: los datos llegan por la API admin desde `data/`). Además la **API administrativa JSON** (`AdminRoutes`/`AdminRepository`/`AdminSupport`, ver abajo).
 - **`androidApp/`** — la app Android sobre `app/`: `MainActivity`, servicios (ubicación, barra fija, recordatorios, notificaciones), actualizaciones, `SqlDelightLocalDb` (el `LocalDb` de Android: **SQLDelight** con migraciones, fuente de verdad de la UI), `KeystoreAuthStore`, `AndroidPrefs`, `ImageStore`, `AndroidAppPlatform`; todo se arma en `AppGraph`. **Offline-first** con **outbox**; cliente Ktor con **protobuf + Bearer JWT**.
 - **`webApp/`** — la app web (Kotlin/Wasm) sobre `app/`: `Main.kt` (monta la app, fuente de respaldo, columna de 560 dp, enlace `#auth=`) y `WebStorage.kt` (caché/cola en memoria, `WebAuthStore`, `WebPrefs`). Compila a estáticos que el backend sirve en `/app/` (`WEB_APP_DIR`).
-- **`adminMcp/`** — servidor **MCP por stdio** para que agentes de AI administren los datos: capa delgada (JVM puro, sin deps de red salvo `java.net.http`) con 71 tools en español sobre la API `/admin/*`. JSON-RPC implementado a mano (el SDK oficial exige Ktor 3 y el monorepo está en Ktor 2). Registrado en **`.mcp.json`** del repo (`./adminMcp/run.sh`).
+- **`adminMcp/`** — servidor **MCP por stdio** para que agentes de AI administren los datos: capa delgada (JVM puro, sin deps de red salvo `java.net.http`) con 72 tools en español sobre la API `/admin/*`. JSON-RPC implementado a mano (el SDK oficial exige Ktor 3 y el monorepo está en Ktor 2). Registrado en **`.mcp.json`** del repo (`./adminMcp/run.sh`).
 - **Admin web (humanos)** — SPA **vanilla** (HTML/CSS/JS, sin npm ni build) en `backend/src/main/resources/adminweb/`, servida por el mismo backend en **`/admin/ui/`** (mismo origen → sin CORS). Login = pegar la X-Admin-Key (sessionStorage — se olvida al cerrar la pestaña —, validada con `/admin/whoami`; en producción en su host propio `admin.elpuesto.app`, env `ADMIN_HOST`); el nav se filtra por scopes. Tema Paddock nocturno. Secciones: cuentas (aprobar), oficiales (+avatar), eventos (+MbM/checklist/asignaciones/compañeros bulk, activo), circuitos→trazados→puestos/activos, campeonatos→categorías→posiciones/calendario/pilotos (+logo), convocatorias, agenda global, claves+auditoría (secreto mostrado una sola vez).
 
 **Interfaz administrativa (decisión 2026-07-28): API-first, agentes como consumidores primarios.**
@@ -158,7 +158,7 @@ admin `https://admin.elpuesto.app/admin/ui/`; sitio y descargas `https://elpuest
   Offline-first (outbox + caché primero, ver §3/§6), notificaciones locales (chat, avisos,
   recordatorios, barra "Evento en curso" visible en bloqueo) y actualización desde la app.
 - **Backend**: Postgres (esquema al arrancar, sin datos de prueba), API de la app en protobuf, API
-  admin JSON + `admin-api.md` + `admin-openapi.json` (mantener ambos a mano), MCP (`adminMcp`, 71
+  admin JSON + `admin-api.md` + `admin-openapi.json` (mantener ambos a mano), MCP (`adminMcp`, 72
   tools), admin web; tiempo real (`ChangeBus` → WS `/stream` con `StreamPolicy`, SSE de evento y
   admin); imágenes (`ImageService`, kinds avatar/chat/trip/event/circuit/series/trazado/**driver**);
   seguridad (`Sessions`, `Abuse`/`RateLimits`/`Quotas`, `WebSecurity`, `Operations`, PKCE); export
@@ -199,6 +199,10 @@ vez (`DriverPhotos`, lista blanca de hosts) y se sirven como kind `driver`.
   de eventos con roster y re-escribe la cuenta privada); siempre `--dry-run` antes. Renombrar
   una categoría (o sede) = PUT por la API ANTES del cargador, para conservar ids (las carreras
   tienen id estable y la planeación de los oficiales se liga a ellas).
+- **Correos**: todo correo nuevo va como plantilla en `EmailSender` + una línea en
+  `sendSamples`; para comprobar en producción que TODOS salen: admin web → Cuentas → "Probar
+  los correos del sistema" (o MCP `probar_correos`). "Aceptado" = lo tomó Mailgun; la entrega
+  se ve en los logs de Mailgun.
 - **Versión nueva de la app**: `scripts/nueva-version.sh [patch|minor]` (push + espera el despliegue
   + APK + tag). Notas redactadas a mano sin editor interactivo: `VISUAL=<script que copia tu
   archivo de notas sobre "$1">` y `--si`. La sesión de AWS (SSO, 4 h) debe estar viva.
