@@ -226,7 +226,7 @@ vez (`DriverPhotos`, lista blanca de hosts) y se sirven como kind `driver`.
 - Push con la app cerrada (FCM; requiere proyecto de Firebase del usuario); video en chats.
 - Logros fases 2 (medalla nueva) y 3 (recuerdo de hace un año, "Tu temporada"); compartir
   bitácora (espera feedback de usuarios); Live Updates de Android 16 para el MbM.
-- Operación: `AUTH_REQUIRE_PKCE=true` cuando la mayoría tenga ≥ 1.1.2; DMARC en Namecheap.
+- Operación: `AUTH_REQUIRE_PKCE=true` cuando la mayoría tenga ≥ 1.1.2.
 
 ## 5. Build & run (entorno de esta máquina — CachyOS)
 

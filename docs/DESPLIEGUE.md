@@ -93,8 +93,9 @@ CLAUDE.md §5. En la cuenta de producción `elpuesto` es un usuario de **IAM Ide
 Correo: **Mailgun** (`smtp.mailgun.org`, remitente `noreply@elpuesto.app`) con SPF
 `v=spf1 include:mailgun.org ~all`, DKIM `pdk1`/`pdk2._domainkey` (CNAME a Mailgun), MX de
 Mailgun y CNAME `email` de tracking. Un dominio solo puede tener UN SPF: cualquier otro
-proveedor se agrega como `include:` en ese mismo TXT. Pendiente recomendado: DMARC
-(`_dmarc` TXT `v=DMARC1; p=none;`).
+proveedor se agrega como `include:` en ese mismo TXT. DMARC (2026-10-04): TXT con Host `_dmarc`
+(en Namecheap el Host va SIN el dominio: `_dmarc.elpuesto.app` crea `_dmarc.elpuesto.app.elpuesto.app`),
+`v=DMARC1; p=none;` con reportes `rua`/`ruf` a Mailgun y OnDMARC (el que propone Mailgun).
 
 ## Operación
 
